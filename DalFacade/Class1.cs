@@ -1,7 +1,9 @@
 ﻿namespace DalFacade
 {
-    public class Class1
+    public class Entities
     {
-
+        //class dependency;
+        //class projects;
+        //class engineer;
     }
 }
