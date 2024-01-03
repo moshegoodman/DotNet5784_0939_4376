@@ -7,7 +7,10 @@ public class DependencyImplementation : IDependency
 {
     public int Create(Dependency item)
     {
-        throw new NotImplementedException();
+        if (item == null)
+            throw new NotImplementedException();
+
+        return 0;
     }
 
     public void Delete(int id)
