@@ -12,11 +12,13 @@ public record Dependency
     int DependsOnTask
 )
 {
-    //public Dependency() : this(0, 0, 0) { }
-    //public Dependency(int _id, int _dependentTask, int _dependsOnTask)
-    //{
-    //    Id = _id;
-    //    DependentTask = _dependentTask;
-    //    DependsOnTask = _dependsOnTask;
-    //}
+    public Dependency() : this(0, 0, 0) { }
+    public Dependency(int _id, int _dependentTask, int _dependsOnTask)
+    {
+
+        Id = _id;
+        DependentTask = _dependentTask;
+        DependsOnTask = _dependsOnTask;
+        
+    }
 }
