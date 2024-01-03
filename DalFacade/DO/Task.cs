@@ -1,8 +1,9 @@
-﻿using System;
+﻿namespace DO;
 
-public class Class1
+public record Task
+(
+    int id
+)
 {
-	public Class1()
-	{
-	}
+
 }

@@ -1,6 +1,9 @@
-﻿using System;
+﻿namespace DO;
 
-record Engineer
-{
+public record Engineer
+(
+    int _id
+)
+{ 
 
 }
