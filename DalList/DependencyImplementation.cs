@@ -7,26 +7,34 @@ public class DependencyImplementation : IDependency
 {
     public int Create(Dependency item)
     {
-        throw new NotImplementedException();
+        int id = DataSource.Config.NextDependencyId;
+        Dependency copyItem = item with { Id = id };
+        DataSource.Dependencies.Add(copyItem);
+        return id;
     }
 
     public void Delete(int id)
     {
-        throw new NotImplementedException();
+        if (Read(id) is null)
+            throw new Exception($"Dependency with ID={id} does not exists");
+        DataSource.Dependencies.Remove(Read(id)!);
     }
 
     public Dependency? Read(int id)
     {
-        throw new NotImplementedException();
+        return DataSource.Dependencies.Find(x => x.Id == id);
     }
 
     public List<Dependency> ReadAll()
     {
-        throw new NotImplementedException();
+        return new List<Dependency>(DataSource.Dependencies);
     }
 
     public void Update(Dependency item)
     {
-        throw new NotImplementedException();
+        if (Read(item.Id) is null)
+            throw new Exception($"Dependency with ID={item.Id} does not exists");
+        Delete(item.Id);
+        DataSource.Dependencies.Add(item);
     }
 }

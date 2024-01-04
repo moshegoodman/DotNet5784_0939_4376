@@ -1,5 +1,4 @@
-﻿
-namespace DO;
+﻿namespace DO;
 public record Task
 (
     int id,
@@ -17,6 +16,6 @@ public record Task
     string Remarks,
     int EngineerId
 {
-
+   
 }
 
