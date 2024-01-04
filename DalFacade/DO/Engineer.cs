@@ -2,11 +2,11 @@
 
 public record Engineer
 (
-    int _id,
+    int Id,
     string Email,
     double Cost,
     string Name,
-     
+    DO.EngineerExperience Level
 )
 { 
 

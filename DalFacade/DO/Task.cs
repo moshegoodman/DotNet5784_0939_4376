@@ -1,20 +1,21 @@
 ﻿namespace DO;
 public record Task
 (
-    int id,
+    int Id,
     string Alius,
     string Description,
-    datetime CreatedAtDate,
+    DateTime CreatedAtDate,
     TimeSpan RequiredEffortTime,
     bool IsMilestone,
-    DO.enum Complexity,
+    DO.EngineerExperience Complexity,
     DateTime StartDate,
-    datetime ScheduledDate,
-    datetime DeadlineDate,
-    datetime CompleteDate,
+    DateTime ScheduledDate,
+    DateTime DeadlineDate,
+    DateTime CompleteDate,
     string Deliverables,
     string Remarks,
     int EngineerId
+)
 {
    
 }
