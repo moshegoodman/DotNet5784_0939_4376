@@ -7,12 +7,12 @@
 /// <param name="DependsOnTask">The id of the predecessor task</param>
 public record Dependency
 (
-    int Id,
-    int DependentTask,
-    int DependsOnTask
+    int? Id,
+    int? DependentTask,
+    int? DependsOnTask
 )
 {
-    Dependency() : this(0, 0, 0) { }
+    Dependency() : this(null, null, null) { }
     //public Dependency(int _id, int _dependentTask, int _dependsOnTask)
     //{
 
