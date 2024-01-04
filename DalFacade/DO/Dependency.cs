@@ -12,7 +12,7 @@ public record Dependency
     int DependsOnTask
 )
 {
-    public Dependency() : this(0, 0, 0) { }
+    Dependency() : this(0, 0, 0) { }
     //public Dependency(int _id, int _dependentTask, int _dependsOnTask)
     //{
 
@@ -21,4 +21,5 @@ public record Dependency
     //    DependsOnTask = _dependsOnTask;
         
     //}
+
 }
