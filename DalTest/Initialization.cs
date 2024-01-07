@@ -14,14 +14,14 @@ public static class Initialization
     private static IEngineer? s_dalEngineer; //stage 1
 
     private static readonly Random s_rand = new();
- 
+
     private static void createEngineer()
     {
         string[] engineerNames =
         {
-            "Edward","Boris","Moses","David","Joseph" 
+            "Edward","Boris","Moses","David","Joseph"
         };
-        foreach(var _name in engineerNames) 
+        foreach (var _name in engineerNames)
         {
             int _id;
             do
@@ -44,10 +44,10 @@ public static class Initialization
 
     private static void createTask()
     {
-    
-        for(int i = 0; i<20; ++i)
+
+        for (int i = 0; i < 20; ++i)
         {
-            
+
             string _alias = $"T{i}";
 
             string _discription = $"D{i}";
@@ -63,6 +63,36 @@ public static class Initialization
             Engineer newEng = new(_id, _email, _cost, _name, _level);
 
             s_dalEngineer.Create(newEng);
+
+        }
+
+    }
+
+
+
+
+
+
+
+    private static void createDependency()
+    {
+
+        for (int i = 0; i < 40; ++i)
+        {
+
+            int _DependentTask;
+            do
+                _DependentTask = s_rand.Next(1000, 1000000);
+            while (s_dalTask!.Read(_DependentTask) is null);
+
+            int _DependentOnTask;
+            do
+                _DependentOnTask = s_rand.Next(1000, 1000000);
+            while (s_dalTask!.Read(_DependentOnTask) is null);
+
+            Dependency newDep = new(0, _DependentTask, _DependentOnTask);
+
+            s_dalDependency!.Create(newDep);
 
         }
 
