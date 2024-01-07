@@ -34,6 +34,6 @@ public record Task
     int? EngineerId = null
 )
 {
-    Task() : this(0){}
+    Task() : this(0) { }
 }
 
