@@ -7,9 +7,12 @@ public class EngineerImplementation : IEngineer
 {
     public int Create(Engineer item)
     {
-        Engineer newItem = item with { };
-        DataSource.Engineers.Add(newItem);
-        return newItem.Id;
+        if (Read(item.Id) is not null)
+        {
+            throw new Exception($"Engineer with ID={item.Id} already exists");
+        }
+        DataSource.Engineers.Add(item);
+        return item.Id;
     }
 
     public void Delete(int id)
