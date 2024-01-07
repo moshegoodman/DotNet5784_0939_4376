@@ -9,9 +9,9 @@ public static class Initialization
     const int MAX_ID = 400000000;
     const int LOW_SAL = 50;
     const int HIGH_SAL = 300;
-    private static IDependency? s_dalDependency; //stage 1
-    private static ITask? s_dalTask; //stage 1
-    private static IEngineer? s_dalEngineer; //stage 1
+    private static IDependency? s_dalDependency;
+    private static ITask? s_dalTask;
+    private static IEngineer? s_dalEngineer;
 
     private static readonly Random s_rand = new();
 
@@ -77,21 +77,33 @@ public static class Initialization
         for (int i = 0; i < 40; ++i)
         {
 
-            int _DependentTask;
+            int _dependentTask;
             do
-                _DependentTask = s_rand.Next(1000, 1000000);
-            while (s_dalTask!.Read(_DependentTask) is null);
+                _dependentTask = s_rand.Next(1000,2000);
+            while (s_dalTask!.Read(_dependentTask) is null);
 
-            int _DependentOnTask;
+            int _dependentOnTask;
             do
-                _DependentOnTask = s_rand.Next(1000, 1000000);
-            while (s_dalTask!.Read(_DependentOnTask) is null);
+                _dependentOnTask = s_rand.Next(1000, 2000);
+            while (s_dalTask!.Read(_dependentOnTask) is null || _dependentOnTask >= _dependentTask);
 
-            Dependency newDep = new(0, _DependentTask, _DependentOnTask);
+            Dependency newDep = new(i, _dependentTask, _dependentOnTask);
 
             s_dalDependency!.Create(newDep);
 
         }
+    }
+
+
+    public static void Do(ITask? dalTask, IDependency? dalDependency, IEngineer? dalEngineer)
+    {
+        s_dalTask = dalTask ?? throw new NullReferenceException("DAL can not be null!");
+        s_dalDependency = dalDependency ?? throw new NullReferenceException("DAL can not be null!");
+        s_dalEngineer = dalEngineer ?? throw new NullReferenceException("DAL can not be null!");
+
+        createTask();
+        createDependency();
+        createEngineer();
 
     }
 }
