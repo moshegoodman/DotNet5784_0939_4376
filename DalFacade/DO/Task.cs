@@ -2,7 +2,7 @@
 public record Task
 (
     int Id,
-    string Alius,
+    string Alias,
     string Description,
     DateTime CreatedAtDate,
     TimeSpan RequiredEffortTime,
@@ -17,6 +17,6 @@ public record Task
     int EngineerId
 )
 {
-   
+
 }
 

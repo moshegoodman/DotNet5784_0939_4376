@@ -7,26 +7,36 @@ public class TaskImplementation : ITask
 {
     public int Create(Task item)
     {
-        throw new NotImplementedException();
+        int id = DataSource.Config.NextDependencyId;
+        Task newItem = item with { Id = id };
+        DataSource.Tasks.Add(newItem);
+        return id;
     }
 
     public void Delete(int id)
     {
-        throw new NotImplementedException();
+        if (Read(id) is null)
+            throw new Exception($"Dependency with ID={id} does not exists");
+        DataSource.Tasks.Remove(Read(id)!);
+
     }
 
     public Task? Read(int id)
     {
-        throw new NotImplementedException();
+        return DataSource.Tasks.Find(x => x.Id == id);
+
     }
 
     public List<Task> ReadAll()
     {
-        throw new NotImplementedException();
+        return new List<Task>(DataSource.Tasks);
     }
 
     public void Update(Task item)
     {
-        throw new NotImplementedException();
+        if (Read(item.Id) is null)
+            throw new Exception($"Task with ID={item.Id} does not exists");
+        Delete(item.Id);
+        DataSource.Tasks.Add(item);
     }
 }
