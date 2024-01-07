@@ -52,7 +52,10 @@ public static class Initialization
 
             string _discription = $"D{i}";
 
-            DateTime startDate = DateTime.Now;
+            DateTime _startDate;
+            do
+                _startDate = s_rand.Next(1000, 1000000);
+            while (s_dalTask!.Read(_DependentOnTask) is null && _DependentOnTask < _DependentTask);
             TimeSpan range = TimeSpan.FromDays(365); // Adjust the range as needed
             DateTime _createdAtDate = startDate + TimeSpan.FromDays(s_rand.Next((int)range.TotalDays));
 
@@ -88,7 +91,7 @@ public static class Initialization
             int _DependentOnTask;
             do
                 _DependentOnTask = s_rand.Next(1000, 1000000);
-            while (s_dalTask!.Read(_DependentOnTask) is null);
+            while (s_dalTask!.Read(_DependentOnTask) is null && _DependentOnTask < _DependentTask);
 
             Dependency newDep = new(0, _DependentTask, _DependentOnTask);
 

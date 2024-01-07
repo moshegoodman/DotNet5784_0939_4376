@@ -2,9 +2,16 @@
 {
     internal class Program
     {
+
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+
+            try
+            {
+                Do();
+            }
+            catch (Exception a) { Console.WriteLine(a); }
         }
+
     }
 }
