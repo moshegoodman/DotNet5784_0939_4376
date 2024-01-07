@@ -15,6 +15,10 @@ internal static class DataSource
 
         private static int nextTaskId = startTaskId;
         internal static int NextTaskId { get => nextTaskId++; }
+
+        internal static DateTime? StartDate = null;
+
+        internal static DateTime? EndDate = null;   
     }
 
 
