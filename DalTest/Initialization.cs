@@ -52,17 +52,14 @@ public static class Initialization
 
             string _discription = $"D{i}";
 
-            DateTime startDate = DateTime.Now;
-            TimeSpan range = TimeSpan.FromDays(365); // Adjust the range as needed
-            DateTime _createdAtDate = startDate + TimeSpan.FromDays(s_rand.Next((int)range.TotalDays));
+            DateTime _createdAtDate = DateTime.Now.AddDays(-s_rand.Next(365));
+            
 
-            double _cost = s_rand.NextDouble() * (HIGH_SAL - LOW_SAL) + LOW_SAL;
+            DO.EngineerExperience _complexity = (DO.EngineerExperience)s_rand.Next(4);
 
-            DO.EngineerExperience _level = (DO.EngineerExperience)s_rand.Next(3);
+            Task newTask = new(i, _alias, _discription, _createdAtDate,null,false,_complexity);
 
-            Engineer newEng = new(_id, _email, _cost, _name, _level);
-
-            s_dalEngineer.Create(newEng);
+            s_dalTask!.Create(newTask);
 
         }
 
