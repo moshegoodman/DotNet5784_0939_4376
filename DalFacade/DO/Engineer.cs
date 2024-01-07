@@ -3,12 +3,12 @@
 public record Engineer
 (
     int Id,
-    string Email,
-    double Cost,
-    string Name,
-    DO.EngineerExperience Level
+    string? Email = null,
+    double? Cost = null,
+    string? Name = null,
+    DO.EngineerExperience? Level = null
 )
 { 
-
+    Engineer() : this(0) { }
 }
  
