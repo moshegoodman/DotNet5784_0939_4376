@@ -9,7 +9,7 @@ namespace DalTest
         private static IDependency? s_dalDependency = new DependencyImplementation();
         private static IEngineer? s_dalLinks = new EngineerImplementation();
 
-        public 
+        static void Add
         static void Main(string[] args)
         {
 
