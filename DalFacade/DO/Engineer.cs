@@ -10,10 +10,10 @@
 public record Engineer
 (
     int Id,
-    string? Email = null,
-    double? Cost = null,
-    string? Name = null,
-    DO.EngineerExperience? Level = null
+    string Email = "",
+    double Cost = 0,
+    string Name = "",
+    DO.EngineerExperience Level = EngineerExperience.Beginner
 )
 {
     Engineer() : this(0) { }
