@@ -7,7 +7,7 @@ public class TaskImplementation : ITask
 {
     public int Create(Task item)
     {
-        int id = DataSource.Config.NextDependencyId;
+        int id = DataSource.Config.NextTaskId;
         Task newItem = item with { Id = id };
         DataSource.Tasks.Add(newItem);
         return id;
@@ -16,7 +16,7 @@ public class TaskImplementation : ITask
     public void Delete(int id)
     {
         if (Read(id) is null)
-            throw new Exception($"Dependency with ID={id} does not exists");
+            throw new Exception($"Task with ID={id} does not exists");
         DataSource.Tasks.Remove(Read(id)!);
 
     }
