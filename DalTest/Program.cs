@@ -485,7 +485,7 @@ internal class Program
             Initialization.Do(s_dalTask, s_dalDependency, s_dalLinks);
 
         }
-        catch (Exception a) { Console.WriteLine(a); }
+        catch (Exception err) { Console.WriteLine(err); }
     }
 
 
