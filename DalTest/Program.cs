@@ -201,31 +201,32 @@ internal class Program
     }
     private void DependencyUpdate()
     {
+        DependencyImplementation? readDependency = null;
+
         Console.WriteLine("Enter the dependancy id:");
         int _dependancyId = Convert.ToInt32(Console.ReadLine())!;
-        Console.WriteLine("Enter the dependant task:");
-        int dependant_task = Convert.ToInt32(Console.ReadLine())!;
 
+
+        if (readDependency!.Read(_dependancyId) == null)
+            return;
+
+        Console.WriteLine(readDependency!.Read(_dependancyId));
+
+
+        Console.WriteLine("Enter the dependant task:");
+        int? dependant_task = Convert.ToInt32(Console.ReadLine())!;
         Console.WriteLine("Enter the dependamt on tasktask:");
-        int dependamt_on_tasktask = Convert.ToInt32(Console.ReadLine())!;
+        int? dependamt_on_tasktask = Convert.ToInt32(Console.ReadLine())!;
+
 
 
         Dependency updatedDependency = new Dependency(_dependancyId, dependant_task, dependamt_on_tasktask);
 
-
-
-        DependencyImplementation? readDependency = null;
-
-        if (readDependency!.Read(_dependancyId) == updatedDependency)
+        if (dependant_task is null || dependamt_on_tasktask is null)
             return;
 
         readDependency!.Delete(_dependancyId);
         readDependency!.Create(updatedDependency);
-
-
-
-
-        IDependency? _dependency = null;
     }
     private void DependencyDelete()
     {
@@ -251,8 +252,120 @@ internal class Program
 
     private void MenuEngineers()
     {
+        Console.WriteLine("Enter 1 to exit the engineers menu");
+        Console.WriteLine("Enter 2 to add an new engineer ");
+        Console.WriteLine("Enter 3 to read an engineer ");
+        Console.WriteLine("Enter 4 to read all engineers ");
+        Console.WriteLine("Enter 5 to update an engineer ");
+        Console.WriteLine("Enter 6 to delete an engineer");
+        string a = Console.ReadLine()!;
+        do
+            switch (a)
+            {
+                case "2":
+                    EngineerCreate();
+                    break;
+                case "3":
+                    EngineerRead();
+                    break;
 
+                case "4":
+                    EngineerReadAll();
+                    break;
+                case "5":
+                    EngineerUpdate();
+                    break;
+                case "6":
+                    EngineerDelete();
+                    break;
+
+            }
+        while (a != "1");
     }
+
+
+
+
+    private void EngineerCreate()
+    {
+        Console.WriteLine("Enter the dependant task:");
+        int dependant_task = Convert.ToInt32(Console.ReadLine())!;
+
+        Console.WriteLine("Enter the dependamt on tasktask:");
+        int dependamt_on_tasktask = Convert.ToInt32(Console.ReadLine())!;
+
+
+        int Id;
+        string Email = "";
+        double Cost = 0;
+        string Name = "";
+        DO.EngineerExperience Level = EngineerExperience.Beginner;
+
+        DO.Dependency newDependency = new(0, dependant_task, dependamt_on_tasktask);
+        DependencyImplementation? copyDependency = null;
+        copyDependency!.Create(newDependency);
+    }
+    private void EngineerRead()
+    {
+        Console.WriteLine("Enter the dependancy id:");
+        int _dependancy = Convert.ToInt32(Console.ReadLine())!;
+
+        DependencyImplementation? readDependency = null;
+
+        Console.WriteLine(readDependency!.Read(_dependancy));
+    }
+    private void EngineerReadAll()
+    {
+        List<DO.Dependency>? _allDependencies = null;
+        DependencyImplementation? readDependency = null;
+
+        _allDependencies = readDependency!.ReadAll();
+        foreach (DO.Dependency dependency in _allDependencies)
+        {
+            Console.WriteLine(dependency);
+        }
+    }
+    private void EngineerUpdate()
+    {
+        DependencyImplementation? readDependency = null;
+
+        Console.WriteLine("Enter the dependancy id:");
+        int _dependancyId = Convert.ToInt32(Console.ReadLine())!;
+
+
+        if (readDependency!.Read(_dependancyId) == null)
+            return;
+
+        Console.WriteLine(readDependency!.Read(_dependancyId));
+
+
+        Console.WriteLine("Enter the dependant task:");
+        int? dependant_task = Convert.ToInt32(Console.ReadLine())!;
+        Console.WriteLine("Enter the dependamt on tasktask:");
+        int? dependamt_on_tasktask = Convert.ToInt32(Console.ReadLine())!;
+
+
+
+        Dependency updatedDependency = new Dependency(_dependancyId, dependant_task, dependamt_on_tasktask);
+
+        if (dependant_task is null || dependamt_on_tasktask is null)
+            return;
+
+        readDependency!.Delete(_dependancyId);
+        readDependency!.Create(updatedDependency);
+    }
+    private void EngineerDelete()
+    {
+        Console.WriteLine("Enter the dependancy id:");
+        int _dependancy = Convert.ToInt32(Console.ReadLine())!;
+        IDependency? _dependency = null;
+        _dependency!.Delete(_dependancy);
+    }
+
+
+
+
+
     private static ITask? s_dalTask = new TaskImplementation();
     private static IDependency? s_dalDependency = new DependencyImplementation();
     private static IEngineer? s_dalLinks = new EngineerImplementation();
