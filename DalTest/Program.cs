@@ -26,7 +26,7 @@ internal class Program
             return null;
         }
     }
-    private void TaskMenu()
+    private TimeSpan? GetTimeSpan()
     {
         Console.WriteLine("Enter how meny days:");
         int days = Convert.ToInt32(Console.ReadLine());
@@ -192,11 +192,14 @@ internal class Program
 
         DO.Task newTask = new(0, _alias, _description, _createdAtDate, _taskComplexity, _deliverables, _remark, isMilestone, requiredEffortTime, startDate, scheduledDate, deadlineDate, completeDate, engineerId);
         ITask? copyTask = null;
-        copyTask!.Create(newTask);
+        copyTask!.Update(newTask);
     }
     private void TaskDelete()
     {
-
+        Console.WriteLine("Enter the task id to delete:");
+        int _taskId = Convert.ToInt32(Console.ReadLine());
+        ITask? _task = null;
+        _task!.Delete(_taskId);
     }
 
 
@@ -286,14 +289,7 @@ internal class Program
 
         if (readDependency!.Read(_dependancyId) == updatedDependency)
             return;
-
-        readDependency!.Delete(_dependancyId);
-        readDependency!.Create(updatedDependency);
-
-
-
-
-        IDependency? _dependency = null;
+        readDependency!.Update(updatedDependency);
     }
     private void DependencyDelete()
     {
@@ -302,35 +298,7 @@ internal class Program
         IDependency? _dependency = null;
         _dependency!.Delete(_dependancy);
     }
-        _allDependencies = readDependency!.ReadAll();
-        foreach (DO.Dependency dependency in _allDependencies)
-        {
-            Console.WriteLine(dependency);
-        }
-    }
-    private void DependencyUpdate()
-    {
-        Console.WriteLine("Enter the dependancy id:");
-        int _dependancy = Convert.ToInt32(Console.ReadLine())!;
-    }
-    private void DependencyDelete()
-    {
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      
 
     private void MenuEngineers()
     {
