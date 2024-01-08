@@ -26,7 +26,7 @@ internal class Program
             return null;
         }
     }
-    private void TaskMenu()
+    private TimeSpan? GetTimeSpan()
     {
         Console.WriteLine("Enter how meny days:");
         int days = Convert.ToInt32(Console.ReadLine());
@@ -34,7 +34,7 @@ internal class Program
         int hours = Convert.ToInt32(Console.ReadLine());
         try
         {
-            return new TimeSpan(days, hours,0);
+            return new TimeSpan(days, hours, 0);
         }
         catch (Exception)
         {
@@ -75,9 +75,9 @@ internal class Program
             }
         while (a != "1");
     }
-       
+
     private void TaskCreate()
-        {
+    {
         Console.WriteLine("Enter the alias of the task:");
         string _alias = Console.ReadLine()!;
 
@@ -293,8 +293,7 @@ internal class Program
         if (dependant_task is null || dependamt_on_tasktask is null)
             return;
 
-        readDependency!.Delete(_dependancyId);
-        readDependency!.Create(updatedDependency);
+        readDependency!.Update(updatedDependency);
     }
     private void DependencyDelete()
     {
@@ -302,21 +301,6 @@ internal class Program
         int _dependancy = Convert.ToInt32(Console.ReadLine())!;
         IDependency? _dependency = null;
         _dependency!.Delete(_dependancy);
-    }
-        _allDependencies = readDependency!.ReadAll();
-        foreach (DO.Dependency dependency in _allDependencies)
-        {
-            Console.WriteLine(dependency);
-        }
-    }
-    private void DependencyUpdate()
-    {
-        Console.WriteLine("Enter the dependancy id:");
-        int _dependancy = Convert.ToInt32(Console.ReadLine())!;
-    }
-    private void DependencyDelete()
-    {
-
     }
 
 
@@ -371,16 +355,15 @@ internal class Program
 
     private void EngineerCreate()
     {
-        Console.WriteLine("Enter the dependant task:");
-        int dependant_task = Convert.ToInt32(Console.ReadLine())!;
+        Console.WriteLine("Enter engineers id:");
+        int _engineer_id = Convert.ToInt32(Console.ReadLine())!;
 
-        Console.WriteLine("Enter the dependamt on tasktask:");
-        int dependamt_on_tasktask = Convert.ToInt32(Console.ReadLine())!;
+        Console.WriteLine("Enter engineers email:");
+        string Email = Console.ReadLine();
 
+        Console.WriteLine("Enter engineers price per hour:");
 
-        int Id;
-        string Email = "";
-        double Cost = 0;
+        double Cost = Convert.ToDouble(Console.ReadLine());
         string Name = "";
         DO.EngineerExperience Level = EngineerExperience.Beginner;
 
@@ -453,7 +436,7 @@ internal class Program
     private static IDependency? s_dalDependency = new DependencyImplementation();
     private static IEngineer? s_dalLinks = new EngineerImplementation();
 
-    
+
     public static void Main(string[] args)
     {
 
