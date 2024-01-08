@@ -333,9 +333,15 @@ internal class Program
         do
             switch (a)
             {
-                case "1": MenuTasks();
-                case "2": MenuDependents();
-                case "3": MenuEngineers();
+                case "1": 
+                    TaskMenu();
+                    break;
+                case "2": 
+                    MenuDependents();
+                    break;
+                case "3": 
+                    MenuEngineers();
+                    break;
             }
         while (a != "0");
     }
