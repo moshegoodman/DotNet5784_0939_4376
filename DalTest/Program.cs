@@ -81,8 +81,30 @@ internal class Program
         Console.WriteLine("Enter the remark of the task:");
         string _remark = Console.ReadLine()!;
 
+        Console.WriteLine("Enter if the task is milestone:  Y/N");
+        bool isMilestone = (Console.ReadLine()! == "Y");
 
-        DO.Task newTask = new(0, _alias, _description, _createdAtDate, _taskComplexity, _deliverables, _remark);
+        Console.WriteLine("Enter how meny time it will take, by following these steps!");
+        TimeSpan? requiredEffortTime = GetTimeSpan();
+
+        Console.WriteLine("Enter the end-date of the task by following these steps!");
+        DateTime? startDate = GetDateTime();
+
+        Console.WriteLine("Enter the start-date of the task by following these steps!");
+        DateTime? scheduledDate = GetDateTime();
+
+        Console.WriteLine("Enter the dead-line date of the task by following these steps!");
+        DateTime? deadlineDate = GetDateTime();
+
+        Console.WriteLine("Enter the real end-date of the task by following these steps!");
+        DateTime? completeDate = GetDateTime();
+
+        Console.WriteLine("Enter the engineer's id of the task:");
+        int engineerId = Convert.ToInt32(Console.ReadLine());
+
+
+
+        DO.Task newTask = new(0, _alias, _description, _createdAtDate, _taskComplexity, _deliverables, _remark, isMilestone, requiredEffortTime, startDate, scheduledDate, deadlineDate, completeDate, engineerId);
         ITask? copyTask = null;
         copyTask.Create(newTask);
     }
