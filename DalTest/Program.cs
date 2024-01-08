@@ -365,14 +365,17 @@ internal class Program
         string Email = Console.ReadLine();
 
         Console.WriteLine("Enter engineers price per hour:");
-
         double Cost = Convert.ToDouble(Console.ReadLine());
-        string Name = "";
-        DO.EngineerExperience Level = EngineerExperience.Beginner;
 
-        DO.Dependency newDependency = new(0, dependant_task, dependamt_on_tasktask);
-        DependencyImplementation? copyDependency = null;
-        copyDependency!.Create(newDependency);
+        Console.WriteLine("Enter engineers name:");
+        string Name = Console.ReadLine();
+
+        Console.WriteLine("Enter engineers level:");
+        DO.EngineerExperience Level = (DO.EngineerExperience)Convert.ToInt32(Console.ReadLine());
+
+        DO.Engineer newEngineer = new(_engineer_id, Email, Cost, Name, Level);
+        EngineerImplementation? copyEngineer = null;
+        copyEngineer!.Create(newEngineer);
     }
     private void EngineerRead()
     {
@@ -396,32 +399,36 @@ internal class Program
     }
     private void EngineerUpdate()
     {
-        DependencyImplementation? readDependency = null;
+        EngineerImplementation? readEngineer = null;
 
-        Console.WriteLine("Enter the dependancy id:");
-        int _dependancyId = Convert.ToInt32(Console.ReadLine())!;
+        Console.WriteLine("Enter engineers id:");
+        int _engineerId = Convert.ToInt32(Console.ReadLine())!;
 
 
-        if (readDependency!.Read(_dependancyId) == null)
+        if (readEngineer!.Read(_engineerId) == null)
             return;
 
-        Console.WriteLine(readDependency!.Read(_dependancyId));
+        Console.WriteLine(readEngineer!.Read(_engineerId));
 
 
-        Console.WriteLine("Enter the dependant task:");
-        int? dependant_task = Convert.ToInt32(Console.ReadLine())!;
-        Console.WriteLine("Enter the dependamt on tasktask:");
-        int? dependamt_on_tasktask = Convert.ToInt32(Console.ReadLine())!;
+        Console.WriteLine("Enter engineers email:");
+        string Email = Console.ReadLine();
 
+        Console.WriteLine("Enter engineers price per hour:");
+        double? Cost = Convert.ToDouble(Console.ReadLine());
 
+        Console.WriteLine("Enter engineers name:");
+        string Name = Console.ReadLine();
 
-        Dependency updatedDependency = new Dependency(_dependancyId, dependant_task, dependamt_on_tasktask);
+        Console.WriteLine("Enter engineers level:");
+        DO.EngineerExperience? Level = (DO.EngineerExperience)Convert.ToInt32(Console.ReadLine());
 
-        if (dependant_task is null || dependamt_on_tasktask is null)
+        DO.Engineer newEngineer = new(_engineerId, Email, Cost, Name, Level);
+
+        if (Email is null || Cost is null || Name is null || Level is null)
             return;
 
-        readDependency!.Delete(_dependancyId);
-        readDependency!.Create(updatedDependency);
+        readEngineer!.Update(newEngineer);
     }
     private void EngineerDelete()
     {
@@ -464,13 +471,13 @@ internal class Program
         do
             switch (a)
             {
-                case "1": 
+                case "1":
                     TaskMenu();
                     break;
-                case "2": 
+                case "2":
                     MenuDependents();
                     break;
-                case "3": 
+                case "3":
                     MenuEngineers();
                     break;
             }
