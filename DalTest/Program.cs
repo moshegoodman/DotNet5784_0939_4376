@@ -1,10 +1,11 @@
 ﻿namespace DalTest;
 using Dal;
 using DalApi;
-using System;
+using DO;
 
 internal class Program
 {
+
     private DateTime? GetDateTime()
     {
         Console.WriteLine("Enter the year:");
@@ -24,11 +25,8 @@ internal class Program
             Console.WriteLine("Invalid date or time entered.");
             return null;
         }
-
     }
-
-
-    private TimeSpan? GetTimeSpan()
+    private void TaskMenu()
     {
         Console.WriteLine("Enter how meny days:");
         int days = Convert.ToInt32(Console.ReadLine());
@@ -254,7 +252,6 @@ internal class Program
         Console.WriteLine("Enter the dependancy id:");
         int _dependancy = Convert.ToInt32(Console.ReadLine())!;
 
-        DO.Dependency? _dependency = null;
         DependencyImplementation? readDependency = null;
 
         Console.WriteLine(readDependency!.Read(_dependancy));
@@ -264,6 +261,47 @@ internal class Program
         List<DO.Dependency>? _allDependencies = null;
         DependencyImplementation? readDependency = null;
 
+        _allDependencies = readDependency!.ReadAll();
+        foreach (DO.Dependency dependency in _allDependencies)
+        {
+            Console.WriteLine(dependency);
+        }
+    }
+    private void DependencyUpdate()
+    {
+        Console.WriteLine("Enter the dependancy id:");
+        int _dependancyId = Convert.ToInt32(Console.ReadLine())!;
+        Console.WriteLine("Enter the dependant task:");
+        int dependant_task = Convert.ToInt32(Console.ReadLine())!;
+
+        Console.WriteLine("Enter the dependamt on tasktask:");
+        int dependamt_on_tasktask = Convert.ToInt32(Console.ReadLine())!;
+
+
+        Dependency updatedDependency = new Dependency(_dependancyId, dependant_task, dependamt_on_tasktask);
+
+
+
+        DependencyImplementation? readDependency = null;
+
+        if (readDependency!.Read(_dependancyId) == updatedDependency)
+            return;
+
+        readDependency!.Delete(_dependancyId);
+        readDependency!.Create(updatedDependency);
+
+
+
+
+        IDependency? _dependency = null;
+    }
+    private void DependencyDelete()
+    {
+        Console.WriteLine("Enter the dependancy id:");
+        int _dependancy = Convert.ToInt32(Console.ReadLine())!;
+        IDependency? _dependency = null;
+        _dependency!.Delete(_dependancy);
+    }
         _allDependencies = readDependency!.ReadAll();
         foreach (DO.Dependency dependency in _allDependencies)
         {
