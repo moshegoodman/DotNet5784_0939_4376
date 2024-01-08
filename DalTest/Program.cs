@@ -28,8 +28,23 @@ internal class Program
     }
     private void TaskMenu()
     {
-        Console.WriteLine("Enter the alias of the task:");
-        string _alias = Console.ReadLine()!;
+        Console.WriteLine("Enter how meny days:");
+        int days = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Enter how meny hours:");
+        int hours = Convert.ToInt32(Console.ReadLine());
+        try
+        {
+            return new TimeSpan(days, hours,0);
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Invalid days or hours entered.");
+            return null;
+        }
+    }
+
+    private void TaskMenu()
+    {
         Console.WriteLine("Enter 1 to exit the task menu");
         Console.WriteLine("Enter 2 to add a new task ");
         Console.WriteLine("Enter 3 to read a task ");
@@ -60,9 +75,9 @@ internal class Program
             }
         while (a != "1");
     }
-
+       
     private void TaskCreate()
-    {
+        {
         Console.WriteLine("Enter the alias of the task:");
         string _alias = Console.ReadLine()!;
 
@@ -106,30 +121,83 @@ internal class Program
 
         DO.Task newTask = new(0, _alias, _description, _createdAtDate, _taskComplexity, _deliverables, _remark, isMilestone, requiredEffortTime, startDate, scheduledDate, deadlineDate, completeDate, engineerId);
         ITask? copyTask = null;
-        copyTask.Create(newTask);
+        copyTask!.Create(newTask);
     }
     private void TaskRead()
     {
+        Console.WriteLine("Enter the Task id:");
+        int _taskId = Convert.ToInt32(Console.ReadLine())!;
 
+        ITask? readTask = null;
+
+        Console.WriteLine(readTask!.Read(_taskId));
     }
     private void TaskReadAll()
     {
-
+        ITask? readTask = null;
+        List<DO.Task> newList = readTask!.ReadAll();
+        foreach (DO.Task task in newList) { Console.WriteLine(task); }
     }
     private void TaskUpdate()
     {
+        Console.WriteLine("Enter the id of the task:");
+        int _id = Convert.ToInt32(Console.ReadLine()!);
 
+        ITask? readTask = null;
+        if (readTask!.Read(_id) == null)
+            return;
+        Console.WriteLine(readTask!.Read(_id));
+
+
+        Console.WriteLine("Enter the new alias of the task:");
+        string _alias = Console.ReadLine()!;
+
+        Console.WriteLine("Enter a description of the task:");
+        string _description = Console.ReadLine()!;
+
+        Console.WriteLine("Enter the new create-date of the task by following these steps!");
+        DateTime? _createdAtDate = GetDateTime();
+
+        Console.WriteLine("Enter the new complexity of the task 1-5:");
+        DO.EngineerExperience _taskComplexity = (DO.EngineerExperience)Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine("Enter the deliverables of the task:");
+        string _deliverables = Console.ReadLine()!;
+
+        Console.WriteLine("Enter the remark of the task:");
+        string _remark = Console.ReadLine()!;
+
+        Console.WriteLine("Enter if the task is milestone:  Y/N");
+        bool isMilestone = (Console.ReadLine()! == "Y");
+
+        Console.WriteLine("Enter how meny time it will take, by following these steps!");
+        TimeSpan? requiredEffortTime = GetTimeSpan();
+
+        Console.WriteLine("Enter the end-date of the task by following these steps!");
+        DateTime? startDate = GetDateTime();
+
+        Console.WriteLine("Enter the start-date of the task by following these steps!");
+        DateTime? scheduledDate = GetDateTime();
+
+        Console.WriteLine("Enter the dead-line date of the task by following these steps!");
+        DateTime? deadlineDate = GetDateTime();
+
+        Console.WriteLine("Enter the real end-date of the task by following these steps!");
+        DateTime? completeDate = GetDateTime();
+
+        Console.WriteLine("Enter the engineer's id of the task:");
+        int engineerId = Convert.ToInt32(Console.ReadLine());
+
+
+
+        DO.Task newTask = new(0, _alias, _description, _createdAtDate, _taskComplexity, _deliverables, _remark, isMilestone, requiredEffortTime, startDate, scheduledDate, deadlineDate, completeDate, engineerId);
+        ITask? copyTask = null;
+        copyTask!.Create(newTask);
     }
     private void TaskDelete()
     {
 
     }
-
-
-
-
-
-
 
 
     private void MenuDependents()
@@ -234,6 +302,21 @@ internal class Program
         int _dependancy = Convert.ToInt32(Console.ReadLine())!;
         IDependency? _dependency = null;
         _dependency!.Delete(_dependancy);
+    }
+        _allDependencies = readDependency!.ReadAll();
+        foreach (DO.Dependency dependency in _allDependencies)
+        {
+            Console.WriteLine(dependency);
+        }
+    }
+    private void DependencyUpdate()
+    {
+        Console.WriteLine("Enter the dependancy id:");
+        int _dependancy = Convert.ToInt32(Console.ReadLine())!;
+    }
+    private void DependencyDelete()
+    {
+
     }
 
 
@@ -370,8 +453,8 @@ internal class Program
     private static IDependency? s_dalDependency = new DependencyImplementation();
     private static IEngineer? s_dalLinks = new EngineerImplementation();
 
-    public
-    static void Main(string[] args)
+    
+    public static void Main(string[] args)
     {
 
 
