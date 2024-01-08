@@ -5,6 +5,30 @@ using DO;
 
 internal class Program
 {
+    private void main_menu()
+    {
+        Console.WriteLine("enter entity to check");
+        Console.WriteLine("enter 0 to leave main menu");
+        Console.WriteLine("enter 1 to check Tasks ");
+        Console.WriteLine("enter 2 to check Dependencies ");
+        Console.WriteLine("enter 3 to check Engineers ");
+        string a = Console.ReadLine()!;
+
+        do
+            switch (a)
+            {
+                case "1":
+                    TaskMenu();
+                    break;
+                case "2":
+                    MenuDependents();
+                    break;
+                case "3":
+                    MenuEngineers();
+                    break;
+            }
+        while (a != "0");
+    }
 
     private DateTime? GetDateTime()
     {
@@ -45,6 +69,7 @@ internal class Program
 
     private void TaskMenu()
     {
+
         Console.WriteLine("Enter 1 to exit the task menu");
         Console.WriteLine("Enter 2 to add a new task ");
         Console.WriteLine("Enter 3 to read a task ");
@@ -53,26 +78,30 @@ internal class Program
         Console.WriteLine("Enter 6 to delete a task");
         string a = Console.ReadLine()!;
         do
-            switch (a)
+            try
             {
-                case "2":
-                    TaskCreate();
-                    break;
-                case "3":
-                    TaskRead();
-                    break;
+                switch (a)
+                {
+                    case "2":
+                        TaskCreate();
+                        break;
+                    case "3":
+                        TaskRead();
+                        break;
 
-                case "4":
-                    TaskReadAll();
-                    break;
-                case "5":
-                    TaskUpdate();
-                    break;
-                case "6":
-                    TaskDelete();
-                    break;
+                    case "4":
+                        TaskReadAll();
+                        break;
+                    case "5":
+                        TaskUpdate();
+                        break;
+                    case "6":
+                        TaskDelete();
+                        break;
 
+                }
             }
+            catch (Exception err) { Console.WriteLine(err); }
         while (a != "1");
     }
 
@@ -121,7 +150,8 @@ internal class Program
 
         DO.Task newTask = new(0, _alias, _description, _createdAtDate, _taskComplexity, _deliverables, _remark, isMilestone, requiredEffortTime, startDate, scheduledDate, deadlineDate, completeDate, engineerId);
         ITask? copyTask = null;
-        copyTask!.Create(newTask);
+        Console.WriteLine("new Task id:");
+        Console.WriteLine(copyTask!.Create(newTask));
     }
     private void TaskRead()
     {
@@ -213,26 +243,30 @@ internal class Program
         Console.WriteLine("Enter 6 to delete a dependency");
         string a = Console.ReadLine()!;
         do
-            switch (a)
+            try
             {
-                case "2":
-                    DependencyCreate();
-                    break;
-                case "3":
-                    DependencyRead();
-                    break;
+                switch (a)
+                {
+                    case "2":
+                        DependencyCreate();
+                        break;
+                    case "3":
+                        DependencyRead();
+                        break;
 
-                case "4":
-                    DependencyReadAll();
-                    break;
-                case "5":
-                    DependencyUpdate();
-                    break;
-                case "6":
-                    DependencyDelete();
-                    break;
+                    case "4":
+                        DependencyReadAll();
+                        break;
+                    case "5":
+                        DependencyUpdate();
+                        break;
+                    case "6":
+                        DependencyDelete();
+                        break;
 
+                }
             }
+            catch (Exception err) { Console.WriteLine(err); }
         while (a != "1");
     }
 
@@ -248,7 +282,8 @@ internal class Program
 
         DO.Dependency newDependency = new(0, dependant_task, dependamt_on_tasktask);
         DependencyImplementation? copyDependency = null;
-        copyDependency!.Create(newDependency);
+        Console.WriteLine("new dependency id:");
+        Console.WriteLine(copyDependency!.Create(newDependency));
     }
     private void DependencyRead()
     {
@@ -325,26 +360,30 @@ internal class Program
         Console.WriteLine("Enter 6 to delete an engineer");
         string a = Console.ReadLine()!;
         do
-            switch (a)
+            try
             {
-                case "2":
-                    EngineerCreate();
-                    break;
-                case "3":
-                    EngineerRead();
-                    break;
+                switch (a)
+                {
+                    case "2":
+                        EngineerCreate();
+                        break;
+                    case "3":
+                        EngineerRead();
+                        break;
 
-                case "4":
-                    EngineerReadAll();
-                    break;
-                case "5":
-                    EngineerUpdate();
-                    break;
-                case "6":
-                    EngineerDelete();
-                    break;
+                    case "4":
+                        EngineerReadAll();
+                        break;
+                    case "5":
+                        EngineerUpdate();
+                        break;
+                    case "6":
+                        EngineerDelete();
+                        break;
 
+                }
             }
+            catch (Exception err) { Console.WriteLine(err); }
         while (a != "1");
     }
 
@@ -370,7 +409,8 @@ internal class Program
 
         DO.Engineer newEngineer = new(_engineer_id, Email, Cost, Name, Level);
         EngineerImplementation? copyEngineer = null;
-        copyEngineer!.Create(newEngineer);
+        Console.WriteLine("new enginerr id:");
+        Console.WriteLine(copyEngineer!.Create(newEngineer));
     }
     private void EngineerRead()
     {
@@ -412,10 +452,10 @@ internal class Program
         Console.WriteLine("Enter engineers level:");
         DO.EngineerExperience? Level = (DO.EngineerExperience)Convert.ToInt32(Console.ReadLine());
 
-        DO.Engineer newEngineer = new(_engineerId, Email, Cost, Name, Level);
 
         if (Email is null || Cost is null || Name is null || Level is null)
             return;
+        DO.Engineer newEngineer = new(_engineerId, Email, Cost!.Value, Name, Level!.Value);
 
         readEngineer!.Update(newEngineer);
     }
@@ -438,8 +478,8 @@ internal class Program
 
     public static void Main(string[] args)
     {
-
-
+        Program a = new();
+        a.main_menu();
         try
         {
             Initialization.Do(s_dalTask, s_dalDependency, s_dalLinks);
@@ -448,30 +488,6 @@ internal class Program
         catch (Exception a) { Console.WriteLine(a); }
     }
 
-    private void main_menu()
-    {
-        Console.WriteLine("enter entity to check");
-        Console.WriteLine("enter 0 to leave main menu");
-        Console.WriteLine("enter 1 to check Tasks ");
-        Console.WriteLine("enter 2 to check Dependencies ");
-        Console.WriteLine("enter 3 to check Engineers ");
-        string a = Console.ReadLine()!;
-
-        do
-            switch (a)
-            {
-                case "1":
-                    TaskMenu();
-                    break;
-                case "2":
-                    MenuDependents();
-                    break;
-                case "3":
-                    MenuEngineers();
-                    break;
-            }
-        while (a != "0");
-    }
 
 }
 
