@@ -261,14 +261,9 @@ internal class Program
     }
     private void DependencyReadAll()
     {
-        List<DO.Dependency>? _allDependencies = null;
-        DependencyImplementation? readDependency = null;
-
-        _allDependencies = readDependency!.ReadAll();
-        foreach (DO.Dependency dependency in _allDependencies)
-        {
-            Console.WriteLine(dependency);
-        }
+        IDependency? readDependency = null;
+        List<DO.Dependency> newList = readDependency!.ReadAll();
+        foreach (DO.Dependency dependency in newList) { Console.WriteLine(dependency); }
     }
     private void DependencyUpdate()
     {
@@ -377,22 +372,16 @@ internal class Program
     private void EngineerRead()
     {
         Console.WriteLine("Enter the dependancy id:");
-        int _dependancy = Convert.ToInt32(Console.ReadLine())!;
+        int _engineer = Convert.ToInt32(Console.ReadLine())!;
+        IEngineer? readEngineer = null;
 
-        DependencyImplementation? readDependency = null;
-
-        Console.WriteLine(readDependency!.Read(_dependancy));
+        Console.WriteLine(readEngineer!.Read(_engineer));
     }
     private void EngineerReadAll()
     {
-        List<DO.Dependency>? _allDependencies = null;
-        DependencyImplementation? readDependency = null;
-
-        _allDependencies = readDependency!.ReadAll();
-        foreach (DO.Dependency dependency in _allDependencies)
-        {
-            Console.WriteLine(dependency);
-        }
+        IEngineer? readEngineer = null;
+        List<DO.Engineer> newList = readEngineer!.ReadAll();
+        foreach (DO.Engineer engineer in newList) { Console.WriteLine(engineer); }
     }
     private void EngineerUpdate()
     {
@@ -425,10 +414,10 @@ internal class Program
     }
     private void EngineerDelete()
     {
-        Console.WriteLine("Enter the dependancy id:");
-        int _dependancy = Convert.ToInt32(Console.ReadLine())!;
-        IDependency? _dependency = null;
-        _dependency!.Delete(_dependancy);
+        Console.WriteLine("Enter the engineer id to delete:");
+        int _engineer = Convert.ToInt32(Console.ReadLine())!;
+        IEngineer? readEngineer = null;
+        readEngineer!.Delete(_engineer);
     }
 
 
