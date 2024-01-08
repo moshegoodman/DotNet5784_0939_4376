@@ -192,11 +192,14 @@ internal class Program
 
         DO.Task newTask = new(0, _alias, _description, _createdAtDate, _taskComplexity, _deliverables, _remark, isMilestone, requiredEffortTime, startDate, scheduledDate, deadlineDate, completeDate, engineerId);
         ITask? copyTask = null;
-        copyTask!.Create(newTask);
+        copyTask!.Update(newTask);
     }
     private void TaskDelete()
     {
-
+        Console.WriteLine("Enter the task id to delete:");
+        int _taskId = Convert.ToInt32(Console.ReadLine());
+        ITask? _task = null;
+        _task!.Delete(_taskId);
     }
 
 
@@ -461,9 +464,15 @@ internal class Program
         do
             switch (a)
             {
-                case "1": MenuTasks();
-                case "2": MenuDependents();
-                case "3": MenuEngineers();
+                case "1": 
+                    TaskMenu();
+                    break;
+                case "2": 
+                    MenuDependents();
+                    break;
+                case "3": 
+                    MenuEngineers();
+                    break;
             }
         while (a != "0");
     }
