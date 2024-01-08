@@ -14,21 +14,62 @@ namespace DalTest
             Console.WriteLine("Enter 4 to read all tasks ");
             Console.WriteLine("Enter 5 to update a task ");
             Console.WriteLine("Enter 6 to delete a task");
-            string a = Console.ReadLine();
+            string a = Console.ReadLine()!;
             do
                 switch (a)
                 {
                     case "2": TaskCreate();
-                } while (true)
+                    case "3": TaskRead();
+                    case "4": TaskReadAll();
+                    case "5": TaskUpdate();
+                    case "6": TaskDelete();
+                }
+            while (a != "1");
+        }
+        private DateTime? GetDateTime()
+        {
+            Console.WriteLine("Enter the year:");
+            int year = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter the month:");
+            int month = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter th day:");
+            int day = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter the hour:");
+            int hour = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                return new DateTime(year, month, day, hour, 0, 0);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid date or time entered.");
+                return null;
+            }
         }
         private void TaskCreate()
         {
-            string _alias = Console.ReadLine();
-            string _description = Console.ReadLine();
-            //DateTime _createdAtDate=
-            bool _isMilestone = Console.ReadLine();
+            Console.WriteLine("Enter the alias of the task:");
+            string _alias = Console.ReadLine()!;
+
+            Console.WriteLine("Enter a description of the task:");
+            string _description = Console.ReadLine()!;
+
+            Console.WriteLine("Enter the date of the task by following these steps!");
+            DateTime? _createdAtDate = GetDateTime();
+
+            Console.WriteLine("Enter the complexity of the task 1-5:");
+            DO.EngineerExperience _taskComplexity = (DO.EngineerExperience)Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter the deliverables of the task:");
+            string _deliverables = Console.ReadLine()!;
+
+            Console.WriteLine("Enter the remark of the task:");
+            string _remark = Console.ReadLine()!;
 
 
+            DO.Task newTask = new(0, _alias, _description, _createdAtDate, _taskComplexity, _deliverables, _remark);
+            ITask? copyTask;
+            copyTask!.Create(newTask);
         }
         private void TaskRead()
         {
@@ -74,7 +115,7 @@ namespace DalTest
             catch (Exception a) { Console.WriteLine(a); }
         }
 
-        private int main_menu()
+        private void main_menu()
         {
             Console.WriteLine("enter entity to check");
             Console.WriteLine("enter 0 to leave main menu");
@@ -89,9 +130,8 @@ namespace DalTest
                     case "1": MenuTasks();
                     case "2": MenuDependents();
                     case "3": MenuEngineers();
-                    case "0": return 0;
                 }
-            while (true);
+            while (a != "0");
         }
 
     }

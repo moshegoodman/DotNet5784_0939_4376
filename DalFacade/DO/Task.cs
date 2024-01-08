@@ -21,16 +21,16 @@ public record Task
     int Id,
     string Alias,
     string Description,
-    DateTime CreatedAtDate,
-    TimeSpan? RequiredEffortTime = null,
-    bool IsMilestone = false,
+    DateTime? CreatedAtDate,
     DO.EngineerExperience Complexity = EngineerExperience.Beginner,
+    string? Deliverables = null,
+    string? Remarks = null,
+    bool IsMilestone = false,
+    TimeSpan? RequiredEffortTime = null,
     DateTime? StartDate = null,
     DateTime? ScheduledDate = null,
     DateTime? DeadlineDate = null,
     DateTime? CompleteDate = null,
-    string? Deliverables = null,
-    string? Remarks = null,
     int? EngineerId = null
 )
 {

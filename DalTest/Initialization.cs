@@ -57,7 +57,7 @@ public static class Initialization
 
             DO.EngineerExperience _complexity = (DO.EngineerExperience)s_rand.Next(4);
 
-            Task newTask = new(i, _alias, _discription, _createdAtDate,null,false,_complexity);
+            Task newTask = new(i, _alias, _discription, _createdAtDate,_complexity);
 
             s_dalTask!.Create(newTask);
 
