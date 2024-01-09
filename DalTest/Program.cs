@@ -160,7 +160,7 @@ internal class Program
 
 
         DO.Task newTask = new(0, _alias, _description, _createdAtDate, _taskComplexity, _deliverables, _remark, isMilestone, requiredEffortTime, startDate, scheduledDate, deadlineDate, completeDate, engineerId);
-        ITask? copyTask = null;
+        TaskImplementation? copyTask = new();
         Console.WriteLine("new Task id:");
         Console.WriteLine(copyTask!.Create(newTask));
     }
@@ -169,13 +169,13 @@ internal class Program
         Console.WriteLine("Enter the Task id:");
         int _taskId = Convert.ToInt32(Console.ReadLine())!;
 
-        ITask? readTask = null;
+        TaskImlimenetation? readTask = null;
 
         Console.WriteLine(readTask!.Read(_taskId));
     }
     private void TaskReadAll()
     {
-        ITask? readTask = null;
+        TaskImlimenetation? readTask = null;
         List<DO.Task> newList = readTask!.ReadAll();
         foreach (DO.Task task in newList) { Console.WriteLine(task); }
     }
@@ -184,7 +184,7 @@ internal class Program
         Console.WriteLine("Enter the id of the task:");
         int _id = Convert.ToInt32(Console.ReadLine()!);
 
-        ITask? readTask = null;
+        TaskImlimenetation? readTask = null;
         if (readTask!.Read(_id) == null)
             return;
         Console.WriteLine(readTask!.Read(_id));
@@ -232,14 +232,14 @@ internal class Program
 
 
         DO.Task newTask = new(0, _alias, _description, _createdAtDate, _taskComplexity, _deliverables, _remark, isMilestone, requiredEffortTime, startDate, scheduledDate, deadlineDate, completeDate, engineerId);
-        ITask? copyTask = null;
+        TaskImplementation? copyTask = new();
         copyTask!.Update(newTask);
     }
     private void TaskDelete()
     {
         Console.WriteLine("Enter the task id to delete:");
         int _taskId = Convert.ToInt32(Console.ReadLine());
-        ITask? _task = null;
+        TaskImlimenetation? _task = null;
         _task!.Delete(_taskId);
     }
 
@@ -403,13 +403,13 @@ internal class Program
         int _engineer_id = Convert.ToInt32(Console.ReadLine())!;
 
         Console.WriteLine("Enter engineers email:");
-        string Email = Console.ReadLine();
+        string Email = Console.ReadLine()!;
 
         Console.WriteLine("Enter engineers price per hour:");
         double Cost = Convert.ToDouble(Console.ReadLine());
 
         Console.WriteLine("Enter engineers name:");
-        string Name = Console.ReadLine();
+        string Name = Console.ReadLine()!;
 
         Console.WriteLine("Enter engineers level:");
         DO.EngineerExperience Level = (DO.EngineerExperience)Convert.ToInt32(Console.ReadLine());
@@ -448,13 +448,13 @@ internal class Program
 
 
         Console.WriteLine("Enter engineers email:");
-        string Email = Console.ReadLine();
+        string Email = Console.ReadLine()!;
 
         Console.WriteLine("Enter engineers price per hour:");
         double? Cost = Convert.ToDouble(Console.ReadLine());
 
         Console.WriteLine("Enter engineers name:");
-        string Name = Console.ReadLine();
+        string Name = Console.ReadLine()!;
 
         Console.WriteLine("Enter engineers level:");
         DO.EngineerExperience? Level = (DO.EngineerExperience)Convert.ToInt32(Console.ReadLine());
@@ -478,7 +478,7 @@ internal class Program
 
 
 
-    private static ITask? s_dalTask = new TaskImplementation();
+    private static TaskImlimenetation? s_dalTask = new TaskImplementation();
     private static IDependency? s_dalDependency = new DependencyImplementation();
     private static IEngineer? s_dalLinks = new EngineerImplementation();
 
