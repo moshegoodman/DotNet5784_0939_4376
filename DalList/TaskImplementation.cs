@@ -27,6 +27,7 @@ public class TaskImplementation : ITask
 
     }
 
+
     public List<Task> ReadAll()
     {
         return new List<Task>(DataSource.Tasks);

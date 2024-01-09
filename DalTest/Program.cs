@@ -486,10 +486,6 @@ internal class Program
         readEngineer!.Delete(_engineer);
     }
 
-
-
-
-
     private static ITask? s_dalTask = new TaskImplementation();
     private static IDependency? s_dalDependency = new DependencyImplementation();
     private static IEngineer? s_dalLinks = new EngineerImplementation();
@@ -497,17 +493,16 @@ internal class Program
 
     public static void Main(string[] args)
     {
+        
+        try
+        {
+            Initialization.Do(s_dalTask, s_dalDependency, s_dalLinks);
+        }
+        
+        catch (Exception err) { Console.WriteLine(err); }
         Program a = new();
         a.main_menu();
         Console.WriteLine("main menu complete");
-        //    try
-        //    {
-        //        Initialization.Do(s_dalTask, s_dalDependency, s_dalLinks);
-
-        //    }
-        //    catch (Exception err) { Console.WriteLine(err); }
-        //}
-
 
     }
 }
