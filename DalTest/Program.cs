@@ -7,27 +7,36 @@ internal class Program
 {
     private void main_menu()
     {
-        Console.WriteLine("enter entity to check");
-        Console.WriteLine("enter 0 to leave main menu");
-        Console.WriteLine("enter 1 to check Tasks ");
-        Console.WriteLine("enter 2 to check Dependencies ");
-        Console.WriteLine("enter 3 to check Engineers ");
-        string a = Console.ReadLine()!;
-
+        int a;
         do
+        {
+            Console.WriteLine("enter entity to check");
+            Console.WriteLine("enter 0 to leave main menu");
+            Console.WriteLine("enter 1 to check Tasks ");
+            Console.WriteLine("enter 2 to check Dependencies ");
+            Console.WriteLine("enter 3 to check Engineers ");
+            a = Convert.ToInt32(Console.ReadLine())!;
+
+
             switch (a)
             {
-                case "1":
+                case 0:
+                    return;
+                case 1:
                     TaskMenu();
                     break;
-                case "2":
+                case 2:
                     MenuDependents();
                     break;
-                case "3":
+                case 3:
                     MenuEngineers();
                     break;
+                default:
+                    Console.WriteLine("enter a number between 0 and 3");
+                    break;
             }
-        while (a != "0");
+        }
+        while (a != 0);
     }
 
     private DateTime? GetDateTime()
@@ -98,7 +107,9 @@ internal class Program
                     case "6":
                         TaskDelete();
                         break;
-
+                    default:
+                        Console.WriteLine("enter a number between 0 and 6");
+                        break;
                 }
             }
             catch (Exception err) { Console.WriteLine(err); }
@@ -241,33 +252,37 @@ internal class Program
         Console.WriteLine("Enter 4 to read all dependencies ");
         Console.WriteLine("Enter 5 to update a dependency ");
         Console.WriteLine("Enter 6 to delete a dependency");
-        string a = Console.ReadLine()!;
+        int a = Convert.ToInt32(Console.ReadLine())!;
         do
             try
             {
                 switch (a)
                 {
-                    case "2":
+                    case 2:
                         DependencyCreate();
                         break;
-                    case "3":
+                    case 3:
                         DependencyRead();
                         break;
 
-                    case "4":
+                    case 4:
                         DependencyReadAll();
                         break;
-                    case "5":
+                    case 5:
                         DependencyUpdate();
                         break;
-                    case "6":
+                    case 6:
                         DependencyDelete();
                         break;
-
+                    case 1:
+                        return;
+                    default:
+                        Console.WriteLine("enter a number between 0 and 6");
+                        break;
                 }
             }
             catch (Exception err) { Console.WriteLine(err); }
-        while (a != "1");
+        while (true);
     }
 
 
@@ -340,16 +355,6 @@ internal class Program
 
 
 
-
-
-
-
-
-
-
-
-
-
     private void MenuEngineers()
     {
         Console.WriteLine("Enter 1 to exit the engineers menu");
@@ -380,7 +385,9 @@ internal class Program
                     case "6":
                         EngineerDelete();
                         break;
-
+                    default:
+                        Console.WriteLine("enter a number between 0 and 6");
+                        break;
                 }
             }
             catch (Exception err) { Console.WriteLine(err); }
@@ -480,15 +487,17 @@ internal class Program
     {
         Program a = new();
         a.main_menu();
-        try
-        {
-            Initialization.Do(s_dalTask, s_dalDependency, s_dalLinks);
+        Console.WriteLine("main menu complete");
+        //    try
+        //    {
+        //        Initialization.Do(s_dalTask, s_dalDependency, s_dalLinks);
 
-        }
-        catch (Exception err) { Console.WriteLine(err); }
+        //    }
+        //    catch (Exception err) { Console.WriteLine(err); }
+        //}
+
+
     }
-
-
 }
 
 
