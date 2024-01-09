@@ -4,7 +4,7 @@ using DO;
 using System.Collections.Generic;
 
 public class DependencyImplementation : IDependency
-{
+{   //creates dependency occurance
     public int Create(Dependency item)
     {
         int id = DataSource.Config.NextDependencyId;
@@ -13,23 +13,25 @@ public class DependencyImplementation : IDependency
         return id;
     }
 
+    //deletes a given dependency occurrence
     public void Delete(int id)
     {
         if (Read(id) is null)
             throw new Exception($"Dependency with ID={id} does not exists");
         DataSource.Dependencies.Remove(Read(id)!);
     }
-
+    //prints all fields of a given dependency occurrence
     public Dependency? Read(int id)
     {
         return DataSource.Dependencies.Find(x => x.Id == id);
     }
-
+    //prints all fields of all ocurrences 
     public List<Dependency> ReadAll()
     {
         return new List<Dependency>(DataSource.Dependencies);
     }
 
+    //updates an occurrence (the user enters vulues of all fields)
     public void Update(Dependency item)
     {
         if (Read(item.Id) is null)

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class TaskImplementation : ITask
 {
+
+    //creates task occurance
     public int Create(Task item)
     {
         int id = DataSource.Config.NextTaskId;
@@ -13,6 +15,7 @@ public class TaskImplementation : ITask
         return id;
     }
 
+    //deletes a given task occurrence
     public void Delete(int id)
     {
         if (Read(id) is null)
@@ -21,18 +24,20 @@ public class TaskImplementation : ITask
 
     }
 
+    //prints all fields of a given task occurrence
     public Task? Read(int id)
     {
         return DataSource.Tasks.Find(x => x.Id == id);
 
     }
 
-
+    //prints all fields of all ocurrences 
     public List<Task> ReadAll()
     {
         return new List<Task>(DataSource.Tasks);
     }
 
+    //updates an occurrence (the user enters vulues of all fields)
     public void Update(Task item)
     {
         if (Read(item.Id) is null)
