@@ -506,14 +506,20 @@ internal class Program
 
     private static ITask? s_dalTask = new TaskImplementation();
     private static IDependency? s_dalDependency = new DependencyImplementation();
-    private static IEngineer? s_dalLinks = new EngineerImplementation();
+    private static IEngineer? s_dalEngineer = new EngineerImplementation();
 
     //Main method
     public static void Main(string[] args)
     {
-        Program a = new();
-        a.main_menu();
-        Console.WriteLine("main menu complete");
+        try
+        {
+            Initialization.Do(s_dalTask, s_dalDependency, s_dalEngineer);
+            Program a = new();
+            a.main_menu();
+            Console.WriteLine("main menu complete");
+        }
+        catch (Exception err) { Console.WriteLine(err); }
+
     }
 }
 

@@ -84,12 +84,12 @@ public static class Initialization
 
             int _dependentTask;
             do
-                _dependentTask = s_rand.Next(1000, 2000);
+                _dependentTask = s_rand.Next(1010, 1020);
             while (s_dalTask!.Read(_dependentTask) is null);
 
             int _dependentOnTask;
             do
-                _dependentOnTask = s_rand.Next(1000, 2000);
+                _dependentOnTask = s_rand.Next(1000, 1010);
             while (s_dalTask!.Read(_dependentOnTask) is null || _dependentOnTask >= _dependentTask);
 
             Dependency newDep = new(i, _dependentTask, _dependentOnTask);
@@ -108,8 +108,13 @@ public static class Initialization
         s_dalEngineer = dalEngineer ?? throw new NullReferenceException("DAL can not be null!");
 
         createTask();
-        createDependency();
         createEngineer();
+        createDependency();
+        Console.WriteLine("create dependency done");
+
 
     }
+
+
+
 }
