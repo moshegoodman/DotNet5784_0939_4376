@@ -10,7 +10,7 @@ public static class Initialization
     const int LOW_SAL = 50;
     const int HIGH_SAL = 300;
     private static IDependency? s_dalDependency;
-    private static TaskImlimenetation? s_dalTask;
+    private static ITask? s_dalTask;
     private static IEngineer? s_dalEngineer;
 
     private static readonly Random s_rand = new();
@@ -53,11 +53,11 @@ public static class Initialization
             string _discription = $"D{i}";
 
             DateTime _createdAtDate = DateTime.Now.AddDays(-s_rand.Next(365));
-            
+
 
             DO.EngineerExperience _complexity = (DO.EngineerExperience)s_rand.Next(4);
 
-            Task newTask = new(i, _alias, _discription, _createdAtDate,_complexity);
+            Task newTask = new(i, _alias, _discription, _createdAtDate, _complexity);
 
             s_dalTask!.Create(newTask);
 
@@ -79,7 +79,7 @@ public static class Initialization
 
             int _dependentTask;
             do
-                _dependentTask = s_rand.Next(1000,2000);
+                _dependentTask = s_rand.Next(1000, 2000);
             while (s_dalTask!.Read(_dependentTask) is null);
 
             int _dependentOnTask;
@@ -95,7 +95,7 @@ public static class Initialization
     }
 
 
-    public static void Do(TaskImlimenetation? dalTask, IDependency? dalDependency, IEngineer? dalEngineer)
+    public static void Do(ITask? dalTask, IDependency? dalDependency, IEngineer? dalEngineer)
     {
         s_dalTask = dalTask ?? throw new NullReferenceException("DAL can not be null!");
         s_dalDependency = dalDependency ?? throw new NullReferenceException("DAL can not be null!");
