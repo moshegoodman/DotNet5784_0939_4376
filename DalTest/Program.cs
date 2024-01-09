@@ -5,6 +5,7 @@ using DO;
 
 internal class Program
 {
+    // Main menu to navigate through entities
     private void main_menu()
     {
         int a;
@@ -16,7 +17,6 @@ internal class Program
             Console.WriteLine("enter 2 to check Dependencies ");
             Console.WriteLine("enter 3 to check Engineers ");
             a = Convert.ToInt32(Console.ReadLine())!;
-
 
             switch (a)
             {
@@ -39,6 +39,7 @@ internal class Program
         while (a != 0);
     }
 
+    // Method to get user input for a DateTime
     private DateTime? GetDateTime()
     {
         Console.WriteLine("Enter the year:");
@@ -59,6 +60,7 @@ internal class Program
             return null;
         }
     }
+    // Method to get user input for a TimeSpan
     private TimeSpan? GetTimeSpan()
     {
         Console.WriteLine("Enter how meny days:");
@@ -76,6 +78,7 @@ internal class Program
         }
     }
 
+    // Task-related menu
     private void TaskMenu()
     {
         do
@@ -120,6 +123,7 @@ internal class Program
         } while (true);
     }
 
+    // Method to create a new task
     private void TaskCreate()
     {
         Console.WriteLine("Enter the alias of the task:");
@@ -168,6 +172,7 @@ internal class Program
         Console.WriteLine("new Task id:");
         Console.WriteLine(copyTask!.Create(newTask));
     }
+    //This dethod prints the fields of a task(the user gives the id)
     private void TaskRead()
     {
         Console.WriteLine("Enter the Task id:");
@@ -177,12 +182,14 @@ internal class Program
 
         Console.WriteLine(readTask!.Read(_taskId));
     }
+    // The method prints the fields of all tasks
     private void TaskReadAll()
     {
         ITask? readTask = new TaskImplementation();
         List<DO.Task> newList = readTask!.ReadAll();
         foreach (DO.Task task in newList) { Console.WriteLine(task); }
     }
+    //The method updates the task (the user gives the id then gives the values for the fields)
     private void TaskUpdate()
     {
         Console.WriteLine("Enter the id of the task:");
@@ -239,6 +246,7 @@ internal class Program
         ITask? copyTask = new TaskImplementation();
         copyTask!.Update(newTask);
     }
+    //The method deletes a task given by the user(the user enters the id)
     private void TaskDelete()
     {
         Console.WriteLine("Enter the task id to delete:");
@@ -247,6 +255,7 @@ internal class Program
         _task!.Delete(_taskId);
     }
 
+    // Dependency-related menu
 
     private void MenuDependents()
     {
@@ -292,7 +301,7 @@ internal class Program
         while (true);
     }
 
-
+    //The method creates a new dependency(the user enters all the field values)
     private void DependencyCreate()
     {
         Console.WriteLine("Enter the dependant task:");
@@ -307,6 +316,7 @@ internal class Program
         Console.WriteLine("new dependency id:");
         Console.WriteLine(copyDependency.Create(newDependency));
     }
+    // prints all fields of a given dependency (the user enters the id)
     private void DependencyRead()
     {
         Console.WriteLine("Enter the dependancy id:");
@@ -316,12 +326,14 @@ internal class Program
 
         Console.WriteLine(readDependency!.Read(_dependancy));
     }
+    // prints all fields of all dependencies
     private void DependencyReadAll()
     {
         IDependency? readDependency = new DependencyImplementation();
         List<DO.Dependency> newList = readDependency!.ReadAll();
         foreach (DO.Dependency dependency in newList) { Console.WriteLine(dependency); }
     }
+    //this method updates a given dependency
     private void DependencyUpdate()
     {
         IDependency? readDependency = new DependencyImplementation();
@@ -350,6 +362,7 @@ internal class Program
 
         readDependency!.Update(updatedDependency);
     }
+    //this metod deletes a given dependency
     private void DependencyDelete()
     {
         Console.WriteLine("Enter the dependancy id:");
@@ -361,7 +374,7 @@ internal class Program
 
 
 
-
+    // Dependency-related menu
     private void MenuEngineers()
     {
         do
@@ -406,9 +419,7 @@ internal class Program
         while (true);
     }
 
-
-
-
+    //The method creates a new engineer (the user enters all the field values)
     private void EngineerCreate()
     {
         Console.WriteLine("Enter engineers id:");
@@ -431,6 +442,7 @@ internal class Program
         Console.WriteLine("new enginerr id:");
         Console.WriteLine(copyEngineer!.Create(newEngineer));
     }
+    // prints all fields of a given engineer (the user enters the id)
     private void EngineerRead()
     {
         Console.WriteLine("Enter the dependancy id:");
@@ -439,6 +451,7 @@ internal class Program
 
         Console.WriteLine(readEngineer!.Read(_engineer));
     }
+    // prints all fields of all engineers
     private void EngineerReadAll()
     {
         IEngineer? readEngineer = new EngineerImplementation();
@@ -478,6 +491,7 @@ internal class Program
 
         readEngineer!.Update(newEngineer);
     }
+    //this metod deletes a given engineer
     private void EngineerDelete()
     {
         Console.WriteLine("Enter the engineer id to delete:");
@@ -494,21 +508,12 @@ internal class Program
     private static IDependency? s_dalDependency = new DependencyImplementation();
     private static IEngineer? s_dalLinks = new EngineerImplementation();
 
-
+    //Main method
     public static void Main(string[] args)
     {
         Program a = new();
         a.main_menu();
         Console.WriteLine("main menu complete");
-        //    try
-        //    {
-        //        Initialization.Do(s_dalTask, s_dalDependency, s_dalLinks);
-
-        //    }
-        //    catch (Exception err) { Console.WriteLine(err); }
-        //}
-
-
     }
 }
 
