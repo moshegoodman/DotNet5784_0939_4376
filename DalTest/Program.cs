@@ -460,13 +460,13 @@ internal class Program
 
 
         Console.WriteLine("Enter engineers email:");
-        string Email = Console.ReadLine();
+        string Email = Console.ReadLine()!;
 
         Console.WriteLine("Enter engineers price per hour:");
         double? Cost = Convert.ToDouble(Console.ReadLine());
 
         Console.WriteLine("Enter engineers name:");
-        string Name = Console.ReadLine();
+        string Name = Console.ReadLine()!;
 
         Console.WriteLine("Enter engineers level:");
         DO.EngineerExperience? Level = (DO.EngineerExperience)Convert.ToInt32(Console.ReadLine());
@@ -490,7 +490,7 @@ internal class Program
 
 
 
-    private static ITask? s_dalTask = new TaskImplementation();
+    private static TaskImlimenetation? s_dalTask = new TaskImplementation();
     private static IDependency? s_dalDependency = new DependencyImplementation();
     private static IEngineer? s_dalLinks = new EngineerImplementation();
 

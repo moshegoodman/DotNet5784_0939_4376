@@ -10,7 +10,7 @@ public static class Initialization
     const int LOW_SAL = 50;
     const int HIGH_SAL = 300;
     private static IDependency? s_dalDependency;
-    private static ITask? s_dalTask;
+    private static TaskImlimenetation? s_dalTask;
     private static IEngineer? s_dalEngineer;
 
     private static readonly Random s_rand = new();
@@ -95,7 +95,7 @@ public static class Initialization
     }
 
 
-    public static void Do(ITask? dalTask, IDependency? dalDependency, IEngineer? dalEngineer)
+    public static void Do(TaskImlimenetation? dalTask, IDependency? dalDependency, IEngineer? dalEngineer)
     {
         s_dalTask = dalTask ?? throw new NullReferenceException("DAL can not be null!");
         s_dalDependency = dalDependency ?? throw new NullReferenceException("DAL can not be null!");
