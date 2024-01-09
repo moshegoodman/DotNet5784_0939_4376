@@ -78,33 +78,37 @@ internal class Program
 
     private void TaskMenu()
     {
-
-        Console.WriteLine("Enter 1 to exit the task menu");
-        Console.WriteLine("Enter 2 to add a new task ");
-        Console.WriteLine("Enter 3 to read a task ");
-        Console.WriteLine("Enter 4 to read all tasks ");
-        Console.WriteLine("Enter 5 to update a task ");
-        Console.WriteLine("Enter 6 to delete a task");
-        string a = Console.ReadLine()!;
         do
+        {
+
+            Console.WriteLine("Enter 1 to exit the task menu");
+            Console.WriteLine("Enter 2 to add a new task ");
+            Console.WriteLine("Enter 3 to read a task ");
+            Console.WriteLine("Enter 4 to read all tasks ");
+            Console.WriteLine("Enter 5 to update a task ");
+            Console.WriteLine("Enter 6 to delete a task");
+            int a = Convert.ToInt32(Console.ReadLine())!;
+
             try
             {
                 switch (a)
                 {
-                    case "2":
+                    case 1:
+                        return;
+                    case 2:
                         TaskCreate();
                         break;
-                    case "3":
+                    case 3:
                         TaskRead();
                         break;
 
-                    case "4":
+                    case 4:
                         TaskReadAll();
                         break;
-                    case "5":
+                    case 5:
                         TaskUpdate();
                         break;
-                    case "6":
+                    case 6:
                         TaskDelete();
                         break;
                     default:
@@ -113,7 +117,7 @@ internal class Program
                 }
             }
             catch (Exception err) { Console.WriteLine(err); }
-        while (a != "1");
+        } while (true);
     }
 
     private void TaskCreate()
@@ -246,14 +250,16 @@ internal class Program
 
     private void MenuDependents()
     {
-        Console.WriteLine("Enter 1 to exit the dependency menu");
-        Console.WriteLine("Enter 2 to add a new dependency ");
-        Console.WriteLine("Enter 3 to read a dependency ");
-        Console.WriteLine("Enter 4 to read all dependencies ");
-        Console.WriteLine("Enter 5 to update a dependency ");
-        Console.WriteLine("Enter 6 to delete a dependency");
-        int a = Convert.ToInt32(Console.ReadLine())!;
         do
+        {
+            Console.WriteLine("Enter 1 to exit the dependency menu");
+            Console.WriteLine("Enter 2 to add a new dependency ");
+            Console.WriteLine("Enter 3 to read a dependency ");
+            Console.WriteLine("Enter 4 to read all dependencies ");
+            Console.WriteLine("Enter 5 to update a dependency ");
+            Console.WriteLine("Enter 6 to delete a dependency");
+            int a = Convert.ToInt32(Console.ReadLine())!;
+
             try
             {
                 switch (a)
@@ -282,6 +288,7 @@ internal class Program
                 }
             }
             catch (Exception err) { Console.WriteLine(err); }
+        }
         while (true);
     }
 
@@ -296,16 +303,16 @@ internal class Program
 
 
         DO.Dependency newDependency = new(0, dependant_task, dependamt_on_tasktask);
-        DependencyImplementation? copyDependency = null;
+        DependencyImplementation? copyDependency = new();
         Console.WriteLine("new dependency id:");
-        Console.WriteLine(copyDependency!.Create(newDependency));
+        Console.WriteLine(copyDependency.Create(newDependency));
     }
     private void DependencyRead()
     {
         Console.WriteLine("Enter the dependancy id:");
         int _dependancy = Convert.ToInt32(Console.ReadLine())!;
 
-        DependencyImplementation? readDependency = null;
+        DependencyImplementation? readDependency = new();
 
         Console.WriteLine(readDependency!.Read(_dependancy));
     }
@@ -317,7 +324,7 @@ internal class Program
     }
     private void DependencyUpdate()
     {
-        DependencyImplementation? readDependency = null;
+        DependencyImplementation? readDependency = new();
 
         Console.WriteLine("Enter the dependancy id:");
         int _dependancyId = Convert.ToInt32(Console.ReadLine())!;
@@ -347,7 +354,7 @@ internal class Program
     {
         Console.WriteLine("Enter the dependancy id:");
         int _dependancy = Convert.ToInt32(Console.ReadLine())!;
-        IDependency? _dependency = null;
+        DependencyImplementation? _dependency = new();
         _dependency!.Delete(_dependancy);
     }
 
@@ -357,32 +364,36 @@ internal class Program
 
     private void MenuEngineers()
     {
-        Console.WriteLine("Enter 1 to exit the engineers menu");
-        Console.WriteLine("Enter 2 to add an new engineer ");
-        Console.WriteLine("Enter 3 to read an engineer ");
-        Console.WriteLine("Enter 4 to read all engineers ");
-        Console.WriteLine("Enter 5 to update an engineer ");
-        Console.WriteLine("Enter 6 to delete an engineer");
-        string a = Console.ReadLine()!;
         do
+        {
+            Console.WriteLine("Enter 1 to exit the engineers menu");
+            Console.WriteLine("Enter 2 to add an new engineer ");
+            Console.WriteLine("Enter 3 to read an engineer ");
+            Console.WriteLine("Enter 4 to read all engineers ");
+            Console.WriteLine("Enter 5 to update an engineer ");
+            Console.WriteLine("Enter 6 to delete an engineer");
+            int a = Convert.ToInt32(Console.ReadLine())!;
+
             try
             {
                 switch (a)
                 {
-                    case "2":
+                    case 1:
+                        return;
+                    case 2:
                         EngineerCreate();
                         break;
-                    case "3":
+                    case 3:
                         EngineerRead();
                         break;
 
-                    case "4":
+                    case 4:
                         EngineerReadAll();
                         break;
-                    case "5":
+                    case 5:
                         EngineerUpdate();
                         break;
-                    case "6":
+                    case 6:
                         EngineerDelete();
                         break;
                     default:
@@ -391,7 +402,8 @@ internal class Program
                 }
             }
             catch (Exception err) { Console.WriteLine(err); }
-        while (a != "1");
+        }
+        while (true);
     }
 
 
@@ -403,19 +415,19 @@ internal class Program
         int _engineer_id = Convert.ToInt32(Console.ReadLine())!;
 
         Console.WriteLine("Enter engineers email:");
-        string Email = Console.ReadLine();
+        string Email = Console.ReadLine()!;
 
         Console.WriteLine("Enter engineers price per hour:");
         double Cost = Convert.ToDouble(Console.ReadLine());
 
         Console.WriteLine("Enter engineers name:");
-        string Name = Console.ReadLine();
+        string Name = Console.ReadLine()!;
 
         Console.WriteLine("Enter engineers level:");
         DO.EngineerExperience Level = (DO.EngineerExperience)Convert.ToInt32(Console.ReadLine());
 
         DO.Engineer newEngineer = new(_engineer_id, Email, Cost, Name, Level);
-        EngineerImplementation? copyEngineer = null;
+        EngineerImplementation? copyEngineer = new();
         Console.WriteLine("new enginerr id:");
         Console.WriteLine(copyEngineer!.Create(newEngineer));
     }
@@ -423,7 +435,7 @@ internal class Program
     {
         Console.WriteLine("Enter the dependancy id:");
         int _engineer = Convert.ToInt32(Console.ReadLine())!;
-        IEngineer? readEngineer = null;
+        EngineerImplementation? readEngineer = new();
 
         Console.WriteLine(readEngineer!.Read(_engineer));
     }
@@ -435,7 +447,7 @@ internal class Program
     }
     private void EngineerUpdate()
     {
-        EngineerImplementation? readEngineer = null;
+        EngineerImplementation? readEngineer = new();
 
         Console.WriteLine("Enter engineers id:");
         int _engineerId = Convert.ToInt32(Console.ReadLine())!;
@@ -470,7 +482,7 @@ internal class Program
     {
         Console.WriteLine("Enter the engineer id to delete:");
         int _engineer = Convert.ToInt32(Console.ReadLine())!;
-        IEngineer? readEngineer = null;
+        EngineerImplementation? readEngineer = new();
         readEngineer!.Delete(_engineer);
     }
 
