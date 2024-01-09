@@ -173,7 +173,7 @@ internal class Program
         Console.WriteLine("Enter the Task id:");
         int _taskId = Convert.ToInt32(Console.ReadLine())!;
 
-        ITask? readTask = new TaskImplementation(); ;
+        ITask? readTask = new TaskImplementation();
 
         Console.WriteLine(readTask!.Read(_taskId));
     }
@@ -188,7 +188,7 @@ internal class Program
         Console.WriteLine("Enter the id of the task:");
         int _id = Convert.ToInt32(Console.ReadLine()!);
 
-        ITask? readTask = null;
+        ITask? readTask = new TaskImplementation();
         if (readTask!.Read(_id) == null)
             return;
         Console.WriteLine(readTask!.Read(_id));
@@ -236,14 +236,14 @@ internal class Program
 
 
         DO.Task newTask = new(0, _alias, _description, _createdAtDate, _taskComplexity, _deliverables, _remark, isMilestone, requiredEffortTime, startDate, scheduledDate, deadlineDate, completeDate, engineerId);
-        ITask? copyTask = null;
+        ITask? copyTask = new TaskImplementation();
         copyTask!.Update(newTask);
     }
     private void TaskDelete()
     {
         Console.WriteLine("Enter the task id to delete:");
         int _taskId = Convert.ToInt32(Console.ReadLine());
-        ITask? _task = null;
+        ITask? _task = new TaskImplementation();
         _task!.Delete(_taskId);
     }
 
@@ -303,7 +303,7 @@ internal class Program
 
 
         DO.Dependency newDependency = new(0, dependant_task, dependamt_on_tasktask);
-        DependencyImplementation? copyDependency = new();
+        IDependency? copyDependency = new DependencyImplementation();
         Console.WriteLine("new dependency id:");
         Console.WriteLine(copyDependency.Create(newDependency));
     }
@@ -312,19 +312,19 @@ internal class Program
         Console.WriteLine("Enter the dependancy id:");
         int _dependancy = Convert.ToInt32(Console.ReadLine())!;
 
-        DependencyImplementation? readDependency = new();
+        IDependency? readDependency = new DependencyImplementation();
 
         Console.WriteLine(readDependency!.Read(_dependancy));
     }
     private void DependencyReadAll()
     {
-        IDependency? readDependency = null;
+        IDependency? readDependency = new DependencyImplementation();
         List<DO.Dependency> newList = readDependency!.ReadAll();
         foreach (DO.Dependency dependency in newList) { Console.WriteLine(dependency); }
     }
     private void DependencyUpdate()
     {
-        DependencyImplementation? readDependency = new();
+        IDependency? readDependency = new DependencyImplementation();
 
         Console.WriteLine("Enter the dependancy id:");
         int _dependancyId = Convert.ToInt32(Console.ReadLine())!;
@@ -354,7 +354,7 @@ internal class Program
     {
         Console.WriteLine("Enter the dependancy id:");
         int _dependancy = Convert.ToInt32(Console.ReadLine())!;
-        DependencyImplementation? _dependency = new();
+        IDependency? _dependency = new DependencyImplementation();
         _dependency!.Delete(_dependancy);
     }
 
@@ -427,7 +427,7 @@ internal class Program
         DO.EngineerExperience Level = (DO.EngineerExperience)Convert.ToInt32(Console.ReadLine());
 
         DO.Engineer newEngineer = new(_engineer_id, Email, Cost, Name, Level);
-        EngineerImplementation? copyEngineer = new();
+        IEngineer? copyEngineer = new EngineerImplementation();
         Console.WriteLine("new enginerr id:");
         Console.WriteLine(copyEngineer!.Create(newEngineer));
     }
@@ -435,19 +435,19 @@ internal class Program
     {
         Console.WriteLine("Enter the dependancy id:");
         int _engineer = Convert.ToInt32(Console.ReadLine())!;
-        EngineerImplementation? readEngineer = new();
+        IEngineer? readEngineer = new EngineerImplementation();
 
         Console.WriteLine(readEngineer!.Read(_engineer));
     }
     private void EngineerReadAll()
     {
-        IEngineer? readEngineer = null;
+        IEngineer? readEngineer = new EngineerImplementation();
         List<DO.Engineer> newList = readEngineer!.ReadAll();
         foreach (DO.Engineer engineer in newList) { Console.WriteLine(engineer); }
     }
     private void EngineerUpdate()
     {
-        EngineerImplementation? readEngineer = new();
+        IEngineer? readEngineer = new EngineerImplementation();
 
         Console.WriteLine("Enter engineers id:");
         int _engineerId = Convert.ToInt32(Console.ReadLine())!;
@@ -482,7 +482,7 @@ internal class Program
     {
         Console.WriteLine("Enter the engineer id to delete:");
         int _engineer = Convert.ToInt32(Console.ReadLine())!;
-        EngineerImplementation? readEngineer = new();
+        IEngineer? readEngineer = new EngineerImplementation();
         readEngineer!.Delete(_engineer);
     }
 
