@@ -9,15 +9,16 @@ using DO;
 public static class Initialization
 {
     // Constants for setting range limits and salary boundaries
-    const int MIN_ID = 200000000;
-    const int MAX_ID = 400000000;
-    const int LOW_SAL = 50;
-    const int HIGH_SAL = 300;
+    private const int MIN_ID = 200000000;
+    private const int MAX_ID = 900000000;
+    private const int LOW_SAL = 50;
+    private const int HIGH_SAL = 300;
 
 
-    private static IDependency? s_dalDependency;
-    private static ITask? s_dalTask;
-    private static IEngineer? s_dalEngineer;
+    //private static IDependency? s_dalDependency;
+    //private static ITask? s_dalTask;
+    //private static IEngineer? s_dalEngineer;
+    private static IDal? s_dal;
 
     private static readonly Random s_rand = new();
 
@@ -34,7 +35,7 @@ public static class Initialization
             int _id;
             do
                 _id = s_rand.Next(MIN_ID, MAX_ID);
-            while (s_dalEngineer!.Read(_id) is not null);
+            while (s_dal!.Engineer.Read(_id) is not null);
 
             string _email = $"{_name.ToLower()}@eng.com";
 
@@ -44,7 +45,7 @@ public static class Initialization
 
             Engineer newEng = new(_id, _email, _cost, _name, _level);
 
-            s_dalEngineer!.Create(newEng);
+            s_dal!.Engineer.Create(newEng);
 
         }
 
@@ -68,7 +69,7 @@ public static class Initialization
 
             Task newTask = new(i, _alias, _discription, _createdAtDate, _complexity);
 
-            s_dalTask!.Create(newTask);
+            s_dal!.Task.Create(newTask);
 
         }
 
@@ -85,27 +86,28 @@ public static class Initialization
             int _dependentTask;
             do
                 _dependentTask = s_rand.Next(1010, 1020);
-            while (s_dalTask!.Read(_dependentTask) is null);
+            while (s_dal!.Task.Read(_dependentTask) is null);
 
             int _dependentOnTask;
             do
                 _dependentOnTask = s_rand.Next(1000, 1010);
-            while (s_dalTask!.Read(_dependentOnTask) is null || _dependentOnTask >= _dependentTask);
+            while (s_dal!.Task.Read(_dependentOnTask) is null || _dependentOnTask >= _dependentTask);
 
             Dependency newDep = new(i, _dependentTask, _dependentOnTask);
 
-            s_dalDependency!.Create(newDep);
+            s_dal!.Dependency.Create(newDep);
 
         }
     }
 
 
     // Main method to initiate the data creation process
-    public static void Do(ITask? dalTask, IDependency? dalDependency, IEngineer? dalEngineer)
+    public static void Do(IDal dal)
     {
-        s_dalTask = dalTask ?? throw new NullReferenceException("DAL can not be null!");
-        s_dalDependency = dalDependency ?? throw new NullReferenceException("DAL can not be null!");
-        s_dalEngineer = dalEngineer ?? throw new NullReferenceException("DAL can not be null!");
+        //s_dalTask = dalTask ?? throw new NullReferenceException("DAL can not be null!");
+        //s_dalDependency = dalDependency ?? throw new NullReferenceException("DAL can not be null!");
+        //s_dalEngineer = dalEngineer ?? throw new NullReferenceException("DAL can not be null!");
+        s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!"); //stage 2
 
         createTask();
         createEngineer();

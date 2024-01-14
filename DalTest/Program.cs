@@ -147,7 +147,7 @@ internal class Program
         Console.WriteLine("Enter if the task is milestone:  Y/N");
         bool isMilestone = (Console.ReadLine()! == "Y");
 
-        Console.WriteLine("Enter how meny time it will take, by following these steps!");
+        Console.WriteLine("Enter how much time it will take, by following these steps:");
         TimeSpan? requiredEffortTime = GetTimeSpan();
 
         Console.WriteLine("Enter the end-date of the task by following these steps!");
@@ -168,9 +168,8 @@ internal class Program
 
 
         DO.Task newTask = new(0, _alias, _description, _createdAtDate, _taskComplexity, _deliverables, _remark, isMilestone, requiredEffortTime, startDate, scheduledDate, deadlineDate, completeDate, engineerId);
-        ITask? copyTask = new TaskImplementation();
         Console.WriteLine("new Task id:");
-        Console.WriteLine(copyTask!.Create(newTask));
+        Console.WriteLine(s_dal!.Task.Create(newTask));
     }
     //This dethod prints the fields of a task(the user gives the id)
     private void TaskRead()
@@ -178,15 +177,14 @@ internal class Program
         Console.WriteLine("Enter the Task id:");
         int _taskId = Convert.ToInt32(Console.ReadLine())!;
 
-        ITask? readTask = new TaskImplementation();
+      
 
-        Console.WriteLine(readTask!.Read(_taskId));
+        Console.WriteLine(s_dal!.Task.Read(_taskId));
     }
     // The method prints the fields of all tasks
     private void TaskReadAll()
     {
-        ITask? readTask = new TaskImplementation();
-        List<DO.Task> newList = readTask!.ReadAll();
+        List<DO.Task> newList = s_dal!.Task.ReadAll();
         foreach (DO.Task task in newList) { Console.WriteLine(task); }
     }
     //The method updates the task (the user gives the id then gives the values for the fields)
@@ -195,10 +193,9 @@ internal class Program
         Console.WriteLine("Enter the id of the task:");
         int _id = Convert.ToInt32(Console.ReadLine()!);
 
-        ITask? readTask = new TaskImplementation();
-        if (readTask!.Read(_id) == null)
+        if (s_dal!.Task.Read(_id) == null)
             return;
-        Console.WriteLine(readTask!.Read(_id));
+        Console.WriteLine(s_dal!.Task.Read(_id));
 
 
         Console.WriteLine("Enter the new alias of the task:");
@@ -243,16 +240,14 @@ internal class Program
 
 
         DO.Task newTask = new(0, _alias, _description, _createdAtDate, _taskComplexity, _deliverables, _remark, isMilestone, requiredEffortTime, startDate, scheduledDate, deadlineDate, completeDate, engineerId);
-        ITask? copyTask = new TaskImplementation();
-        copyTask!.Update(newTask);
+        s_dal!.Task.Update(newTask);
     }
     //The method deletes a task given by the user(the user enters the id)
     private void TaskDelete()
     {
         Console.WriteLine("Enter the task id to delete:");
         int _taskId = Convert.ToInt32(Console.ReadLine());
-        ITask? _task = new TaskImplementation();
-        _task!.Delete(_taskId);
+        s_dal!.Task.Delete(_taskId);
     }
 
     // Dependency-related menu
@@ -312,9 +307,8 @@ internal class Program
 
 
         DO.Dependency newDependency = new(0, dependant_task, dependamt_on_tasktask);
-        IDependency? copyDependency = new DependencyImplementation();
         Console.WriteLine("new dependency id:");
-        Console.WriteLine(copyDependency.Create(newDependency));
+        Console.WriteLine(s_dal!.Dependency.Create(newDependency));
     }
     // prints all fields of a given dependency (the user enters the id)
     private void DependencyRead()
@@ -322,30 +316,27 @@ internal class Program
         Console.WriteLine("Enter the dependancy id:");
         int _dependancy = Convert.ToInt32(Console.ReadLine())!;
 
-        IDependency? readDependency = new DependencyImplementation();
 
-        Console.WriteLine(readDependency!.Read(_dependancy));
+        Console.WriteLine(s_dal!.Dependency.Read(_dependancy));
     }
     // prints all fields of all dependencies
     private void DependencyReadAll()
     {
-        IDependency? readDependency = new DependencyImplementation();
-        List<DO.Dependency> newList = readDependency!.ReadAll();
+        List<DO.Dependency> newList = s_dal!.Dependency.ReadAll();
         foreach (DO.Dependency dependency in newList) { Console.WriteLine(dependency); }
     }
     //this method updates a given dependency
     private void DependencyUpdate()
     {
-        IDependency? readDependency = new DependencyImplementation();
 
         Console.WriteLine("Enter the dependancy id:");
         int _dependancyId = Convert.ToInt32(Console.ReadLine())!;
 
 
-        if (readDependency!.Read(_dependancyId) == null)
+        if (s_dal!.Dependency.Read(_dependancyId) == null)
             return;
 
-        Console.WriteLine(readDependency!.Read(_dependancyId));
+        Console.WriteLine(s_dal!.Dependency.Read(_dependancyId));
 
 
         Console.WriteLine("Enter the dependant task:");
@@ -360,15 +351,14 @@ internal class Program
         if (dependant_task is null || dependamt_on_tasktask is null)
             return;
 
-        readDependency!.Update(updatedDependency);
+        s_dal!.Dependency.Update(updatedDependency);
     }
     //this metod deletes a given dependency
     private void DependencyDelete()
     {
         Console.WriteLine("Enter the dependancy id:");
         int _dependancy = Convert.ToInt32(Console.ReadLine())!;
-        IDependency? _dependency = new DependencyImplementation();
-        _dependency!.Delete(_dependancy);
+        s_dal!.Dependency.Delete(_dependancy);
     }
 
 
@@ -438,38 +428,33 @@ internal class Program
         DO.EngineerExperience Level = (DO.EngineerExperience)Convert.ToInt32(Console.ReadLine());
 
         DO.Engineer newEngineer = new(_engineer_id, Email, Cost, Name, Level);
-        IEngineer? copyEngineer = new EngineerImplementation();
         Console.WriteLine("new enginerr id:");
-        Console.WriteLine(copyEngineer!.Create(newEngineer));
+        Console.WriteLine(s_dal!.Engineer.Create(newEngineer));
     }
     // prints all fields of a given engineer (the user enters the id)
     private void EngineerRead()
     {
         Console.WriteLine("Enter the dependancy id:");
         int _engineer = Convert.ToInt32(Console.ReadLine())!;
-        IEngineer? readEngineer = new EngineerImplementation();
 
-        Console.WriteLine(readEngineer!.Read(_engineer));
+        Console.WriteLine(s_dal!.Engineer.Read(_engineer));
     }
     // prints all fields of all engineers
     private void EngineerReadAll()
     {
-        IEngineer? readEngineer = new EngineerImplementation();
-        List<DO.Engineer> newList = readEngineer!.ReadAll();
+        List<DO.Engineer> newList = s_dal!.Engineer.ReadAll();
         foreach (DO.Engineer engineer in newList) { Console.WriteLine(engineer); }
     }
     private void EngineerUpdate()
     {
-        IEngineer? readEngineer = new EngineerImplementation();
-
         Console.WriteLine("Enter engineers id:");
         int _engineerId = Convert.ToInt32(Console.ReadLine())!;
 
 
-        if (readEngineer!.Read(_engineerId) == null)
+        if (s_dal!.Engineer.Read(_engineerId) == null)
             return;
 
-        Console.WriteLine(readEngineer!.Read(_engineerId));
+        Console.WriteLine(s_dal!.Engineer.Read(_engineerId));
 
 
         Console.WriteLine("Enter engineers email:");
@@ -489,31 +474,24 @@ internal class Program
             return;
         DO.Engineer newEngineer = new(_engineerId, Email, Cost!.Value, Name, Level!.Value);
 
-        readEngineer!.Update(newEngineer);
+        s_dal!.Engineer.Update(newEngineer);
     }
     //this metod deletes a given engineer
     private void EngineerDelete()
     {
         Console.WriteLine("Enter the engineer id to delete:");
         int _engineer = Convert.ToInt32(Console.ReadLine())!;
-        IEngineer? readEngineer = new EngineerImplementation();
-        readEngineer!.Delete(_engineer);
+        s_dal!.Engineer.Delete(_engineer);
     }
 
-
-
-
-
-    private static ITask? s_dalTask = new TaskImplementation();
-    private static IDependency? s_dalDependency = new DependencyImplementation();
-    private static IEngineer? s_dalEngineer = new EngineerImplementation();
+    static readonly IDal s_dal = new DalList();
 
     //Main method
     public static void Main(string[] args)
     {
         try
         {
-            Initialization.Do(s_dalTask, s_dalDependency, s_dalEngineer);
+            Initialization.Do(s_dal);
             Program a = new();
             a.main_menu();
             Console.WriteLine("main menu complete");
