@@ -1,4 +1,4 @@
-﻿namespace DalFacade;
+﻿namespace DalApi;
 
 public interface ICrud<T> where T : class
 {
