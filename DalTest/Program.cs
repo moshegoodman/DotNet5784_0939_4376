@@ -177,14 +177,14 @@ internal class Program
         Console.WriteLine("Enter the Task id:");
         int _taskId = Convert.ToInt32(Console.ReadLine())!;
 
-      
+
 
         Console.WriteLine(s_dal!.Task.Read(_taskId));
     }
     // The method prints the fields of all tasks
     private void TaskReadAll()
     {
-        List<DO.Task> newList = s_dal!.Task.ReadAll();
+        IEnumerable<DO.Task> newList = s_dal!.Task.ReadAll();
         foreach (DO.Task task in newList) { Console.WriteLine(task); }
     }
     //The method updates the task (the user gives the id then gives the values for the fields)
@@ -322,7 +322,7 @@ internal class Program
     // prints all fields of all dependencies
     private void DependencyReadAll()
     {
-        List<DO.Dependency> newList = s_dal!.Dependency.ReadAll();
+        IEnumerable<DO.Dependency> newList = s_dal!.Dependency.ReadAll();
         foreach (DO.Dependency dependency in newList) { Console.WriteLine(dependency); }
     }
     //this method updates a given dependency
@@ -442,7 +442,7 @@ internal class Program
     // prints all fields of all engineers
     private void EngineerReadAll()
     {
-        List<DO.Engineer> newList = s_dal!.Engineer.ReadAll();
+        IEnumerable<DO.Engineer> newList = s_dal!.Engineer.ReadAll();
         foreach (DO.Engineer engineer in newList) { Console.WriteLine(engineer); }
     }
     private void EngineerUpdate()

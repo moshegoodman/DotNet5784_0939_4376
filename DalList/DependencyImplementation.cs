@@ -2,6 +2,7 @@
 using DalApi;
 using DO;
 using System.Collections.Generic;
+using System.Linq;
 
 internal class DependencyImplementation : IDependency
 {   //creates dependency occurance
@@ -23,12 +24,22 @@ internal class DependencyImplementation : IDependency
     //prints all fields of a given dependency occurrence
     public Dependency? Read(int id)
     {
-        return DataSource.Dependencies.Find(x => x.Id == id);
+        return DataSource.Dependencies.FirstOrDefault(item => item.Id == id);
+
     }
     //prints all fields of all ocurrences 
-    public List<Dependency> ReadAll()
+    public IEnumerable<Dependency> ReadAll(Func<Dependency, bool>? filter = null)
     {
-        return new List<Dependency>(DataSource.Dependencies);
+        //return DataSource.Dependencies.Select(item => item);
+        if (filter != null)
+        {
+            return from item in DataSource.Dependencies
+                   where filter(item)
+                   select item;
+        }
+        return from item in DataSource.Dependencies
+               select item;
+
     }
 
     //updates an occurrence (the user enters vulues of all fields)
@@ -38,5 +49,11 @@ internal class DependencyImplementation : IDependency
             throw new Exception($"Dependency with ID={item.Id} does not exists");
         Delete(item.Id);
         DataSource.Dependencies.Add(item);
+    }
+    //Reads entity object by a given condition
+    public Dependency? Read(Func<Dependency, bool> filter)
+    {
+        return DataSource.Dependencies.FirstOrDefault(item => filter(item));
+
     }
 }

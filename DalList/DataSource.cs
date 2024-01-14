@@ -1,4 +1,6 @@
-﻿namespace Dal;
+﻿using DO;
+
+namespace Dal;
 
 internal static class DataSource
 {
@@ -18,8 +20,9 @@ internal static class DataSource
 
         internal static DateTime? StartDate = null;
 
-        internal static DateTime? EndDate = null;   
+        internal static DateTime? EndDate = null;
     }
+    public static Dependency? FirstOrDefault(int id) { return DataSource.Dependencies.FirstOrDefault(item => item.Id == id); }
 
 
     internal static List<DO.Dependency> Dependencies { get; } = new();

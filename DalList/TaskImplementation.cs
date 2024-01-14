@@ -27,16 +27,23 @@ internal class TaskImplementation : ITask
     //prints all fields of a given task occurrence
     public Task? Read(int id)
     {
-        return DataSource.Tasks.Find(x => x.Id == id);
+        return DataSource.Tasks.FirstOrDefault(item => item.Id == id);
 
     }
 
     //prints all fields of all ocurrences 
-    public List<Task> ReadAll()
+    public IEnumerable<Task> ReadAll(Func<Task, bool>? filter = null)
     {
-        return new List<Task>(DataSource.Tasks);
-    }
 
+        if (filter != null)
+        {
+            return from item in DataSource.Tasks
+                   where filter(item)
+                   select item;
+        }
+        return from item in DataSource.Tasks
+               select item;
+    }
     //updates an occurrence (the user enters vulues of all fields)
     public void Update(Task item)
     {
@@ -44,5 +51,11 @@ internal class TaskImplementation : ITask
             throw new Exception($"Task with ID={item.Id} does not exists");
         Delete(item.Id);
         DataSource.Tasks.Add(item);
+    }
+    //Reads entity object by a given condition
+    public Task? Read(Func<Task, bool> filter)
+    {
+        return DataSource.Tasks.FirstOrDefault(item => filter(item));
+
     }
 }

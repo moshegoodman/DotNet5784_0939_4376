@@ -27,15 +27,22 @@ internal class EngineerImplementation : IEngineer
     //prints all fields of a given engineer occurrence
     public Engineer? Read(int id)
     {
-        return DataSource.Engineers.Find(x => x.Id == id);
+        return DataSource.Engineers.FirstOrDefault(item => item.Id == id);
     }
 
-    //prints all fields of all ocurrences 
-    public List<Engineer> ReadAll()
+    //prints all fields of all ocurrences by condition
+    public IEnumerable<Engineer> ReadAll(Func<Engineer, bool>? filter = null)
     {
-        return new List<Engineer>(DataSource.Engineers);
-    }
 
+        if (filter != null)
+        {
+            return from item in DataSource.Engineers
+                   where filter(item)
+                   select item;
+        }
+        return from item in DataSource.Engineers
+               select item;
+    }
     //updates an occurrence (the user enters vulues of all fields)
     public void Update(Engineer item)
     {
@@ -44,4 +51,11 @@ internal class EngineerImplementation : IEngineer
         Delete(item.Id);
         DataSource.Engineers.Add(item);
     }
+    //Reads entity object by a given condition
+    public Engineer? Read(Func<Engineer, bool> filter)
+    {
+        return DataSource.Engineers.FirstOrDefault(item => filter(item));
+
+    }
+
 }
