@@ -18,7 +18,7 @@ internal class DependencyImplementation : IDependency
     public void Delete(int id)
     {
         if (Read(id) is null)
-            throw new Exception($"Dependency with ID={id} does not exists");
+            throw new DalDoesNotExistException($"Dependency with ID={id} does not exists");
         DataSource.Dependencies.Remove(Read(id)!);
     }
     //prints all fields of a given dependency occurrence
@@ -46,7 +46,7 @@ internal class DependencyImplementation : IDependency
     public void Update(Dependency item)
     {
         if (Read(item.Id) is null)
-            throw new Exception($"Dependency with ID={item.Id} does not exists");
+            throw new DalDoesNotExistException($"Dependency with ID={item.Id} does not exists");
         Delete(item.Id);
         DataSource.Dependencies.Add(item);
     }
@@ -55,5 +55,16 @@ internal class DependencyImplementation : IDependency
     {
         return DataSource.Dependencies.FirstOrDefault(item => filter(item));
 
+    }
+
+    // returns true if the dependency already exists
+    public bool DependencyExists(int dependentTask, int dependentOnTask)
+    {
+        foreach (Dependency dependency in DataSource.Dependencies)
+        {
+            if (dependency.DependentTask == dependentTask && dependency.DependsOnTask == dependentOnTask)
+                return true;
+        }
+        return false;
     }
 }

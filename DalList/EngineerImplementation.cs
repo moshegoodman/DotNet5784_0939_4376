@@ -10,7 +10,7 @@ internal class EngineerImplementation : IEngineer
     {
         if (Read(item.Id) is not null)
         {
-            throw new Exception($"Engineer with ID={item.Id} already exists");
+            throw new DalAlreadyExistsException($"Engineer with ID={item.Id} already exists");
         }
         DataSource.Engineers.Add(item);
         return item.Id;
@@ -20,7 +20,7 @@ internal class EngineerImplementation : IEngineer
     public void Delete(int id)
     {
         if (Read(id) is null)
-            throw new Exception($"Engineer with ID={id} does not exists");
+            throw new DalDoesNotExistException($"Engineer with ID={id} does not exists");
         DataSource.Engineers.Remove(Read(id)!);
     }
 
@@ -47,7 +47,7 @@ internal class EngineerImplementation : IEngineer
     public void Update(Engineer item)
     {
         if (Read(item.Id) is null)
-            throw new Exception($"Engineer with ID={item.Id} does not exists");
+            throw new DalDoesNotExistException($"Engineer with ID={item.Id} does not exists");
         Delete(item.Id);
         DataSource.Engineers.Add(item);
     }
