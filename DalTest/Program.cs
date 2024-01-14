@@ -519,7 +519,9 @@ internal class Program
             Console.WriteLine("main menu complete");
         }
         catch (Exception err) { Console.WriteLine(err); }
-
+        string b = "ntbrdrgfv";
+        b.ToArray();
+        Console.WriteLine(b.GetType());
     }
 }
 
