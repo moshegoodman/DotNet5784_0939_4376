@@ -54,14 +54,110 @@ public static class Initialization
     // Method to create tasks with random attributes
     private static void createTask()
     {
+        string[] taskAliases = new string[]
+        {
+     "SiteAssessment",
+    "GeotechnicalSurvey",
+    "PermittingProcess",
+    "BridgeDesign",
+    "EnvImpactAssessment",
+    "MaterialProcurement",
+    "FoundationExcavation",
+    "PileDriving",
+    "ConcreteFormwork",
+    "ConcretePouring",
+    "SteelStructureFabrication",
+    "BridgeDeckInstallation",
+    "AbutmentConstruction",
+    "ExpansionJointInstallation",
+    "TrafficManagement",
+    "BridgeInspection",
+    "WaterwayProtection",
+    "QualityControlTesting",
+    "LandscapingRestoration",
+    "DocumentationHandover"
+        };
 
+        string[] taskDescriptions = new string[]
+        {
+    "Evaluate the construction site for the bridge.",
+    "Conduct a survey to assess soil and subsurface conditions.",
+    "Obtain necessary permits for bridge construction.",
+    "Develop detailed engineering plans for the bridge.",
+    "Assess and mitigate potential environmental impacts.",
+    "Source and procure construction materials.",
+    "Excavate the foundation for bridge supports.",
+    "Install piles for foundation support.",
+    "Set up formwork for concrete structures.",
+    "Pour concrete for bridge components.",
+    "Fabricate steel components for the bridge.",
+    "Install the bridge deck.",
+    "Construct abutments for bridge support.",
+    "Install expansion joints for temperature variations.",
+    "Implement traffic management during construction.",
+    "Conduct regular inspections during construction.",
+    "Implement measures to protect waterways during construction.",
+    "Perform quality control tests on materials and structures.",
+    "Restore the construction site and landscape.",
+    "Compile project documentation and hand over the bridge."
+        };
+        string[] taskDeliverables = new string[]
+{
+    "Site assessment report.",
+    "Geotechnical report.",
+    "Approved permits.",
+    "Bridge design documents.",
+    "Environmental impact assessment report.",
+    "Material inventory.",
+    "Excavation completion report.",
+    "Pile installation log.",
+    "Completed formwork.",
+    "Concrete curing log.",
+    "Fabricated steel structures.",
+    "Completed bridge deck.",
+    "Completed abutments.",
+    "Installed expansion joints.",
+    "Traffic management plan.",
+    "Inspection reports.",
+    "Water protection plan.",
+    "Quality control reports.",
+    "Landscaping completion report.",
+    "Project documentation."
+};
+
+        string[] taskRemarks = new string[]
+        {
+    "Consider environmental impact and soil stability.",
+    "Critical for foundation design.",
+    "Compliance with local regulations is crucial.",
+    "Ensure structural integrity and safety.",
+    "Comply with environmental regulations.",
+    "Ensure materials meet engineering specifications.",
+    "Follow geotechnical recommendations.",
+    "Monitor pile integrity during installation.",
+    "Ensure proper alignment and reinforcement.",
+    "Follow engineering specifications.",
+    "Quality control is essential.",
+    "Ensure proper alignment and load-bearing capacity.",
+    "Follow engineering plans for stability.",
+    "Allow for bridge movement.",
+    "Minimize disruptions and ensure safety.",
+    "Identify and address any issues promptly.",
+    "Prevent environmental damage.",
+    "Ensure compliance with standards.",
+    "Minimize the project's environmental impact.",
+    "Ensure all records are complete for future reference."
+        };
         for (int i = 0; i < 20; ++i)
         {
 
-            string _alias = $"T{i}";
+            string _alias = taskAliases[i];
 
-            string _discription = $"D{i}";
+            string _discription = taskDescriptions[i];
 
+
+            //string _deliverables = taskDeliverables[i];
+            //string _remarks = taskRemarks[i];
             DateTime _createdAtDate = DateTime.Now.AddDays(-s_rand.Next(365));
 
 
