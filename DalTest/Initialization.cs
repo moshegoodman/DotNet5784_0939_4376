@@ -175,19 +175,60 @@ public static class Initialization
     // Method to create dependencies between tasks
     private static void createDependency()
     {
+        int[,] taskDependencies = new int[,]
+    {
+     {1003, 1002},  // BridgeDesign depends on PermittingProcess
+    {1004, 1003},  // EnvImpactAssessment depends on BridgeDesign
+    {1005, 1004},  // MaterialProcurement depends on EnvImpactAssessment
+    {1006, 1005},  // FoundationExcavation depends on MaterialProcurement
+    {1007, 1006},  // PileDriving depends on FoundationExcavation
+    {1008, 1007},  // ConcreteFormwork depends on PileDriving
+    {1009, 1008},  // ConcretePouring depends on ConcreteFormwork
+    {1010, 1009},  // SteelStructureFabrication depends on ConcretePouring
+    {1011, 1010},  // BridgeDeckInstallation depends on SteelStructureFabrication
+    {1012, 1011},  // AbutmentConstruction depends on BridgeDeckInstallation
+    {1013, 1012},  // ExpansionJointInstallation depends on AbutmentConstruction
+    {1010, 1005},  // SteelStructureFabrication also depends on MaterialProcurement
+    {1013, 1009},  // ExpansionJointInstallation also depends on ConcretePouring
+    {1014, 1011},  // TrafficManagement also depends on BridgeDeckInstallation
+    {1016, 1012},  // WaterwayProtection also depends on AbutmentConstruction
+    {1017, 1012},  // QualityControlTesting also depends on AbutmentConstruction
+    {1019, 1013},  // DocumentationHandover also depends on ExpansionJointInstallation
+    {1018, 1019},  // LandscapingRestoration also depends on DocumentationHandover
+    {1019, 1002},  // DocumentationHandover also depends on PermittingProcess
+    {1011, 1017},   // BridgeDeckInstallation also depends on QualityControlTesting
+    {1006, 1004},  // FoundationExcavation also depends on EnvImpactAssessment
+    {1008, 1002},  // ConcreteFormwork also depends on PermittingProcess
+    {1009, 1006},  // ConcretePouring also depends on FoundationExcavation
+    {1011, 1006},  // BridgeDeckInstallation also depends on FoundationExcavation
+    {1013, 1011},  // ExpansionJointInstallation also depends on BridgeDeckInstallation
+    {1016, 1014},  // WaterwayProtection also depends on TrafficManagement
+    {1019, 1003},  // DocumentationHandover also depends on BridgeDesign
+    {1019, 1016},  // DocumentationHandover also depends on WaterwayProtection
+    {1015, 1009},  // BridgeInspection also depends on ConcretePouring
+    {1018, 1011},  // LandscapingRestoration also depends on BridgeDeckInstallation
+    {1015, 1013},  // BridgeInspection also depends on ExpansionJointInstallation
+    {1017, 1004},  // QualityControlTesting also depends on EnvImpactAssessment
+    {1016, 1013},  // WaterwayProtection also depends on ExpansionJointInstallation
+    {1014, 1007},  // TrafficManagement also depends on PileDriving
+    {1012, 1010},  // AbutmentConstruction also depends on SteelStructureFabrication
+    {1019, 1015},  // DocumentationHandover also depends on BridgeInspection
+    {1015, 1004},  // BridgeInspection also depends on EnvImpactAssessment
+    {1019, 1009},  // DocumentationHandover also depends on ConcretePouring
+    {1014, 1012},  // TrafficManagement also depends on AbutmentConstruction
+    {1013, 1017}   // ExpansionJointInstallation also depends on QualityControlTesting
+
+};
 
         for (int i = 0; i < 40; ++i)
         {
 
-            int _dependentTask;
-            do
-                _dependentTask = s_rand.Next(1010, 1020);
-            while (s_dal!.Task.Read(_dependentTask) is null);
 
-            int _dependentOnTask;
-            do
-                _dependentOnTask = s_rand.Next(1000, 1010);
-            while (s_dal!.Task.Read(_dependentOnTask) is null || _dependentOnTask >= _dependentTask);
+
+            int _dependentTask = taskDependencies[i, 0];
+
+
+            int _dependentOnTask = taskDependencies[i, 1];
 
             Dependency newDep = new(i, _dependentTask, _dependentOnTask);
 
