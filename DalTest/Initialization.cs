@@ -24,7 +24,7 @@ public static class Initialization
 
     // Method to create engineers with random attributes
 
-    private static void createEngineer()
+    private static void CreateEngineer()
     {
         string[] engineerNames =
         {
@@ -52,7 +52,7 @@ public static class Initialization
     }
 
     // Method to create tasks with random attributes
-    private static void createTask()
+    private static void CreateTask()
     {
         string[] taskAliases = new string[]
         {
@@ -173,7 +173,7 @@ public static class Initialization
 
 
     // Method to create dependencies between tasks
-    private static void createDependency()
+    private static void CreateDependency()
     {
         int[,] taskDependencies = new int[,]
     {
@@ -246,9 +246,9 @@ public static class Initialization
         //s_dalEngineer = dalEngineer ?? throw new NullReferenceException("DAL can not be null!");
         s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!"); //stage 2
 
-        createTask();
-        createEngineer();
-        createDependency();
+        CreateTask();
+        CreateEngineer();
+        CreateDependency();
         Console.WriteLine("create dependency done");
 
 
