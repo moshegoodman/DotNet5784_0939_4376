@@ -322,7 +322,7 @@ internal class Program
     // prints all fields of all dependencies
     private static void DependencyReadAll()
     {
-        IEnumerable<DO.Dependency> newList = s_dal!.Dependency.ReadAll()!;
+        IEnumerable<DO.Dependency> newList = s_dal.Dependency.ReadAll()!;
         foreach (DO.Dependency dependency in newList) { Console.WriteLine(dependency); }
     }
     //this method updates a given dependency

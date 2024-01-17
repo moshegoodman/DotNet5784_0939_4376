@@ -7,7 +7,7 @@ internal static class DataSource
 
     internal static class Config
     {
-        internal const int startDependencyId = 1000;
+        internal const int startDependencyId = 10000;
 
         private static int nextDependencyId = startDependencyId;
         internal static int NextDependencyId { get => nextDependencyId++; }
