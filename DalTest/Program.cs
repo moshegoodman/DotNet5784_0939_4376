@@ -484,7 +484,9 @@ internal class Program
         s_dal!.Engineer.Delete(_engineer);
     }
 
-    static readonly IDal s_dal = new DalList();
+    //static readonly IDal s_dal = new DalList();
+    static readonly IDal s_dal = new DalXml();
+
 
     //Main method
     public static void Main(string[] args)
