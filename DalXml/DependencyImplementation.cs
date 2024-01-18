@@ -12,7 +12,7 @@ internal class DependencyImplementation : IDependency
     //creates dependency occurance
     public int Create(Dependency item)
     {
-        
+
         XElement dependencies = XMLTools.LoadListFromXMLElement(s_dependencies_xml);
         int nextId = Config.NextDependencyId;
         XElement xDependency = new("Dependency");
@@ -81,7 +81,6 @@ internal class DependencyImplementation : IDependency
         XElement? dependencies = XMLTools.LoadListFromXMLElement(s_dependencies_xml);
         XElement? xDependency = dependencies.Elements().FirstOrDefault(item => filter(XMLTools.ToDependencyNullable(item)!));
         return xDependency is null ? null : XMLTools.ToDependencyNullable(xDependency);
-        //return dependencies.FirstOrDefault(item => filter(item));
 
     }
 
