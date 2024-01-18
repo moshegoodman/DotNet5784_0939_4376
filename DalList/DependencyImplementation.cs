@@ -58,13 +58,13 @@ internal class DependencyImplementation : IDependency
     }
 
     // returns true if the dependency already exists
-    public bool DependencyExists(int dependentTask, int dependentOnTask)
-    {
-        foreach (Dependency dependency in DataSource.Dependencies)
-        {
-            if (dependency.DependentTask == dependentTask && dependency.DependsOnTask == dependentOnTask)
-                return true;
-        }
-        return false;
-    }
+    //public bool DependencyExists(int dependentTask, int dependentOnTask)
+    //{
+    //    foreach (Dependency dependency in DataSource.Dependencies)
+    //    {
+    //        if (dependency.DependentTask == dependentTask && dependency.DependsOnTask == dependentOnTask)
+    //            return true;
+    //    }
+    //    return false;
+    //}
 }

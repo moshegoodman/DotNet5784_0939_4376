@@ -12,6 +12,15 @@ static class XMLTools
         if (!Directory.Exists(s_xml_dir))
             Directory.CreateDirectory(s_xml_dir);
     }
+    #region Convert Xelement-Dependency
+    public static Dependency? ToDependencyNullable(XElement dependency)
+    {
+        return new Dependency(
+            dependency.ToIntNullable("Id") ?? throw new FormatException("Can't convert id"),
+            dependency.ToIntNullable("DependentTask") ?? null,
+            dependency.ToIntNullable("DependsOnTask") ?? null);
+    }
+    #endregion
 
     #region Extension Fuctions
     public static T? ToEnumNullable<T>(this XElement element, string name) where T : struct, Enum =>
@@ -23,7 +32,7 @@ static class XMLTools
     public static int? ToIntNullable(this XElement element, string name) =>
         int.TryParse((string?)element.Element(name), out var result) ? (int?)result : null;
     #endregion
-
+    
     #region XmlConfig
     public static int GetAndIncreaseNextId(string data_config_xml, string elemName)
     {
