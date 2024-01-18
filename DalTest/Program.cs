@@ -1,10 +1,10 @@
 ﻿namespace DalTest;
-using Dal;
 using DalApi;
 using DO;
 
 internal class Program
 {
+    #region MainMenu
     // Main menu to navigate through entities
     private static void MainMenu()
     {
@@ -38,7 +38,9 @@ internal class Program
         }
         while (a != 0);
     }
+    #endregion
 
+    #region TimeFunctions
     // Method to get user input for a DateTime
     private static DateTime? GetDateTime()
     {
@@ -77,7 +79,9 @@ internal class Program
             return null;
         }
     }
+    #endregion
 
+    #region Task
     // Task-related menu
     private static void TaskMenu()
     {
@@ -249,6 +253,9 @@ internal class Program
         int _taskId = Convert.ToInt32(Console.ReadLine());
         s_dal!.Task.Delete(_taskId);
     }
+    #endregion
+
+    #region Dependency
 
     // Dependency-related menu
 
@@ -361,8 +368,9 @@ internal class Program
         s_dal!.Dependency.Delete(_dependancy);
     }
 
+    #endregion
 
-
+    #region Engineer
 
     // Dependency-related menu
     private static void MenuEngineers()
@@ -486,7 +494,7 @@ internal class Program
 
     //static readonly IDal s_dal = new DalList();
     static readonly IDal s_dal = new DalXml();
-
+    #endregion
 
     //Main method
     public static void Main(string[] args)

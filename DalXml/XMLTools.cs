@@ -97,3 +97,4 @@ static class XMLTools
     }
     #endregion
 }
+
