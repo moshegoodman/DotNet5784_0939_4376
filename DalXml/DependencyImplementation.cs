@@ -3,6 +3,8 @@ using DalApi;
 using DO;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Linq;
 
 internal class DependencyImplementation : IDependency
 {
@@ -10,12 +12,18 @@ internal class DependencyImplementation : IDependency
     //creates dependency occurance
     public int Create(Dependency item)
     {
-        List<Dependency> dependencies = XMLTools.LoadListFromXMLSerializer<Dependency>(s_dependencies_xml);
+        
+        XElement dependencies = XMLTools.LoadListFromXMLElement(s_dependencies_xml);
         int nextId = Config.NextDependencyId;
-        Dependency copy = item with { Id = nextId };
-        dependencies.Add(copy);
-
-        XMLTools.SaveListToXMLSerializer(dependencies, s_dependencies_xml);
+        XElement xDependency = new("Dependency");
+        XElement id = new("Id", nextId);
+        xDependency.Add(id);
+        XElement dependentTask = new("DependentTask", item.DependentTask);
+        xDependency.Add(dependentTask);
+        XElement dependentOnTask = new("DependentOnTask", item.DependsOnTask);
+        xDependency.Add(dependentOnTask);
+        dependencies.Add(xDependency);
+        XMLTools.SaveListToXMLElement(dependencies, s_dependencies_xml);
         return nextId;
 
     }
@@ -23,65 +31,70 @@ internal class DependencyImplementation : IDependency
     //deletes a given dependency occurrence
     public void Delete(int id)
     {
-        List<Dependency> dependencies = XMLTools.LoadListFromXMLSerializer<Dependency>(s_dependencies_xml);
         if (Read(id) is null)
             throw new DalDoesNotExistException($"Dependency with ID={id} does not exists");
-        dependencies.Remove(Read(id)!);
-        XMLTools.SaveListToXMLSerializer(dependencies, s_dependencies_xml);
+        XElement? dependencies = XMLTools.LoadListFromXMLElement(s_dependencies_xml);
+        dependencies.Elements().FirstOrDefault(item => (int?)item.Element("Id") == id)!.Remove();
     }
     //prints all fields of a given dependency occurrence
+
+
     public Dependency? Read(int id)
     {
-        List<Dependency> dependencies = XMLTools.LoadListFromXMLSerializer<Dependency>(s_dependencies_xml);
-        return dependencies.FirstOrDefault(item => item.Id == id);
+        XElement? dependencies = XMLTools.LoadListFromXMLElement(s_dependencies_xml);
+        XElement? xDependency = dependencies.Elements().FirstOrDefault(item => (int?)item.Element("Id") == id);
+        return xDependency is null ? null : XMLTools.ToDependencyNullable(xDependency);
     }
     //prints all fields of all ocurrences 
     public IEnumerable<Dependency> ReadAll(Func<Dependency, bool>? filter = null)
     {
-        List<Dependency> dependencies = XMLTools.LoadListFromXMLSerializer<Dependency>(s_dependencies_xml);
+        IEnumerable<XElement> dependencies = XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements();
 
         if (filter != null)
         {
-            return from item in dependencies
-                   where filter(item)
-                   select item;
+            return dependencies.Select(item => XMLTools.ToDependencyNullable(item)).Where(filter!)!;
         }
-        return from item in dependencies
-               select item;
-
+        return dependencies.Select(item => XMLTools.ToDependencyNullable(item))!;
     }
 
     //updates an occurrence (the user enters vulues of all fields)
     public void Update(Dependency item)
     {
-        List<Dependency> dependencies = XMLTools.LoadListFromXMLSerializer<Dependency>(s_dependencies_xml);
-
+        XElement dependencies = XMLTools.LoadListFromXMLElement(s_dependencies_xml);
         if (Read(item.Id) is null)
             throw new DalDoesNotExistException($"Dependency with ID={item.Id} does not exists");
         Delete(item.Id);
-        dependencies.Add(item);
-        XMLTools.SaveListToXMLSerializer(dependencies, s_dependencies_xml);
+        XElement xDependency = new("Dependency");
+        XElement id = new("Id", item.Id);
+        xDependency.Add(id);
+        XElement dependentTask = new("DependentTask", item.DependentTask);
+        xDependency.Add(dependentTask);
+        XElement dependentOnTask = new("DependentOnTask", item.DependsOnTask);
+        xDependency.Add(dependentOnTask);
+        dependencies.Add(xDependency);
+        XMLTools.SaveListToXMLElement(dependencies, s_dependencies_xml);
 
     }
     //Reads entity object by a given condition
     public Dependency? Read(Func<Dependency, bool> filter)
     {
-        List<Dependency> dependencies = XMLTools.LoadListFromXMLSerializer<Dependency>(s_dependencies_xml);
-
-        return dependencies.FirstOrDefault(item => filter(item));
+        XElement? dependencies = XMLTools.LoadListFromXMLElement(s_dependencies_xml);
+        XElement? xDependency = dependencies.Elements().FirstOrDefault(item => filter(XMLTools.ToDependencyNullable(item)!));
+        return xDependency is null ? null : XMLTools.ToDependencyNullable(xDependency);
+        //return dependencies.FirstOrDefault(item => filter(item));
 
     }
 
-    // returns true if the dependency already exists
-    public bool DependencyExists(int dependentTask, int dependentOnTask)
-    {
-        List<Dependency> dependencies = XMLTools.LoadListFromXMLSerializer<Dependency>(s_dependencies_xml);
+    //// returns true if the dependency already exists
+    //public bool DependencyExists(int dependentTask, int dependentOnTask)
+    //{
+    //    List<Dependency> dependencies = XMLTools.LoadListFromXMLSerializer<Dependency>(s_dependencies_xml);
 
-        foreach (Dependency dependency in dependencies)
-        {
-            if (dependency.DependentTask == dependentTask && dependency.DependsOnTask == dependentOnTask)
-                return true;
-        }
-        return false;
-    }
+    //    foreach (Dependency dependency in dependencies)
+    //    {
+    //        if (dependency.DependentTask == dependentTask && dependency.DependsOnTask == dependentOnTask)
+    //            return true;
+    //    }
+    //    return false;
+    //}
 }
