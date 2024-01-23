@@ -60,11 +60,11 @@ internal class TaskImplementation : ITask
     //updates an occurrence (the user enters vulues of all fields)
     public void Update(Task item)
     {
-        List<Task> tasks = XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml);
 
         if (Read(item.Id) is null)
             throw new DalDoesNotExistException($"Task with ID={item.Id} does not exists");
         Delete(item.Id);
+        List<Task> tasks = XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml);
         tasks.Add(item);
         XMLTools.SaveListToXMLSerializer(tasks, s_tasks_xml);
 

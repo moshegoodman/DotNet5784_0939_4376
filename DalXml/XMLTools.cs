@@ -18,7 +18,7 @@ static class XMLTools
         return new Dependency(
             dependency.ToIntNullable("Id") ?? throw new FormatException("Can't convert id"),
             dependency.ToIntNullable("DependentTask") ?? null,
-            dependency.ToIntNullable("DependsOnTask") ?? null);
+            dependency.ToIntNullable("DependentOnTask") ?? null);
     }
     #endregion
 
