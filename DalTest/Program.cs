@@ -48,7 +48,7 @@ internal class Program
         int year = Convert.ToInt32(Console.ReadLine());
         Console.WriteLine("Enter the month:");
         int month = Convert.ToInt32(Console.ReadLine());
-        Console.WriteLine("Enter th day:");
+        Console.WriteLine("Enter the day:");
         int day = Convert.ToInt32(Console.ReadLine());
         Console.WriteLine("Enter the hour:");
         int hour = Convert.ToInt32(Console.ReadLine());
@@ -65,9 +65,9 @@ internal class Program
     // Method to get user input for a TimeSpan
     private static TimeSpan? GetTimeSpan()
     {
-        Console.WriteLine("Enter how meny days:");
+        Console.WriteLine("Enter how many days:");
         int days = Convert.ToInt32(Console.ReadLine());
-        Console.WriteLine("Enter how meny hours:");
+        Console.WriteLine("Enter how many hours:");
         int hours = Convert.ToInt32(Console.ReadLine());
         try
         {
@@ -223,7 +223,7 @@ internal class Program
         Console.WriteLine("Enter if the task is milestone:  Y/N");
         bool isMilestone = (Console.ReadLine()! == "Y");
 
-        Console.WriteLine("Enter how meny time it will take, by following these steps!");
+        Console.WriteLine("Enter how many time it will take, by following these steps!");
         TimeSpan? requiredEffortTime = GetTimeSpan();
 
         Console.WriteLine("Enter the end-date of the task by following these steps!");
@@ -243,7 +243,7 @@ internal class Program
 
 
 
-        DO.Task newTask = new(0, _alias, _description, _createdAtDate, _taskComplexity, _deliverables, _remark, isMilestone, requiredEffortTime, startDate, scheduledDate, deadlineDate, completeDate, engineerId);
+        DO.Task newTask = new(_id, _alias, _description, _createdAtDate, _taskComplexity, _deliverables, _remark, isMilestone, requiredEffortTime, startDate, scheduledDate, deadlineDate, completeDate, engineerId);
         s_dal!.Task.Update(newTask);
     }
     //The method deletes a task given by the user(the user enters the id)
@@ -493,7 +493,7 @@ internal class Program
     }
 
     //static readonly IDal s_dal = new DalList();
-    static readonly IDal s_dal = new DalXml();
+    static readonly IDal s_dal = new Dal.DalXml();
     #endregion
 
     //Main method
