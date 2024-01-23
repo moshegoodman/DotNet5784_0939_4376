@@ -76,7 +76,13 @@ internal class DependencyImplementation : IDependency
         XElement dependentOnTask = new("DependentOnTask", item.DependsOnTask);
         xDependency.Add(dependentOnTask);
         dependencies.Add(xDependency);
-        XMLTools.SaveListToXMLElement(dependencies, s_dependencies_xml);
+        IEnumerable<XElement> dependencyiEnumerable = dependencies.Elements();
+        dependencyiEnumerable.OrderBy(dependency => Convert.ToInt32(dependency.Name));
+        XElement updateXElement = new(dependencies.Name);
+        foreach(XElement dependency in dependencyiEnumerable)
+        { updateXElement.Add(dependency); }
+
+        XMLTools.SaveListToXMLElement(updateXElement, s_dependencies_xml);
 
     }
     //Reads entity object by a given condition

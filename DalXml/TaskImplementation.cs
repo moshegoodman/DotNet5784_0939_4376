@@ -66,6 +66,7 @@ internal class TaskImplementation : ITask
         Delete(item.Id);
         List<Task> tasks = XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml);
         tasks.Add(item);
+        tasks.OrderBy(dependency => dependency.Id).ToList();
         XMLTools.SaveListToXMLSerializer(tasks, s_tasks_xml);
 
     }

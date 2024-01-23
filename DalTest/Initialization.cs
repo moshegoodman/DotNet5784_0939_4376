@@ -251,24 +251,14 @@ public static class Initialization
         IEnumerable<Dependency> dependencyList = s_dal!.Dependency.ReadAll()!;
         foreach (Dependency dependency in dependencyList)
             s_dal.Dependency.Delete(dependency.Id);
-        XElement root = XMLTools.LoadListFromXMLElement("data-config");
-        int nextId = root.ToIntNullable(elemName) ?? throw new FormatException($"can't convert id.  {data_config_xml}, {elemName}");
-        root.Element(elemName)?.SetValue((nextId + 1).ToString());
-        XMLTools.SaveListToXMLElement(root, data_config_xml);
-        return nextId;
-    
-
     }
 
 
     // Main method to initiate the data creation process
     public static void Do(IDal dal)
     {
-        //s_dalTask = dalTask ?? throw new NullReferenceException("DAL can not be null!");
-        //s_dalDependency = dalDependency ?? throw new NullReferenceException("DAL can not be null!");
-        //s_dalEngineer = dalEngineer ?? throw new NullReferenceException("DAL can not be null!");
         s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!"); //stage 2
-
+        DeleteData();
         CreateTask();
         CreateEngineer();
         CreateDependency();
