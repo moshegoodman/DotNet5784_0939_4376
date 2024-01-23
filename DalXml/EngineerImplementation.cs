@@ -62,11 +62,12 @@ internal class EngineerImplementation : IEngineer
     //updates an occurrence (the user enters vulues of all fields)
     public void Update(Engineer item)
     {
-        List<Engineer> engineers = XMLTools.LoadListFromXMLSerializer<Engineer>(s_engineers_xml);
+        
 
         if (Read(item.Id) is null)
             throw new DalDoesNotExistException($"Engineer with ID={item.Id} does not exists");
         Delete(item.Id);
+        List<Engineer> engineers = XMLTools.LoadListFromXMLSerializer<Engineer>(s_engineers_xml);
         engineers.Add(item);
         XMLTools.SaveListToXMLSerializer(engineers, s_engineers_xml);
 

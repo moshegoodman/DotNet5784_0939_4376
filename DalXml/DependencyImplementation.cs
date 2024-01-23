@@ -35,6 +35,7 @@ internal class DependencyImplementation : IDependency
             throw new DalDoesNotExistException($"Dependency with ID={id} does not exists");
         XElement? dependencies = XMLTools.LoadListFromXMLElement(s_dependencies_xml);
         dependencies.Elements().FirstOrDefault(item => (int?)item.Element("Id") == id)!.Remove();
+        XMLTools.SaveListToXMLElement(dependencies,s_dependencies_xml);
     }
     //prints all fields of a given dependency occurrence
 
@@ -42,7 +43,7 @@ internal class DependencyImplementation : IDependency
     public Dependency? Read(int id)
     {
         XElement? dependencies = XMLTools.LoadListFromXMLElement(s_dependencies_xml);
-        XElement? xDependency = dependencies.Elements().FirstOrDefault(item => (int?)item.Element("Id") == id);
+        XElement? xDependency = dependencies.Elements().FirstOrDefault(item => (int?)item.Element("Id") == id)?? null;
         return xDependency is null ? null : XMLTools.ToDependencyNullable(xDependency);
     }
     //prints all fields of all ocurrences 
@@ -51,19 +52,22 @@ internal class DependencyImplementation : IDependency
         IEnumerable<XElement> dependencies = XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements();
 
         if (filter != null)
-        {
-            return dependencies.Select(item => XMLTools.ToDependencyNullable(item)).Where(filter!)!;
+        { 
+           return from item in dependencies
+                  where filter(XMLTools.ToDependencyNullable(item)!)
+                  select XMLTools.ToDependencyNullable(item);
         }
-        return dependencies.Select(item => XMLTools.ToDependencyNullable(item))!;
+        return from item in dependencies
+               select XMLTools.ToDependencyNullable(item);
     }
 
     //updates an occurrence (the user enters vulues of all fields)
     public void Update(Dependency item)
     {
-        XElement dependencies = XMLTools.LoadListFromXMLElement(s_dependencies_xml);
         if (Read(item.Id) is null)
             throw new DalDoesNotExistException($"Dependency with ID={item.Id} does not exists");
         Delete(item.Id);
+        XElement dependencies = XMLTools.LoadListFromXMLElement(s_dependencies_xml);
         XElement xDependency = new("Dependency");
         XElement id = new("Id", item.Id);
         xDependency.Add(id);

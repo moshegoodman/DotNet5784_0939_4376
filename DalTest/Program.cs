@@ -493,7 +493,7 @@ internal class Program
     {
         try
         {
-            Initialization.Do(s_dal);
+            //נקכInitialization.Do(s_dal);
             MainMenu();
         }
         catch (Exception err) { Console.WriteLine(err); }

@@ -1,3 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ArrayOfEngineer>
+<ArrayOfEngineer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Engineer>
+    <Id>760085389</Id>
+    <Email>boris@eng.com</Email>
+    <Cost>86.80758057179563</Cost>
+    <Name>Boris</Name>
+    <Level>Beginner</Level>
+  </Engineer>
+  <Engineer>
+    <Id>609281073</Id>
+    <Email>moses@eng.com</Email>
+    <Cost>82.40589390497497</Cost>
+    <Name>Moses</Name>
+    <Level>Advanced</Level>
+  </Engineer>
+  <Engineer>
+    <Id>349220332</Id>
+    <Email>david@eng.com</Email>
+    <Cost>271.50045456926114</Cost>
+    <Name>David</Name>
+    <Level>AdvancedBeginner</Level>
+  </Engineer>
+  <Engineer>
+    <Id>601701559</Id>
+    <Email>3170489@gmail.com</Email>
+    <Cost>2000</Cost>
+    <Name>Moshe Goodman and David Forst</Name>
+    <Level>Expert</Level>
+  </Engineer>
+  <Engineer>
+    <Id>653992122</Id>
+    <Email>ravdavidforst@gmail.com</Email>
+    <Cost>15000</Cost>
+    <Name>Doodu</Name>
+    <Level>Expert</Level>
+  </Engineer>
+  <Engineer>
+    <Id>313344376</Id>
+    <Email>dforst@jct.ac.il</Email>
+    <Cost>400</Cost>
+    <Name>David</Name>
+    <Level>Expert</Level>
+  </Engineer>
 </ArrayOfEngineer>

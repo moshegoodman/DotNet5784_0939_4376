@@ -177,7 +177,7 @@ public static class Initialization
     {
         int[,] taskDependencies = new int[,]
     {
-     {1003, 1002},  // BridgeDesign depends on PermittingProcess
+    {1003, 1002},  // BridgeDesign depends on PermittingProcess
     {1004, 1003},  // EnvImpactAssessment depends on BridgeDesign
     {1005, 1004},  // MaterialProcurement depends on EnvImpactAssessment
     {1006, 1005},  // FoundationExcavation depends on MaterialProcurement
