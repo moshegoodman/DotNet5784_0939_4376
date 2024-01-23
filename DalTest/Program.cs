@@ -501,7 +501,7 @@ internal class Program
     #endregion
 
     #region Initialization
-    void InitializationSettings()
+    private static void InitializationSettings()
     {
         Console.Write("Would you like to create Initial data? (Y/N)"); //stage 3
         string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input"); //stage 3

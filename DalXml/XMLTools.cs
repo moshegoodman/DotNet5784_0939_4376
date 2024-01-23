@@ -42,22 +42,22 @@ static class XMLTools
         XMLTools.SaveListToXMLElement(root, data_config_xml);
         return nextId;
     }
-    public static int ResetTaskId(string data_config_xml, string elemName)
-    {
-        XElement root = XMLTools.LoadListFromXMLElement(data_config_xml);
-        int initialId = 1000;
-        root.Element(elemName)?.SetValue((initialId).ToString());
-        XMLTools.SaveListToXMLElement(root, data_config_xml);
-        return 1000;
-    }
-    public static int ResetDependencyId(string data_config_xml, string elemName)
-    {
-        XElement root = XMLTools.LoadListFromXMLElement(data_config_xml);
-        int initialId = 10000;
-        root.Element(elemName)?.SetValue((initialId).ToString());
-        XMLTools.SaveListToXMLElement(root, data_config_xml);
-        return 10000;
-    }
+    // public static int ResetTaskId(string data_config_xml, string elemName)
+    // {
+    //     XElement root = XMLTools.LoadListFromXMLElement(data_config_xml);
+    //     int initialId = 1000;
+    //     root.Element(elemName)?.SetValue((initialId).ToString());
+    //     XMLTools.SaveListToXMLElement(root, data_config_xml);
+    //     return 1000;
+    // }
+    // public static int ResetDependencyId(string data_config_xml, string elemName)
+    // {
+    //     XElement root = XMLTools.LoadListFromXMLElement(data_config_xml);
+    //     int initialId = 10000;
+    //     root.Element(elemName)?.SetValue((initialId).ToString());
+    //     XMLTools.SaveListToXMLElement(root, data_config_xml);
+    //     return 10000;
+    // }
 
     #endregion
 
