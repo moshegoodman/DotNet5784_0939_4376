@@ -1,6 +1,7 @@
 ﻿namespace DalTest;
 using DalApi;
 using DO;
+using System.Xml.Linq;
 
 
 
@@ -235,6 +236,28 @@ public static class Initialization
             s_dal!.Dependency.Create(newDep);
 
         }
+    }
+
+    //method to delete all data
+
+    private static void DeleteData()
+    {
+        IEnumerable<Task> taskList = s_dal!.Task.ReadAll()!;
+        foreach (Task task in taskList)
+            s_dal.Task.Delete(task.Id);
+        IEnumerable<Engineer> engineerList = s_dal!.Engineer.ReadAll()!;
+        foreach (Engineer engineer in engineerList)
+            s_dal.Engineer.Delete(engineer.Id);
+        IEnumerable<Dependency> dependencyList = s_dal!.Dependency.ReadAll()!;
+        foreach (Dependency dependency in dependencyList)
+            s_dal.Dependency.Delete(dependency.Id);
+        XElement root = XMLTools.LoadListFromXMLElement("data-config");
+        int nextId = root.ToIntNullable(elemName) ?? throw new FormatException($"can't convert id.  {data_config_xml}, {elemName}");
+        root.Element(elemName)?.SetValue((nextId + 1).ToString());
+        XMLTools.SaveListToXMLElement(root, data_config_xml);
+        return nextId;
+    
+
     }
 
 

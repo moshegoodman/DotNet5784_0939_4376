@@ -16,6 +16,7 @@ internal class Program
             Console.WriteLine("enter 1 to check Tasks ");
             Console.WriteLine("enter 2 to check Dependencies ");
             Console.WriteLine("enter 3 to check Engineers ");
+            Console.WriteLine("enter 4 for Data initiazation settings");
             a = Convert.ToInt32(Console.ReadLine())!;
 
             switch (a)
@@ -30,6 +31,9 @@ internal class Program
                     break;
                 case 3:
                     MenuEngineers();
+                    break;
+                case 4:
+                    InitializationSettings();
                     break;
                 default:
                     Console.WriteLine("enter a number between 0 and 3");
@@ -496,12 +500,23 @@ internal class Program
     static readonly IDal s_dal = new Dal.DalXml();
     #endregion
 
+    #region Initialization
+    void InitializationSettings()
+    {
+        Console.Write("Would you like to create Initial data? (Y/N)"); //stage 3
+        string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input"); //stage 3
+        if (ans == "Y") //stage 3
+            Initialization.Do(s_dal); //stage 2
+
+    }
+
+    #endregion
+
     //Main method
     public static void Main(string[] args)
     {
         try
         {
-            //נקכInitialization.Do(s_dal);
             MainMenu();
         }
         catch (Exception err) { Console.WriteLine(err); }
