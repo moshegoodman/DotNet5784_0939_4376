@@ -76,11 +76,7 @@ internal class DependencyImplementation : IDependency
         XElement dependentOnTask = new("DependentOnTask", item.DependsOnTask);
         xDependency.Add(dependentOnTask);
         dependencies.Add(xDependency);
-        //IEnumerable<XElement> dependencyiEnumerable = dependencies.Elements();
-        //dependencyiEnumerable.OrderBy(dependency => Convert.ToInt32(dependency.Name));
-        //XElement updateXElement = new(dependencies.Name);
-        //foreach(XElement dependency in dependencyiEnumerable)
-        //{ updateXElement.Add(dependency); }                   
+                     
         XMLTools.SaveListToXMLElement(dependencies, s_dependencies_xml);
 
     }
@@ -93,16 +89,5 @@ internal class DependencyImplementation : IDependency
 
     }
 
-    //// returns true if the dependency already exists
-    //public bool DependencyExists(int dependentTask, int dependentOnTask)
-    //{
-    //    List<Dependency> dependencies = XMLTools.LoadListFromXMLSerializer<Dependency>(s_dependencies_xml);
-
-    //    foreach (Dependency dependency in dependencies)
-    //    {
-    //        if (dependency.DependentTask == dependentTask && dependency.DependsOnTask == dependentOnTask)
-    //            return true;
-    //    }
-    //    return false;
-    //}
+    
 }

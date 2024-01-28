@@ -15,9 +15,7 @@ public static class Initialization
     private const int HIGH_SAL = 300;
 
 
-    //private static IDependency? s_dalDependency;
-    //private static ITask? s_dalTask;
-    //private static IEngineer? s_dalEngineer;
+    
     private static IDal? s_dal;
 
     private static readonly Random s_rand = new();

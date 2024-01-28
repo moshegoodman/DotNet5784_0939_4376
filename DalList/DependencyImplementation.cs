@@ -30,7 +30,7 @@ internal class DependencyImplementation : IDependency
     //prints all fields of all ocurrences 
     public IEnumerable<Dependency> ReadAll(Func<Dependency, bool>? filter = null)
     {
-        //return DataSource.Dependencies.Select(item => item);
+   
         if (filter != null)
         {
             return from item in DataSource.Dependencies
@@ -57,14 +57,5 @@ internal class DependencyImplementation : IDependency
 
     }
 
-    // returns true if the dependency already exists
-    //public bool DependencyExists(int dependentTask, int dependentOnTask)
-    //{
-    //    foreach (Dependency dependency in DataSource.Dependencies)
-    //    {
-    //        if (dependency.DependentTask == dependentTask && dependency.DependsOnTask == dependentOnTask)
-    //            return true;
-    //    }
-    //    return false;
-    //}
+    
 }
