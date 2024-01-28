@@ -4,6 +4,8 @@ using DO;
 
 internal class Program
 {
+    static readonly IDal s_dal = Factory.Get;
+    //static readonly IDal s_dal = new Dal.DalXml();
     #region MainMenu
     // Main menu to navigate through entities
     private static void MainMenu()
@@ -496,9 +498,9 @@ internal class Program
         s_dal!.Engineer.Delete(_engineer);
     }
 
-    //static readonly IDal s_dal = new DalList();
-    static readonly IDal s_dal = new Dal.DalXml();
+
     #endregion
+
 
     #region Initialization
     private static void InitializationSettings()
@@ -506,7 +508,8 @@ internal class Program
         Console.Write("Would you like to create Initial data? (Y/N)"); //stage 3
         string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input"); //stage 3
         if (ans == "Y") //stage 3
-            Initialization.Do(s_dal); //stage 2
+            //Initialization.Do(s_dal); //stage 2
+            Initialization.Do(); //stage 3
 
     }
 

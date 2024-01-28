@@ -254,9 +254,11 @@ public static class Initialization
 
 
     // Main method to initiate the data creation process
-    public static void Do(IDal dal)
+    //public static void Do(IDal dal)
+    public static void Do()//stage 4 
     {
-        s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!"); //stage 2
+        //s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!"); //stage 2
+        s_dal = Factory.Get; //stage 4
         DeleteData();
         CreateTask();
         CreateEngineer();
