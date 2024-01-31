@@ -4,8 +4,8 @@
     <Id>1000</Id>
     <Alias>SiteAssessment</Alias>
     <Description>Evaluate the construction site for the bridge.</Description>
-    <CreatedAtDate>2023-02-12T18:44:52.1831343+02:00</CreatedAtDate>
-    <Complexity>AdvancedBeginner</Complexity>
+    <CreatedAtDate>2023-11-06T12:43:11.0184707+02:00</CreatedAtDate>
+    <Complexity>Intermediate</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime xsi:nil="true" />
     <StartDate xsi:nil="true" />
@@ -18,8 +18,8 @@
     <Id>1001</Id>
     <Alias>GeotechnicalSurvey</Alias>
     <Description>Conduct a survey to assess soil and subsurface conditions.</Description>
-    <CreatedAtDate>2023-02-14T18:44:52.2186942+02:00</CreatedAtDate>
-    <Complexity>Beginner</Complexity>
+    <CreatedAtDate>2023-02-24T12:43:11.0230952+02:00</CreatedAtDate>
+    <Complexity>Intermediate</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime xsi:nil="true" />
     <StartDate xsi:nil="true" />
@@ -32,8 +32,8 @@
     <Id>1002</Id>
     <Alias>PermittingProcess</Alias>
     <Description>Obtain necessary permits for bridge construction.</Description>
-    <CreatedAtDate>2023-06-14T18:44:52.237686+03:00</CreatedAtDate>
-    <Complexity>AdvancedBeginner</Complexity>
+    <CreatedAtDate>2024-01-24T12:43:11.050397+02:00</CreatedAtDate>
+    <Complexity>Beginner</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime xsi:nil="true" />
     <StartDate xsi:nil="true" />
@@ -46,7 +46,7 @@
     <Id>1003</Id>
     <Alias>BridgeDesign</Alias>
     <Description>Develop detailed engineering plans for the bridge.</Description>
-    <CreatedAtDate>2023-11-18T18:44:52.2468077+02:00</CreatedAtDate>
+    <CreatedAtDate>2023-07-30T12:43:11.0777931+03:00</CreatedAtDate>
     <Complexity>Beginner</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime xsi:nil="true" />
@@ -60,7 +60,7 @@
     <Id>1004</Id>
     <Alias>EnvImpactAssessment</Alias>
     <Description>Assess and mitigate potential environmental impacts.</Description>
-    <CreatedAtDate>2024-01-27T18:44:52.2566582+02:00</CreatedAtDate>
+    <CreatedAtDate>2023-06-02T12:43:11.1015512+03:00</CreatedAtDate>
     <Complexity>Advanced</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime xsi:nil="true" />
@@ -74,8 +74,8 @@
     <Id>1005</Id>
     <Alias>MaterialProcurement</Alias>
     <Description>Source and procure construction materials.</Description>
-    <CreatedAtDate>2024-01-15T18:44:52.2681861+02:00</CreatedAtDate>
-    <Complexity>Intermediate</Complexity>
+    <CreatedAtDate>2023-06-02T12:43:11.124802+03:00</CreatedAtDate>
+    <Complexity>Advanced</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime xsi:nil="true" />
     <StartDate xsi:nil="true" />
@@ -88,8 +88,8 @@
     <Id>1006</Id>
     <Alias>FoundationExcavation</Alias>
     <Description>Excavate the foundation for bridge supports.</Description>
-    <CreatedAtDate>2023-06-28T18:44:52.2801653+03:00</CreatedAtDate>
-    <Complexity>Beginner</Complexity>
+    <CreatedAtDate>2023-06-22T12:43:11.1484968+03:00</CreatedAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime xsi:nil="true" />
     <StartDate xsi:nil="true" />
@@ -102,8 +102,8 @@
     <Id>1007</Id>
     <Alias>PileDriving</Alias>
     <Description>Install piles for foundation support.</Description>
-    <CreatedAtDate>2023-05-19T18:44:52.2897654+03:00</CreatedAtDate>
-    <Complexity>Beginner</Complexity>
+    <CreatedAtDate>2023-07-10T12:43:11.1710934+03:00</CreatedAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime xsi:nil="true" />
     <StartDate xsi:nil="true" />
@@ -116,8 +116,8 @@
     <Id>1008</Id>
     <Alias>ConcreteFormwork</Alias>
     <Description>Set up formwork for concrete structures.</Description>
-    <CreatedAtDate>2023-04-07T18:44:52.2999333+03:00</CreatedAtDate>
-    <Complexity>AdvancedBeginner</Complexity>
+    <CreatedAtDate>2023-02-05T12:43:11.1947253+02:00</CreatedAtDate>
+    <Complexity>Intermediate</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime xsi:nil="true" />
     <StartDate xsi:nil="true" />
@@ -130,8 +130,8 @@
     <Id>1009</Id>
     <Alias>ConcretePouring</Alias>
     <Description>Pour concrete for bridge components.</Description>
-    <CreatedAtDate>2023-09-19T18:44:52.310267+03:00</CreatedAtDate>
-    <Complexity>Beginner</Complexity>
+    <CreatedAtDate>2023-03-21T12:43:11.2174265+02:00</CreatedAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime xsi:nil="true" />
     <StartDate xsi:nil="true" />
@@ -144,8 +144,8 @@
     <Id>1010</Id>
     <Alias>SteelStructureFabrication</Alias>
     <Description>Fabricate steel components for the bridge.</Description>
-    <CreatedAtDate>2023-09-11T18:44:52.3203117+03:00</CreatedAtDate>
-    <Complexity>AdvancedBeginner</Complexity>
+    <CreatedAtDate>2023-11-25T12:43:11.2469885+02:00</CreatedAtDate>
+    <Complexity>Advanced</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime xsi:nil="true" />
     <StartDate xsi:nil="true" />
@@ -158,7 +158,7 @@
     <Id>1011</Id>
     <Alias>BridgeDeckInstallation</Alias>
     <Description>Install the bridge deck.</Description>
-    <CreatedAtDate>2023-02-12T18:44:52.3289797+02:00</CreatedAtDate>
+    <CreatedAtDate>2023-05-28T12:43:11.2694009+03:00</CreatedAtDate>
     <Complexity>Intermediate</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime xsi:nil="true" />
@@ -172,8 +172,8 @@
     <Id>1012</Id>
     <Alias>AbutmentConstruction</Alias>
     <Description>Construct abutments for bridge support.</Description>
-    <CreatedAtDate>2023-03-30T18:44:52.3366018+03:00</CreatedAtDate>
-    <Complexity>Advanced</Complexity>
+    <CreatedAtDate>2023-10-27T12:43:11.2977996+03:00</CreatedAtDate>
+    <Complexity>Intermediate</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime xsi:nil="true" />
     <StartDate xsi:nil="true" />
@@ -186,8 +186,8 @@
     <Id>1013</Id>
     <Alias>ExpansionJointInstallation</Alias>
     <Description>Install expansion joints for temperature variations.</Description>
-    <CreatedAtDate>2023-03-03T18:44:52.3470081+02:00</CreatedAtDate>
-    <Complexity>AdvancedBeginner</Complexity>
+    <CreatedAtDate>2023-07-17T12:43:11.3211915+03:00</CreatedAtDate>
+    <Complexity>Advanced</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime xsi:nil="true" />
     <StartDate xsi:nil="true" />
@@ -200,7 +200,7 @@
     <Id>1014</Id>
     <Alias>TrafficManagement</Alias>
     <Description>Implement traffic management during construction.</Description>
-    <CreatedAtDate>2023-09-10T18:44:52.3567865+03:00</CreatedAtDate>
+    <CreatedAtDate>2023-06-30T12:43:11.3443542+03:00</CreatedAtDate>
     <Complexity>Intermediate</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime xsi:nil="true" />
@@ -214,8 +214,8 @@
     <Id>1015</Id>
     <Alias>BridgeInspection</Alias>
     <Description>Conduct regular inspections during construction.</Description>
-    <CreatedAtDate>2023-10-05T18:44:52.3659026+03:00</CreatedAtDate>
-    <Complexity>Advanced</Complexity>
+    <CreatedAtDate>2023-11-03T12:43:11.3792309+02:00</CreatedAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime xsi:nil="true" />
     <StartDate xsi:nil="true" />
@@ -228,7 +228,7 @@
     <Id>1016</Id>
     <Alias>WaterwayProtection</Alias>
     <Description>Implement measures to protect waterways during construction.</Description>
-    <CreatedAtDate>2023-09-28T18:44:52.3738543+03:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-01T12:43:11.4023298+02:00</CreatedAtDate>
     <Complexity>Beginner</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime xsi:nil="true" />
@@ -242,8 +242,8 @@
     <Id>1017</Id>
     <Alias>QualityControlTesting</Alias>
     <Description>Perform quality control tests on materials and structures.</Description>
-    <CreatedAtDate>2023-07-15T18:44:52.3818494+03:00</CreatedAtDate>
-    <Complexity>Intermediate</Complexity>
+    <CreatedAtDate>2023-09-08T12:43:11.4295337+03:00</CreatedAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime xsi:nil="true" />
     <StartDate xsi:nil="true" />
@@ -256,7 +256,7 @@
     <Id>1018</Id>
     <Alias>LandscapingRestoration</Alias>
     <Description>Restore the construction site and landscape.</Description>
-    <CreatedAtDate>2023-09-17T18:44:52.3919398+03:00</CreatedAtDate>
+    <CreatedAtDate>2023-05-08T12:43:11.4521308+03:00</CreatedAtDate>
     <Complexity>AdvancedBeginner</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime xsi:nil="true" />
@@ -270,8 +270,8 @@
     <Id>1019</Id>
     <Alias>DocumentationHandover</Alias>
     <Description>Compile project documentation and hand over the bridge.</Description>
-    <CreatedAtDate>2023-12-28T18:44:52.4072152+02:00</CreatedAtDate>
-    <Complexity>Beginner</Complexity>
+    <CreatedAtDate>2023-03-14T12:43:11.4811754+02:00</CreatedAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime xsi:nil="true" />
     <StartDate xsi:nil="true" />
