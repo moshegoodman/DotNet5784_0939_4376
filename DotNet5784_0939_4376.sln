@@ -20,12 +20,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalXml", "DalXml\DalXml.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{9F0FA968-D939-4D0B-AF3A-73F598B223FD}"
 	ProjectSection(SolutionItems) = preProject
-		xml\dal-config.xml = xml\dal-config.xml
+		DalXml\dal-config.xml = DalXml\dal-config.xml
 		xml\data-config.xml = xml\data-config.xml
 		xml\dependencies.xml = xml\dependencies.xml
 		xml\engineers.xml = xml\engineers.xml
 		xml\tasks.xml = xml\tasks.xml
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BL\BL.csproj", "{2959EC95-418E-4EAC-877C-47109231268A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlTast", "BlTast\BlTast.csproj", "{722B0871-2488-4F5B-AFDF-6B47EB924FEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +57,14 @@ Global
 		{FDE52B79-4D8D-4277-962B-B12A05EDBFAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDE52B79-4D8D-4277-962B-B12A05EDBFAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDE52B79-4D8D-4277-962B-B12A05EDBFAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2959EC95-418E-4EAC-877C-47109231268A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2959EC95-418E-4EAC-877C-47109231268A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2959EC95-418E-4EAC-877C-47109231268A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2959EC95-418E-4EAC-877C-47109231268A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{722B0871-2488-4F5B-AFDF-6B47EB924FEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{722B0871-2488-4F5B-AFDF-6B47EB924FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{722B0871-2488-4F5B-AFDF-6B47EB924FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{722B0871-2488-4F5B-AFDF-6B47EB924FEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
