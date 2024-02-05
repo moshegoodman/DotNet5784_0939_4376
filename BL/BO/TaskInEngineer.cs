@@ -2,6 +2,12 @@
 
 public class TaskInEngineer
 {
-    int Id { get; init; }
-    string alias {  get; set; }
+    public TaskInEngineer(int id, string alias)
+    {
+        Id = id;
+        this.alias = alias;
+    }
+
+    public int Id { get; init; }
+    public string alias {  get; set; }
 }

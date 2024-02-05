@@ -2,14 +2,14 @@
 public class Milestone
 {
     public int Id { get; init; }
-    string Description { get; set; }
-    string Alias { get; set; }
-    BO.Status status { get; set; }
-    DateTime CreatedAtDate { get; init; }
-    DateTime? ForecastDate { get; set; }
-    DateTime? DeadlineDate { get; set; }
-    DateTime? CompleteDate { get; set; }
-    double? CompletionPercentage { get; set; }
-    string? Remarks { get; set; }
-    List<BO.TaskInList>? Dependencies { get; set; }
+    public string Description { get; set; }
+    public string Alias { get; set; }
+    public BO.Status status {  get; set; }
+    public DateTime CreatedAtDate { get; init; }
+    public DateTime? ForecastDate { get; set; }
+    public DateTime? DeadlineDate { get; set; }
+    public DateTime? CompleteDate { get; set; }
+    public double? CompletionPercentage { get; set; }
+    public string? Remarks { get; set; }
+    public List<BO.TaskInList>? Dependencies { get; set; }
 }
