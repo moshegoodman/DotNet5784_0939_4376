@@ -21,7 +21,7 @@ public record Task
     int Id,
     string Alias,
     string Description,
-    DateTime? CreatedAtDate,
+    DateTime CreatedAtDate,
     DO.EngineerExperience Complexity = EngineerExperience.Beginner,
     string? Deliverables = null,
     string? Remarks = null,

@@ -3,21 +3,21 @@
 namespace BO;
 public class Task
 {
-    int Id { get; init; }
-    string Alias { get; set; }
-    string Description { get; set; }
-    DateTime CreatedAtDate { get; init; }
-    BO.Status Status { get; set; }
-    List<BO.TaskInList>? Dependencies { get; set; }
-    BO.MilestoneInTask? Milestone { get; set; }
-    BO.EngineerExperience Complexity {  get; set; }
-    string? Deliverables { get; set; }
-    string? Remarks { get; set; }
-    TimeSpan? RequiredEffortTime {  get; set; }
-    DateTime? StartDate {  get; set; }
-    DateTime? ScheduledDate {  get; set; }
-    DateTime? ForecastDate { get; set;}
-    DateTime? DeadlineDate {  get; set; }
-    DateTime? CompleteDate {  get; set; }
-    BO.EngineerInTask? Engineer { get; set; }
+    public int Id { get; init; }
+    public string Alias { get; set; }
+    public string Description { get; set; }
+    public DateTime CreatedAtDate { get; init; }
+    public BO.Status Status { get; set; }
+    public List<BO.TaskInList> Dependencies { get; set; }
+    public BO.MilestoneInTask? Milestone { get; set; }
+    public BO.EngineerExperience Complexity {  get; set; }
+    public string? Deliverables { get; set; }
+    public string? Remarks { get; set; }
+    public TimeSpan? RequiredEffortTime {  get; set; }
+    public DateTime? StartDate {  get; set; }
+    public DateTime? ScheduledDate {  get; set; }
+    public DateTime? ForecastDate { get; set;}
+    public DateTime? DeadlineDate {  get; set; }
+    public DateTime? CompleteDate {  get; set; }
+    public BO.EngineerInTask? Engineer { get; set; }
 }

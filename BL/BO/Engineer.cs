@@ -1,10 +1,10 @@
 ﻿namespace BO;
 public class Engineer
 {
-    int Id {  get; init; }
-    string Email {  get; set; }
-    double Cost {  get; set; }
-    string Name {  get; set; }
-    DO.EngineerExperience Level {  get; set; }
-    BO.TaskInEngineer? Task {  get; set; }
+    public int Id {  get; init; }
+    public string Email {  get; set; }
+    public double Cost {  get; set; }
+    public string Name {  get; set; }
+    public DO.EngineerExperience Level {  get; set; }
+    public BO.TaskInEngineer? Task {  get; set; }
 }

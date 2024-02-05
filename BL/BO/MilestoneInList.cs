@@ -2,11 +2,11 @@
 
 public class MilestoneInList
 {
-    int Id { get; init; }
-    DateTime CreatedAtDate { get; init; }
-    string Description { get; set; }
-    string Alias { get; set; }
-    BO.Status status {  get; set; }
-    double? CompletionPercentage { get; set; }
+    public int Id { get; init; }
+    public DateTime CreatedAtDate { get; init; }
+    public string Description { get; set; }
+    public string Alias { get; set; }
+    public BO.Status status {  get; set; }
+    public double? CompletionPercentage { get; set; }
   
 }
