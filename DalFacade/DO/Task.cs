@@ -9,7 +9,7 @@
 /// <param name="RequiredEffortTime">The estimated time required to complete the task</param>
 /// <param name="IsMilestone">A boolean indicating whether the task is a milestone</param>
 /// <param name="Complexity">An enumeration representing the complexity level of the task (using the "DO.EngineerExperience" type)</param>
-/// <param name="StartDate">The planned start date for the task</param>
+/// <param name="StartDate">The real start date for the task</param>
 /// <param name="ScheduledDate">The scheduled date for the task</param>
 /// <param name="DeadlineDate">The deadline by which the task should be completed</param>
 /// <param name="CompleteDate">The actual completion date of the task</param>
@@ -21,7 +21,7 @@ public record Task
     int Id,
     string Alias,
     string Description,
-    DateTime? CreatedAtDate,
+    DateTime CreatedAtDate,
     DO.EngineerExperience Complexity = EngineerExperience.Beginner,
     string? Deliverables = null,
     string? Remarks = null,

@@ -1,10 +1,10 @@
 ﻿namespace BO;
 public class Milestone
 {
-    int Id { get; init; }
+    public int Id { get; init; }
     string Description { get; set; }
     string Alias { get; set; }
-    BO.Status status {  get; set; }
+    BO.Status status { get; set; }
     DateTime CreatedAtDate { get; init; }
     DateTime? ForecastDate { get; set; }
     DateTime? DeadlineDate { get; set; }

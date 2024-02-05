@@ -1,6 +1,8 @@
-﻿using DalApi;
+﻿namespace DalApi;
 using System.Reflection;
 using static DalApi.Config;
+
+
 public static class Factory
 {
     public static IDal Get
