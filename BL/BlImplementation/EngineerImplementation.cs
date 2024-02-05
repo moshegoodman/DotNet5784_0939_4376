@@ -4,20 +4,20 @@ using BlApi;
 internal class EngineerImplementation : IEngineer
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
-    
+
     public int Create(BO.Engineer boEngineer)
     {
-        if(boEngineer.Id<0)
+        if (boEngineer.Id < 0)
             throw new BO.InCorrectData("Engineer ID cant be negative");
-        if(!(boEngineer.Email.Contains("@")&& boEngineer.Email.Contains(".")&& boEngineer.Email.IndexOf("@")< boEngineer.Email.IndexOf(".")))
+        if (!(boEngineer.Email.Contains("@") && boEngineer.Email.Contains(".") && boEngineer.Email.IndexOf("@") < boEngineer.Email.IndexOf(".")))
             throw new BO.InCorrectData($"Email: {boEngineer.Email} is invalid");
         if (boEngineer.Cost < 0)
             throw new BO.InCorrectData("Engineer cost cant be negative");
-        if(boEngineer.Name == "")
+        if (boEngineer.Name == "")
             throw new BO.InCorrectData("Engineer should have a name");
         DO.Engineer doEngineer = new DO.Engineer
                 (boEngineer.Id, boEngineer.Email, boEngineer.Cost, boEngineer.Name, boEngineer.Level);
-       
+
         try
         {
             int idEngineer = _dal.Engineer.Create(doEngineer);
@@ -42,7 +42,7 @@ internal class EngineerImplementation : IEngineer
 
     public BO.Engineer? Read(int id)
     {
-        
+
         DO.Engineer? doEngineer = _dal.Engineer.Read(id);
         if (doEngineer == null)
             throw new BO.BlDoesNotExistException($"Engineer with ID={id} does Not exist");
@@ -61,16 +61,16 @@ internal class EngineerImplementation : IEngineer
     public IEnumerable<BO.Engineer>? ReadAll(Func<BO.Engineer, bool>? filter = null)
     {
         IEnumerable<BO.Engineer> boEngineers = (from DO.Engineer doEngineer in _dal.Engineer.ReadAll()
-                select new BO.Engineer
-                {
-                    Id = doEngineer.Id,
-                    Name = doEngineer.Name,
-                    Cost = doEngineer.Cost,
-                    Email = doEngineer.Email,
-                    Level= doEngineer.Level,
-                    Task = new BO.TaskInEngineer(_dal.Task.ReadAll().Where(task => task != null).Where(task => task!.EngineerId == doEngineer.Id).Where(task => task!.CompleteDate == null).FirstOrDefault()!.Id,
-                         _dal.Task.ReadAll().Where(task => task != null).Where(task => task!.EngineerId == doEngineer.Id).Where(task => task!.CompleteDate == null).FirstOrDefault()!.Alias)
-                });
+                                                select new BO.Engineer
+                                                {
+                                                    Id = doEngineer.Id,
+                                                    Name = doEngineer.Name,
+                                                    Cost = doEngineer.Cost,
+                                                    Email = doEngineer.Email,
+                                                    Level = doEngineer.Level,
+                                                    Task = new BO.TaskInEngineer(_dal.Task.ReadAll().Where(task => task != null).Where(task => task!.EngineerId == doEngineer.Id).Where(task => task!.CompleteDate == null).FirstOrDefault()!.Id,
+                                                         _dal.Task.ReadAll().Where(task => task != null).Where(task => task!.EngineerId == doEngineer.Id).Where(task => task!.CompleteDate == null).FirstOrDefault()!.Alias)
+                                                });
         if (filter != null)
             return from boEngineer in boEngineers
                    where filter(boEngineer)
@@ -82,7 +82,7 @@ internal class EngineerImplementation : IEngineer
 
     public void Update(BO.Engineer boEngineer)
     {
-        if(_dal.Engineer.Read(boEngineer.Id)==null)
+        if (_dal.Engineer.Read(boEngineer.Id) == null)
             throw new BO.BlDoesNotExistException($"Engineer with ID={boEngineer.Id} does Not exist");
         if (boEngineer.Id < 0)
             throw new BO.InCorrectData("Engineer ID cant be negative");
@@ -106,6 +106,6 @@ internal class EngineerImplementation : IEngineer
             DO.Task newTask = _dal.Task.Read(taskInEngineer.Id)! with { EngineerId = boEngineer.Id };
             _dal.Task.Update(newTask);
         }
-        _dal.Engineer.Update(doEngineer); 
+        _dal.Engineer.Update(doEngineer);
     }
 }

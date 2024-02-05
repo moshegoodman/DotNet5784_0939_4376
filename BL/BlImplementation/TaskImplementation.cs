@@ -1,7 +1,5 @@
 ﻿namespace BlImplementation;
 using BlApi;
-using BO;
-using DO;
 
 internal class TaskImplementation : ITask
 {
@@ -24,7 +22,7 @@ internal class TaskImplementation : ITask
             return BO.Status.InJeopardy;
     }
 
-    private List<BO.TaskInList> GetDependencies(DO.Task task) 
+    private List<BO.TaskInList> GetDependencies(DO.Task task)
     {
         IEnumerable<int?> idTasks = _dal.Dependency.ReadAll().Where(d => d != null).Where(d => d!.DependentTask == task.Id).Select(d => d!.DependsOnTask);
         return (from int idTask in idTasks
@@ -39,7 +37,7 @@ internal class TaskImplementation : ITask
 
     private BO.EngineerInTask? GetEngineerInTask(DO.Task task)
     {
-        if(task.EngineerId == null)
+        if (task.EngineerId == null)
             return null;
         return new BO.EngineerInTask()
         {
@@ -52,35 +50,35 @@ internal class TaskImplementation : ITask
     {
         if (boTask.Id < 0)
             throw new BO.InCorrectData("Task ID can't be negative");
-        if(boTask.Alias == "")
+        if (boTask.Alias == "")
             throw new BO.InCorrectData("Task should have an alias");
-        DO.Task doTask = new DO.Task()
-        {
-            Id=boTask.Id,
-            Alias = boTask.Alias,
-            Description = boTask.Description,
-            CreatedAtDate = boTask.CreatedAtDate,
-            Complexity = (DO.EngineerExperience)boTask.Complexity,
-            Deliverables = boTask.Deliverables,
-            Remarks = boTask.Remarks,
-            IsMilestone = false,
-            RequiredEffortTime = boTask.RequiredEffortTime,
-            StartDate = null,
-            ScheduledDate = null,
-            DeadlineDate    = null,
-            CompleteDate = null,
-            EngineerId  = null
-        };
+        DO.Task doTask = new DO.Task(
+
+            boTask.Id,
+            boTask.Alias,
+            boTask.Description,
+            boTask.CreatedAtDate,
+            (DO.EngineerExperience)boTask.Complexity,
+            boTask.Deliverables,
+            boTask.Remarks,
+            false,
+            boTask.RequiredEffortTime,
+            null,
+            null,
+            null,
+            null,
+            null
+        );
 
         IEnumerable<int> tempDependencies = from taskInList in boTask.Dependencies
-                                           let dependency = new DO.Dependency(0, boTask.Id, taskInList.Id)
-                                           select _dal.Dependency.Create(dependency);
+                                            let dependency = new DO.Dependency(0, boTask.Id, taskInList.Id)
+                                            select _dal.Dependency.Create(dependency);
         return _dal.Task.Create(doTask);
     }
 
     public void Delete(int id)
     {
-        if(_dal.Task.Read(id)==null)
+        if (_dal.Task.Read(id) == null)
             throw new BO.BlDoesNotExistException($"Task with ID: {id} does not exist");
         if (_dal.Dependency.ReadAll(d => d.DependsOnTask == id).Any())
             throw new BO.BlDeletionImpossible("Cannot be deleted due to other tasks depending on it");
@@ -113,7 +111,7 @@ internal class TaskImplementation : ITask
             StartDate = doTask.StartDate,
             ScheduledDate = doTask.ScheduledDate,
             ForecastDate = doTask.StartDate + doTask.RequiredEffortTime,
-            DeadlineDate =  doTask.DeadlineDate,
+            DeadlineDate = doTask.DeadlineDate,
             CompleteDate = doTask.CompleteDate,
             Engineer = GetEngineerInTask(doTask)
         });
@@ -149,10 +147,10 @@ internal class TaskImplementation : ITask
     }
     public void Update(BO.Task boTask)
     {
-       
+
     }
 
-    public void Update(int  id, DateTime _ScheduledDate)
+    public void Update(int id, DateTime _ScheduledDate)
     {
 
     }
