@@ -1,7 +1,9 @@
 ﻿namespace BlImplementation;
 using BlApi;
 using BO;
+using DalApi;
 using DO;
+using System.Threading.Tasks;
 
 internal class TaskImplementation : ITask
 {
@@ -54,27 +56,28 @@ internal class TaskImplementation : ITask
             throw new BO.InCorrectData("Task ID can't be negative");
         if(boTask.Alias == "")
             throw new BO.InCorrectData("Task should have an alias");
-        DO.Task doTask = new DO.Task()
-        {
-            Id=boTask.Id,
-            Alias = boTask.Alias,
-            Description = boTask.Description,
-            CreatedAtDate = boTask.CreatedAtDate,
-            Complexity = (DO.EngineerExperience)boTask.Complexity,
-            Deliverables = boTask.Deliverables,
-            Remarks = boTask.Remarks,
-            IsMilestone = false,
-            RequiredEffortTime = boTask.RequiredEffortTime,
-            StartDate = null,
-            ScheduledDate = null,
-            DeadlineDate    = null,
-            CompleteDate = null,
-            EngineerId  = null
-        };
+        DO.Task doTask = new DO.Task
+        (
+            boTask.Id,
+            boTask.Alias,
+            boTask.Description,
+            boTask.CreatedAtDate,
+            (DO.EngineerExperience)boTask.Complexity,
+            boTask.Deliverables,
+            boTask.Remarks,
+            false,
+            boTask.RequiredEffortTime,
+            null,
+            null,
+            null,
+            null,
+            null
+        );
 
         IEnumerable<int> tempDependencies = from taskInList in boTask.Dependencies
                                            let dependency = new DO.Dependency(0, boTask.Id, taskInList.Id)
                                            select _dal.Dependency.Create(dependency);
+       
         return _dal.Task.Create(doTask);
     }
 
@@ -149,11 +152,83 @@ internal class TaskImplementation : ITask
     }
     public void Update(BO.Task boTask)
     {
-       
+        if(boTask.Id<0)
+            throw new BO.InCorrectData("Task ID can't be negative");
+        if (boTask.Alias == "")
+            throw new BO.InCorrectData("Task should have an alias");
+        DO.Task doTask = new DO.Task
+       (
+           boTask.Id,
+           boTask.Alias,
+           boTask.Description,
+           boTask.CreatedAtDate,
+           (DO.EngineerExperience)boTask.Complexity,
+           boTask.Deliverables,
+           boTask.Remarks,
+           false,
+           boTask.RequiredEffortTime,
+           null,
+           null,
+           null,
+           null,
+           null
+       );
+
+        try
+        {
+            _dal.Task.Update(doTask);
+        }
+        catch (DO.DalDoesNotExistException ex)
+        {
+            throw new BO.BlDoesNotExistException($"Task with ID: {doTask.Id} does not exist", ex);
+        }
+        IEnumerable<int> tempDependencies = from taskInList in boTask.Dependencies
+                                            let dependency = new DO.Dependency(0, boTask.Id, taskInList.Id)
+                                            select _dal.Dependency.Create(dependency);
     }
 
-    public void Update(int  id, DateTime _ScheduledDate)
+    public void Update(int  id, DateTime _scheduledDate)
     {
+        BO.Task? boTask = null;
+        try
+        {
+            boTask = Read(id);
+        }
+        catch (BO.BlDoesNotExistException ex)
+        {
+            throw ex;
+        }
+        if (!(boTask.Dependencies.All(d => boTask.ScheduledDate != null)))
+            throw new BO.BlUpdateImpossible("The previous tasks weren't scheduled");
+        if (!(boTask.Dependencies.All(d => boTask.ForecastDate < _scheduledDate)))
+            throw new BO.BlUpdateImpossible("The previous tasks must be complete before the current task");
+        boTask.ScheduledDate = _scheduledDate;
 
+        DO.Task doTask = new DO.Task
+     (
+         boTask.Id,
+         boTask.Alias,
+         boTask.Description,
+         boTask.CreatedAtDate,
+         (DO.EngineerExperience)boTask.Complexity,
+         boTask.Deliverables,
+         boTask.Remarks,
+         false,
+         boTask.RequiredEffortTime,
+         null,
+         _scheduledDate,
+         null,
+         null,
+         null
+     );
+
+        try
+        {
+            _dal.Task.Update(doTask);
+        }
+        catch (DO.DalDoesNotExistException ex)
+        {
+            throw new BO.BlDoesNotExistException($"Task with ID: {doTask.Id} does not exist", ex);
+        }
     }
 }
