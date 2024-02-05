@@ -82,8 +82,6 @@ internal class EngineerImplementation : IEngineer
 
     public void Update(BO.Engineer boEngineer)
     {
-        if (_dal.Engineer.Read(boEngineer.Id) == null)
-            throw new BO.BlDoesNotExistException($"Engineer with ID={boEngineer.Id} does Not exist");
         if (boEngineer.Id < 0)
             throw new BO.InCorrectData("Engineer ID cant be negative");
         if (!(boEngineer.Email.Contains("@") && boEngineer.Email.Contains(".") && boEngineer.Email.IndexOf("@") < boEngineer.Email.IndexOf(".")))
@@ -106,6 +104,14 @@ internal class EngineerImplementation : IEngineer
             DO.Task newTask = _dal.Task.Read(taskInEngineer.Id)! with { EngineerId = boEngineer.Id };
             _dal.Task.Update(newTask);
         }
-        _dal.Engineer.Update(doEngineer);
+
+        try
+        {
+            _dal.Engineer.Update(doEngineer);
+        }
+        catch (DO.DalDoesNotExistException ex)
+        {
+            throw new BO.BlDoesNotExistException($"Engineer with ID={boEngineer.Id} does Not exist", ex);
+        }
     }
 }
