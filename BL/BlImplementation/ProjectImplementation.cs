@@ -1,11 +1,11 @@
 ﻿namespace BlImplementation;
 using System;
 
-internal class ProjectImplementation
+public class ProjectImplementation
 {
     static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
 
-    private static DateTime GetDateTimeFromUser()
+    public static DateTime GetDateTimeFromUser()
     {
         string userInput = Console.ReadLine();
         DateTime projectScheduledDate;
@@ -18,7 +18,7 @@ internal class ProjectImplementation
         }
         return projectScheduledDate;
     }
-    private static TimeSpan GetTimeSpanFromUser()
+    public static TimeSpan GetTimeSpanFromUser()
     {
         string userInput = Console.ReadLine();
         TimeSpan projectScheduledDate;
@@ -32,7 +32,7 @@ internal class ProjectImplementation
         return projectScheduledDate;
     }
 
-    private static bool ValidScheduleDate(int taskId, DateTime _scheduleDate)
+    public static bool ValidScheduleDate(int taskId, DateTime _scheduleDate)
     {
         bool flag = true;
         BO.Task task = s_bl.Task.Read(taskId);
