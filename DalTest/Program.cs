@@ -177,7 +177,7 @@ internal class Program
 
 
 
-        DO.Task newTask = new(0, _alias, _description, _createdAtDate, _taskComplexity, _deliverables, _remark, isMilestone, requiredEffortTime, startDate, scheduledDate, deadlineDate, completeDate, engineerId);
+        DO.Task newTask = new(0, _alias, _description, (System.DateTime)_createdAtDate, _taskComplexity, _deliverables, _remark, isMilestone, requiredEffortTime, startDate, scheduledDate, deadlineDate, completeDate, engineerId);
         Console.WriteLine("new Task id:");
         Console.WriteLine(s_dal!.Task.Create(newTask));
     }
@@ -249,7 +249,7 @@ internal class Program
 
 
 
-        DO.Task newTask = new(_id, _alias, _description, _createdAtDate, _taskComplexity, _deliverables, _remark, isMilestone, requiredEffortTime, startDate, scheduledDate, deadlineDate, completeDate, engineerId);
+        DO.Task newTask = new(_id, _alias, _description, (System.DateTime)_createdAtDate, _taskComplexity, _deliverables, _remark, isMilestone, requiredEffortTime, startDate, scheduledDate, deadlineDate, completeDate, engineerId);
         s_dal!.Task.Update(newTask);
     }
     //The method deletes a task given by the user(the user enters the id)
