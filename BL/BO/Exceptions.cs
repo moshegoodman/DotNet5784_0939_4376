@@ -7,6 +7,11 @@ public class InCorrectData : Exception
     public InCorrectData(string? message) : base(message) { }
 }
 
+public class DependentScheduleNotInitialized : Exception
+{
+    public DependentScheduleNotInitialized(string? message) : base(message) { }
+}
+
 public class BlAlreadyExistsException : Exception
 {
     public BlAlreadyExistsException(string? message) : base(message) { }
