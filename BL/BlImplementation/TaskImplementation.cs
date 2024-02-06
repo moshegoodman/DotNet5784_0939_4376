@@ -1,6 +1,5 @@
 ﻿namespace BlImplementation;
 using BlApi;
-using BO;
 
 internal class TaskImplementation : ITask
 {
@@ -10,6 +9,8 @@ internal class TaskImplementation : ITask
 
     private BO.Status GetStatus(DO.Task task)
     {
+        DO.Task? task = _dal.Task.Read(id);
+
         if (task == null)
             throw new BO.BlDoesNotExistException("The task doesn't exist");
         if (task.ScheduledDate == null)
@@ -24,8 +25,10 @@ internal class TaskImplementation : ITask
             return BO.Status.InJeopardy;
     }
 
-    private List<BO.TaskInList> GetDependencies(DO.Task task)
+    private List<BO.TaskInList> GetDependencies(int id)
     {
+        DO.Task? task = _dal.Task.Read(id);
+
         IEnumerable<int?> idTasks = _dal.Dependency.ReadAll().Where(d => d != null).Where(d => d!.DependentTask == task.Id).Select(d => d!.DependsOnTask);
         return (from int idTask in idTasks
                 select new BO.TaskInList
@@ -37,8 +40,10 @@ internal class TaskImplementation : ITask
                 }).ToList();
     }
 
-    private BO.EngineerInTask? GetEngineerInTask(DO.Task task)
+    private BO.EngineerInTask? GetEngineerInTask(int id)
     {
+        DO.Task? task = _dal.Task.Read(id);
+
         if (task.EngineerId == null)
             return null;
         return new BO.EngineerInTask()
@@ -73,9 +78,9 @@ internal class TaskImplementation : ITask
         );
 
         IEnumerable<int> tempDependencies = from taskInList in boTask.Dependencies
-                                           let dependency = new DO.Dependency(0, boTask.Id, taskInList.Id)
-                                           select _dal.Dependency.Create(dependency);
-       
+                                            let dependency = new DO.Dependency(0, boTask.Id, taskInList.Id)
+                                            select _dal.Dependency.Create(dependency);
+
         return _dal.Task.Create(doTask);
     }
 
@@ -102,8 +107,8 @@ internal class TaskImplementation : ITask
             Alias = doTask.Alias,
             Description = doTask.Description,
             CreatedAtDate = doTask.CreatedAtDate,
-            Status = GetStatus(doTask),
-            Dependencies = GetDependencies(doTask),
+            Status = GetStatus(doTask.Id),
+            Dependencies = GetDependencies(doTask.Id),
             Milestone = null,
             Complexity = (BO.EngineerExperience)doTask.Complexity,
             Deliverables = doTask.Deliverables,
@@ -114,7 +119,7 @@ internal class TaskImplementation : ITask
             ForecastDate = doTask.StartDate + doTask.RequiredEffortTime,
             DeadlineDate = doTask.DeadlineDate,
             CompleteDate = doTask.CompleteDate,
-            Engineer = GetEngineerInTask(doTask)
+            Engineer = GetEngineerInTask(doTask.Id)
         });
 
     }
@@ -129,7 +134,7 @@ internal class TaskImplementation : ITask
                         Id = doTask.Id,
                         Description = doTask.Description,
                         Alias = doTask.Alias,
-                        Status = GetStatus(doTask)
+                        Status = GetStatus(doTask.Id)
                     });
         }
         else
@@ -141,14 +146,14 @@ internal class TaskImplementation : ITask
                         Id = doTask.Id,
                         Description = doTask.Description,
                         Alias = doTask.Alias,
-                        Status = GetStatus(doTask)
+                        Status = GetStatus(doTask.Id)
                     });
 
         }
     }
     public void Update(BO.Task boTask)
     {
-        if(boTask.Id<0)
+        if (boTask.Id < 0)
             throw new BO.InCorrectData("Task ID can't be negative");
         if (boTask.Alias == "")
             throw new BO.InCorrectData("Task should have an alias");
@@ -183,7 +188,7 @@ internal class TaskImplementation : ITask
                                             select _dal.Dependency.Create(dependency);
     }
 
-    public void Update(int  id, DateTime _scheduledDate)
+    public void Update(int id, DateTime _scheduledDate)
     {
         BO.Task? boTask = null;
         try
