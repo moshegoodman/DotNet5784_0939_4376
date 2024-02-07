@@ -9,26 +9,7 @@ public class Task
     private int engineerId;
     private object value;
 
-    //public Task(int id, string alias, string description, DateTime createdAtDate, Status status, List<TaskInList> dependencies, object value, DO.EngineerExperience taskComplexity, string deliverables, string remark, TimeSpan? requiredEffortTime, DateTime? startDate, DateTime? scheduledDate, DateTime forecastDate, DateTime? deadlineDate, DateTime? completeDate, EngineerInTask? engineer)
-    //{
-    //    Id = id;
-    //    Alias = alias;
-    //    Description = description;
-    //    CreatedAtDate = createdAtDate;
-    //    Status = status;
-    //    Dependencies = dependencies;
-    //    this.value = value;
-    //    this.taskComplexity = taskComplexity;
-    //    Deliverables = deliverables;
-    //    this.remark = remark;
-    //    RequiredEffortTime = requiredEffortTime;
-    //    StartDate = startDate;
-    //    ScheduledDate = scheduledDate;
-    //    ForecastDate = forecastDate;
-    //    DeadlineDate = deadlineDate;
-    //    CompleteDate = completeDate;
-    //    Engineer = engineer;
-    //}
+
 
     public int Id { get; init; }
     public string Alias { get; set; }
