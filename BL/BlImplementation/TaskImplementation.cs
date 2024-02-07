@@ -121,9 +121,7 @@ internal class TaskImplementation : ITask
 
     public BO.Task Read(int id)
     {
-        DO.Task? doTask = _dal.Task.Read(id);
-        if (doTask == null)
-            throw new BO.BlDoesNotExistException($"Task with ID: {id} does not exist");
+        DO.Task? doTask = _dal.Task.Read(id) ?? throw new BO.BlDoesNotExistException($"Task with ID: {id} does not exist");
         return (new BO.Task
         {
             Id = id,
@@ -222,9 +220,9 @@ internal class TaskImplementation : ITask
         {
             throw ex;
         }
-        if (!(boTask.Dependencies.All(d => boTask.ScheduledDate != null)))
+        if (!(boTask.Dependencies.All(d => d.Status != Status.Unscheduled)))
             throw new BO.BlUpdateImpossible("The previous tasks weren't scheduled");
-        if (!(boTask.Dependencies.All(d => boTask.ForecastDate < _scheduledDate)))
+        if (!(boTask.Dependencies.All(d => Read(d.Id).ForecastDate <= _scheduledDate)))
             throw new BO.BlUpdateImpossible("The previous tasks must be complete before the current task");
         boTask.ScheduledDate = _scheduledDate;
 
@@ -255,4 +253,8 @@ internal class TaskImplementation : ITask
             throw new BO.BlDoesNotExistException($"Task with ID: {doTask.Id} does not exist", ex);
         }
     }
+
+
+
+
 }

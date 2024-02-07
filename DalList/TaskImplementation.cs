@@ -58,4 +58,24 @@ internal class TaskImplementation : ITask
         return DataSource.Tasks.FirstOrDefault(item => filter(item));
 
     }
+
+    public DateTime? getStartDate()
+    {
+        throw new NotImplementedException();
+    }
+
+    public DateTime? setStartDate()
+    {
+        throw new NotImplementedException();
+    }
+
+    public DateTime? getStatus()
+    {
+        throw new NotImplementedException();
+    }
+
+    public DateTime? setStatus()
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -5,11 +5,16 @@ internal class EngineerImplementation : IEngineer
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
 
+    private BO.TaskInEngineer GetTaskInEngineer(int EngineerId) => new BO.TaskInEngineer()
+    {
+        Id = _dal.Task.ReadAll().Where(task => task != null).Where(task => task!.EngineerId == EngineerId).Where(task => task!.CompleteDate == null).FirstOrDefault()!.Id,
+        alias = _dal.Task.ReadAll().Where(task => task != null).Where(task => task!.EngineerId == EngineerId).Where(task => task!.CompleteDate == null).FirstOrDefault()!.Alias
+    };
     public int Create(BO.Engineer boEngineer)
     {
         if (boEngineer.Id < 0)
             throw new BO.InCorrectData("Engineer ID cant be negative");
-        if (!(boEngineer.Email.Contains("@") && boEngineer.Email.Contains(".") && boEngineer.Email.IndexOf("@") < boEngineer.Email.IndexOf(".")))
+        if (!(boEngineer.Email.Contains('@') && boEngineer.Email.Contains('.') && boEngineer.Email.IndexOf("@") < boEngineer.Email.IndexOf(".")))
             throw new BO.InCorrectData($"Email: {boEngineer.Email} is invalid");
         if (boEngineer.Cost < 0)
             throw new BO.InCorrectData("Engineer cost cant be negative");
@@ -31,9 +36,7 @@ internal class EngineerImplementation : IEngineer
 
     public void Delete(int id)
     {
-        DO.Engineer? doEngineer = _dal.Engineer.Read(id);
-        if (doEngineer == null)
-            throw new BO.BlDoesNotExistException($"Engineer with ID={id} does Not exist");
+        DO.Engineer? doEngineer = _dal.Engineer.Read(id) ?? throw new BO.BlDoesNotExistException($"Engineer with ID={id} does Not exist");
         if (Read(id)!.Task != null)
             throw new BO.BlDeletionImpossible("The engineer is in the middle of performing the task or has already finished the task");
         _dal.Engineer.Delete(id);
@@ -43,9 +46,7 @@ internal class EngineerImplementation : IEngineer
     public BO.Engineer? Read(int id)
     {
 
-        DO.Engineer? doEngineer = _dal.Engineer.Read(id);
-        if (doEngineer == null)
-            throw new BO.BlDoesNotExistException($"Engineer with ID={id} does Not exist");
+        DO.Engineer? doEngineer = _dal.Engineer.Read(id) ?? throw new BO.BlDoesNotExistException($"Engineer with ID={id} does Not exist");
         return new BO.Engineer()
         {
             Id = id,
@@ -53,8 +54,7 @@ internal class EngineerImplementation : IEngineer
             Cost = doEngineer.Cost,
             Email = doEngineer.Email,
             Level = doEngineer.Level,
-            Task = new BO.TaskInEngineer(_dal.Task.ReadAll().Where(task => task != null).Where(task => task!.EngineerId == doEngineer.Id).Where(task => task!.CompleteDate == null).FirstOrDefault()!.Id,
-                         _dal.Task.ReadAll().Where(task => task != null).Where(task => task!.EngineerId == doEngineer.Id).Where(task => task!.CompleteDate == null).FirstOrDefault()!.Alias)
+            Task = GetTaskInEngineer(id)
         };
     }
 
@@ -68,8 +68,7 @@ internal class EngineerImplementation : IEngineer
                                                     Cost = doEngineer.Cost,
                                                     Email = doEngineer.Email,
                                                     Level = doEngineer.Level,
-                                                    Task = new BO.TaskInEngineer(_dal.Task.ReadAll().Where(task => task != null).Where(task => task!.EngineerId == doEngineer.Id).Where(task => task!.CompleteDate == null).FirstOrDefault()!.Id,
-                                                         _dal.Task.ReadAll().Where(task => task != null).Where(task => task!.EngineerId == doEngineer.Id).Where(task => task!.CompleteDate == null).FirstOrDefault()!.Alias)
+                                                    Task = GetTaskInEngineer(doEngineer.Id)
                                                 });
         if (filter != null)
             return from boEngineer in boEngineers
