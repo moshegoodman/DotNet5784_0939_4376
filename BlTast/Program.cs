@@ -99,7 +99,7 @@ internal class Program
     private static void TaskMenu()
     {
         int a;
-        a = Convert.ToInt32(Console.ReadLine())!;
+
 
         do
         {
@@ -111,7 +111,7 @@ internal class Program
             Console.WriteLine("Enter 6 to read all tasks");
             Console.WriteLine("Enter 7 to update a task");
             Console.WriteLine("Enter 8 to update a task scheduled date");
-
+            a = Convert.ToInt32(Console.ReadLine())!;
             try
             {
                 switch (a)
@@ -186,6 +186,8 @@ internal class Program
             answer = Console.ReadLine();
 
         }
+
+
 
         BO.Task boTask = new BO.Task()
         {
@@ -336,7 +338,7 @@ internal class Program
     #region engineer
     private static void EngineerMenu()
     {
-        int a;
+
         do
         {
             Console.WriteLine("Enter 1 to exit the engineers menu");
@@ -345,33 +347,37 @@ internal class Program
             Console.WriteLine("Enter 4 to read all engineers ");
             Console.WriteLine("Enter 5 to update an engineer ");
             Console.WriteLine("Enter 6 to delete an engineer");
-            a = Convert.ToInt32(Console.ReadLine())!;
-            switch (a)
+            int a = Convert.ToInt32(Console.ReadLine())!;
+            try
             {
-                case 1:
-                    return;
-                case 2:
-                    EngineerCreate();
-                    break;
-                case 3:
-                    EngineerRead();
-                    break;
+                switch (a)
+                {
+                    case 1:
+                        return;
+                    case 2:
+                        EngineerCreate();
+                        break;
+                    case 3:
+                        EngineerRead();
+                        break;
 
-                case 4:
-                    EngineerReadAll();
-                    break;
-                case 5:
-                    EngineerUpdate();
-                    break;
-                case 6:
-                    EngineerDelete();
-                    break;
-                default:
-                    Console.WriteLine("enter a number between 0 and 6");
-                    break;
+                    case 4:
+                        EngineerReadAll();
+                        break;
+                    case 5:
+                        EngineerUpdate();
+                        break;
+                    case 6:
+                        EngineerDelete();
+                        break;
+                    default:
+                        Console.WriteLine("enter a number between 0 and 6");
+                        break;
+                }
             }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
-        while (a != 0);
+        while (true);
     }
 
 
@@ -407,7 +413,7 @@ internal class Program
 
     private static void EngineerRead()
     {
-        Console.WriteLine("Enter the dependancy id:");
+        Console.WriteLine("Enter the engineer id:");
         int _engineer = Convert.ToInt32(Console.ReadLine())!;
 
         Console.WriteLine(s_bl!.Engineer.Read(_engineer));
@@ -469,6 +475,14 @@ internal class Program
 
     #endregion
 
+
+    private static void project()
+    {
+        int? a =
+        FirstStage();
+        SecondStage();
+        ThirdStage();
+    }
     #region stage 1
     public static void FirstStage()
     {
@@ -477,10 +491,18 @@ internal class Program
 
         do
         {
+
             TaskCreate();
             Console.WriteLine("\n\n\ndo you want to add another task?");
             answer = Console.ReadLine();
         } while (answer == "y");
+        Console.WriteLine("do you want to move to step 2?");
+        answer = Console.ReadLine();
+        if (answer == "n")
+        {
+            DateTime projectStart = GetDateTimeFromUser();
+            s_bl.Task.SetStage2(projectStart);
+        }
     }
     #endregion
 
@@ -495,8 +517,22 @@ internal class Program
         IEnumerable<BO.TaskInList> _allBoTasks = s_bl.Task.ReadAll();
         _allBoTasks.ToList().ForEach(task =>
         {
-            Console.WriteLine($"Schedule a date for {task.Alias}");
-            s_bl.Task.Update(task.Id, GetDateTimeFromUser());
+            bool flag;
+            do
+            {
+
+                try
+                {
+                    flag = false;
+                    Console.WriteLine($"Schedule a date for {task.Alias}");
+                    s_bl.Task.Update(task.Id, GetDateTimeFromUser());
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    flag = true;
+                }
+            } while (flag);
         });
     }
 

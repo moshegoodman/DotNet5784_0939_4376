@@ -416,5 +416,8 @@ internal class TaskImplementation : ITask
             throw new BO.BlDoesNotExistException($"Task with ID: {doTask.Id} does not exist", ex);
         }
     }
-
+    public int? GetProjectStatus()
+    {
+        return _dal.Task.GetStatus();
+    }
 }

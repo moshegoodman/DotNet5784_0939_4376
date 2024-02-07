@@ -1,6 +1,4 @@
-﻿
-
-namespace BO;
+﻿namespace BO;
 public class Task
 {
     private bool isMilestone;
@@ -29,4 +27,14 @@ public class Task
     public DateTime? CompleteDate { get; set; }
     public BO.EngineerInTask? Engineer { get; set; }
 
+
+    public override string ToString()
+    {
+        string a = $"Name:\nID:\t{Id}\nemail:\t\nCost:\t\nLevel:\t\n";
+        //if (Task != null)
+        //{
+        //    a.Insert(a.Length, $"Task:   {Task}");
+        //}
+        return a;
+    }
 }
