@@ -5,7 +5,7 @@ internal class TaskImplementation : ITask
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
 
-    //Method to calculate tha status of a given DO.Task 
+    //Method to calculate the status of a given DO.Task 
     private BO.Status GetStatus(int id)
     {
         DO.Task? task = _dal.Task.Read(id);
@@ -92,9 +92,31 @@ internal class TaskImplementation : ITask
         _dal.Task.Delete(id);
     }
 
-    public void DesignateEngineer(BO.Task item)
+    public void DesignateEngineer(int taskId, int engineerId)
     {
-        throw new NotImplementedException();
+        BO.Task? boTask = Read(taskId);
+        DO.Engineer engineer = _dal.Engineer.Read(engineerId);
+        bool flag = (_dal.Task.ReadAll().Where(task => task != null).All(task => !(task!.EngineerId == engineerId && task!.CompleteDate == null)));
+        if (!flag)
+            throw new BO.BlEngineerIsAlreadyOccupied($"Engineer with ID: {engineerId} is currently assigned with a task.");
+        DO.Task doTask = new DO.Task
+     (
+         boTask.Id,
+         boTask.Alias,
+         boTask.Description,
+         boTask.CreatedAtDate,
+         (DO.EngineerExperience)boTask.Complexity,
+         boTask.Deliverables,
+         boTask.Remarks,
+         false,
+         boTask.RequiredEffortTime,
+         boTask.StartDate,
+         boTask.ScheduledDate,
+         boTask.DeadlineDate,
+         boTask.CompleteDate,
+         engineerId
+     );
+        _dal.Task.Update(doTask);
     }
 
     public BO.Task Read(int id)
