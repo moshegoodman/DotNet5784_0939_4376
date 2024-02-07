@@ -7,7 +7,7 @@ internal class TaskImplementation : ITask
 
     //Method to calculate tha status of a given DO.Task 
 
-    private BO.Status GetStatus(DO.Task task)
+    private BO.Status GetStatus(int id)
     {
         DO.Task? task = _dal.Task.Read(id);
 
@@ -25,36 +25,39 @@ internal class TaskImplementation : ITask
             return BO.Status.InJeopardy;
     }
 
-    private List<BO.TaskInList> GetDependencies(int id)
+    private List<BO.TaskInList> GetDependencies(int taskId)
     {
-        DO.Task? task = _dal.Task.Read(id);
+        DO.Task doTask = _dal.Task.Read(taskId) ?? throw new BO.BlDoesNotExistException($"Task with ID: {taskId} does not exist");
 
-        IEnumerable<int?> idTasks = _dal.Dependency.ReadAll().Where(d => d != null).Where(d => d!.DependentTask == task.Id).Select(d => d!.DependsOnTask);
+        IEnumerable<int?> idTasks = _dal.Dependency.ReadAll().Where(d => d != null).Where(d => d!.DependentTask == doTask.Id).Select(d => d!.DependsOnTask);
         return (from int idTask in idTasks
                 select new BO.TaskInList
                 {
                     Id = idTask,
                     Description = _dal.Task.Read(idTask)!.Description,
                     Alias = _dal.Task.Read(idTask)!.Alias,
-                    Status = GetStatus(_dal.Task.Read(idTask)!)
+                    Status = GetStatus(idTask)
                 }).ToList();
     }
 
-    private BO.EngineerInTask? GetEngineerInTask(int id)
+    private BO.EngineerInTask? GetEngineerInTask(int taskId)
     {
-        DO.Task? task = _dal.Task.Read(id);
-
-        if (task.EngineerId == null)
+        DO.Task doTask = _dal.Task.Read(taskId) ?? throw new BO.BlDoesNotExistException($"Task with ID: {taskId} does not exist");
+        
+        if (doTask.EngineerId == null)
             return null;
+        DO.Engineer doEngineer = _dal.Engineer.Read((int)doTask.EngineerId) ?? throw new BO.BlDoesNotExistException($"Engineer with ID: {(int)doTask.EngineerId} does not exist");
         return new BO.EngineerInTask()
         {
-            Id = (int)task.EngineerId,
-            Name = _dal.Engineer.Read((int)task.EngineerId)!.Name
+            Id = doEngineer.Id,
+            Name = doEngineer.Name
         };
     }
 
     public int Create(BO.Task boTask)
     {
+        if (_dal.Task.GetStartDate() != null)
+            throw new BO.BlScheduled("A new task cannot be added after the schedule initialization has started");
         if (boTask.Id < 0)
             throw new BO.InCorrectData("Task ID can't be negative");
         if (boTask.Alias == "")
@@ -84,26 +87,56 @@ internal class TaskImplementation : ITask
         return _dal.Task.Create(doTask);
     }
 
-    public void Delete(int id)
+    public void Delete(int taskId)
     {
-        if (_dal.Task.Read(id) == null)
-            throw new BO.BlDoesNotExistException($"Task with ID: {id} does not exist");
-        if (_dal.Dependency.ReadAll(d => d.DependsOnTask == id).Any())
+        if (_dal.Task.Read(taskId) == null)
+            throw new BO.BlDoesNotExistException($"Task with ID: {taskId} does not exist");
+        if (_dal.Dependency.ReadAll(d => d.DependsOnTask == taskId).Any())
             throw new BO.BlDeletionImpossible("Cannot be deleted due to other tasks depending on it");
-        _dal.Task.Delete(id);
+        _dal.Task.Delete(taskId);
     }
 
-    public void DesignateEngineer(BO.Task item)
+    public void DesignateEngineer(int taskId, int engineerId)
     {
-        throw new NotImplementedException();
+        if (_dal.Task.GetStatus() < 3)
+            throw new BO.BlUnScheduled("An engineer cannot be assigned before schedule initialization is complete for all tasks");
+        DO.Task ? doTask = _dal.Task.Read(taskId) ?? throw new BO.BlDoesNotExistException($"Task with ID: {taskId} does not exist");
+        if(_dal.Engineer.Read(engineerId) == null)
+            throw new BO.BlDoesNotExistException($"Engineer with ID: {engineerId} does not exist");
+        DO.Task updetaTask = new DO.Task
+      (
+          doTask.Id,
+          doTask.Alias,
+          doTask.Description,
+          doTask.CreatedAtDate,
+          (DO.EngineerExperience)doTask.Complexity,
+          doTask.Deliverables,
+          doTask.Remarks,
+          false,
+          doTask.RequiredEffortTime,
+          null,
+          null,
+          null,
+          null,
+          engineerId
+      );
+        try
+        {
+            _dal.Task.Update(updetaTask);
+        }
+        catch (DO.DalDoesNotExistException ex)
+        {
+            throw new BO.BlDoesNotExistException($"Task with ID: {updetaTask.Id} does not exist", ex);
+        }
+
     }
 
-    public BO.Task Read(int id)
+    public BO.Task Read(int taskId)
     {
-        DO.Task? doTask = _dal.Task.Read(id) ?? throw new BO.BlDoesNotExistException($"Task with ID: {id} does not exist");
+        DO.Task? doTask = _dal.Task.Read(taskId) ?? throw new BO.BlDoesNotExistException($"Task with ID: {taskId} does not exist");
         return (new BO.Task
         {
-            Id = id,
+            Id = taskId,
             Alias = doTask.Alias,
             Description = doTask.Description,
             CreatedAtDate = doTask.CreatedAtDate,
@@ -157,8 +190,29 @@ internal class TaskImplementation : ITask
             throw new BO.InCorrectData("Task ID can't be negative");
         if (boTask.Alias == "")
             throw new BO.InCorrectData("Task should have an alias");
-        DO.Task doTask = new DO.Task
-       (
+        DO.Task doTask = _dal.Task.Read(boTask.Id)?? throw new BO.BlDoesNotExistException($"Task with ID: {boTask.Id} does not exist");
+        if (_dal.Task.GetStartDate() == null)
+        {
+            doTask = new(
+            boTask.Id,
+            boTask.Alias,
+            boTask.Description,
+            boTask.CreatedAtDate,
+            (DO.EngineerExperience)boTask.Complexity,
+            boTask.Deliverables,
+            boTask.Remarks,
+            false,
+            boTask.RequiredEffortTime,
+            null,
+            null,
+            null,
+            null,
+            null
+        );
+        }
+        else
+        {
+            doTask = new(
            boTask.Id,
            boTask.Alias,
            boTask.Description,
@@ -174,6 +228,10 @@ internal class TaskImplementation : ITask
            null,
            null
        );
+        }
+        
+
+
 
         try
         {
@@ -188,18 +246,20 @@ internal class TaskImplementation : ITask
                                             select _dal.Dependency.Create(dependency);
     }
 
-    public void Update(int id, DateTime _scheduledDate)
+    public void Update(int taskId, DateTime _scheduledDate)
     {
+        if (_dal.Task.GetStartDate() == null)
+            throw new BO.BlUnScheduled("The task schedule date cannot be initialized before the project start date is received");
         BO.Task? boTask = null;
         try
         {
-            boTask = Read(id);
+            boTask = Read(taskId);
         }
         catch (BO.BlDoesNotExistException ex)
         {
             throw ex;
         }
-        if (!(boTask.Dependencies.All(d => d.Status != Status.Unscheduled)))
+        if (!(boTask.Dependencies.All(d => d.Status != BO.Status.Unscheduled)))
             throw new BO.BlUpdateImpossible("The previous tasks weren't scheduled");
         if (!(boTask.Dependencies.All(d => Read(d.Id).ForecastDate <= _scheduledDate)))
             throw new BO.BlUpdateImpossible("The previous tasks must be complete before the current task");

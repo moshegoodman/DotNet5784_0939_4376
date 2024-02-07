@@ -5,7 +5,6 @@ using DO;
 internal class Program
 {
     static readonly IDal s_dal = Factory.Get;
-    //static readonly IDal s_dal = new Dal.DalXml();
     #region MainMenu
     // Main menu to navigate through entities
     private static void MainMenu()
@@ -129,7 +128,7 @@ internal class Program
                         break;
                 }
             }
-            catch (Exception err) { Console.WriteLine(err); }
+            catch (Exception err) { Console.WriteLine(err.Message); }
         } while (true);
     }
 
@@ -304,7 +303,7 @@ internal class Program
                         break;
                 }
             }
-            catch (Exception err) { Console.WriteLine(err); }
+            catch (Exception err) { Console.WriteLine(err.Message); }
         }
         while (true);
     }
@@ -418,7 +417,7 @@ internal class Program
                         break;
                 }
             }
-            catch (Exception err) { Console.WriteLine(err); }
+            catch (Exception err) { Console.WriteLine(err.Message); }
         }
         while (true);
     }
@@ -513,7 +512,7 @@ internal class Program
                             //Initialization.Do(s_dal); //stage 2
                 Initialization.Do(); //stage 3
         }
-        catch (Exception err) { Console.WriteLine(err); }
+        catch (Exception err) { Console.WriteLine(err.Message); }
     }
 
     #endregion
@@ -525,10 +524,7 @@ internal class Program
         {
             MainMenu();
         }
-        catch (Exception err) { Console.WriteLine(err); }
+        catch (Exception err) { Console.WriteLine(err.Message); }
 
     }
 }
-
-
-

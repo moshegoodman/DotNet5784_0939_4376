@@ -43,6 +43,41 @@ static class XMLTools
         return nextId;
     }
 
+    public static int? GetStatus(string data_config_xml)
+    {
+        XElement root = XMLTools.LoadListFromXMLElement(data_config_xml);
+        int? statusValue = root.ToIntNullable("Status");
+        return statusValue;
+    }
+
+    public static void IncreaseStatus(string data_config_xml)
+    {
+        XElement root = XMLTools.LoadListFromXMLElement(data_config_xml);
+        int? statusValue = root.ToIntNullable("Status");
+        if (statusValue == null)
+            statusValue = 1;
+        else if (statusValue < 3)
+            statusValue = statusValue.Value + 1;
+        else
+            return;
+        root.Element("Status")?.SetValue((statusValue).ToString()!);
+        XMLTools.SaveListToXMLElement(root, data_config_xml);
+    }
+
+    public static DateTime? GetStartDate(string data_config_xml)
+    {
+        XElement root = XMLTools.LoadListFromXMLElement(data_config_xml);
+        DateTime? startDate = root.ToDateTimeNullable("StartDate");
+        return startDate;
+    }
+
+    public static void SetStartDate(string data_config_xml, DateTime startDate)
+    {
+        XElement root = XMLTools.LoadListFromXMLElement(data_config_xml);
+        root.Element("StartDate")?.SetValue((startDate).ToString());
+        XMLTools.SaveListToXMLElement(root, data_config_xml);
+    }
+
     #endregion
 
     #region SaveLoadWithXElement

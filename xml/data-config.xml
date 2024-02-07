@@ -2,4 +2,6 @@
 <config>
   <NextTaskId>1000</NextTaskId>
   <NextDependencyId>10000</NextDependencyId>
+  <Status></Status>
+  <StartDate></StartDate>	
 </config>
