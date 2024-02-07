@@ -279,7 +279,7 @@ internal class Program
         BO.Status status = BO.Status.Unscheduled; //i dont care what the value is
         List<BO.TaskInList> dependencies = new List<BO.TaskInList>();
         DateTime forecastDate = new DateTime();
-        BO.EngineerInTask? engineer = s_bl!.Task.GetEngineerInTask(_id);
+        BO.EngineerInTask? engineer = new();
         BO.Task newTask = new BO.Task()
         {
             Id = _id,

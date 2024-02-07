@@ -32,7 +32,7 @@ public interface ITask
 
     //------------------------------------------
     public void SetStage1();
-    public void SetStage2();
+    public void SetStage2(DateTime startDate);
     public void SetStage3();
 
 
