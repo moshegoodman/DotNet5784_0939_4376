@@ -181,10 +181,7 @@ internal class TaskImplementation : ITask
             throw new BO.InCorrectData("Task ID can't be negative");
         if (boTask.Alias == "")
             throw new BO.InCorrectData("Task should have an alias");
-        DO.Task doTask = _dal.Task.Read(boTask.Id) ?? throw new BO.BlDoesNotExistException($"Task with ID: {boTask.Id} does not exist");
-        if (_dal.Task.GetStartDate() == null)
-        {
-            doTask = new(
+        DO.Task doTask = new(
             boTask.Id,
             boTask.Alias,
             boTask.Description,
@@ -200,26 +197,6 @@ internal class TaskImplementation : ITask
             null,
             null
         );
-        }
-        else
-        {
-            doTask = new(
-           boTask.Id,
-           boTask.Alias,
-           boTask.Description,
-           boTask.CreatedAtDate,
-           (DO.EngineerExperience)boTask.Complexity,
-           boTask.Deliverables,
-           boTask.Remarks,
-           false,
-           boTask.RequiredEffortTime,
-           null,
-           null,
-           null,
-           null,
-           null
-       );
-        }
 
 
 
