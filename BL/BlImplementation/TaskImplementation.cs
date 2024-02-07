@@ -220,7 +220,7 @@ internal class TaskImplementation : ITask
         {
             throw ex;
         }
-        if (!(boTask.Dependencies.All(d => d.Status != Status.Unscheduled)))
+        if (!(boTask.Dependencies.All(d => d.Status != BO.Status.Unscheduled)))
             throw new BO.BlUpdateImpossible("The previous tasks weren't scheduled");
         if (!(boTask.Dependencies.All(d => Read(d.Id).ForecastDate <= _scheduledDate)))
             throw new BO.BlUpdateImpossible("The previous tasks must be complete before the current task");

@@ -11,11 +11,11 @@ public interface ITask
     public IEnumerable<BO.TaskInList> ReadAll(Func<DO.Task, bool>? filter = null);
     public void Update(BO.Task item);
     //uses update designate an engineer to the task
-    public void DesignateEngineer(int , int);
+    public void DesignateEngineer(int taskId, int engineerId);
 
     //define the project schedule and produce milestones
     //engineer update only progress(status)
-    public void Delete(int taskId, int engineerId);
+    public void Delete(int id);
     //get list of tasks of a given engineer
 
     public void Update(int id, DateTime _ScheduledDate);
