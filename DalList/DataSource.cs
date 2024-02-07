@@ -20,7 +20,7 @@ internal static class DataSource
 
         internal static DateTime? StartDate = null;
 
-        internal static DateTime? EndDate = null;
+        internal static int? Status = null;
     }
     public static Dependency? FirstOrDefault(int id) { return DataSource.Dependencies.FirstOrDefault(item => item.Id == id); }
 

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 internal class TaskImplementation : ITask
 {
     readonly string s_tasks_xml = "tasks";
+    static string s_data_config_xml = "data-config";
 
     public int Create(Task item)
     {
@@ -78,23 +79,23 @@ internal class TaskImplementation : ITask
         return tasks.FirstOrDefault(item => filter(item));
     }
 
-    public DateTime? getStartDate()
+    public DateTime? GetStartDate()
     {
-        throw new NotImplementedException();
+        return XMLTools.GetStartDate(s_data_config_xml);
     }
 
-    public DateTime? setStartDate()
+    public void SetStartDate(DateTime startDate)
     {
-        throw new NotImplementedException();
+        XMLTools.SetStartDate(s_data_config_xml, startDate);
     }
 
-    public DateTime? getStatus()
+    public int? GetStatus()
     {
-        throw new NotImplementedException();
+        return XMLTools.GetStatus(s_data_config_xml);
     }
 
-    public DateTime? setStatus()
+    public void IncreaseStatus()
     {
-        throw new NotImplementedException();
+        XMLTools.IncreaseStatus(s_data_config_xml);
     }
 }

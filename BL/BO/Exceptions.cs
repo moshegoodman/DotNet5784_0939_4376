@@ -42,26 +42,12 @@ public class BlUpdateImpossible : Exception
     public BlUpdateImpossible(string? message) : base(message) { }
 }
 
-//public class InCorrectData : Exception
-//{
-//    public InCorrectData(string? message) : base(message) { }
-//}
+public class BlScheduled : Exception
+{
+    public BlScheduled(string? message) : base(message) { }
+}
 
-
-//public class InCorrectData : Exception
-//{
-//    public InCorrectData(string? message) : base(message) { }
-//}
-
-
-//public class InCorrectData : Exception
-//{
-//    public InCorrectData(string? message) : base(message) { }
-//}
-
-
-//public class InCorrectData : Exception
-//{
-//    public InCorrectData(string? message) : base(message) { }
-//}
-
+public class BlUnScheduled : Exception
+{
+    public BlUnScheduled(string? message) : base(message) { }
+}

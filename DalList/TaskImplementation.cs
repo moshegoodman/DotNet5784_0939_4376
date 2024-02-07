@@ -59,23 +59,26 @@ internal class TaskImplementation : ITask
 
     }
 
-    public DateTime? getStartDate()
+    public DateTime? GetStartDate()
     {
-        throw new NotImplementedException();
+        return DataSource.Config.StartDate;
     }
 
-    public DateTime? setStartDate()
+    public void SetStartDate(DateTime startDate)
     {
-        throw new NotImplementedException();
+        DataSource.Config.StartDate = startDate;
     }
 
-    public DateTime? getStatus()
+    public int? GetStatus()
     {
-        throw new NotImplementedException();
+        return DataSource.Config.Status;
     }
 
-    public DateTime? setStatus()
+    public void IncreaseStatus()
     {
-        throw new NotImplementedException();
+        if (DataSource.Config.Status == null)
+            DataSource.Config.Status = 1;
+        else
+            DataSource.Config.Status += 1;
     }
 }
