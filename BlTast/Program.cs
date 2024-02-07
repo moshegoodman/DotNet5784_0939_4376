@@ -381,18 +381,26 @@ internal class Program
         int _engineer_id = Convert.ToInt32(Console.ReadLine())!;
 
         Console.WriteLine("Enter engineers email:");
-        string Email = Console.ReadLine()!;
+        string email = Console.ReadLine()!;
 
         Console.WriteLine("Enter engineers price per hour:");
-        double Cost = Convert.ToDouble(Console.ReadLine());
+        double cost = Convert.ToDouble(Console.ReadLine());
 
         Console.WriteLine("Enter engineers name:");
-        string Name = Console.ReadLine()!;
+        string name = Console.ReadLine()!;
 
         Console.WriteLine("Enter engineers level:");
-        BO.EngineerExperience Level = (BO.EngineerExperience)Convert.ToInt32(Console.ReadLine());
+        BO.EngineerExperience level = (BO.EngineerExperience)Convert.ToInt32(Console.ReadLine());
 
-        BO.Engineer newEngineer = new(_engineer_id, Email, Cost, Name, Level, null);
+        BO.Engineer newEngineer = new BO.Engineer()
+        {
+            Id = _engineer_id,
+            Name = name,
+            Cost = cost,
+            Email = email,
+            Level = level,
+            Task = null
+        };
         Console.WriteLine("new enginerr id:");
         Console.WriteLine(s_bl!.Engineer.Create(newEngineer));
     }
@@ -425,20 +433,29 @@ internal class Program
 
 
         Console.WriteLine("Enter engineers email:");
-        string Email = Console.ReadLine()!;
+        string email = Console.ReadLine()!;
 
         Console.WriteLine("Enter engineers price per hour:");
-        double? Cost = Convert.ToDouble(Console.ReadLine());
+        double cost = Convert.ToDouble(Console.ReadLine());
 
         Console.WriteLine("Enter engineers name:");
-        string Name = Console.ReadLine()!;
+        string name = Console.ReadLine()!;
 
         Console.WriteLine("Enter engineers level:");
-        BO.EngineerExperience Level = (BO.EngineerExperience)Convert.ToInt32(Console.ReadLine());
+        BO.EngineerExperience level = (BO.EngineerExperience)Convert.ToInt32(Console.ReadLine());
 
 
 
-        BO.Engineer newEngineer = new(_engineerId, Email, Cost!.Value, Name, Level, null);
+        //BO.Engineer newEngineer = new(_engineerId, Email, Cost!.Value, Name, Level, null);
+        BO.Engineer newEngineer = new BO.Engineer()
+        {
+            Id = _engineerId,
+            Name = name,
+            Cost = cost,
+            Email = email,
+            Level = level,
+            Task = null
+        };
 
         s_bl!.Engineer.Update(newEngineer);
     }

@@ -21,7 +21,7 @@ internal class EngineerImplementation : IEngineer
         if (boEngineer.Name == "")
             throw new BO.InCorrectData("Engineer should have a name");
         DO.Engineer doEngineer = new DO.Engineer
-                (boEngineer.Id, boEngineer.Email, boEngineer.Cost, boEngineer.Name, boEngineer.Level);
+                (boEngineer.Id, boEngineer.Email, boEngineer.Cost, boEngineer.Name, (DO.EngineerExperience)boEngineer.Level);
 
         try
         {
@@ -53,7 +53,7 @@ internal class EngineerImplementation : IEngineer
             Name = doEngineer.Name,
             Cost = doEngineer.Cost,
             Email = doEngineer.Email,
-            Level = doEngineer.Level,
+            Level = (BO.EngineerExperience)doEngineer.Level,
             Task = GetTaskInEngineer(id)
         };
     }
@@ -67,7 +67,7 @@ internal class EngineerImplementation : IEngineer
                                                     Name = doEngineer.Name,
                                                     Cost = doEngineer.Cost,
                                                     Email = doEngineer.Email,
-                                                    Level = doEngineer.Level,
+                                                    Level = (BO.EngineerExperience)doEngineer.Level,
                                                     Task = GetTaskInEngineer(doEngineer.Id)
                                                 });
         if (filter != null)
@@ -89,10 +89,10 @@ internal class EngineerImplementation : IEngineer
             throw new BO.InCorrectData("Engineer cost cant be negative");
         if (boEngineer.Name == "")
             throw new BO.InCorrectData("Engineer should have a name");
-        if (boEngineer.Level < _dal.Engineer.Read(boEngineer.Id)!.Level)
+        if ((int)boEngineer.Level < (int)_dal.Engineer.Read(boEngineer.Id)!.Level)
             throw new BO.BlUpdateImpossible("Engineer level cannot decrease");
         DO.Engineer doEngineer = new DO.Engineer
-                (boEngineer.Id, boEngineer.Email, boEngineer.Cost, boEngineer.Name, boEngineer.Level);
+                (boEngineer.Id, boEngineer.Email, boEngineer.Cost, boEngineer.Name, (DO.EngineerExperience)boEngineer.Level);
         BO.TaskInEngineer? taskInEngineer = boEngineer.Task;
         if (taskInEngineer != null)
         {
