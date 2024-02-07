@@ -21,4 +21,17 @@ public interface ITask
     public void Update(int TaskId, DateTime _ScheduledDate);
 
 
+
+
+
+
+
+
+    //------------------------------------------
+    public void SetStage1();
+    public void SetStage2();
+    public void SetStage3();
+
+
+
 }

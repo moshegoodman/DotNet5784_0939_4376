@@ -42,7 +42,7 @@ internal class TaskImplementation : ITask
     private BO.EngineerInTask? GetEngineerInTask(int taskId)
     {
         DO.Task doTask = _dal.Task.Read(taskId) ?? throw new BO.BlDoesNotExistException($"Task with ID: {taskId} does not exist");
-        
+
         if (doTask.EngineerId == null)
             return null;
         DO.Engineer doEngineer = _dal.Engineer.Read((int)doTask.EngineerId) ?? throw new BO.BlDoesNotExistException($"Engineer with ID: {(int)doTask.EngineerId} does not exist");
@@ -181,7 +181,7 @@ internal class TaskImplementation : ITask
             throw new BO.InCorrectData("Task ID can't be negative");
         if (boTask.Alias == "")
             throw new BO.InCorrectData("Task should have an alias");
-        DO.Task doTask = _dal.Task.Read(boTask.Id)?? throw new BO.BlDoesNotExistException($"Task with ID: {boTask.Id} does not exist");
+        DO.Task doTask = _dal.Task.Read(boTask.Id) ?? throw new BO.BlDoesNotExistException($"Task with ID: {boTask.Id} does not exist");
         if (_dal.Task.GetStartDate() == null)
         {
             doTask = new(
@@ -220,7 +220,7 @@ internal class TaskImplementation : ITask
            null
        );
         }
-        
+
 
 
 
@@ -284,7 +284,37 @@ internal class TaskImplementation : ITask
         }
     }
 
+    public void SetStage1()
+    {
+        int? projectStatus = _dal.Task.GetStatus();
+        if (!projectStatus.HasValue) { _dal.Task.IncreaseStatus(); }
 
+        if (projectStatus > 1) throw new BO.BlScheduled($"the project is already up to stage {projectStatus}.");
 
+    }
+
+    public void SetStage2(DateTime startDate)
+    {
+        int? projectStatus = _dal.Task.GetStatus();
+        if (projectStatus > 2) throw new BO.BlScheduled($"the project is already up to stage {projectStatus}.");
+        if (!projectStatus.HasValue) throw new BO.BlUnScheduled($"the project is not ready for stage 2.");
+        if (projectStatus == 1)
+        {
+            _dal.Task.IncreaseStatus();
+            _dal.Task.SetStartDate(startDate);
+        }
+    }
+    public void SetStage3()
+    {
+        int? projectStatus = _dal.Task.GetStatus();
+        if (!projectStatus.HasValue) throw new BO.BlUnScheduled($"the project is not ready for stage 3.");
+        if (projectStatus == 1) throw new BO.BlUnScheduled($"the project is not ready for stage 3.");
+        if (projectStatus == 2)
+        {
+            bool flag = (_dal.Task.ReadAll().Where(task => task != null).All(task => (task!.ScheduledDate != null)));
+            if (!flag) throw new BO.BlUnScheduled($"the project is not ready for stage 3. initiate all scheduled dates.");
+            _dal.Task.IncreaseStatus();
+        }
+    }
 
 }
