@@ -11,6 +11,10 @@ public class DependentScheduleNotInitialized : Exception
 {
     public DependentScheduleNotInitialized(string? message) : base(message) { }
 }
+public class BlEngineerIsAlreadyOccupied : Exception
+{
+    public BlEngineerIsAlreadyOccupied(string? message) : base(message) { }
+}
 
 public class BlAlreadyExistsException : Exception
 {

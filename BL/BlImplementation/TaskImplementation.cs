@@ -5,8 +5,7 @@ internal class TaskImplementation : ITask
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
 
-    //Method to calculate tha status of a given DO.Task 
-
+    //Method to calculate the status of a given DO.Task 
     private BO.Status GetStatus(int id)
     {
         DO.Task? task = _dal.Task.Read(id);
@@ -98,37 +97,29 @@ internal class TaskImplementation : ITask
 
     public void DesignateEngineer(int taskId, int engineerId)
     {
-        if (_dal.Task.GetStatus() < 3)
-            throw new BO.BlUnScheduled("An engineer cannot be assigned before schedule initialization is complete for all tasks");
-        DO.Task ? doTask = _dal.Task.Read(taskId) ?? throw new BO.BlDoesNotExistException($"Task with ID: {taskId} does not exist");
-        if(_dal.Engineer.Read(engineerId) == null)
-            throw new BO.BlDoesNotExistException($"Engineer with ID: {engineerId} does not exist");
-        DO.Task updetaTask = new DO.Task
-      (
-          doTask.Id,
-          doTask.Alias,
-          doTask.Description,
-          doTask.CreatedAtDate,
-          (DO.EngineerExperience)doTask.Complexity,
-          doTask.Deliverables,
-          doTask.Remarks,
-          false,
-          doTask.RequiredEffortTime,
-          null,
-          null,
-          null,
-          null,
-          engineerId
-      );
-        try
-        {
-            _dal.Task.Update(updetaTask);
-        }
-        catch (DO.DalDoesNotExistException ex)
-        {
-            throw new BO.BlDoesNotExistException($"Task with ID: {updetaTask.Id} does not exist", ex);
-        }
-
+        BO.Task? boTask = Read(taskId);
+        DO.Engineer engineer = _dal.Engineer.Read(engineerId);
+        bool flag = (_dal.Task.ReadAll().Where(task => task != null).All(task => !(task!.EngineerId == engineerId && task!.CompleteDate == null)));
+        if (!flag)
+            throw new BO.BlEngineerIsAlreadyOccupied($"Engineer with ID: {engineerId} is currently assigned with a task.");
+        DO.Task doTask = new DO.Task
+     (
+         boTask.Id,
+         boTask.Alias,
+         boTask.Description,
+         boTask.CreatedAtDate,
+         (DO.EngineerExperience)boTask.Complexity,
+         boTask.Deliverables,
+         boTask.Remarks,
+         false,
+         boTask.RequiredEffortTime,
+         boTask.StartDate,
+         boTask.ScheduledDate,
+         boTask.DeadlineDate,
+         boTask.CompleteDate,
+         engineerId
+     );
+        _dal.Task.Update(doTask);
     }
 
     public BO.Task Read(int taskId)
