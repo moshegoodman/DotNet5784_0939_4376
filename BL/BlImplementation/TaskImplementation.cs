@@ -136,26 +136,32 @@ internal class TaskImplementation : ITask
     public BO.Task Read(int taskId)
     {
         DO.Task? doTask = _dal.Task.Read(taskId) ?? throw new BO.BlDoesNotExistException($"Task with ID: {taskId} does not exist");
-        return (new BO.Task
-        {
-            Id = taskId,
-            Alias = doTask.Alias,
-            Description = doTask.Description,
-            CreatedAtDate = doTask.CreatedAtDate,
-            Status = GetStatus(doTask.Id),
-            Dependencies = GetDependencies(doTask.Id),
-            Milestone = null,
-            Complexity = (BO.EngineerExperience)doTask.Complexity,
-            Deliverables = doTask.Deliverables,
-            Remarks = doTask.Remarks,
-            RequiredEffortTime = doTask.RequiredEffortTime,
-            StartDate = doTask.StartDate,
-            ScheduledDate = doTask.ScheduledDate,
-            ForecastDate = doTask.StartDate + doTask.RequiredEffortTime,
-            DeadlineDate = doTask.DeadlineDate,
-            CompleteDate = doTask.CompleteDate,
-            Engineer = GetEngineerInTask(doTask.Id)
-        });
+        DateTime? forecastDate = null;
+        if (doTask.ScheduledDate != null && doTask.StartDate != null)
+            forecastDate = doTask.ScheduledDate > doTask.StartDate ? doTask.ScheduledDate + doTask.RequiredEffortTime : doTask.StartDate + doTask.RequiredEffortTime;
+        else if (doTask.ScheduledDate != null)
+            forecastDate = doTask.ScheduledDate + doTask.RequiredEffortTime;
+
+            return (new BO.Task
+            {
+                Id = taskId,
+                Alias = doTask.Alias,
+                Description = doTask.Description,
+                CreatedAtDate = doTask.CreatedAtDate,
+                Status = GetStatus(doTask.Id),
+                Dependencies = GetDependencies(doTask.Id),
+                Milestone = null,
+                Complexity = (BO.EngineerExperience)doTask.Complexity,
+                Deliverables = doTask.Deliverables,
+                Remarks = doTask.Remarks,
+                RequiredEffortTime = doTask.RequiredEffortTime,
+                StartDate = doTask.StartDate,
+                ScheduledDate = doTask.ScheduledDate,
+                ForecastDate = forecastDate,
+                DeadlineDate = doTask.DeadlineDate,
+                CompleteDate = doTask.CompleteDate,
+                Engineer = GetEngineerInTask(doTask.Id)
+            });
 
     }
 

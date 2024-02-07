@@ -5,7 +5,7 @@ internal class EngineerImplementation : IEngineer
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
 
-    private BO.TaskInEngineer GetTaskInEngineer(int EngineerId) => new BO.TaskInEngineer()
+    private BO.TaskInEngineer? GetTaskInEngineer(int EngineerId) => new BO.TaskInEngineer()
     {
         Id = _dal.Task.ReadAll().Where(task => task != null).Where(task => task!.EngineerId == EngineerId).Where(task => task!.CompleteDate == null).FirstOrDefault()!.Id,
         alias = _dal.Task.ReadAll().Where(task => task != null).Where(task => task!.EngineerId == EngineerId).Where(task => task!.CompleteDate == null).FirstOrDefault()!.Alias
