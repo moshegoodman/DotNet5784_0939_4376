@@ -54,15 +54,15 @@ internal class EngineerImplementation : IEngineer
     {
 
         DO.Engineer? doEngineer = _dal.Engineer.Read(id) ?? throw new BO.BlDoesNotExistException($"Engineer with ID={id} does Not exist");
-        return new BO.Engineer()
+        return (new BO.Engineer
         {
-            Id = id,
+            Id =id,
             Name = doEngineer.Name,
             Cost = doEngineer.Cost,
             Email = doEngineer.Email,
             Level = (BO.EngineerExperience)doEngineer.Level,
             Task = GetTaskInEngineer(id)
-        };
+        });
     }
 
     public IEnumerable<BO.Engineer>? ReadAll(Func<BO.Engineer, bool>? filter = null)
