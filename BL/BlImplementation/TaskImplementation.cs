@@ -224,40 +224,6 @@ internal class TaskImplementation : ITask
                                             select _dal.Dependency.Create(dependency);
     }
 
-    public void UpdateStage3(BO.Task boTask)
-    {
-        if (_dal.Task.GetStatus() < 3)
-            throw new BO.BlScheduled("These details cannot be updated at this stage for tasks");
-        if (boTask.Id < 0)
-            throw new BO.InCorrectData("Task ID can't be negative");
-        if (boTask.Alias == "")
-            throw new BO.InCorrectData("Task should have an alias");
-        DO.Task doTask = _dal.Task.Read(boTask.Id) ?? throw new BO.BlDoesNotExistException($"Task with ID: {boTask.Id} does not exist");
-
-
-        doTask = new(
-
-            doTask.Id,
-            boTask.Alias,
-            boTask.Description,
-            boTask.CreatedAtDate,
-            doTask.Complexity,
-            boTask.Deliverables,
-            boTask.Remarks,
-            false,
-            doTask.RequiredEffortTime,
-            doTask.StartDate,
-            doTask.ScheduledDate,
-            doTask.DeadlineDate,
-            doTask.CompleteDate,
-            doTask.EngineerId
-        );
-
-
-        _dal.Task.Update(doTask);
-
-    }
-
     public void Update(int taskId, DateTime _scheduledDate)
     {
         if (_dal.Task.GetStartDate() == null)
@@ -297,6 +263,89 @@ internal class TaskImplementation : ITask
             throw new BO.BlDoesNotExistException($"Task with ID: {doTask.Id} does not exist", ex);
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public void UpdateStage3(BO.Task boTask)
+    {
+        if (_dal.Task.GetStatus() < 3)
+            throw new BO.BlScheduled("These details cannot be updated at this stage for tasks");
+        if (boTask.Id < 0)
+            throw new BO.InCorrectData("Task ID can't be negative");
+        if (boTask.Alias == "")
+            throw new BO.InCorrectData("Task should have an alias");
+        DO.Task doTask = _dal.Task.Read(boTask.Id) ?? throw new BO.BlDoesNotExistException($"Task with ID: {boTask.Id} does not exist");
+
+
+        doTask = new(
+
+            doTask.Id,
+            boTask.Alias,
+            boTask.Description,
+            boTask.CreatedAtDate,
+            doTask.Complexity,
+            boTask.Deliverables,
+            boTask.Remarks,
+            false,
+            doTask.RequiredEffortTime,
+            doTask.StartDate,
+            doTask.ScheduledDate,
+            doTask.DeadlineDate,
+            doTask.CompleteDate,
+            doTask.EngineerId
+        );
+
+
+        _dal.Task.Update(doTask);
+
+    }
+
 
     public void SetStartDate(int taskId, DateTime? _startDate = null)
     {
