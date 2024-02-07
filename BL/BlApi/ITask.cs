@@ -24,4 +24,17 @@ public interface ITask
 
     public void SetCompleteDate(int taskId, DateTime? _completeDate = null);
 
+
+
+
+
+
+
+    //------------------------------------------
+    public void SetStage1();
+    public void SetStage2(DateTime startDate);
+    public void SetStage3();
+
+
+
 }
