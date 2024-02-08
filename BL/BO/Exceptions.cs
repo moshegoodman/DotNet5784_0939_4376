@@ -51,4 +51,8 @@ public class BlUnScheduled : Exception
 {
     public BlUnScheduled(string? message) : base(message) { }
 }
+public class BlEngineerLevelIsTooLow : Exception
+{
+    public BlEngineerLevelIsTooLow(string? message) : base(message) { }
+}
 

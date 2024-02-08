@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfEngineer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Engineer>
-    <Id>391041586</Id>
+    <Id>494484472</Id>
     <Email>edward@eng.com</Email>
-    <Cost>230.47156817677964</Cost>
+    <Cost>54.62236134148603</Cost>
     <Name>Edward</Name>
+    <Level>AdvancedBeginner</Level>
+  </Engineer>
+  <Engineer>
+    <Id>789081591</Id>
+    <Email>boris@eng.com</Email>
+    <Cost>295.8635580064997</Cost>
+    <Name>Boris</Name>
+    <Level>AdvancedBeginner</Level>
+  </Engineer>
+  <Engineer>
+    <Id>296793557</Id>
+    <Email>moses@eng.com</Email>
+    <Cost>223.14879788255269</Cost>
+    <Name>Moses</Name>
     <Level>Intermediate</Level>
   </Engineer>
   <Engineer>
-    <Id>229685248</Id>
-    <Email>boris@eng.com</Email>
-    <Cost>193.78257597676242</Cost>
-    <Name>Boris</Name>
-    <Level>Advanced</Level>
-  </Engineer>
-  <Engineer>
-    <Id>636027979</Id>
-    <Email>moses@eng.com</Email>
-    <Cost>161.59247459624456</Cost>
-    <Name>Moses</Name>
-    <Level>Advanced</Level>
-  </Engineer>
-  <Engineer>
-    <Id>377209951</Id>
+    <Id>346506590</Id>
     <Email>david@eng.com</Email>
-    <Cost>181.32020540517104</Cost>
+    <Cost>283.75583062731465</Cost>
     <Name>David</Name>
     <Level>Intermediate</Level>
   </Engineer>
   <Engineer>
-    <Id>746866226</Id>
+    <Id>883032125</Id>
     <Email>joseph@eng.com</Email>
-    <Cost>260.7030458827877</Cost>
+    <Cost>92.07886758272767</Cost>
     <Name>Joseph</Name>
-    <Level>Intermediate</Level>
+    <Level>Beginner</Level>
   </Engineer>
 </ArrayOfEngineer>

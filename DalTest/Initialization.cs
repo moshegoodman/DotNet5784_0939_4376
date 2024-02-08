@@ -15,7 +15,7 @@ public static class Initialization
     private const int HIGH_SAL = 300;
 
 
-    
+
     private static IDal? s_dal;
 
     private static readonly Random s_rand = new();
@@ -157,11 +157,13 @@ public static class Initialization
             //string _deliverables = taskDeliverables[i];
             //string _remarks = taskRemarks[i];
             DateTime _createdAtDate = DateTime.Now.AddDays(-s_rand.Next(365));
-
+            TimeSpan _requiredEffortTime = TimeSpan.FromDays(s_rand.Next(2, 30));
 
             DO.EngineerExperience _complexity = (DO.EngineerExperience)s_rand.Next(4);
 
+
             Task newTask = new(i, _alias, _discription, _createdAtDate, _complexity);
+            newTask = newTask with { RequiredEffortTime = _requiredEffortTime };
 
             s_dal!.Task.Create(newTask);
 

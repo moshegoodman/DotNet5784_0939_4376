@@ -14,4 +14,11 @@ public interface IEngineer
     public void Delete(int id);
     // public BO.EngineerInTask GetDetailedCourseForStudent(int StudentId, int CourseId);
 
+
+    //-----------------------SETTERS----------------------------
+    public void SetEmail(int engineerId, string email);
+    public void SetName(int engineerId, string name);
+    public void SetCost(int engineerId, double cost);
+    public void UpdateLevel(int engineerId, BO.EngineerExperience level);
+
 }

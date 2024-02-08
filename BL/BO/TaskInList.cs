@@ -9,11 +9,8 @@ public class TaskInList
 
     public override string ToString()
     {
-        string a = $"Name:\nID:\t{Id}\nemail:\t\nCost:\t\nLevel:\t\n";
-        //if (Task != null)
-        //{
-        //    a.Insert(a.Length, $"Task:   {Task}");
-        //}
+        string a = $"\tID:\t{Id}\n\tAlias:\t{Alias}\n\tDescription:\t{Description}\n\tStatus:\t{Status}\n";
+
         return a;
     }
 }

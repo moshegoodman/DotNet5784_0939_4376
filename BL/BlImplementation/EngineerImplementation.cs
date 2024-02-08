@@ -56,7 +56,7 @@ internal class EngineerImplementation : IEngineer
         DO.Engineer? doEngineer = _dal.Engineer.Read(id) ?? throw new BO.BlDoesNotExistException($"Engineer with ID={id} does Not exist");
         return (new BO.Engineer
         {
-            Id =id,
+            Id = id,
             Name = doEngineer.Name,
             Cost = doEngineer.Cost,
             Email = doEngineer.Email,
@@ -119,6 +119,35 @@ internal class EngineerImplementation : IEngineer
         {
             throw new BO.BlDoesNotExistException($"Engineer with ID={boEngineer.Id} does Not exist", ex);
         }
+    }
+
+    public void UpdateLevel(int engineerId, BO.EngineerExperience level)
+    {
+        DO.Engineer? doEngineer = _dal.Engineer.Read(engineerId);
+        if (doEngineer == null) throw new BO.BlDoesNotExistException($"Engineer ID {engineerId} does not exist");
+        doEngineer = new(doEngineer.Id, doEngineer.Email, doEngineer.Cost, doEngineer.Name, (DO.EngineerExperience)level);
+        _dal.Engineer.Update(doEngineer);
+    }
+    public void SetEmail(int engineerId, string email)
+    {
+        DO.Engineer? doEngineer = _dal.Engineer.Read(engineerId);
+        if (doEngineer == null) throw new BO.BlDoesNotExistException($"Engineer ID {engineerId} does not exist");
+        doEngineer = new(doEngineer.Id, email, doEngineer.Cost, doEngineer.Name, doEngineer.Level);
+        _dal.Engineer.Update(doEngineer);
+    }
+    public void SetName(int engineerId, string name)
+    {
+        DO.Engineer? doEngineer = _dal.Engineer.Read(engineerId);
+        if (doEngineer == null) throw new BO.BlDoesNotExistException($"Engineer ID {engineerId} does not exist");
+        doEngineer = new(doEngineer.Id, doEngineer.Email, doEngineer.Cost, name, doEngineer.Level);
+        _dal.Engineer.Update(doEngineer);
+    }
+    public void SetCost(int engineerId, double cost)
+    {
+        DO.Engineer? doEngineer = _dal.Engineer.Read(engineerId);
+        if (doEngineer == null) throw new BO.BlDoesNotExistException($"Engineer ID {engineerId} does not exist");
+        doEngineer = new(doEngineer.Id, doEngineer.Email, cost, doEngineer.Name, doEngineer.Level);
+        _dal.Engineer.Update(doEngineer);
     }
 }
 

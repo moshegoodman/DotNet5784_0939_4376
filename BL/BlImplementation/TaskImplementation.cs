@@ -53,6 +53,11 @@ internal class TaskImplementation : ITask
         };
     }
 
+    private DateTime? MaxForcastDate(List<BO.TaskInList> tasks)
+    {
+        return tasks.Max(t => Read(t.Id).ForecastDate);
+    }
+
     public int Create(BO.Task boTask)
     {
         if (_dal.Task.GetStartDate() != null)
@@ -79,11 +84,17 @@ internal class TaskImplementation : ITask
             null
         );
 
-        IEnumerable<int> tempDependencies = from taskInList in boTask.Dependencies
-                                            let dependency = new DO.Dependency(0, boTask.Id, taskInList.Id)
-                                            select _dal.Dependency.Create(dependency);
+        //IEnumerable<int> tempDependencies = from taskInList in boTask.Dependencies
+        //                                  let dependency = new DO.Dependency(0, boTask.Id, taskInList.Id)
+        //                                select _dal.Dependency.Create(dependency);
+        int TaskId = _dal.Task.Create(doTask);
+        boTask.Dependencies.ForEach(dependency =>
+            {
+                DO.Dependency doDependency = new(0, TaskId, dependency.Id);
+                _dal.Dependency.Create(doDependency);
+            });
 
-        return _dal.Task.Create(doTask);
+        return TaskId;
     }
 
     public void Delete(int taskId)
@@ -99,13 +110,16 @@ internal class TaskImplementation : ITask
 
     public void DesignateEngineer(int taskId, int engineerId)
     {
-        if (_dal.Task.GetStatus() < 3)
+        if (_dal.Task.GetStatus() < 3 || _dal.Task.GetStatus() == null)
             throw new BO.BlUnScheduled("An engineer cannot be assigned before schedule initialization is complete for all tasks");
         BO.Task boTask = Read(taskId);
         DO.Engineer engineer = _dal.Engineer.Read(engineerId) ?? throw new BO.BlDoesNotExistException($"Engineer with ID: {engineerId} does not exist");
         bool flag = (_dal.Task.ReadAll().Where(task => task != null).All(task => !(task!.EngineerId == engineerId && task!.CompleteDate == null)));
         if (!flag)
             throw new BO.BlEngineerIsAlreadyOccupied($"Engineer with ID: {engineerId} is currently assigned with a task.");
+        if ((int)boTask.Complexity > (int)engineer.Level) throw new BO.BlEngineerLevelIsTooLow($"Engineer with ID: {engineerId} doesn't have the expertise required for the task.");
+
+
         DO.Task doTask = new DO.Task
      (
          boTask.Id,
@@ -142,26 +156,26 @@ internal class TaskImplementation : ITask
         else if (doTask.ScheduledDate != null)
             forecastDate = doTask.ScheduledDate + doTask.RequiredEffortTime;
 
-            return (new BO.Task
-            {
-                Id = taskId,
-                Alias = doTask.Alias,
-                Description = doTask.Description,
-                CreatedAtDate = doTask.CreatedAtDate,
-                Status = GetStatus(doTask.Id),
-                Dependencies = GetDependencies(doTask.Id),
-                Milestone = null,
-                Complexity = (BO.EngineerExperience)doTask.Complexity,
-                Deliverables = doTask.Deliverables,
-                Remarks = doTask.Remarks,
-                RequiredEffortTime = doTask.RequiredEffortTime,
-                StartDate = doTask.StartDate,
-                ScheduledDate = doTask.ScheduledDate,
-                ForecastDate = forecastDate,
-                DeadlineDate = doTask.DeadlineDate,
-                CompleteDate = doTask.CompleteDate,
-                Engineer = GetEngineerInTask(doTask.Id)
-            });
+        return (new BO.Task
+        {
+            Id = taskId,
+            Alias = doTask.Alias,
+            Description = doTask.Description,
+            CreatedAtDate = doTask.CreatedAtDate,
+            Status = GetStatus(doTask.Id),
+            Dependencies = GetDependencies(doTask.Id),
+            Milestone = null,
+            Complexity = (BO.EngineerExperience)doTask.Complexity,
+            Deliverables = doTask.Deliverables,
+            Remarks = doTask.Remarks,
+            RequiredEffortTime = doTask.RequiredEffortTime,
+            StartDate = doTask.StartDate,
+            ScheduledDate = doTask.ScheduledDate,
+            ForecastDate = forecastDate,
+            DeadlineDate = doTask.DeadlineDate,
+            CompleteDate = doTask.CompleteDate,
+            Engineer = GetEngineerInTask(doTask.Id)
+        });
 
     }
 
@@ -239,7 +253,7 @@ internal class TaskImplementation : ITask
         if (!(boTask.Dependencies.All(d => d.Status != BO.Status.Unscheduled)))
             throw new BO.BlUpdateImpossible("The previous tasks weren't scheduled");
         if (!(boTask.Dependencies.All(d => Read(d.Id).ForecastDate <= _scheduledDate)))
-            throw new BO.BlUpdateImpossible("The previous tasks must be complete before the current task");
+            throw new BO.BlUpdateImpossible($"The previous tasks must be complete before the current task, the date must be set after {MaxForcastDate(boTask.Dependencies)}");
         boTask.ScheduledDate = _scheduledDate;
 
         DO.Task doTask = new DO.Task
@@ -269,8 +283,6 @@ internal class TaskImplementation : ITask
             throw new BO.BlDoesNotExistException($"Task with ID: {doTask.Id} does not exist", ex);
         }
     }
-
-
 
     public void UpdateStage3(BO.Task boTask)
     {
@@ -425,5 +437,9 @@ internal class TaskImplementation : ITask
     public int? GetProjectStatus()
     {
         return _dal.Task.GetStatus();
+    }
+    public void IncreaseStatus()
+    {
+        _dal.Task.IncreaseStatus();
     }
 }

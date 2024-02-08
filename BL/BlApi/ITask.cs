@@ -31,6 +31,9 @@ public interface ITask
 
 
     //------------------------------------------
+    public void IncreaseStatus();
+
+    public int? GetProjectStatus();
     public void SetStage1();
     public void SetStage2(DateTime startDate);
     public void SetStage3();

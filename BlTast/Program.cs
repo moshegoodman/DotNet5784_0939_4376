@@ -33,7 +33,7 @@ internal class Program
 
         while (!(DateTime.TryParse(userInput, out projectScheduledDate)))
         {
-            Console.WriteLine("Invalid DateTime format. Please try again.");
+            Console.WriteLine("Invalid DateTime format. Please try again. yyyy-mm-dd or with hh:mm:ss");
             userInput = Console.ReadLine();
         }
         return projectScheduledDate;
@@ -46,7 +46,7 @@ internal class Program
 
         while (!(TimeSpan.TryParse(userInput, out projectScheduledDate)))
         {
-            Console.WriteLine("Invalid DateTime format. Please try again.");
+            Console.WriteLine("Invalid DateTime format. Please try again. hh:mm:ss");
             userInput = Console.ReadLine();
         }
         return projectScheduledDate;
@@ -64,9 +64,7 @@ internal class Program
             Console.WriteLine("enter 0 to leave main menu");
             Console.WriteLine("enter 1 to check Tasks ");
             Console.WriteLine("enter 2 to check Engineers ");
-            Console.WriteLine("enter 3 to check first stage ");
-            Console.WriteLine("enter 4 to check second stage ");
-            Console.WriteLine("enter 5 to check third stage ");
+            Console.WriteLine("enter 3 to check project ");
             a = Convert.ToInt32(Console.ReadLine())!;
             switch (a)
             {
@@ -79,14 +77,9 @@ internal class Program
                     EngineerMenu();
                     break;
                 case 3:
-                    FirstStage();
+                    project();
                     break;
-                case 4:
-                    SecondStage();
-                    break;
-                case 5:
-                    ThirdStage();
-                    break;
+
                 default:
                     Console.WriteLine("enter a number between 0 and 3");
                     break;
@@ -187,7 +180,7 @@ internal class Program
 
         }
 
-
+        foreach (BO.TaskInList task in tasks) { Console.WriteLine(task); }
 
         BO.Task boTask = new BO.Task()
         {
@@ -347,6 +340,11 @@ internal class Program
             Console.WriteLine("Enter 4 to read all engineers ");
             Console.WriteLine("Enter 5 to update an engineer ");
             Console.WriteLine("Enter 6 to delete an engineer");
+            Console.WriteLine("Enter 7 to update an engineers level ");
+            Console.WriteLine("Enter 8 to update an engineers email ");
+            Console.WriteLine("Enter 9 to update an engineers name ");
+            Console.WriteLine("Enter 10 to update an engineers cost ");
+
             int a = Convert.ToInt32(Console.ReadLine())!;
             try
             {
@@ -369,6 +367,18 @@ internal class Program
                         break;
                     case 6:
                         EngineerDelete();
+                        break;
+                    case 7:
+                        UpdateLevel();
+                        break;
+                    case 8:
+                        UpdateEmail();
+                        break;
+                    case 9:
+                        UpdateName();
+                        break;
+                    case 10:
+                        UpdateCost();
                         break;
                     default:
                         Console.WriteLine("enter a number between 0 and 6");
@@ -473,35 +483,91 @@ internal class Program
         s_bl!.Engineer.Delete(_engineer);
     }
 
+    private static void UpdateLevel()
+    {
+        Console.WriteLine("Enter the engineer id to update");
+        int engineerId = Convert.ToInt32(Console.ReadLine())!;
+        Console.WriteLine("enter new level");
+        BO.EngineerExperience experience = (BO.EngineerExperience)Convert.ToInt32(Console.ReadLine())!;
+        s_bl.Engineer.UpdateLevel(engineerId, experience);
+    }
+    private static void UpdateCost()
+    {
+        Console.WriteLine("Enter the engineer id to update");
+        int engineerId = Convert.ToInt32(Console.ReadLine())!;
+        Console.WriteLine("enter new cost");
+        double cost = Convert.ToDouble(Console.ReadLine())!;
+        s_bl.Engineer.SetCost(engineerId, cost);
+    }
+    private static void UpdateName()
+    {
+        Console.WriteLine("Enter the engineer id to update");
+        int engineerId = Convert.ToInt32(Console.ReadLine())!;
+        Console.WriteLine("enter new name");
+        string name = Console.ReadLine()!;
+        s_bl.Engineer.SetName(engineerId, name);
+    }
+    private static void UpdateEmail()
+    {
+        Console.WriteLine("Enter the engineer id to update");
+        int engineerId = Convert.ToInt32(Console.ReadLine())!;
+        Console.WriteLine("enter new email");
+        string email = Console.ReadLine()!;
+        s_bl.Engineer.SetName(engineerId, email);
+    }
     #endregion
 
 
     private static void project()
     {
-        int? a =
-        FirstStage();
-        SecondStage();
-        ThirdStage();
+        int? a = s_bl.Task.GetProjectStatus();
+        Console.WriteLine($"you are at stage {a}");
+        if (!a.HasValue)
+        {
+            Console.WriteLine("do you want to start project?");
+            string answer = Console.ReadLine()!;
+            if (answer == "n") { return; }
+            if (answer == "y") { s_bl.Task.SetStage1(); }
+        }
+        switch (a)
+        {
+            case 1:
+                FirstStage();
+                break;
+            case 2:
+
+                SecondStage();
+                break;
+            case 3:
+                ThirdStage();
+                break;
+
+        }
     }
     #region stage 1
     public static void FirstStage()
     {
         string answer = "n";
+        Console.WriteLine("\n\n\ndo you want to add a task?");
+        answer = Console.ReadLine();
         Console.WriteLine("enter all the tasks that are necessery for the project");
 
-        do
+        while (answer == "y") ;
         {
 
             TaskCreate();
             Console.WriteLine("\n\n\ndo you want to add another task?");
             answer = Console.ReadLine();
-        } while (answer == "y");
+        }
         Console.WriteLine("do you want to move to step 2?");
         answer = Console.ReadLine();
-        if (answer == "n")
+        if (answer == "y")
         {
-            DateTime projectStart = GetDateTimeFromUser();
-            s_bl.Task.SetStage2(projectStart);
+            Console.WriteLine("enter expected start of the project");
+            DateTime projectScheduledDate = GetDateTimeFromUser();
+
+            s_bl.Task.SetStage2(projectScheduledDate);
+            SecondStage();
         }
     }
     #endregion
@@ -511,9 +577,7 @@ internal class Program
 
     public static void SecondStage()
     {
-        Console.WriteLine("enter expected start of the project");
-        DateTime projectScheduledDate = GetDateTimeFromUser();
-
+        string leave = "";
         IEnumerable<BO.TaskInList> _allBoTasks = s_bl.Task.ReadAll();
         _allBoTasks.ToList().ForEach(task =>
         {
@@ -527,13 +591,28 @@ internal class Program
                     Console.WriteLine($"Schedule a date for {task.Alias}");
                     s_bl.Task.Update(task.Id, GetDateTimeFromUser());
                 }
+
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
+                    //Console.WriteLine(ex);
                     flag = true;
                 }
-            } while (flag);
+                Console.WriteLine("do you wanna leave?");
+                leave = Console.ReadLine();
+            } while (leave != "y");
         });
+        string sch;
+        do
+        {
+            Console.WriteLine("do you want to choose a task to scgedule?");
+            sch = Console.ReadLine();
+            Console.WriteLine("enter task id");
+            int taskId = Convert.ToInt32(Console.ReadLine());
+            s_bl.Task.Update(taskId, GetDateTimeFromUser());
+        } while (sch == "y");
+
+
     }
 
 
