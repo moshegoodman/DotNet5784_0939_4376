@@ -5,6 +5,7 @@ internal class EngineerImplementation : IEngineer
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
 
+    //getter 
     private BO.TaskInEngineer? GetTaskInEngineer(int EngineerId)
     {
         DO.Task? doTask = _dal.Task.ReadAll().Where(task => task != null).Where(task => task!.EngineerId == EngineerId).Where(task => task!.CompleteDate == null).FirstOrDefault();
@@ -17,6 +18,8 @@ internal class EngineerImplementation : IEngineer
         };
         return taskInEngineer;
     }
+
+    //saves the object in the database
     public int Create(BO.Engineer boEngineer)
     {
         if (boEngineer.Id < 0)
@@ -41,6 +44,7 @@ internal class EngineerImplementation : IEngineer
         }
     }
 
+    //removes object from the database
     public void Delete(int id)
     {
         DO.Engineer? doEngineer = _dal.Engineer.Read(id) ?? throw new BO.BlDoesNotExistException($"Engineer with ID={id} does Not exist");
@@ -50,6 +54,7 @@ internal class EngineerImplementation : IEngineer
 
     }
 
+    //user gives id the method returns engineer
     public BO.Engineer? Read(int id)
     {
 
@@ -65,6 +70,7 @@ internal class EngineerImplementation : IEngineer
         });
     }
 
+    //returns all the engineers
     public IEnumerable<BO.Engineer>? ReadAll(Func<BO.Engineer, bool>? filter = null)
     {
         IEnumerable<BO.Engineer> boEngineers = (from DO.Engineer doEngineer in _dal.Engineer.ReadAll()
@@ -86,6 +92,7 @@ internal class EngineerImplementation : IEngineer
 
     }
 
+    //updates all fields in the 
     public void Update(BO.Engineer boEngineer)
     {
         if (boEngineer.Id < 0)
@@ -121,6 +128,7 @@ internal class EngineerImplementation : IEngineer
         }
     }
 
+    //setter for level
     public void UpdateLevel(int engineerId, BO.EngineerExperience level)
     {
         DO.Engineer? doEngineer = _dal.Engineer.Read(engineerId);
@@ -128,6 +136,8 @@ internal class EngineerImplementation : IEngineer
         doEngineer = new(doEngineer.Id, doEngineer.Email, doEngineer.Cost, doEngineer.Name, (DO.EngineerExperience)level);
         _dal.Engineer.Update(doEngineer);
     }
+
+    //setter for email
     public void SetEmail(int engineerId, string email)
     {
         DO.Engineer? doEngineer = _dal.Engineer.Read(engineerId);
@@ -135,6 +145,8 @@ internal class EngineerImplementation : IEngineer
         doEngineer = new(doEngineer.Id, email, doEngineer.Cost, doEngineer.Name, doEngineer.Level);
         _dal.Engineer.Update(doEngineer);
     }
+
+    //setter for name
     public void SetName(int engineerId, string name)
     {
         DO.Engineer? doEngineer = _dal.Engineer.Read(engineerId);
@@ -142,6 +154,8 @@ internal class EngineerImplementation : IEngineer
         doEngineer = new(doEngineer.Id, doEngineer.Email, doEngineer.Cost, name, doEngineer.Level);
         _dal.Engineer.Update(doEngineer);
     }
+
+    //setter for cost
     public void SetCost(int engineerId, double cost)
     {
         DO.Engineer? doEngineer = _dal.Engineer.Read(engineerId);
