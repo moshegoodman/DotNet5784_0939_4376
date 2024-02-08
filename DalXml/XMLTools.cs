@@ -43,6 +43,13 @@ static class XMLTools
         return nextId;
     }
 
+    public static void ResetId(string data_config_xml, string elemName, int resetedId)
+    {
+        XElement root = XMLTools.LoadListFromXMLElement(data_config_xml);
+        root.Element(elemName)?.SetValue((resetedId).ToString());
+        XMLTools.SaveListToXMLElement(root, data_config_xml);
+    }
+
     public static int? GetStatus(string data_config_xml)
     {
         XElement root = XMLTools.LoadListFromXMLElement(data_config_xml);

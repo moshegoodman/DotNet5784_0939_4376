@@ -100,4 +100,12 @@ internal class TaskImplementation : ITask
     {
         XMLTools.IncreaseStatus(s_data_config_xml);
     }
+
+    public void Reset()
+    {
+        List<Task> tasks = XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml);
+        tasks.Clear();
+        XMLTools.SaveListToXMLSerializer<Task>(tasks, s_tasks_xml);
+        XMLTools.ResetId(s_data_config_xml, "NextTaskId", 1000);
+    }
 }

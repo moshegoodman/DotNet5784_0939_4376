@@ -10,6 +10,8 @@ using System.Xml.Linq;
 internal class DependencyImplementation : IDependency
 {
     readonly string s_dependencies_xml = "dependencies";
+
+    static string s_data_config_xml = "data-config";
     //creates dependency occurance
     public int Create(Dependency item)
     {
@@ -91,5 +93,11 @@ internal class DependencyImplementation : IDependency
 
     }
 
-    
+    public void Reset()
+    {
+        XElement dependencies = XMLTools.LoadListFromXMLElement(s_dependencies_xml);
+        dependencies.RemoveAll();
+        XMLTools.SaveListToXMLElement(dependencies, s_dependencies_xml);
+        XMLTools.ResetId(s_data_config_xml, "NextDependencyId", 10000);
+    }
 }

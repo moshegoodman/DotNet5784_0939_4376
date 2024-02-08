@@ -93,4 +93,9 @@ internal class TaskImplementation : ITask
         else
             DataSource.Config.Status += 1;
     }
+
+    public void Reset()
+    {
+        DataSource.Tasks.Clear();
+    }
 }

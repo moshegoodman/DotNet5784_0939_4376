@@ -217,7 +217,7 @@ public static class Initialization
 
 };
 
-        for (int i = 0; i < 40; ++i)
+        for (int i = 0; i < 37; ++i)
         {
 
 
@@ -236,17 +236,15 @@ public static class Initialization
 
     //method to delete all data
 
-    private static void DeleteData()
+    private static void ResetData()
     {
-        IEnumerable<Task> taskList = s_dal!.Task.ReadAll()!;
-        foreach (Task task in taskList)
-            s_dal.Task.Delete(task.Id);
-        IEnumerable<Engineer> engineerList = s_dal!.Engineer.ReadAll()!;
-        foreach (Engineer engineer in engineerList)
-            s_dal.Engineer.Delete(engineer.Id);
-        IEnumerable<Dependency> dependencyList = s_dal!.Dependency.ReadAll()!;
-        foreach (Dependency dependency in dependencyList)
-            s_dal.Dependency.Delete(dependency.Id);
+        if (s_dal != null)
+        {
+            s_dal.Task.Reset();
+            s_dal.Dependency.Reset();
+            s_dal.Engineer.Reset();
+
+        }
     }
 
 
@@ -256,7 +254,7 @@ public static class Initialization
     {
         //s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!"); //stage 2
         s_dal = Factory.Get; //stage 4
-        DeleteData();
+        ResetData();
         CreateTask();
         CreateEngineer();
         CreateDependency();
