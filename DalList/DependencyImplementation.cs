@@ -69,5 +69,8 @@ internal class DependencyImplementation : IDependency
 
     }
 
-    
+    public void Reset()
+    {
+        DataSource.Dependencies.Clear();
+    }
 }

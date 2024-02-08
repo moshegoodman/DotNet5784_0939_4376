@@ -9,6 +9,7 @@ public interface ICrud<T> where T : class
     void Delete(int id); //Deletes an object by its Id
     T? Read(Func<T, bool> filter);  //Reads entity object by a given condition
 
+    void Reset();
 }
 
 
