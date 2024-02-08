@@ -1,6 +1,5 @@
 ﻿namespace BlImplementation;
 using BlApi;
-using DO;
 using System.Collections.Generic;
 
 internal class TaskImplementation : ITask
@@ -26,6 +25,7 @@ internal class TaskImplementation : ITask
             return BO.Status.InJeopardy;
     }
 
+    //returns a list of dependencies
     private List<BO.TaskInList> GetDependencies(int taskId)
     {
         DO.Task doTask = _dal.Task.Read(taskId) ?? throw new BO.BlDoesNotExistException($"Task with ID: {taskId} does not exist");
@@ -41,6 +41,7 @@ internal class TaskImplementation : ITask
                 }).ToList();
     }
 
+    //returns the engineer in charge of the task
     private BO.EngineerInTask? GetEngineerInTask(int taskId)
     {
         DO.Task doTask = _dal.Task.Read(taskId) ?? throw new BO.BlDoesNotExistException($"Task with ID: {taskId} does not exist");
@@ -55,6 +56,7 @@ internal class TaskImplementation : ITask
         };
     }
 
+    //returns the id of the first task that the schedule wasn't initialized
     private int LeastDependentTask(int taskId)
     {
         List<BO.TaskInList>? dependencies = Read(taskId).Dependencies;
@@ -69,10 +71,13 @@ internal class TaskImplementation : ITask
 
     }
 
+    //returns the latest forcast date of the depencies (from the given list)
     private DateTime? MaxForcastDate(List<BO.TaskInList> tasks)
     {
         return tasks.Max(t => Read(t.Id).ForecastDate);
     }
+
+    //saves the task to the database
     public int Create(BO.Task boTask)
     {
         if (_dal.Task.GetStartDate() != null)
@@ -112,6 +117,7 @@ internal class TaskImplementation : ITask
         return TaskId;
     }
 
+    //removes the task from the database
     public void Delete(int taskId)
     {
         if (_dal.Task.GetStartDate() != null)
@@ -123,6 +129,7 @@ internal class TaskImplementation : ITask
         _dal.Task.Delete(taskId);
     }
 
+    //assigns the given engineer to the given task
     public void DesignateEngineer(int taskId, int engineerId)
     {
         if (_dal.Task.GetStatus() < 3 || _dal.Task.GetStatus() == null)
@@ -162,6 +169,7 @@ internal class TaskImplementation : ITask
         }
     }
 
+    //returns the task
     public BO.Task Read(int taskId)
     {
         DO.Task? doTask = _dal.Task.Read(taskId) ?? throw new BO.BlDoesNotExistException($"Task with ID: {taskId} does not exist");
@@ -194,6 +202,7 @@ internal class TaskImplementation : ITask
 
     }
 
+    //returns all task in a short fasion
     public IEnumerable<BO.TaskInList> ReadAll(Func<BO.Task, bool>? filter = null)//Make shure that we can use this type for the filter
     {
         if (filter == null)
@@ -221,6 +230,8 @@ internal class TaskImplementation : ITask
 
         }
     }
+
+    //updates a given task
     public void Update(BO.Task boTask)
     {
         if (_dal.Task.GetStartDate() != null)
@@ -259,6 +270,7 @@ internal class TaskImplementation : ITask
                                             select _dal.Dependency.Create(dependency);
     }
 
+    //updates the schedule date
     public void Update(int taskId, DateTime _scheduledDate)
     {
         if (_dal.Task.GetStartDate() == null)
@@ -299,6 +311,7 @@ internal class TaskImplementation : ITask
         }
     }
 
+    //only updates what the user is allowed to in stage 3
     public void UpdateStage3(BO.Task boTask)
     {
         if (_dal.Task.GetStatus() < 3)
@@ -333,6 +346,7 @@ internal class TaskImplementation : ITask
 
     }
 
+    //sets the project to be in the first stage
     public void SetStage1()
     {
         int? projectStatus = _dal.Task.GetStatus();
@@ -345,6 +359,8 @@ internal class TaskImplementation : ITask
 
     }
 
+    //sets the project to be in the second stage
+
     public void SetStage2(DateTime startDate)
     {
         int? projectStatus = _dal.Task.GetStatus();
@@ -356,6 +372,8 @@ internal class TaskImplementation : ITask
             _dal.Task.SetStartDate(startDate);
         }
     }
+    //sets the project to be in the third stage
+
     public void SetStage3()
     {
         int? projectStatus = _dal.Task.GetStatus();
@@ -368,6 +386,7 @@ internal class TaskImplementation : ITask
             _dal.Task.IncreaseStatus();
         }
     }
+    //setter for complete date
     public void SetCompleteDate(int taskId, DateTime? _completeDate = null)
     {
         if (_dal.Task.GetStatus() < 3)
@@ -407,6 +426,8 @@ internal class TaskImplementation : ITask
             throw new BO.BlDoesNotExistException($"Task with ID: {doTask.Id} does not exist", ex);
         }
     }
+
+    //setter for start date
 
     public void SetStartDate(int taskId, DateTime? _startDate = null)
     {
@@ -449,10 +470,14 @@ internal class TaskImplementation : ITask
             throw new BO.BlDoesNotExistException($"Task with ID: {doTask.Id} does not exist", ex);
         }
     }
+
+    //returns stage of the project
     public int? GetProjectStatus()
     {
         return _dal.Task.GetStatus();
     }
+
+    //increases project status
     public void IncreaseStatus()
     {
         _dal.Task.IncreaseStatus();
