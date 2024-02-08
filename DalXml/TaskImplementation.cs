@@ -53,9 +53,11 @@ internal class TaskImplementation : ITask
         {
             return from item in tasks
                    where filter(item)
+                   orderby item.Id
                    select item;
         }
         return from item in tasks
+               orderby item.Id
                select item;
     }
     //updates an occurrence (the user enters vulues of all fields)
@@ -67,7 +69,7 @@ internal class TaskImplementation : ITask
         Delete(item.Id);
         List<Task> tasks = XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml);
         tasks.Add(item);
-
+        tasks = tasks.OrderBy(task => task.Id).ToList();
         XMLTools.SaveListToXMLSerializer(tasks, s_tasks_xml);
 
     }

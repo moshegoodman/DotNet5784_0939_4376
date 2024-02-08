@@ -39,9 +39,11 @@ internal class TaskImplementation : ITask
         {
             return from item in DataSource.Tasks
                    where filter(item)
+                   orderby item.Id
                    select item;
         }
         return from item in DataSource.Tasks
+               orderby item.Id
                select item;
     }
     //updates an occurrence (the user enters vulues of all fields)
@@ -50,7 +52,17 @@ internal class TaskImplementation : ITask
         if (Read(item.Id) is null)
             throw new DalDoesNotExistException($"Task with ID={item.Id} does not exists");
         Delete(item.Id);
-        DataSource.Tasks.Add(item);
+        int index = DataSource.Tasks.FindIndex(task => task.Id >= item.Id);
+
+        // If index is negative, it means the newItem is greater than all elements in the list
+        if (index < 0)
+        {
+            DataSource.Tasks.Add(item);
+        }
+        else
+        {
+            DataSource.Tasks.Insert(index, item); // Insert the new item at the appropriate position
+        }
     }
     //Reads entity object by a given condition
     public Task? Read(Func<Task, bool> filter)
