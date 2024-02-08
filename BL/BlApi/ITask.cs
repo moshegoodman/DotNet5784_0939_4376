@@ -6,23 +6,20 @@ namespace BlApi;
 /// </summary>
 public interface ITask
 {
-    public int Create(BO.Task boTask);
-    public BO.Task? Read(int TaskId);
-    public IEnumerable<BO.TaskInList> ReadAll(Func<BO.Task, bool>? filter = null);
+    public int Create(BO.Task boTask);//saves a task to the database
+    public BO.Task? Read(int TaskId);//returns a task with a given id
+    public IEnumerable<BO.TaskInList> ReadAll(Func<BO.Task, bool>? filter = null);//returns all tasks(in a short format)
     public void Update(BO.Task boTask);
     //uses update designate an engineer to the task
-    public void UpdateStage3(BO.Task boTask);
-    public void DesignateEngineer(int idTask, int engineerId);
+    public void UpdateStage3(BO.Task boTask);//updates only what is allowed to on the third stage
+    public void DesignateEngineer(int idTask, int engineerId);//designates an engineer to the task
 
-    //define the project schedule and produce milestones
-    //engineer update only progress(status)
-    public void Delete(int TaskId);
-    //get list of tasks of a given engineer
+    public void Delete(int TaskId);//removes a given task from the database
 
-    public void Update(int TaskId, DateTime _ScheduledDate);
-    public void SetStartDate(int taskId, DateTime? _startDate = null);
+    public void Update(int TaskId, DateTime _ScheduledDate);//updates scheduled date
+    public void SetStartDate(int taskId, DateTime? _startDate = null);//setter
 
-    public void SetCompleteDate(int taskId, DateTime? _completeDate = null);
+    public void SetCompleteDate(int taskId, DateTime? _completeDate = null);//setter
 
 
 
@@ -31,12 +28,12 @@ public interface ITask
 
 
     //------------------------------------------
-    public void IncreaseStatus();
+    public void IncreaseStatus();//increases the PROJECT status
 
-    public int? GetProjectStatus();
-    public void SetStage1();
-    public void SetStage2(DateTime startDate);
-    public void SetStage3();
+    public int? GetProjectStatus();//returns project status
+    public void SetStage1();//sets the project status to 1
+    public void SetStage2(DateTime startDate);//sets the project status to 2
+    public void SetStage3();//sets the project status to 3
 
 
 

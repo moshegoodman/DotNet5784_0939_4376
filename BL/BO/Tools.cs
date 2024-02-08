@@ -1,12 +1,10 @@
-﻿//using DO;
-using DO;
+﻿using DO;
 using System.Xml.Serialization;
 namespace BO;
 public class Tools
 {
     private static BlApi.IBl _bl = BlApi.Factory.Get();
     const string s_xml_dir = @"..\xml\";
-    //public override string ToString() => this.ToStringProperty();
     public static BO.TaskInList GetTaskInList(int _id)
     {
         BO.Task boTask = _bl.Task.Read(_id) ?? throw new BO.BlDoesNotExistException($"task with id= {_id} doesn't exist");
