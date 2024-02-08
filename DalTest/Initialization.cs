@@ -196,7 +196,6 @@ public static class Initialization
     {1019, 1013},  // DocumentationHandover also depends on ExpansionJointInstallation
     {1018, 1019},  // LandscapingRestoration also depends on DocumentationHandover
     {1019, 1002},  // DocumentationHandover also depends on PermittingProcess
-    {1011, 1017},   // BridgeDeckInstallation also depends on QualityControlTesting
     {1006, 1004},  // FoundationExcavation also depends on EnvImpactAssessment
     {1008, 1002},  // ConcreteFormwork also depends on PermittingProcess
     {1009, 1006},  // ConcretePouring also depends on FoundationExcavation
@@ -216,7 +215,6 @@ public static class Initialization
     {1015, 1004},  // BridgeInspection also depends on EnvImpactAssessment
     {1019, 1009},  // DocumentationHandover also depends on ConcretePouring
     {1014, 1012},  // TrafficManagement also depends on AbutmentConstruction
-    {1013, 1017}   // ExpansionJointInstallation also depends on QualityControlTesting
 
 };
 
