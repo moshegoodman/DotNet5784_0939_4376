@@ -57,35 +57,39 @@ internal class Program
 
     private static void MainMenu()
     {
-        int a;
-        do
+        int a = 0;
+        try
         {
-            Console.WriteLine("enter entity to check");
-            Console.WriteLine("enter 0 to leave main menu");
-            Console.WriteLine("enter 1 to check Tasks ");
-            Console.WriteLine("enter 2 to check Engineers ");
-            Console.WriteLine("enter 3 to check project ");
-            a = Convert.ToInt32(Console.ReadLine())!;
-            switch (a)
+            do
             {
-                case 0:
-                    return;
-                case 1:
-                    TaskMenu();
-                    break;
-                case 2:
-                    EngineerMenu();
-                    break;
-                case 3:
-                    project();
-                    break;
+                Console.WriteLine("enter entity to check");
+                Console.WriteLine("enter 0 to leave main menu");
+                Console.WriteLine("enter 1 to check Tasks ");
+                Console.WriteLine("enter 2 to check Engineers ");
+                Console.WriteLine("enter 3 to check project ");
+                a = Convert.ToInt32(Console.ReadLine())!;
+                switch (a)
+                {
+                    case 0:
+                        return;
+                    case 1:
+                        TaskMenu();
+                        break;
+                    case 2:
+                        EngineerMenu();
+                        break;
+                    case 3:
+                        project();
+                        break;
 
-                default:
-                    Console.WriteLine("enter a number between 0 and 3");
-                    break;
+                    default:
+                        Console.WriteLine("enter a number between 0 and 3");
+                        break;
+                }
             }
+            while (a != 0);
         }
-        while (a != 0);
+        catch (Exception e) { Console.WriteLine(e.Message); }
     }
 
     #region task
