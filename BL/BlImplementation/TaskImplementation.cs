@@ -57,11 +57,16 @@ internal class TaskImplementation : ITask
 
     private int LeastDependentTask(int taskId)
     {
-        if (Read(taskId).Dependencies == null || Read(taskId).Status != BO.Status.Unscheduled)
+        List<BO.TaskInList>? dependencies = Read(taskId).Dependencies;
+        bool scheduled = dependencies.All(d => Read(d.Id).Status != BO.Status.Unscheduled);
+        if (dependencies == null || scheduled)
             return taskId;
-        else
-            return (from dependency in Read(taskId).Dependencies
-                    select LeastDependentTask(dependency.Id)).FirstOrDefault();
+        IEnumerable<int> leastDependentTasks = from dependency in dependencies
+                                               let leastDependentTask = LeastDependentTask(dependency.Id)
+                                               select leastDependentTask;
+        return leastDependentTasks.FirstOrDefault();
+
+
     }
 
     private DateTime? MaxForcastDate(List<BO.TaskInList> tasks)
