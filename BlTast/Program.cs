@@ -550,6 +550,10 @@ internal class Program
     }
 
     #region stage 1
+    public static void FirstStageMenu()
+    {
+        Console.WriteLine("enter 1 to exit");
+    }
     public static void FirstStage()
     {
         string answer = "n";
@@ -616,38 +620,6 @@ internal class Program
             sch = Console.ReadLine();
         }
 
-        //IEnumerable<BO.TaskInList> _allBoTasks = s_bl.Task.ReadAll();
-        //_allBoTasks.ToList().ForEach(task =>
-        //{
-
-        //    bool flag;
-        //    do
-        //    {
-
-        //        try
-        //        {
-        //            flag = false;
-        //            Console.WriteLine($"Schedule a date for {task.Alias} with id {task.Id}");
-        //            s_bl.Task.Update(task.Id, GetDateTimeFromUser());
-        //        }
-        //        //catch (BO.BlUpdateImpossible ex)
-        //        //{
-        //        //    Console.WriteLine(ex.Message);
-        //        //    Console.WriteLine("these are their depensencies first schedule their schedule");
-
-        //        //}
-        //        catch (Exception ex)
-        //        {
-        //            Console.WriteLine(ex.Message);
-        //            //Console.WriteLine(ex);
-        //            flag = true;
-        //        }
-        //        Console.WriteLine("do you wanna leave?");
-        //        leave = Console.ReadLine();
-        //    } while (leave != "y");
-        //    Console.WriteLine("do you wanna leave?");
-        //    stayinforeach = Console.ReadLine();
-        //});
         try
         {
             s_bl.Task.SetStage3();
