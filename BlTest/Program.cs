@@ -58,13 +58,15 @@ internal class Program
     private static void MainMenu()
     {
         int a = 0;
-        do
+        try
         {
-            Console.WriteLine("enter entity to check");
-            Console.WriteLine("enter 0 to leave main menu");
-            Console.WriteLine("enter 1 to check Tasks ");
-            Console.WriteLine("enter 2 to check Engineers ");
-            Console.WriteLine("enter 3 to check project ");
+            do
+            {
+                Console.WriteLine("enter entity to check");
+                Console.WriteLine("enter 0 to leave main menu");
+                Console.WriteLine("enter 1 to check Tasks ");
+                Console.WriteLine("enter 2 to check Engineers ");
+                Console.WriteLine("enter 3 to check project ");
             try
             {
                 a = Convert.ToInt32(Console.ReadLine())!;
@@ -87,10 +89,10 @@ internal class Program
                         Console.WriteLine("enter a number between 0 and 3");
                         break;
                 }
-            }
-            catch (Exception e) { Console.WriteLine(e.Message); }
+            } while (true);
+
         }
-        while (a != 0);
+        catch (Exception ex) { Console.WriteLine(ex.Message); }
     }
 
     #region task
