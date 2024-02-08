@@ -67,7 +67,10 @@ internal class Program
                 Console.WriteLine("enter 1 to check Tasks ");
                 Console.WriteLine("enter 2 to check Engineers ");
                 Console.WriteLine("enter 3 to check project ");
+            try
+            {
                 a = Convert.ToInt32(Console.ReadLine())!;
+
                 switch (a)
                 {
                     case 0:
