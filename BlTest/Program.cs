@@ -67,8 +67,7 @@ internal class Program
                 Console.WriteLine("enter 1 to check Tasks ");
                 Console.WriteLine("enter 2 to check Engineers ");
                 Console.WriteLine("enter 3 to check project ");
-            try
-            {
+
                 a = Convert.ToInt32(Console.ReadLine())!;
 
                 switch (a)
@@ -89,10 +88,10 @@ internal class Program
                         Console.WriteLine("enter a number between 0 and 3");
                         break;
                 }
-            } while (true);
-
+            }
+            while (a != 0);
         }
-        catch (Exception ex) { Console.WriteLine(ex.Message); }
+        catch (Exception e) { Console.WriteLine(e.Message); }
     }
 
     #region task

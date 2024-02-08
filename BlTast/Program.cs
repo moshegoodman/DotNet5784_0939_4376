@@ -89,10 +89,10 @@ internal class Program
                         Console.WriteLine("enter a number between 0 and 3");
                         break;
                 }
-            } while (true);
-
+            }
+            while (a != 0);
         }
-        catch (Exception ex) { Console.WriteLine(ex.Message); }
+        catch (Exception e) { Console.WriteLine(e.Message); }
     }
 
     #region task
