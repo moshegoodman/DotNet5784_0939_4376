@@ -1,5 +1,7 @@
 ﻿namespace BlImplementation;
 using BlApi;
+using DO;
+using System.Collections.Generic;
 
 internal class TaskImplementation : ITask
 {
@@ -53,11 +55,19 @@ internal class TaskImplementation : ITask
         };
     }
 
+    private int LeastDependentTask(int taskId)
+    {
+        if (Read(taskId).Dependencies == null || Read(taskId).Status != BO.Status.Unscheduled)
+            return taskId;
+        else
+            return (from dependency in Read(taskId).Dependencies
+                    select LeastDependentTask(dependency.Id)).FirstOrDefault();
+    }
+
     private DateTime? MaxForcastDate(List<BO.TaskInList> tasks)
     {
         return tasks.Max(t => Read(t.Id).ForecastDate);
     }
-
     public int Create(BO.Task boTask)
     {
         if (_dal.Task.GetStartDate() != null)
@@ -251,7 +261,7 @@ internal class TaskImplementation : ITask
         BO.Task? boTask = null;
         boTask = Read(taskId);
         if (!(boTask.Dependencies.All(d => d.Status != BO.Status.Unscheduled)))
-            throw new BO.BlUpdateImpossible("The previous tasks weren't scheduled");
+            throw new BO.BlUpdateImpossible($"The previous tasks weren't scheduled, you must schduele the task with ID: {LeastDependentTask(boTask.Id)}");
         if (!(boTask.Dependencies.All(d => Read(d.Id).ForecastDate <= _scheduledDate)))
             throw new BO.BlUpdateImpossible($"The previous tasks must be complete before the current task, the date must be set after {MaxForcastDate(boTask.Dependencies)}");
         boTask.ScheduledDate = _scheduledDate;
