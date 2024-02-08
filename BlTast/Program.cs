@@ -148,7 +148,6 @@ internal class Program
         string? _remarks = null;
         string answer = "n";
 
-        Console.WriteLine("enter all the tasks that are necessery for the project");
 
         Console.WriteLine("enter task's  alias, description, required effort time and complexity ");
         string _alias = Console.ReadLine();
@@ -533,19 +532,25 @@ internal class Program
             if (answer == "n") { return; }
             if (answer == "y") { s_bl.Task.SetStage1(); }
         }
-        switch (a)
+        try
         {
-            case 1:
-                FirstStage();
-                break;
-            case 2:
+            switch (a)
+            {
+                case 1:
+                    FirstStage();
+                    break;
+                case 2:
 
-                SecondStage();
-                break;
-            case 3:
-                ThirdStage();
-                break;
-
+                    SecondStage();
+                    break;
+                case 3:
+                    ThirdStage();
+                    break;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
         }
     }
 
@@ -557,15 +562,14 @@ internal class Program
     public static void FirstStage()
     {
         string answer = "n";
-        Console.WriteLine("\n\n\ndo you want to add a task?");
+        Console.WriteLine("\ndo you want to add a task?");
         answer = Console.ReadLine();
-        Console.WriteLine("enter all the tasks that are necessery for the project");
 
-        while (answer == "y") ;
+        while (answer == "y")
         {
 
             TaskCreate();
-            Console.WriteLine("\n\n\ndo you want to add another task?");
+            Console.WriteLine("\ndo you want to add another task?");
             answer = Console.ReadLine();
         }
         Console.WriteLine("do you want to move to step 2?");
@@ -608,23 +612,17 @@ internal class Program
                 Console.WriteLine(ex.Message);
                 Console.WriteLine("these are their depensencies first schedule their schedule");
                 Console.WriteLine(s_bl!.Task.Read(taskId));
-
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                //Console.WriteLine(ex);
-
             }
             Console.WriteLine("do you want to choose a task to schedule?");
             sch = Console.ReadLine();
         }
-
-        try
-        {
+        if (s_bl.Task.ReadAll().All(task => task.Status != BO.Status.Unscheduled))
             s_bl.Task.SetStage3();
-        }
-        catch (BO.BlUnScheduled ex) { Console.WriteLine(ex); }
+
 
     }
 
@@ -639,12 +637,12 @@ internal class Program
         string answer = "n";
         Console.WriteLine("do you want to designate a task to an engineer?");
         answer = Console.ReadLine();
-        do
+        while (answer == "y")
         {
             TaskDesignateEngineer();
             Console.WriteLine("do you want to designate another task to an engineer?");
             answer = Console.ReadLine();
-        } while (answer == "y");
+        }
     }
 
 
