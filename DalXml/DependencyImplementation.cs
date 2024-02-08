@@ -2,6 +2,7 @@
 using DalApi;
 using DO;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
@@ -76,7 +77,8 @@ internal class DependencyImplementation : IDependency
         XElement dependentOnTask = new("DependentOnTask", item.DependsOnTask);
         xDependency.Add(dependentOnTask);
         dependencies.Add(xDependency);
-                     
+        IEnumerable<XElement> shortedlist = new List<XElement>() { dependencies }.OrderBy(xElement => (int?)xElement.Attribute("Id"));
+        dependencies = new XElement(dependencies.Name, shortedlist.Select(x => x));
         XMLTools.SaveListToXMLElement(dependencies, s_dependencies_xml);
 
     }

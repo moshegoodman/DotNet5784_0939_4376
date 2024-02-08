@@ -1,6 +1,7 @@
 ﻿namespace Dal;
 using DalApi;
 using DO;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -48,7 +49,18 @@ internal class DependencyImplementation : IDependency
         if (Read(item.Id) is null)
             throw new DalDoesNotExistException($"Dependency with ID={item.Id} does not exists");
         Delete(item.Id);
-        DataSource.Dependencies.Add(item);
+        
+        int index = DataSource.Dependencies.FindIndex(dependency => dependency.Id >= item.Id);
+
+        // If index is negative, it means the newItem is greater than all elements in the list
+        if (index < 0)
+        {
+            DataSource.Dependencies.Add(item);
+        }
+        else
+        {
+            DataSource.Dependencies.Insert(index, item); // Insert the new item at the appropriate position
+        }
     }
     //Reads entity object by a given condition
     public Dependency? Read(Func<Dependency, bool> filter)
