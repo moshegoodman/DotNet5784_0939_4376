@@ -90,7 +90,6 @@ internal class Program
 
         }
         catch (Exception ex) { Console.WriteLine(ex.Message); }
-        while (a != 0) ;
     }
 
     #region task
