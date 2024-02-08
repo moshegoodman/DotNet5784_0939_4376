@@ -304,7 +304,11 @@ internal class Program
         int taskId = Convert.ToInt32(Console.ReadLine());
         Console.WriteLine("enter engineer's id:");
         int engineerId = Convert.ToInt32(Console.ReadLine());
-        s_bl!.Task.DesignateEngineer(taskId, engineerId);
+        try
+        {
+            s_bl!.Task.DesignateEngineer(taskId, engineerId);
+        }
+        catch (BO.BlEngineerLevelIsTooLow ex) { Console.WriteLine(ex.Message); }
     }
 
 
@@ -577,41 +581,77 @@ internal class Program
 
     public static void SecondStage()
     {
-        string leave = "";
-        IEnumerable<BO.TaskInList> _allBoTasks = s_bl.Task.ReadAll();
-        _allBoTasks.ToList().ForEach(task =>
-        {
-            bool flag;
-            do
-            {
-
-                try
-                {
-                    flag = false;
-                    Console.WriteLine($"Schedule a date for {task.Alias}");
-                    s_bl.Task.Update(task.Id, GetDateTimeFromUser());
-                }
-
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    //Console.WriteLine(ex);
-                    flag = true;
-                }
-                Console.WriteLine("do you wanna leave?");
-                leave = Console.ReadLine();
-            } while (leave != "y");
-        });
         string sch;
-        do
+        string stayinforeach;
+        string leave = "";
+        Console.WriteLine("do you want to choose a task to schedule?");
+        sch = Console.ReadLine();
+
+        while (sch == "y")
         {
-            Console.WriteLine("do you want to choose a task to scgedule?");
-            sch = Console.ReadLine();
+
             Console.WriteLine("enter task id");
             int taskId = Convert.ToInt32(Console.ReadLine());
-            s_bl.Task.Update(taskId, GetDateTimeFromUser());
-        } while (sch == "y");
+            try
+            {
+                Console.WriteLine($"Schedule a date for {s_bl.Task.Read(taskId).Alias} with id {taskId}");
 
+                s_bl.Task.Update(taskId, GetDateTimeFromUser());
+            }
+            catch (BO.BlUpdateImpossible ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("these are their depensencies first schedule their schedule");
+                Console.WriteLine(s_bl!.Task.Read(taskId));
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                //Console.WriteLine(ex);
+
+            }
+            Console.WriteLine("do you want to choose a task to schedule?");
+            sch = Console.ReadLine();
+        }
+
+        //IEnumerable<BO.TaskInList> _allBoTasks = s_bl.Task.ReadAll();
+        //_allBoTasks.ToList().ForEach(task =>
+        //{
+
+        //    bool flag;
+        //    do
+        //    {
+
+        //        try
+        //        {
+        //            flag = false;
+        //            Console.WriteLine($"Schedule a date for {task.Alias} with id {task.Id}");
+        //            s_bl.Task.Update(task.Id, GetDateTimeFromUser());
+        //        }
+        //        //catch (BO.BlUpdateImpossible ex)
+        //        //{
+        //        //    Console.WriteLine(ex.Message);
+        //        //    Console.WriteLine("these are their depensencies first schedule their schedule");
+
+        //        //}
+        //        catch (Exception ex)
+        //        {
+        //            Console.WriteLine(ex.Message);
+        //            //Console.WriteLine(ex);
+        //            flag = true;
+        //        }
+        //        Console.WriteLine("do you wanna leave?");
+        //        leave = Console.ReadLine();
+        //    } while (leave != "y");
+        //    Console.WriteLine("do you wanna leave?");
+        //    stayinforeach = Console.ReadLine();
+        //});
+        try
+        {
+            s_bl.Task.SetStage3();
+        }
+        catch (BO.BlUnScheduled ex) { Console.WriteLine(ex); }
 
     }
 
@@ -647,3 +687,77 @@ internal class Program
     }
 }
 
+/*****************
+ n
+3
+y
+1000
+2024-1-1
+y
+1001
+2024-2-1
+y
+1002
+2024-3-1
+y
+1003
+2024-4-1
+y
+1004
+2024-5-1
+y
+1005
+2025-1-1
+y
+1006
+2026-1-1
+y
+1007
+2027-1-1
+y
+1008
+2028-1-1
+y
+1009
+2029-1-1
+y
+1010
+2030-1-1
+y
+1011
+2031-1-1
+y
+1012
+2032-1-1
+y
+1013
+2033-1-1
+y
+1014
+2034-1-1
+y
+1015
+2035-1-1
+y
+1016
+2036-1-1
+y
+1017
+2037-1-1
+y
+1018
+2038-1-1
+y
+1019
+2039-1-1
+
+
+  
+ 
+ 
+
+
+
+
+
+ * *******************/

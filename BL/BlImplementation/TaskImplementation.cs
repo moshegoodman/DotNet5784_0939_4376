@@ -348,7 +348,7 @@ internal class TaskImplementation : ITask
         if (projectStatus == 1) throw new BO.BlUnScheduled($"the project is not ready for stage 3.");
         if (projectStatus == 2)
         {
-            bool flag = (_dal.Task.ReadAll().Where(task => task != null).All(task => (task!.ScheduledDate != null)));
+            bool flag = (ReadAll().All(task => task.Status != BO.Status.Unscheduled));
             if (!flag) throw new BO.BlUnScheduled($"the project is not ready for stage 3. initiate all scheduled dates.");
             _dal.Task.IncreaseStatus();
         }
