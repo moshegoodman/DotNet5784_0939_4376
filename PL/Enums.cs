@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 
 namespace PL;
-internal class EngineerCollection : IEnumerable
+internal class EngineerExperience : IEnumerable
 {
 	static readonly IEnumerable<BO.EngineerExperience> s_enums =
 (Enum.GetValues(typeof(BO.EngineerExperience)) as IEnumerable<BO.EngineerExperience>)!;
