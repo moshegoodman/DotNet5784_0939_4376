@@ -12,16 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PL.Admin
+namespace PL.Admin;
+
+/// <summary>
+/// Interaction logic for EngineerWindow.xaml
+/// </summary>
+public partial class EngineerWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for EngineerWindow.xaml
-    /// </summary>
-    public partial class EngineerWindow : Window
+    public EngineerWindow()
     {
-        public EngineerWindow()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

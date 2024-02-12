@@ -14,29 +14,29 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PL
+namespace PL;
+
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+
+    public MainWindow()
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
-        private void btnAdmins_Click(object sender, RoutedEventArgs e)
-        {
-            new EngineerListWindow().Show();
-        }
+    private void btnAdmins_Click(object sender, RoutedEventArgs e)
+    {
+        new EngineerListWindow().Show();
+    }
 
-        private void btnInit_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBoxResult toInit = MessageBox.Show("Are you sure you want to initialize all data?", "Initialization", MessageBoxButton.YesNo);
-            if (toInit == MessageBoxResult.Yes) {
-                DalTest.Initialization.Do();
-            }
+    private void btnInit_Click(object sender, RoutedEventArgs e)
+    {
+        MessageBoxResult toInit = MessageBox.Show("Are you sure you want to initialize all data?", "Initialization", MessageBoxButton.YesNo);
+        if (toInit == MessageBoxResult.Yes) {
+            DalTest.Initialization.Do();
         }
     }
 }
