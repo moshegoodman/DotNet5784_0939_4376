@@ -214,10 +214,13 @@ public static class Initialization
     {1015, 1004},  // BridgeInspection also depends on EnvImpactAssessment
     {1019, 1009},  // DocumentationHandover also depends on ConcretePouring
     {1014, 1012},  // TrafficManagement also depends on AbutmentConstruction
+    {1016, 1010},
+    {1015, 1010},
+    {1019, 1017}
 
 };
 
-        for (int i = 0; i < 37; ++i)
+        for (int i = 0; i < 40; ++i)
         {
 
 
