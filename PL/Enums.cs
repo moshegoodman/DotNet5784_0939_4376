@@ -9,4 +9,5 @@ internal class EngineerExperience : IEnumerable
 (Enum.GetValues(typeof(BO.EngineerExperience)) as IEnumerable<BO.EngineerExperience>)!;
 
     public IEnumerator GetEnumerator() => s_enums.GetEnumerator();
+
 }

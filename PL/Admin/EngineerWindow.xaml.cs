@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BlApi;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PL.Admin;
 
@@ -19,8 +8,43 @@ namespace PL.Admin;
 /// </summary>
 public partial class EngineerWindow : Window
 {
-    public EngineerWindow()
+    static readonly IBl s_bl = Factory.Get();
+
+
+
+    public int EngineerId { get; set; } = 0;
+    public string EngineerName { get; set; } = "";
+    public string EngineerEmail { get; set; } = "";
+    public double EngineerCost { get; set; } = 0;
+    public int EngineerTask { get; set; } = 0;
+    public BO.EngineerExperience EngineerLevel { get; set; } = BO.EngineerExperience.None;
+
+    public BO.Engineer Engineer
     {
-        InitializeComponent();
+        get
+        {
+            return (BO.Engineer)GetValue(EngineerProperty);
+        }
+        set { SetValue(EngineerProperty, value); }
     }
+    public static readonly DependencyProperty EngineerProperty =
+        DependencyProperty.Register("Engineer", typeof(BO.Engineer), typeof(EngineerWindow), new PropertyMetadata(null));
+    public EngineerWindow(int Id = 0, int flag = 0)
+    {
+
+        InitializeComponent();
+        try
+        {
+            BO.Engineer engineer = s_bl.Engineer.Read(Id)!;
+            flag = 1;
+        }
+        catch
+        {
+            flag = 0;
+        }
+
+    }
+    //public EngineerExists()
+    //{ 
+    ////}
 }
