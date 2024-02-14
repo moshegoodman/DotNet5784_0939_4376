@@ -1,24 +1,16 @@
 ﻿using BlApi;
+using System;
 using System.Windows;
 
 namespace PL.Admin;
 
-/// <summary>
-/// Interaction logic for EngineerWindow.xaml
-/// </summary>
 public partial class EngineerWindow : Window
 {
     static readonly IBl s_bl = Factory.Get();
 
+    int is_Add = 0;
 
-
-    public int EngineerId { get; set; } = 0;
-    public string EngineerName { get; set; } = "";
-    public string EngineerEmail { get; set; } = "";
-    public double EngineerCost { get; set; } = 0;
-    public int EngineerTask { get; set; } = 0;
-    public BO.EngineerExperience EngineerLevel { get; set; } = BO.EngineerExperience.None;
-
+    //engineer object for working with the data
     public BO.Engineer Engineer
     {
         get
@@ -29,22 +21,54 @@ public partial class EngineerWindow : Window
     }
     public static readonly DependencyProperty EngineerProperty =
         DependencyProperty.Register("Engineer", typeof(BO.Engineer), typeof(EngineerWindow), new PropertyMetadata(null));
-    public EngineerWindow(int Id = 0, int flag = 0)
+    //window ctor
+    public EngineerWindow(int id = 0)
+    {
+        is_Add = id;
+        InitializeComponent();
+        if (id == 0)
+        {
+            Engineer = new BO.Engineer()
+            {
+                Id = 0,
+                Name = "",
+                Email = "",
+                Cost = 0,
+                Task = null,
+                Level = BO.EngineerExperience.None
+            };
+        }
+        else
+        {
+            try
+            {
+                Engineer = s_bl.Engineer.Read(id);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR");
+            }
+        }
+    }
+
+    //opens the add/update window
+    private void Btn_Add_Update_Click(object sender, RoutedEventArgs e)
     {
 
-        InitializeComponent();
-        try
-        {
-            BO.Engineer engineer = s_bl.Engineer.Read(Id)!;
-            flag = 1;
-        }
-        catch
-        {
-            flag = 0;
-        }
+        if (is_Add == 0)
+            try
+            {
+                s_bl.Engineer.Create(Engineer);
+                Close();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR"); }
+        else
+            try
+            {
+                s_bl.Engineer.Update(Engineer);
+                Close();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR"); }
 
     }
-    //public EngineerExists()
-    //{ 
-    ////}
 }
