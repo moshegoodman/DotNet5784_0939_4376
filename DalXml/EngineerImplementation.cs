@@ -21,6 +21,7 @@ internal class EngineerImplementation : IEngineer
             throw new DalAlreadyExistsException($"Engineer with ID={item.Id} already exists");
         }
         engineers.Add(item);
+        engineers = engineers.OrderBy(x => x.Name).ThenBy(x => x.Id).ToList();
         XMLTools.SaveListToXMLSerializer(engineers, s_engineers_xml);
 
         return item.Id;
@@ -70,6 +71,7 @@ internal class EngineerImplementation : IEngineer
         Delete(item.Id);
         List<Engineer> engineers = XMLTools.LoadListFromXMLSerializer<Engineer>(s_engineers_xml);
         engineers.Add(item);
+        engineers = engineers.OrderBy(x => x.Name).ThenBy(x => x.Id).ToList();
         XMLTools.SaveListToXMLSerializer(engineers, s_engineers_xml);
 
     }

@@ -37,9 +37,11 @@ internal class EngineerImplementation : IEngineer
         {
             return from item in DataSource.Engineers
                    where filter(item)
+                   orderby item.Name
                    select item;
         }
         return from item in DataSource.Engineers
+               orderby item.Name
                select item;
     }
     //updates an occurrence (the user enters vulues of all fields)
