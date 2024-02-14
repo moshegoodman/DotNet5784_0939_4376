@@ -239,7 +239,7 @@ public static class Initialization
 
     //method to delete all data
 
-    private static void ResetData()
+    public static void ResetData()
     {
         if (s_dal != null)
         {

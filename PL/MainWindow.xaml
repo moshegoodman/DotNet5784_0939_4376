@@ -6,12 +6,16 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    
     <Grid>
         <!--Engineer list-->
+        <Image Source="/images/bridge.jpg" Width="800" />
+
         <Button Content="Admin" HorizontalAlignment="Left" Margin="100,350,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="btnAdmins_Click"/>
         <Button Content="Engineer" HorizontalAlignment="Left" Margin="190,350,0,0" VerticalAlignment="Top" Width="90" Height="30"/>
         <!--Initializes data (temporary)-->
         <Button Content="InitDB" HorizontalAlignment="Left" Margin="600,350,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="btnInit_Click"/>
+
 
     </Grid>
 </Window>
