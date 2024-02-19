@@ -103,7 +103,7 @@ internal class EngineerImplementation : IEngineer
             throw new BO.InCorrectData("Engineer cost cant be negative");
         if (boEngineer.Name == "")
             throw new BO.InCorrectData("Engineer should have a name");
-        if ((int)boEngineer.Level < (int)_dal.Engineer.Read(boEngineer.Id)!.Level)
+        if ((int)boEngineer.Level < (int)Read(boEngineer.Id)!.Level)
             throw new BO.BlUpdateImpossible("Engineer level cannot decrease");
         DO.Engineer doEngineer = new DO.Engineer
                 (boEngineer.Id, boEngineer.Email, boEngineer.Cost, boEngineer.Name, (DO.EngineerExperience)boEngineer.Level);

@@ -8,8 +8,6 @@ public partial class EngineerWindow : Window
 {
     static readonly IBl s_bl = Factory.Get();
 
-    int is_Add = 0;
-
     //engineer object for working with the data
     public BO.Engineer Engineer
     {
@@ -24,7 +22,6 @@ public partial class EngineerWindow : Window
     //window ctor
     public EngineerWindow(int id = 0)
     {
-        is_Add = id;
         InitializeComponent();
         if (id == 0)
         {
@@ -42,7 +39,7 @@ public partial class EngineerWindow : Window
         {
             try
             {
-                Engineer = s_bl.Engineer.Read(id);
+                Engineer = s_bl.Engineer.Read(id)!;
             }
             catch (Exception ex)
             {
@@ -52,23 +49,22 @@ public partial class EngineerWindow : Window
     }
 
     //opens the add/update window
-    private void Btn_Add_Update_Click(object sender, RoutedEventArgs e)
+    private void Btn_Add_Click(object sender, RoutedEventArgs e)
     {
-
-        if (is_Add == 0)
-            try
-            {
-                s_bl.Engineer.Create(Engineer);
-                Close();
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR"); }
-        else
-            try
-            {
-                s_bl.Engineer.Update(Engineer);
-                Close();
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR"); }
-
+        try
+        {
+            s_bl.Engineer.Create(Engineer);
+            Close();
+        }
+        catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR"); }
+    }
+    private void Btn_Update_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            s_bl.Engineer.Update(Engineer);
+            Close();
+        }
+        catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR"); }
     }
 }
