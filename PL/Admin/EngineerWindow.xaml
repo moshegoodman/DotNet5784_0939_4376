@@ -58,7 +58,7 @@
         <Label Grid.Column="1" Grid.Row="4" Content="Cost:"/>
         <Label Grid.Column="1" Grid.Row="5" Content="Task:"/>
         <Label Grid.Column="1" Grid.Row="6" Content="Level:"/>
-        <Button  Content="ADD"  Grid.Column="1" Grid.Row="7" Height="20" Width="50" HorizontalAlignment="Left" Click="Btn_Add_Click" Visibility="{Binding Id, Mode=OneTime,Converter={StaticResource ConvertIdToAddBtnVisibilityKey}}"/>
-        <Button  Content="UPDATE"  Grid.Column="1" Grid.Row="7" Height="20" Width="50" HorizontalAlignment="Left" Click="Btn_Update_Click" Visibility="{Binding Id, Mode=OneTime,Converter={StaticResource ConvertIdToUpdateBtnVisibilityKey}}"/>
+        <Button  Content="Add"  Grid.Column="1" Grid.Row="7" Height="20" Width="50" HorizontalAlignment="Left" Click="Btn_Add_Click" Visibility="{Binding Id, Mode=OneTime,Converter={StaticResource ConvertIdToAddBtnVisibilityKey}}"/>
+        <Button  Content="Update"  Grid.Column="1" Grid.Row="7" Height="20" Width="50" HorizontalAlignment="Left" Click="Btn_Update_Click" Visibility="{Binding Id, Mode=OneTime,Converter={StaticResource ConvertIdToUpdateBtnVisibilityKey}}"/>
     </Grid>
 </Window>
