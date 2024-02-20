@@ -20,7 +20,7 @@ public partial class MainWindow : Window
     //opens window with a list of engineers for the administraator to manage
     private void btnAdmins_Click(object sender, RoutedEventArgs e)
     {
-        new EngineerListWindow().ShowDialog();
+        new EngineerListWindow().Show();
     }
 
     //initializes data 

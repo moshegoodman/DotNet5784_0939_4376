@@ -6,6 +6,8 @@
     <Application.Resources>
         <local:EngineerExperience x:Key="EngineerExperienceKey"/>
         <local:ConvertIdToContent x:Key="ConverIdToContentKey"/>
+        <local:ConvertIdToAddBtnVisibility x:Key="ConvertIdToAddBtnVisibilityKey"/>
+        <local:ConvertIdToUpdateBtnVisibility x:Key="ConvertIdToUpdateBtnVisibilityKey"/>
         <local:ConvertIdToBool x:Key="ConverIdToBoolKey"/>
     </Application.Resources>
 </Application>
