@@ -19,7 +19,7 @@ namespace PL.Admin
             set { SetValue(TaskListProperty, value); }
         }
         public static readonly DependencyProperty TaskListProperty =
-       DependencyProperty.Register("TaskList", typeof(IEnumerable<BO.TaskInList>), typeof(TaskListWindow), new PropertyMetadata(null));
+       DependencyProperty.Register("TaskList", typeof(IEnumerable<BO.TaskInList>), typeof(ATaskListWindow), new PropertyMetadata(null));
 
         private void ListView_MouseDoubleClick(object sender, RoutedEventArgs e)
         {
