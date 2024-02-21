@@ -1,5 +1,6 @@
 ﻿using BlApi;
 using PL.Admin;
+using PL.Engineer;
 using System.Windows;
 
 namespace PL;
@@ -20,7 +21,7 @@ public partial class MainWindow : Window
     //opens window with a list of engineers for the administraator to manage
     private void btnAdmins_Click(object sender, RoutedEventArgs e)
     {
-        new EngineerListWindow().Show();
+        new managerWindow().Show();
     }
 
     //initializes data 
@@ -31,5 +32,10 @@ public partial class MainWindow : Window
         {
             s_bl.InitializeDB();
         }
+    }
+
+    private void btnEngineer_Click(object sender, RoutedEventArgs e)
+    {
+        new ETaskListWindow().Show();
     }
 }

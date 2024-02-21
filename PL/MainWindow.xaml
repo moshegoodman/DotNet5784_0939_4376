@@ -9,10 +9,24 @@
     
     <Grid>
         <!--Engineer list-->
-        <Image Source="/images/bridge.jpg" Width="800" />
-
+        <Image Source="/images/bridge.jpg" Width="800"  />
+        <Grid Margin="60,50,520,320" Background="Azure">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <Label Content=""  />
+            <Button Content="One Day" Grid.Row="1" Grid.Column="0" Background="DarkGray"/>
+            <Button Content="One Hour" Grid.Row="1" Grid.Column="1" Background="DarkGray" />
+        </Grid>
         <Button Content="Admin" HorizontalAlignment="Left" Margin="100,350,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="btnAdmins_Click"/>
-        <Button Content="Engineer" HorizontalAlignment="Left" Margin="190,350,0,0" VerticalAlignment="Top" Width="90" Height="30"/>
+        <Button Content="Engineer" HorizontalAlignment="Left" Margin="190,350,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="btnEngineer_Click"/>
         <!--Initializes data (temporary)-->
         <Button Content="InitDB" HorizontalAlignment="Left" Margin="600,350,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="btnInit_Click"/>
 
