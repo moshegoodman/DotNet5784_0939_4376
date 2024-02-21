@@ -9,5 +9,7 @@
         <local:ConvertIdToAddBtnVisibility x:Key="ConvertIdToAddBtnVisibilityKey"/>
         <local:ConvertIdToUpdateBtnVisibility x:Key="ConvertIdToUpdateBtnVisibilityKey"/>
         <local:ConvertIdToBool x:Key="ConverIdToBoolKey"/>
+        <local:ConvertDateTimeToString x:Key="ConvertDateTimeToStringKey"/>
+
     </Application.Resources>
 </Application>

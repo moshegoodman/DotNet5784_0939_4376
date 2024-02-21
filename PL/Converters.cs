@@ -58,3 +58,16 @@ class ConvertIdToUpdateBtnVisibility : IValueConverter
         throw new NotImplementedException();
     }
 }
+
+class ConvertDateTimeToString : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return ((DateTime)value).ToString("dd/MM/yyyy    HH:mm");
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}

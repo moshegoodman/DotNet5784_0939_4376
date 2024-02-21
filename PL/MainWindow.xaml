@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    
+        Title="MainWindow" Height="450" Width="800"
+        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
+
     <Grid>
         <!--Engineer list-->
         <Image Source="/images/bridge.jpg" Width="800"  />
-        <Grid Margin="60,50,520,320" Background="Azure">
-            
+        <Grid Margin="60,50,600,300" Background="Azure">
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -20,10 +21,10 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            
-            <Label Content=""  />
-            <Button Content="One Day" Grid.Row="1" Grid.Column="0" Background="DarkGray"/>
-            <Button Content="One Hour" Grid.Row="1" Grid.Column="1" Background="DarkGray" />
+
+            <Label Content="{Binding Clock, Mode=OneWay,Converter={StaticResource ConvertDateTimeToStringKey}}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+            <Button Content="One Day" Grid.Row="1" Grid.Column="0" Background="DarkGray" Click="AddDayClick"/>
+            <Button Content="One Hour" Grid.Row="1" Grid.Column="1" Background="DarkGray" Click="AddHourClick" />
         </Grid>
         <Button Content="Admin" HorizontalAlignment="Left" Margin="100,350,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="btnAdmins_Click"/>
         <Button Content="Engineer" HorizontalAlignment="Left" Margin="190,350,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="btnEngineer_Click"/>
