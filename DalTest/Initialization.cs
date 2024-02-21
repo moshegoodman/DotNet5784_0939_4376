@@ -241,6 +241,8 @@ public static class Initialization
 
     public static void ResetData()
     {
+        s_dal = Factory.Get; //stage 4
+
         if (s_dal != null)
         {
             s_dal.Task.Reset();
