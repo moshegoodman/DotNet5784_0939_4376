@@ -6,6 +6,10 @@ internal class TaskImplementation : ITask
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
 
+    private readonly Bl _bl;
+    internal TaskImplementation(Bl bl) => _bl = bl;
+
+
     //Method to calculate the status of a given DO.Task 
     private BO.Status GetStatus(int id)
     {
@@ -19,7 +23,7 @@ internal class TaskImplementation : ITask
             return BO.Status.Scheduled;
         else if (task.CompleteDate != null)
             return BO.Status.Done;
-        else if (task.DeadlineDate > DateTime.Now)
+        else if (task.DeadlineDate > _bl.Clock)
             return BO.Status.OnTrack;
         else
             return BO.Status.InJeopardy;
@@ -398,7 +402,7 @@ internal class TaskImplementation : ITask
             throw new BO.BlUpdateImpossible("the task is complete already");
         if (_completeDate == null)
         {
-            _completeDate = DateTime.Now;
+            _completeDate = _bl.Clock;
         }
         DO.Task doTask = new(
          boTask.Id,
@@ -442,7 +446,7 @@ internal class TaskImplementation : ITask
             throw new BO.BlUpdateImpossible("the task is complete");
         if (_startDate == null || _startDate < boTask.ScheduledDate)
         {
-            _startDate = DateTime.Now;
+            _startDate = _bl.Clock;
         }
         DO.Task doTask = new DO.Task
         (
