@@ -8,13 +8,6 @@
         Title="EngineerWindow" Height="450" Width="400"
         DataContext="{Binding Engineer, RelativeSource={RelativeSource Self}, Mode=TwoWay}">
     <Window.Resources>
-        <!--<Style TargetType="Button">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="x:"
-                </Setter.Value>
-            </Setter>
-        </Style>-->
         <Style TargetType="TextBox">
             <Setter Property="Height"  Value="20"/>
             <Setter Property="Width"  Value="90"/>
