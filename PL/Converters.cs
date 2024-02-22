@@ -1,6 +1,10 @@
-﻿using System;
+﻿using PL.Admin;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Data;
+using System.Windows.Documents;
 
 namespace PL;
 class ConvertIdToContent : IValueConverter
@@ -64,6 +68,27 @@ class ConvertDateTimeToString : IValueConverter
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         return ((DateTime)value).ToString("dd/MM/yyyy    HH:mm");
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+class ConvertListToString : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        if (value is List<BO.TaskInList> TaskList)
+        {
+            return string.Join("\t", TaskList.Select(task => task.Id));
+        }
+        else
+        {
+            // Handle the case where value is not a List<int>
+            return string.Empty; // or throw an exception, log an error, etc.
+        }
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
