@@ -27,12 +27,13 @@ public partial class GanttChartWindow : Window
         set { SetValue(TaskListProperty, value); }
     }
     public static readonly DependencyProperty TaskListProperty =
-   DependencyProperty.Register("TaskList", typeof(IEnumerable<BO.Task>), typeof(ATaskListWindow), new PropertyMetadata(null));
+   DependencyProperty.Register("TaskList", typeof(IEnumerable<BO.Task>), typeof(GanttChartWindow), new PropertyMetadata(null));
 
     public GanttChartWindow()
     {
-        TaskList = from task in s_bl.Task.ReadAll()
-                        select s_bl.Task.Read(task.Id);
         InitializeComponent();
+
+        TaskList = from task in s_bl.Task.ReadAll()
+                   select s_bl.Task.Read(task.Id);
     }
 }

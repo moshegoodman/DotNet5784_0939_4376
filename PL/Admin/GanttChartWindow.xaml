@@ -11,29 +11,54 @@
     <!--External Grid-->
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40*"/>
+            <RowDefinition Height="20*"/>
             <RowDefinition Height="500*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <!--Internal, Upper Grid-->
-        <Grid HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-            <!--Engineer filter-->
-        </Grid>
-        <ListView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding TaskList}">
+        <ListView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding TaskList, Mode=OneWay}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="BorderThickness" Value="0"/>
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Details" Width="Auto">
+                    <GridViewColumn Width="auto"> 
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Alias}" />
-                                    <TextBlock Text="{Binding Id}" />
-                                    <TextBlock Text="{Binding Dependencies, Converter={StaticResource ConvertListToStringKey}}" />
-                                </StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="175*"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.Column="0" BorderThickness="0.5" BorderBrush="Black" Margin="2" Width="174">
+                                        <StackPanel>
+                                            <TextBlock >
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="Name: {0}">
+                                                        <Binding Path="Alias"/>
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                            <TextBlock >
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="Id: {0}">
+                                                        <Binding Path="Id"/>
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+
+                                            <TextBlock TextWrapping="Wrap">
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="Dependencies: {0}">
+                                                        <Binding Path="Dependencies" Converter="{StaticResource ConvertListToStringKey}"/>
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </Border>
+                                    <ProgressBar Grid.Column="1" Minimum="0" Maximum="100" Width="200" Height="30"/>
+                                </Grid>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

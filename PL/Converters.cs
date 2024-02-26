@@ -82,7 +82,11 @@ class ConvertListToString : IValueConverter
     {
         if (value is List<BO.TaskInList> TaskList)
         {
-            return string.Join("\t", TaskList.Select(task => task.Id));
+            string listString = string.Join(", ", TaskList.Select(task => task.Id));
+            if (listString.Length <= 1)
+                return "0 dependencies";
+            else
+                return listString;
         }
         else
         {
