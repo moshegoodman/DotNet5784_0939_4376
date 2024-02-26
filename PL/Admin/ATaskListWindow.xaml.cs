@@ -39,6 +39,14 @@ public partial class ATaskListWindow : Window
         TaskList = s_bl?.Task.ReadAll()!;
 
     }
+    public ATaskListWindow(IEnumerable<BO.TaskInList> dependents)
+    {
+        InitializeComponent();
+        TaskList = dependents;
+
+
+
+    }
     private void ListView_MouseDoubleClick(object sender, RoutedEventArgs e)
     {
         BO.TaskInList? task_in_list = (sender as ListView)?.SelectedItem as BO.TaskInList;
