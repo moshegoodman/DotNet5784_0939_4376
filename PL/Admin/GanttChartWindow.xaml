@@ -15,7 +15,7 @@
             <RowDefinition Height="500*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ListView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding TaskList}">
+        <ListView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding TaskList, Mode=OneWay}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="BorderThickness" Value="0"/>
