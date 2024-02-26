@@ -32,7 +32,7 @@ public partial class GanttChartWindow : Window
     public GanttChartWindow()
     {
         TaskList = from task in s_bl.Task.ReadAll()
-                        select s_bl.Task.Read(task.Id);
+                   select s_bl.Task.Read(task.Id);
         InitializeComponent();
     }
 }
