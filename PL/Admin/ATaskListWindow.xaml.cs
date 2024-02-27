@@ -18,13 +18,13 @@ public partial class ATaskListWindow : Window
    DependencyProperty.Register("TaskList", typeof(IEnumerable<BO.TaskInList>), typeof(ATaskListWindow), new PropertyMetadata(null));
 
 
-    public BO.EngineerExperience ExperirnceFilter { get; set; } = BO.EngineerExperience.None;
+    public BO.EngineerExperience ExperienceFilter { get; set; } = BO.EngineerExperience.None;
 
     //for the data binding a filtered list
     private void ExperienceFlt(object sender, SelectionChangedEventArgs e)
     {
-        //    TaskList = (ExperirnceFilter == BO.EngineerExperience.None) ?
-        //        s_bl?.Engineer.ReadAll()! : s_bl?.Engineer.ReadAll(item => item.Level == ExperirnceFilter)!;
+        TaskList = (ExperienceFilter == BO.EngineerExperience.None) ?
+         s_bl?.Task.ReadAll()! : s_bl?.Task.ReadAll(item => s_bl.Task.Read(item.Id).Complexity == ExperienceFilter)!;
     }
 
     private void btnAdd_Click(object sender, RoutedEventArgs e)

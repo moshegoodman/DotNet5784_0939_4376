@@ -1,6 +1,8 @@
 ﻿using BlApi;
+using DO;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 
 namespace PL.Admin;
@@ -10,6 +12,17 @@ namespace PL.Admin;
 /// </summary>
 public partial class ATaskWindow : Window
 {
+
+
+    public IEnumerable<BO.EngineerInTask> EngineerList
+    {
+        get { return (IEnumerable<BO.EngineerInTask>)GetValue(EngineerListProperty); }
+        set { SetValue(EngineerListProperty, value); }
+    }
+
+    public static readonly DependencyProperty EngineerListProperty =
+        DependencyProperty.Register("EngineerList", typeof(IEnumerable<BO.EngineerInTask>), typeof(ATaskWindow), new PropertyMetadata(null));
+
     static readonly IBl s_bl = Factory.Get();
 
     public static readonly DependencyProperty TaskProperty =
@@ -27,6 +40,13 @@ public partial class ATaskWindow : Window
     public ATaskWindow(int id = 0)
     {
         InitializeComponent();
+        EngineerList = from engineer in s_bl.Engineer.ReadAll()
+                       select new BO.EngineerInTask()
+                       {
+                           Id = engineer.Id,
+                           Name = engineer.Name,
+                       };
+
         if (id == 0)
         {
             Task = new BO.Task()
@@ -95,5 +115,10 @@ public partial class ATaskWindow : Window
         // foreach (TaskInList dependent in listDependents) { dependents.Append(dependent)}
 
         new ATaskListWindow(dependents).ShowDialog();
+    }
+
+    private void Btn_Engineer_designation(object sender, RoutedEventArgs e)
+    {
+        new EngineerListWindow().ShowDialog();
     }
 }
