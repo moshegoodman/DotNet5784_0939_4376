@@ -209,30 +209,45 @@ internal class TaskImplementation : ITask
     //returns all task in a short fasion
     public IEnumerable<BO.TaskInList> ReadAll(Func<BO.Task, bool>? filter = null)//Make shure that we can use this type for the filter
     {
-        if (filter == null)
-        {
-            return (from DO.Task doTask in _dal.Task.ReadAll()
-                    select new BO.TaskInList
-                    {
-                        Id = doTask.Id,
-                        Description = doTask.Description,
-                        Alias = doTask.Alias,
-                        Status = GetStatus(doTask.Id)
-                    });
-        }
-        else
-        {
-            return (from BO.Task boTask in ReadAll()
-                    where filter(boTask)
-                    select new BO.TaskInList
-                    {
-                        Id = boTask.Id,
-                        Description = boTask.Description,
-                        Alias = boTask.Alias,
-                        Status = GetStatus(boTask.Id)
-                    });
+        //if (filter == null)
+        //{
+        //    return (from DO.Task doTask in _dal.Task.ReadAll()
+        //            select new BO.TaskInList
+        //            {
+        //                Id = doTask.Id,
+        //                Description = doTask.Description,
+        //                Alias = doTask.Alias,
+        //                Status = GetStatus(doTask.Id)
+        //            });
+        //}
+        //else
+        //{
+        //    return (from BO.Task boTask in _dal.Task.ReadAll()
+        //            where filter(boTask)
+        //            select new BO.TaskInList
+        //            {
+        //                Id = boTask.Id,
+        //                Description = boTask.Description,
+        //                Alias = boTask.Alias,
+        //                Status = GetStatus(boTask.Id)
+        //            });
 
-        }
+        //}
+        IEnumerable<BO.TaskInList> boTasksInList = (from DO.Task doTask in _dal.Task.ReadAll()
+                                                    select new BO.TaskInList
+                                                    {
+                                                        Id = doTask.Id,
+                                                        Description = doTask.Description,
+                                                        Alias = doTask.Alias,
+                                                        Status = GetStatus(doTask.Id)
+                                                    });
+        if (filter != null)
+            return from boTask in boTasksInList
+                   where filter(_bl.Task.Read(boTask.Id)!)
+                   select boTask;
+        else
+            return boTasksInList;
+
     }
 
     //updates a given task
