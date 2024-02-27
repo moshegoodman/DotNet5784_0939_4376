@@ -17,6 +17,8 @@ public class Tools
         };
     }
 
+    
+
     public static void SaveListToXMLSerializer<T>(T list, string entity)
     {
         string filePath = $"{s_xml_dir + entity}.xml";

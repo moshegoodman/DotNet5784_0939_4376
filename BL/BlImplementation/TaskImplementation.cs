@@ -222,7 +222,7 @@ internal class TaskImplementation : ITask
         }
         else
         {
-            return (from BO.Task boTask in _dal.Task.ReadAll()
+            return (from BO.Task boTask in ReadAll()
                     where filter(boTask)
                     select new BO.TaskInList
                     {
@@ -486,4 +486,13 @@ internal class TaskImplementation : ITask
     {
         _dal.Task.IncreaseStatus();
     }
+
+    public DateTime? GetFirstScheduledDate()
+    {
+        var minDate = (from doTask in _dal.Task.ReadAll()
+                       select doTask.ScheduledDate).Min();
+
+        return minDate;
+    }
+
 }

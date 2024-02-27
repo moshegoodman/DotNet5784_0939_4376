@@ -35,6 +35,6 @@ public interface ITask
     public void SetStage2(DateTime startDate);//sets the project status to 2
     public void SetStage3();//sets the project status to 3
 
-
+    public DateTime? GetFirstScheduledDate();
 
 }
