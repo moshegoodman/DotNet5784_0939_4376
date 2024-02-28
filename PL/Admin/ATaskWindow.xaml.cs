@@ -101,7 +101,12 @@ public partial class ATaskWindow : Window
     {
         try
         {
+            int? engineerId = Task.Engineer != null ? Task.Engineer.Id : null;
             s_bl.Task.Update(Task);
+            if (engineerId != null)
+            {
+                s_bl.Task.DesignateEngineer(Task.Id,(int)engineerId);
+            }
             Close();
         }
         catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR"); }
