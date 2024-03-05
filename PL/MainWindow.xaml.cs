@@ -1,5 +1,6 @@
 ﻿using BlApi;
 using PL.Admin;
+using PL.Engineer;
 using System;
 using System.Windows;
 
@@ -48,7 +49,7 @@ public partial class MainWindow : Window
 
     private void btnEngineer_Click(object sender, RoutedEventArgs e)
     {
-        new ATaskListWindow().Show();
+        new NameInputDialogWindow().Show();
     }
 
     private void AddDayClick(object sender, RoutedEventArgs e)

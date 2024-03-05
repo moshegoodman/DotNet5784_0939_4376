@@ -1,4 +1,5 @@
 ﻿using BlApi;
+using PL.Engineer;
 using System.Windows;
 
 namespace PL.Admin;
@@ -44,4 +45,11 @@ public partial class managerWindow : Window
     {
         new GanttChartWindow().Show();
     }
+
+    private void btnSchedule_Click(object sender, RoutedEventArgs e)
+    {
+        new NameInputDialogWindow().Show();
+    }
+
+
 }

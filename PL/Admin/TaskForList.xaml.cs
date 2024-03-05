@@ -23,6 +23,12 @@ public partial class ATaskListWindow : Window
     //for the data binding a filtered list
     private void ExperienceFlt(object sender, SelectionChangedEventArgs e)
     {
+        if (ExperienceFilter == BO.EngineerExperience.None)
+        {
+            TaskList = s_bl?.Task.ReadAll()!;
+            return;
+        }
+
         TaskList = (ExperienceFilter == BO.EngineerExperience.None) ?
          s_bl?.Task.ReadAll()! : s_bl?.Task.ReadAll(item => s_bl.Task.Read(item.Id)!.Complexity == ExperienceFilter)!;
     }

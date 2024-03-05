@@ -11,7 +11,7 @@ public class EngineerInTask
     public string Name { get; set; }
     public override string ToString()
     {
-        string a = $"\tTask asigned to engineer:\n\tID:\t{Id}\nName:\t{Name}\n\n";
+        string a = $"Name:\t{Name}\nID:\t{Id}\n";
 
         return a;
     }

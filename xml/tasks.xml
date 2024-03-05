@@ -257,7 +257,7 @@
     <Alias>LandscapingRestoration</Alias>
     <Description>Restore the construction site and landscape.</Description>
     <CreatedAtDate>2023-05-26T19:30:49.7775783+03:00</CreatedAtDate>
-    <Complexity>Beginner</Complexity>
+    <Complexity>AdvancedBeginner</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P26D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
@@ -271,7 +271,7 @@
     <Alias>DocumentationHandover</Alias>
     <Description>Compile project documentation and hand over the bridge.</Description>
     <CreatedAtDate>2023-05-15T19:30:49.784264+03:00</CreatedAtDate>
-    <Complexity>Intermediate</Complexity>
+    <Complexity>AdvancedBeginner</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P11D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
