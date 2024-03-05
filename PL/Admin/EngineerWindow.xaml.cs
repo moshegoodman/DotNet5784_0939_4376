@@ -1,5 +1,7 @@
 ﻿using BlApi;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 
 namespace PL.Admin;
@@ -9,6 +11,17 @@ public partial class EngineerWindow : Window
     static readonly IBl s_bl = Factory.Get();
 
     //engineer object for working with the data
+
+    public IEnumerable<BO.TaskInList> TaskList
+    {
+        get { return (IEnumerable<BO.TaskInList>)GetValue(TaskListProperty); }
+        set { SetValue(TaskListProperty, value); }
+    }
+
+    public static readonly DependencyProperty TaskListProperty =
+        DependencyProperty.Register("TaskList", typeof(IEnumerable<BO.TaskInList>), typeof(EngineerWindow), new PropertyMetadata(null));
+
+
     public BO.Engineer Engineer
     {
         get
@@ -39,7 +52,10 @@ public partial class EngineerWindow : Window
         {
             try
             {
+
                 Engineer = s_bl.Engineer.Read(id)!;
+                //initialize the relevent tasks for the engineer
+                TaskList = s_bl.Task.ReadAll(task => task.Complexity <= Engineer.Level && task.Engineer == null && task.Dependencies.All(d => s_bl.Task.Read(d.Id)!.CompleteDate != null));
             }
             catch (Exception ex)
             {
