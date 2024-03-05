@@ -12,6 +12,7 @@
         <Button Content="Gant Diagram" HorizontalAlignment="Left" Margin="280,350,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="Gantt_Click"/>
         <Button Content="Reset" HorizontalAlignment="Left" Margin="370,350,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="btnReset_Click"/>
         <Button Content="Initialize" HorizontalAlignment="Left" Margin="460,350,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="btnInit_Click"/>
+        <Button Content="Schedule" HorizontalAlignment="Left" Margin="540,350,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="btnSchedule_Click"/>
 
     </Grid>
 </Window>

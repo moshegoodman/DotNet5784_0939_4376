@@ -67,4 +67,9 @@ public partial class EngineerWindow : Window
         }
         catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR"); }
     }
+    private void BtnTask_choose(object sender, RoutedEventArgs e)
+    {
+        new ATaskListWindow().Show();
+    }
+
 }

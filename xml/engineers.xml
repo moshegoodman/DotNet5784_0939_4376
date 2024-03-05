@@ -35,4 +35,11 @@
     <Name>Moses</Name>
     <Level>Beginner</Level>
   </Engineer>
+  <Engineer>
+    <Id>770120939</Id>
+    <Email>moshe@gmail.com</Email>
+    <Cost>300</Cost>
+    <Name>moshe</Name>
+    <Level>Intermediate</Level>
+  </Engineer>
 </ArrayOfEngineer>
