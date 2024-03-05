@@ -24,7 +24,7 @@ public partial class ATaskListWindow : Window
     private void ExperienceFlt(object sender, SelectionChangedEventArgs e)
     {
         TaskList = (ExperienceFilter == BO.EngineerExperience.None) ?
-         s_bl?.Task.ReadAll()! : s_bl?.Task.ReadAll(item => s_bl.Task.Read(item.Id).Complexity == ExperienceFilter)!;
+         s_bl?.Task.ReadAll()! : s_bl?.Task.ReadAll(item => s_bl.Task.Read(item.Id)!.Complexity == ExperienceFilter)!;
     }
 
     private void btnAdd_Click(object sender, RoutedEventArgs e)

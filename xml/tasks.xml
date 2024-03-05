@@ -5,7 +5,7 @@
     <Alias>SiteAssessment</Alias>
     <Description>Evaluate the construction site for the bridge.</Description>
     <CreatedAtDate>2023-03-11T19:30:49.6418016+02:00</CreatedAtDate>
-    <Complexity>Intermediate</Complexity>
+    <Complexity>Beginner</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P19D</RequiredEffortTime>
     <StartDate xsi:nil="true" />

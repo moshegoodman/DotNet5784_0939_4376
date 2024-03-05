@@ -37,4 +37,6 @@ public interface ITask
 
     public DateTime? GetFirstScheduledDate();
 
+    public DateTime? GetProjectStartDate();
+
 }

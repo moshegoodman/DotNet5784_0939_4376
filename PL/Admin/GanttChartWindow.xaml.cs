@@ -29,10 +29,18 @@ public partial class GanttChartWindow : Window
     public static readonly DependencyProperty TaskListProperty =
    DependencyProperty.Register("TaskList", typeof(IEnumerable<BO.Task>), typeof(GanttChartWindow), new PropertyMetadata(null));
 
+    public DateTime? ProjectStartDate
+    {
+        get { return (DateTime?)GetValue(DateTimeProperty); }
+        set { SetValue(DateTimeProperty, value); }
+    }
+    public static readonly DependencyProperty DateTimeProperty =
+   DependencyProperty.Register("ProjectStartDate", typeof(DateTime?), typeof(GanttChartWindow), new PropertyMetadata(null));
     public GanttChartWindow()
     {
         InitializeComponent();
 
+        ProjectStartDate = s_bl.Task.GetProjectStartDate();
         TaskList = from task in s_bl.Task.ReadAll()
                    select s_bl.Task.Read(task.Id);
     }

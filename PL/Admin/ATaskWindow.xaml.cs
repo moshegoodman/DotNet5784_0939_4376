@@ -58,7 +58,7 @@ public partial class ATaskWindow : Window
                 Status = BO.Status.Unscheduled,
                 Dependencies = new List<BO.TaskInList>(),
                 Milestone = null,
-                Complexity = BO.EngineerExperience.None,
+                Complexity = BO.EngineerExperience.Beginner,
                 Deliverables = "",
                 Remarks = "",
                 RequiredEffortTime = null,

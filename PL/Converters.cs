@@ -71,7 +71,7 @@ class ConvertDateTimeToString : IValueConverter
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         if (value is not null)
-            return ((DateTime)value).ToString("dd/MM/yyyy    HH:mm");
+            return ((DateTime)value).ToString("dd/MM/yyyy");
         else
             return "";
     }
@@ -114,10 +114,10 @@ public class ConverteTaskToMargin : IValueConverter
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         BO.Task task = (BO.Task)value;
-        DateTime? firstScheduledDate = s_bl.Task.GetFirstScheduledDate();
+        DateTime? ProjectStartDate = s_bl.Task.GetProjectStartDate();
         int days = 0;
-        if (firstScheduledDate != null && task.ScheduledDate != null)
-            days = ((TimeSpan)(task.ScheduledDate - firstScheduledDate)).Days * 10;
+        if (ProjectStartDate != null && task.ScheduledDate != null)
+            days = ((TimeSpan)(task.ScheduledDate - ProjectStartDate)).Days * 10;
         if (days <= 0)
             days = 0;
         return new Thickness(days, 0, 0, 0);
@@ -131,13 +131,16 @@ public class ConverteTaskToMargin : IValueConverter
 
 public class ConverteTaskToWidth : IValueConverter
 {
+    static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
+
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
+
         BO.Task task = (BO.Task)value;
         int days = 0;
         if (task.ScheduledDate != null)
-            days = ((TimeSpan)(DateTime.Now - task.ScheduledDate)).Days * 10;
+            days = ((TimeSpan)(s_bl.Clock - task.ScheduledDate)).Days * 10;
         if (days <= 0)
             days = 0;
         return $"{days}";

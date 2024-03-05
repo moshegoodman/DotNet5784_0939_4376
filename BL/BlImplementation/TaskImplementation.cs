@@ -1,6 +1,7 @@
 ﻿namespace BlImplementation;
 using BlApi;
 using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
 
 internal class TaskImplementation : ITask
 {
@@ -510,4 +511,8 @@ internal class TaskImplementation : ITask
         return minDate;
     }
 
+    public DateTime? GetProjectStartDate()
+    {
+        return _dal.Task.GetStartDate();
+    }
 }
