@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Media;
@@ -82,7 +83,25 @@ class ConvertDateTimeToString : IValueConverter
     }
 }
 
-class ConvertListToString : IValueConverter
+class ConvertTimeSpanToString : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        if (value is not null)
+            return $"{((TimeSpan)value).Days} Days";
+
+        else
+            return "";
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        TimeSpan? timespan= new((int.Parse((string)value)), 0, 0, 0);
+        return timespan;
+    }
+}
+
+    class ConvertListToString : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
@@ -139,8 +158,9 @@ public class ConverteTaskToWidth : IValueConverter
 
         BO.Task task = (BO.Task)value;
         int days = 0;
+        DateTime? minDate = s_bl.Clock > task.CompleteDate ? task.CompleteDate : task.StartDate;
         if (task.ScheduledDate != null)
-            days = ((TimeSpan)(s_bl.Clock - task.ScheduledDate)).Days * 10;
+            days = ((TimeSpan)(minDate! - task.ScheduledDate)).Days * 10;
         if (days <= 0)
             days = 0;
         return $"{days}";

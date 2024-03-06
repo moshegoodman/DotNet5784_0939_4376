@@ -11,6 +11,7 @@
         <local:ConvertIdToUpdateBtnVisibility x:Key="ConvertIdToUpdateBtnVisibilityKey"/>
         <local:ConvertIdToBool x:Key="ConverIdToBoolKey"/>
         <local:ConvertDateTimeToString x:Key="ConvertDateTimeToStringKey"/>
+        <local:ConvertTimeSpanToString x:Key="ConvertTimeSpanToStringKey"/>
         <local:ConvertListToString x:Key="ConvertListToStringKey"/>
         <local:ConverteTaskToMargin x:Key="ConverteTaskToMarginKey"/>
         <local:ConverteTaskToWidth x:Key="ConverteTaskToWidthKey"/>
