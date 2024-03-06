@@ -23,7 +23,7 @@ public partial class StartDateInputDialogWindow : Window
         }
         catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR"); }
         Close();
-        new ATaskListWindow().Show();
+        new TaskListForSchedule().Show();
     }
 
     private void BtnCancel_Click(object sender, RoutedEventArgs e)
