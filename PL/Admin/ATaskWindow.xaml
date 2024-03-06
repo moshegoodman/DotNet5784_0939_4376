@@ -100,7 +100,7 @@
             <TextBox   Text="{Binding DeadlineDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="15"/>
             <TextBox   Text="{Binding CompleteDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="16"/>
         </Grid>
-        <ComboBox  Visibility="{Binding Task.Engineer, Converter=}" Grid.Column="2" Grid.Row="17" Height="40" Width="300" Visibility="Visible"  ItemsSource="{Binding EngineerList}" SelectedValue="{Binding Task.Engineer, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+        <ComboBox  Grid.Column="2" Grid.Row="17" Height="40" Width="300" Visibility="Visible"  ItemsSource="{Binding EngineerList}" SelectedValue="{Binding Task.Engineer, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
 
         <Label Grid.Column="1" Grid.Row="1" Content="ID:"/>
         <Label Grid.Column="1" Grid.Row="2" Content="Alias:"/>
