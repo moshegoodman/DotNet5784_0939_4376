@@ -25,9 +25,9 @@
             <Border Grid.Column="0" BorderThickness="0.5" BorderBrush="Black">
                 <TextBlock Text="Task List" TextAlignment="Center" TextDecorations="Underline"/>
             </Border>
-            <Border Grid.Column="1" BorderThickness="0.5" BorderBrush="Black">
+            <!--<Border Grid.Column="1" BorderThickness="0.5" BorderBrush="Black">
                 <TextBlock Text="{Binding ProjectStartDate, Converter={StaticResource ConvertDateTimeToStringKey}}" TextAlignment="Center" TextDecorations="Underline" FontSize="9"/>
-            </Border>
+            </Border>-->
             <!-- Dynamic Columns -->
             <ItemsControl Grid.Column="2" ItemsSource="{Binding TaskList}">
                 <ItemsControl.ItemsPanel>
