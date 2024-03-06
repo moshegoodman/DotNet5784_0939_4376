@@ -7,31 +7,64 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
+    <Window.Resources>
+        <!-- Button Style -->
+        <Style x:Key="CustomButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#3f51b5"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="5,0"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}"
+                        BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#5c6bc0"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
+    </Window.Resources>
     <Grid>
-        <!--Engineer list-->
-        <Image Source="/images/bridge.jpg" Width="800"  />
-        <Grid Margin="60,50,600,300" Background="Azure">
+        <!-- Background Image -->
+        <Image Source="/images/bridge.jpg" Stretch="UniformToFill" Opacity="0.8"/>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-            <Label Content="{Binding Clock, Mode=OneWay,Converter={StaticResource ConvertDateTimeToStringKey}}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
-            <Button Content="One Day" Grid.Row="1" Grid.Column="0" Background="DarkGray" Click="AddDayClick"/>
-            <Button Content="One Hour" Grid.Row="1" Grid.Column="1" Background="DarkGray" Click="AddHourClick" />
+        <!-- Main StackPanel -->
+        
+        <StackPanel Background="LightGray" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,550,300">
             
-        </Grid>
-        <Button Content="Admin" HorizontalAlignment="Left" Margin="100,350,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="btnAdmins_Click"/>
-        <Button Content="Engineer" HorizontalAlignment="Left" Margin="190,350,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="btnEngineer_Click"/>
-        <!--Initializes data (temporary)-->
-        <Button Content="InitDB" HorizontalAlignment="Left" Margin="600,350,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="btnInit_Click"/>
+            <!-- Clock Label -->
+            <Label Content="{Binding Clock, Mode=OneWay, Converter={StaticResource ConvertDateTimeToStringKey}}" 
+                   Width="150" Height="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                   Margin="0,0,0,0" FontSize="24" Foreground="Black"/>
 
+            <!-- Buttons StackPanel -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
+                <!-- One Day Button -->
+                <Button Content="One Day" Width="75" Height="35" Style="{StaticResource CustomButtonStyle}" Click="AddDayClick"/>
+                <!-- One Hour Button -->
+                <Button Content="One Hour" Width="75" Height="35" Style="{StaticResource CustomButtonStyle}" Click="AddHourClick" />
+            </StackPanel>
+        </StackPanel>
 
+        <!-- Footer StackPanel -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20">
+            <!-- Admin Button -->
+            <Button Content="Admin" Width="100" Height="40" Style="{StaticResource CustomButtonStyle}" Click="btnAdmins_Click"/>
+            <!-- Engineer Button -->
+            <Button Content="Engineer" Width="100" Height="40" Style="{StaticResource CustomButtonStyle}" Click="btnEngineer_Click"/>
+            <!-- InitDB Button -->
+            <Button Content="InitDB" Width="100" Height="40" Style="{StaticResource CustomButtonStyle}" Click="btnInit_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
