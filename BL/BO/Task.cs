@@ -45,7 +45,7 @@ public class Task
 
     public override string ToString()
     {
-        string a = $"ID:\t{Id}\nAlias:\t{Alias}\nDescription:\t{Description}\nCreatedAtDate:\t{CreatedAtDate}\n";
+        string a = $"ID:\t{Id}\nAlias:\t{Alias}\nDescription:\t{Description}\nCreatedAtDate:\t{CreatedAtDate}\nScheduledDate:\t{ScheduledDate}\n";
         a = a + $"Status\t{Status}\n";
         //foreach (var item in Dependencies)
         //{

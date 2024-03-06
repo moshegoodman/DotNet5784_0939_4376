@@ -84,10 +84,10 @@ internal class TaskImplementation : ITask
     //saves the task to the database
     public int Create(BO.Task boTask)
     {
-        if (_dal.Task.GetStartDate() != null)
+        if (_dal.Task.GetStatus() >= 2)
             throw new BO.BlScheduled("A new task cannot be added after the schedule initialization has started");
-        if (boTask.Id < 0)
-            throw new BO.InCorrectData("Task ID can't be negative");
+        if (boTask.Id <= 0)
+            throw new BO.InCorrectData("Task ID must be a positive integer");
         if (boTask.Alias == "")
             throw new BO.InCorrectData("Task should have an alias");
         DO.Task doTask = new DO.Task
@@ -248,11 +248,11 @@ internal class TaskImplementation : ITask
             boTask.Remarks,
             false,
             boTask.RequiredEffortTime,
-            null,
-            null,
-            null,
-            null,
-            null
+            boTask.StartDate,
+            boTask.ScheduledDate,
+            boTask.DeadlineDate,
+            boTask.CompleteDate,
+            boTask.Engineer != null ? boTask.Engineer!.Id : null
         );
 
         try
