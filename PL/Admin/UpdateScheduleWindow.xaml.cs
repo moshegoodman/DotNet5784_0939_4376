@@ -1,5 +1,6 @@
 ﻿using BlApi;
 using System;
+using System.Linq;
 using System.Windows;
 
 namespace PL.Admin
@@ -44,6 +45,8 @@ namespace PL.Admin
             try
             {
                 s_bl.Task.Update(task.Id, ScheduledDate);
+                if (s_bl.Task.ReadAll().All(task => task.Status != BO.Status.Unscheduled))
+                    s_bl.Task.SetStage3();
                 Close();
 
             }
