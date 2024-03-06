@@ -30,19 +30,19 @@ public partial class ATaskListWindow : Window
         }
 
         TaskList = (ExperienceFilter == BO.EngineerExperience.None) ?
-         s_bl?.Task.ReadAll()! : s_bl?.Task.ReadAll(item => s_bl.Task.Read(item.Id)!.Complexity == ExperienceFilter)!;
+         s_bl?.Task.ReadAll()! : s_bl?.Task.ReadAll(item => item.Complexity == ExperienceFilter)!;
     }
 
     private void btnAdd_Click(object sender, RoutedEventArgs e)
     {
         new ATaskWindow().ShowDialog();
-        TaskList = s_bl?.Task.ReadAll()!;
+        //TaskList = s_bl?.Task.ReadAll()!;
     }
 
     public ATaskListWindow()
     {
         InitializeComponent();
-        TaskList = s_bl?.Task.ReadAll()!;
+        //TaskList = s_bl?.Task.ReadAll()!;
 
     }
     public ATaskListWindow(IEnumerable<BO.TaskInList> dependents)
@@ -59,7 +59,7 @@ public partial class ATaskListWindow : Window
         if (task_in_list != null)
         {
             new ATaskWindow(task_in_list.Id).ShowDialog();
-            TaskList = s_bl.Task.ReadAll()!;
+            //TaskList = s_bl.Task.ReadAll()!;
         }
     }
 }

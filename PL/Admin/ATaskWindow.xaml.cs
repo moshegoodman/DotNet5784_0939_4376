@@ -75,7 +75,6 @@ public partial class ATaskWindow : Window
             try
             {
                 Task = s_bl.Task.Read(id)!;
-                foreach (BO.TaskInList something in Task.Dependencies) { Console.WriteLine(something); }
             }
             catch (Exception ex)
             {
@@ -99,13 +98,18 @@ public partial class ATaskWindow : Window
     }
     private void Btn_Update_Click(object sender, RoutedEventArgs e)
     {
+        //if (s_bl.Task.GetProjectStatus() == 2)
+        //{
+
+        //    return;
+        //}
         try
         {
             int? engineerId = Task.Engineer != null ? Task.Engineer.Id : null;
             s_bl.Task.Update(Task);
             if (engineerId != null)
             {
-                s_bl.Task.DesignateEngineer(Task.Id,(int)engineerId);
+                s_bl.Task.DesignateEngineer(Task.Id, (int)engineerId);
             }
             Close();
         }

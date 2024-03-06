@@ -7,4 +7,6 @@ public interface ITask : ICrud<Task>
     public void SetStartDate(DateTime startDate);
     public int? GetStatus();
     public void IncreaseStatus();
+    public void NullifyStatus();
+
 }

@@ -100,6 +100,10 @@ internal class TaskImplementation : ITask
     {
         XMLTools.IncreaseStatus(s_data_config_xml);
     }
+    public void NullifyStatus()
+    {
+        XMLTools.NullifyStatus(s_data_config_xml);
+    }
 
     public void Reset()
     {

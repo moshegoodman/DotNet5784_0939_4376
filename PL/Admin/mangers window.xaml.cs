@@ -1,5 +1,4 @@
 ﻿using BlApi;
-using PL.Engineer;
 using System.Windows;
 
 namespace PL.Admin;
@@ -48,7 +47,27 @@ public partial class managerWindow : Window
 
     private void btnSchedule_Click(object sender, RoutedEventArgs e)
     {
-        new NameInputDialogWindow().Show();
+        if (s_bl.Task.GetProjectStatus() == 3)
+        {
+            MessageBox.Show("Cannot Schedule tasks", "ERROR");
+            return;
+        }
+        if (s_bl.Task.GetProjectStatus() == 1)
+        {
+            MessageBoxResult setStage2 = MessageBox.Show("are you sure that you completes entering all the tasks and that your ready to move on to stage2?", "Schedule", MessageBoxButton.YesNo);
+            if (setStage2 == MessageBoxResult.Yes)
+            {
+                new StartDateInputDialogWindow().Show();
+            }
+        }
+        else
+        {
+            new TaskListForSchedule().Show();
+        }
+    }
+    private void btnStage_Click(object sender, RoutedEventArgs e)
+    {
+        // new startDateDialogInputWindow().Show();
     }
 
 
