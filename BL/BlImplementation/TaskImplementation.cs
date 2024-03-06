@@ -1,7 +1,6 @@
 ﻿namespace BlImplementation;
 using BlApi;
 using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
 
 internal class TaskImplementation : ITask
 {
@@ -208,32 +207,8 @@ internal class TaskImplementation : ITask
     }
 
     //returns all task in a short fasion
-    public IEnumerable<BO.TaskInList> ReadAll(Func<BO.Task, bool>? filter = null)//Make shure that we can use this type for the filter
+    public IEnumerable<BO.TaskInList> ReadAll(Func<BO.Task, bool>? filter = null)
     {
-        //if (filter == null)
-        //{
-        //    return (from DO.Task doTask in _dal.Task.ReadAll()
-        //            select new BO.TaskInList
-        //            {
-        //                Id = doTask.Id,
-        //                Description = doTask.Description,
-        //                Alias = doTask.Alias,
-        //                Status = GetStatus(doTask.Id)
-        //            });
-        //}
-        //else
-        //{
-        //    return (from BO.Task boTask in _dal.Task.ReadAll()
-        //            where filter(boTask)
-        //            select new BO.TaskInList
-        //            {
-        //                Id = boTask.Id,
-        //                Description = boTask.Description,
-        //                Alias = boTask.Alias,
-        //                Status = GetStatus(boTask.Id)
-        //            });
-
-        //}
         IEnumerable<BO.TaskInList> boTasksInList = (from DO.Task doTask in _dal.Task.ReadAll()
                                                     select new BO.TaskInList
                                                     {
@@ -295,6 +270,9 @@ internal class TaskImplementation : ITask
     {
         if (_dal.Task.GetStartDate() == null)
             throw new BO.BlUnScheduled("The task schedule date cannot be initialized before the project start date is received");
+        if (_dal.Task.GetStartDate() > _scheduledDate)
+            throw new BO.BlUpdateImpossible($"Start date id {_dal.Task.GetStartDate()}.\nCan't  set schedule to be Before project start date ");
+
         BO.Task? boTask = null;
         boTask = Read(taskId);
         if (!(boTask.Dependencies.All(d => d.Status != BO.Status.Unscheduled)))
@@ -384,7 +362,7 @@ internal class TaskImplementation : ITask
     public void SetStage2(DateTime startDate)
     {
         int? projectStatus = _dal.Task.GetStatus();
-        if (projectStatus > 2) throw new BO.BlScheduled($"the project is already up to stage {projectStatus}.");
+        if (projectStatus >= 2) throw new BO.BlScheduled($"the project is already up to stage {projectStatus}.");
         if (!projectStatus.HasValue) throw new BO.BlUnScheduled($"the project is not ready for stage 2.");
         if (projectStatus == 1)
         {

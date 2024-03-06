@@ -10,8 +10,15 @@ internal class Bl : IBl
     public IEngineer Engineer => new EngineerImplementation();
     public ITask Task => new TaskImplementation(this);
 
-    public void InitializeDB() => DalTest.Initialization.Do();
-    public void ResetDB() => DalTest.Initialization.ResetData();
+    public void InitializeDB()
+    {
+        DalTest.Initialization.Do();
+    }
+    public void ResetDB()
+    {
+        DalTest.Initialization.ResetData();
+
+    }
 
     #region clock
 

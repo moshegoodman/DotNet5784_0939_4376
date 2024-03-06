@@ -241,14 +241,16 @@ public static class Initialization
 
     public static void ResetData()
     {
+
         s_dal = Factory.Get; //stage 4
 
         if (s_dal != null)
         {
+            s_dal.Task.NullifyStatus();
             s_dal.Task.Reset();
             s_dal.Dependency.Reset();
             s_dal.Engineer.Reset();
-
+            s_dal.Task.IncreaseStatus();
         }
     }
 
@@ -259,6 +261,7 @@ public static class Initialization
     {
         //s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!"); //stage 2
         s_dal = Factory.Get; //stage 4
+
         ResetData();
         CreateTask();
         CreateEngineer();

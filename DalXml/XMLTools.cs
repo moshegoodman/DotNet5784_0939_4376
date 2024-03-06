@@ -70,6 +70,14 @@ static class XMLTools
         root.Element("Status")?.SetValue((statusValue).ToString()!);
         XMLTools.SaveListToXMLElement(root, data_config_xml);
     }
+    public static void NullifyStatus(string data_config_xml)
+    {
+        XElement root = XMLTools.LoadListFromXMLElement(data_config_xml);
+        //int? statusValue = root.ToIntNullable("Status");
+        int? statusValue = null;
+        root.Element("Status")?.SetValue((statusValue).ToString()!);
+        XMLTools.SaveListToXMLElement(root, data_config_xml);
+    }
 
     public static DateTime? GetStartDate(string data_config_xml)
     {

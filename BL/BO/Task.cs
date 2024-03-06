@@ -45,12 +45,12 @@ public class Task
 
     public override string ToString()
     {
-        string a = $"Name:\nID:\t{Id}\nAlias:\t{Alias}\nDescription:\t{Description}\nCreatedAtDate:\t{CreatedAtDate}\n";
-        a = a + $"Status\t{Status}\nDependencies:\n";
-        foreach (var item in Dependencies)
-        {
-            a = a + item;
-        }
+        string a = $"ID:\t{Id}\nAlias:\t{Alias}\nDescription:\t{Description}\nCreatedAtDate:\t{CreatedAtDate}\n";
+        a = a + $"Status\t{Status}\n";
+        //foreach (var item in Dependencies)
+        //{
+        //    a = a + item;
+        //}
         return a;
     }
 }

@@ -93,6 +93,11 @@ internal class TaskImplementation : ITask
         else
             DataSource.Config.Status += 1;
     }
+    public void NullifyStatus()
+    {
+        DataSource.Config.Status = null;
+    }
+
 
     public void Reset()
     {
