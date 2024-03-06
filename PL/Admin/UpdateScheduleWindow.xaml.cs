@@ -32,9 +32,10 @@ namespace PL.Admin
 
         public UpdateScheduleWindow(int id)
         {
-            task = s_bl.Task.Read(id)!;
 
             InitializeComponent();
+            task = s_bl.Task.Read(id)!;
+
 
         }
 
@@ -43,9 +44,10 @@ namespace PL.Admin
             try
             {
                 s_bl.Task.Update(task.Id, ScheduledDate);
+                Close();
+
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR"); }
-            Close();
         }
 
         private void Btn_Cancel_Click(object sender, RoutedEventArgs e)
