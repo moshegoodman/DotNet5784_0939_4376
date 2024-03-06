@@ -42,7 +42,7 @@ class ConvertIdToAddBtnVisibility : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        return (int)value == 0 ? "Visible" : "Hidden";
+        return (int)value == 0 ? Visibility.Visible : Visibility.Hidden;
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -58,7 +58,7 @@ class ConvertIdToUpdateBtnVisibility : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        return (int)value == 0 ? "Hidden" : "Visible";
+        return (int)value == 0 ? Visibility.Hidden : Visibility.Visible;
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -158,9 +158,9 @@ public class ConverteTaskToWidth : IValueConverter
 
         BO.Task task = (BO.Task)value;
         int days = 0;
-        DateTime? minDate = s_bl.Clock > task.CompleteDate ? task.CompleteDate : task.StartDate;
+        DateTime? minDate = s_bl.Clock > task.ForecastDate ? task.ForecastDate : s_bl.Clock;
         if (task.ScheduledDate != null)
-            days = ((TimeSpan)(minDate! - task.ScheduledDate)).Days * 10;
+            days = ((TimeSpan)(minDate - task.ScheduledDate)).Days * 10;
         if (days <= 0)
             days = 0;
         return $"{days}";
@@ -196,7 +196,20 @@ class ConvertNullToVisibility : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        return value == null ? "Hidden" : "Visible";
+        return value == null ? Visibility.Hidden : Visibility.Visible;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+class ConvertNotNullToVisibility : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return value != null ? Visibility.Hidden : Visibility.Visible;
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
