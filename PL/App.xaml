@@ -15,6 +15,6 @@
         <local:ConverteTaskToMargin x:Key="ConverteTaskToMarginKey"/>
         <local:ConverteTaskToWidth x:Key="ConverteTaskToWidthKey"/>
         <local:ConverteStatusToColor x:Key="ConverteStatusToColorKey"/>
-        
+        <local:ConvertNullToVisibility x:Key="ConvertNullToVisibilityKey"/>
     </Application.Resources>
 </Application>

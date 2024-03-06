@@ -1,0 +1,31 @@
+﻿<Window x:Class="PL.Engineer.EEngineerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.Engineer"
+        mc:Ignorable="d"
+        Title="EEngineerWindow" Height="450" Width="800"
+        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
+
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="30*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Text="{Binding Engineer.Task, Mode=OneWay}" Grid.Column="1" Grid.Row="0" Width="auto" Height="auto"/>
+        <ComboBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Height="80" Width="auto"
+       ItemsSource="{Binding TaskList}"
+       SelectedValue="{Binding Engineer.Task, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
+       SelectionChanged ="Select_Task"/>
+        <Label Grid.Column="0" Grid.Row="0" Content="Your present task:"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Grid.Column="0" Grid.Row="1" Content="Task selection:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Content="Completed" Grid.Row="0" Grid.Column="2" Visibility="{Binding Engineer.Task, Converter={StaticResource ConvertNullToVisibilityKey}}" Click="Completed_Button_Click"/>
+    </Grid>
+</Window>

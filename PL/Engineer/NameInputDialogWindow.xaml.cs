@@ -12,7 +12,7 @@ public partial class NameInputDialogWindow : Window
 {
     static readonly IBl s_bl = Factory.Get();
     BO.Engineer CurrentEngineer;
-    public int UserId { get; set; }
+    public int? UserId { get; set; }
 
     public NameInputDialogWindow()
     {
@@ -23,9 +23,9 @@ public partial class NameInputDialogWindow : Window
     {
         try
         {
-            CurrentEngineer = s_bl.Engineer.Read(UserId);
+            CurrentEngineer = s_bl.Engineer.Read((int)UserId!)!;
             Close();
-            new EngineerWindow(UserId).ShowDialog();
+            new EEngineerWindow((int)UserId).ShowDialog();
 
 
         }

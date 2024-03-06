@@ -20,7 +20,7 @@ public class TaskInList
     public override string ToString()
 
     {
-        string a = $"\tID:\t{Id}\n\tAlias:\t{Alias}\n\tDescription:\t{Description}\n\tStatus:\t{Status}\n";
+        string a = $"ID:\t{Id}\nAlias:\t{Alias}\nDescription:\t{Description}\nStatus:\t{Status}\n";
 
         return a;
     }
