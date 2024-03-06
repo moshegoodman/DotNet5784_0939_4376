@@ -1,7 +1,7 @@
 ﻿using BlApi;
-using PL.Admin;
 using System;
 using System.Windows;
+using System.Windows.Input;
 
 namespace PL.Engineer;
 
@@ -35,6 +35,22 @@ public partial class NameInputDialogWindow : Window
     private void BtnCancel_Click(object sender, RoutedEventArgs e)
     {
         Close();
+    }
+
+    private void TextBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+    {
+        if (e.Key == Key.Enter)
+        {
+            try
+            {
+                CurrentEngineer = s_bl.Engineer.Read((int)UserId!)!;
+                Close();
+                new EEngineerWindow((int)UserId).ShowDialog();
+
+
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR"); }
+        }
     }
 }
 

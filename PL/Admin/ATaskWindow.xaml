@@ -93,14 +93,14 @@
 
             <TextBox   Text="{Binding Deliverables, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="9"/>
             <TextBox   Text="{Binding Remarks, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="10"/>
-            <TextBox   Text="{Binding RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true, Converter={StaticResource ConvertTimeSpanToStringKey}}" Grid.Column="2" Grid.Row="11"/>
-            <TextBox   Text="{Binding StartDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="12"/>
+            <TextBox   Text="{Binding RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true, Converter={StaticResource ConvertTimeSpanToStringKey}}" Grid.Column="2" Grid.Row="11" IsEnabled="False"/>
+            <Label Background="Beige"  Content="{Binding StartDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="12"/>
             <Label Background="Beige"  Content="{Binding ScheduledDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="13"/>
             <Label Background="Beige"  Content="{Binding ForecastDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="14"/>
             <TextBox   Text="{Binding DeadlineDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="15"/>
-            <TextBox   Text="{Binding CompleteDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="16"/>
+            <Label Background="Beige"  Content="{Binding CompleteDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="16"/>
         </Grid>
-        <ComboBox  Visibility="{Binding Task.Engineer, Converter={StaticResource ConvertNotNullToVisibilityKey}, Mode=OneTime}" Grid.Column="2" Grid.Row="17" Height="40" Width="300" ItemsSource="{Binding EngineerList}" SelectedValue="{Binding Task.Engineer, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+        <!--<ComboBox  Visibility="{Binding Task.Engineer, Converter={StaticResource ConvertNotNullToVisibilityKey}, Mode=OneTime}" Grid.Column="2" Grid.Row="17" Height="40" Width="300" ItemsSource="{Binding EngineerList}" SelectedValue="{Binding Task.Engineer, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>-->
         <Label Background="Beige" Margin="0,0,0,10" Content="{Binding Task.Engineer}" Visibility="{Binding Task.Engineer, Converter={StaticResource ConvertNullToVisibilityKey}}" Grid.Column="2" Grid.Row="17" Height="40" Width="300" />
 
         <Label Grid.Column="1" Grid.Row="1" Content="ID:"/>
