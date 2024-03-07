@@ -10,7 +10,7 @@
 
     <Grid>
         <Label Content="Please enter your ID:"/>
-        <TextBox Text="{Binding UserId }" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center" Height="30" Width="200"/>
+        <TextBox    Text="{Binding UserId  ,UpdateSourceTrigger=PropertyChanged}" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center" Height="30" Width="200" KeyDown="TextBox_KeyDown"/>
         <StackPanel  Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,20">
             <Button Content="OK" Click="BtnOk_Click"  />
             <Button Content="Cancel" Click="BtnCancel_Click" Margin="20,0,0,0"/>

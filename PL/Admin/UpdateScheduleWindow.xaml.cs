@@ -57,5 +57,23 @@ namespace PL.Admin
         {
             Close();
         }
+
+        private void TextBox_KeyDown(object sender, DragEventArgs e)
+        {
+
+        }
+
+        private void TextBox_KeyDown_1(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            try
+            {
+                s_bl.Task.Update(task.Id, ScheduledDate);
+                if (s_bl.Task.ReadAll().All(task => task.Status != BO.Status.Unscheduled))
+                    s_bl.Task.SetStage3();
+                Close();
+
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR"); }
+        }
     }
 }
