@@ -6,13 +6,80 @@
         xmlns:local="clr-namespace:PL.Admin"
         mc:Ignorable="d"
         Title="managerWindow" Height="450" Width="800">
-    <Grid>
-        <Button Content="Task List" HorizontalAlignment="Left" Margin="100,350,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="btn_tasks_Click"/>
-        <Button Content="Engineerlist" HorizontalAlignment="Left" Margin="190,350,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="Btn_engineer_Click"/>
-        <Button Content="Gant Diagram" HorizontalAlignment="Left" Margin="280,350,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="Gantt_Click"/>
-        <Button Content="Reset" HorizontalAlignment="Left" Margin="370,350,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="btnReset_Click"/>
-        <Button Content="Initialize" HorizontalAlignment="Left" Margin="460,350,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="btnInit_Click"/>
-        <Button Content="Schedule" HorizontalAlignment="Left" Margin="540,350,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="btnSchedule_Click"/>
+    <Window.Resources>
+        <Style x:Key="ModernButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#3f51b5"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="12"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#5c6bc0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
 
+    <Grid Background="LightGreen">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Content Grid -->
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- First Line of Buttons -->
+            <StackPanel Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+                <!-- Task List Button -->
+                <Button Content="Task List" Style="{StaticResource ModernButtonStyle}" Click="btn_tasks_Click"/>
+                <!-- Engineer List Button -->
+                <Button Content="Engineer List" Style="{StaticResource ModernButtonStyle}" Click="Btn_engineer_Click"/>
+                <!-- Gantt Diagram Button -->
+                <Button Content="Gantt Diagram" Style="{StaticResource ModernButtonStyle}" Click="Gantt_Click"/>
+            </StackPanel>
+
+            <!-- Second Line of Buttons -->
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+                <!-- Reset Button -->
+                <Button Content="Reset" Style="{StaticResource ModernButtonStyle}" Click="btnReset_Click"/>
+                <!-- Initialize Button -->
+                <Button Content="Initialize" Style="{StaticResource ModernButtonStyle}" Click="btnInit_Click"/>
+                <!-- Schedule Button -->
+                <Button Content="Schedule" Style="{StaticResource ModernButtonStyle}" Click="btnSchedule_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Footer -->
+        <Border Grid.Row="1" Background="#FF1D1D1D">
+            <TextBlock Text="© 2024 PL.Admin. All rights reserved." HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+        </Border>
     </Grid>
+
+
 </Window>

@@ -9,7 +9,7 @@
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
     <Grid>
         <Label Content="Please enter the the projects start date:"/>
-        <TextBox Text="{Binding StartDate }" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center" Height="30" Width="200"/>
+        <DatePicker SelectedDate="{Binding StartDate, Mode=OneWayToSource}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="30" Width="150"/>
         <StackPanel  Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,20">
             <Button Content="OK" Click="BtnOk_Click"  />
             <Button Content="Cancel" Click="BtnCancel_Click" Margin="20,0,0,0"/>

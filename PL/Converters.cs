@@ -96,12 +96,12 @@ class ConvertTimeSpanToString : IValueConverter
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        TimeSpan? timespan= new((int.Parse((string)value)), 0, 0, 0);
+        TimeSpan? timespan = new((int.Parse((string)value)), 0, 0, 0);
         return timespan;
     }
 }
 
-    class ConvertListToString : IValueConverter
+class ConvertListToString : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
@@ -136,7 +136,7 @@ public class ConverteTaskToMargin : IValueConverter
         DateTime? ProjectStartDate = s_bl.Task.GetProjectStartDate();
         int days = 0;
         if (ProjectStartDate != null && task.ScheduledDate != null)
-            days = ((TimeSpan)(task.ScheduledDate - ProjectStartDate)).Days * 10;
+            days = ((TimeSpan)(task.ScheduledDate - ProjectStartDate)).Days * 2;
         if (days <= 0)
             days = 0;
         return new Thickness(days, 0, 0, 0);
@@ -158,9 +158,8 @@ public class ConverteTaskToWidth : IValueConverter
 
         BO.Task task = (BO.Task)value;
         int days = 0;
-        DateTime? minDate = s_bl.Clock > task.ForecastDate ? task.ForecastDate : s_bl.Clock;
-        if (task.ScheduledDate != null)
-            days = ((TimeSpan)(minDate - task.ScheduledDate)).Days * 10;
+        if (task.ScheduledDate != null && task.ForecastDate != null)
+            days = ((TimeSpan)(task.ForecastDate - task.ScheduledDate)).Days * 2;
         if (days <= 0)
             days = 0;
         return $"{days}";
@@ -173,13 +172,15 @@ public class ConverteTaskToWidth : IValueConverter
 }
 public class ConverteStatusToColor : IValueConverter
 {
+    static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
+
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         BO.Task task = (BO.Task)value;
 
-        if (task.Status == BO.Status.InJeopardy)
+        if (task.ForecastDate != null && task.ForecastDate < s_bl.Clock && (task.Status != BO.Status.Done || task.CompleteDate > task.ForecastDate))
             return Brushes.Red;
-        else if(task.Status == BO.Status.Done)
+        else if (task.Status == BO.Status.Done && task.CompleteDate <= task.ForecastDate)
             return Brushes.LightGreen;
         else
             return Brushes.LightBlue;
@@ -217,3 +218,35 @@ class ConvertNotNullToVisibility : IValueConverter
         throw new NotImplementedException();
     }
 }
+
+class ConvertTaskInEngineerToVisibility : IValueConverter
+{
+    static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
+
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return value == null || s_bl.Task.Read(((BO.TaskInEngineer)value).Id)!.CompleteDate != null ? Visibility.Visible : Visibility.Hidden;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+
+class ConvertProjectStatusToVisibility : IValueConverter
+{
+    static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
+
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return s_bl.Task.GetProjectStartDate == null ? Visibility.Visible : Visibility.Hidden;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+

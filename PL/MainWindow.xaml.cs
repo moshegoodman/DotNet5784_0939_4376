@@ -2,7 +2,9 @@
 using PL.Admin;
 using PL.Engineer;
 using System;
+using System.DirectoryServices;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace PL;
 
@@ -40,7 +42,7 @@ public partial class MainWindow : Window
     //initializes data 
     private void btnInit_Click(object sender, RoutedEventArgs e)
     {
-        MessageBoxResult toInit = MessageBox.Show("Are you sure you want to initialize all data?", "Initialization", MessageBoxButton.YesNo);
+        MessageBoxResult toInit = MessageBox.Show("Are you sure you want to initialize all data?", "Initialization", MessageBoxButton.YesNo,MessageBoxImage.Question);
         if (toInit == MessageBoxResult.Yes)
         {
             s_bl.InitializeDB();

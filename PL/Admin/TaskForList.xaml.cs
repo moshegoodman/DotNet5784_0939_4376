@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -36,13 +38,13 @@ public partial class ATaskListWindow : Window
     private void btnAdd_Click(object sender, RoutedEventArgs e)
     {
         new ATaskWindow().ShowDialog();
-        //TaskList = s_bl?.Task.ReadAll()!;
+        TaskList = s_bl?.Task.ReadAll()!;
     }
 
     public ATaskListWindow()
     {
         InitializeComponent();
-        //TaskList = s_bl?.Task.ReadAll()!;
+        TaskList = s_bl?.Task.ReadAll()!;
 
     }
     public ATaskListWindow(IEnumerable<BO.TaskInList> dependents)
@@ -53,13 +55,36 @@ public partial class ATaskListWindow : Window
 
 
     }
-    private void ListView_MouseDoubleClick(object sender, RoutedEventArgs e)
+    private void Update_Click(object sender, RoutedEventArgs e)
     {
-        BO.TaskInList? task_in_list = (sender as ListView)?.SelectedItem as BO.TaskInList;
+        BO.TaskInList? task_in_list = (sender as Button)?.DataContext as BO.TaskInList;
         if (task_in_list != null)
         {
             new ATaskWindow(task_in_list.Id).ShowDialog();
-            //TaskList = s_bl.Task.ReadAll()!;
+            TaskList = s_bl.Task.ReadAll()!;
         }
+    }
+
+    private void Delete_Click(object sender, RoutedEventArgs e)
+    {
+        BO.TaskInList? task_in_list = (sender as Button)?.DataContext as BO.TaskInList;
+        if (task_in_list != null)
+        {
+            MessageBoxResult toDelete = MessageBox.Show($"Are you sure you want to delete the current task with id: {task_in_list.Id} for all?", "Delete", MessageBoxButton.YesNoCancel,MessageBoxImage.Question);
+            if (toDelete == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    s_bl.Task.Delete(task_in_list.Id);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            TaskList = s_bl.Task.ReadAll()!;
+
+        }
+
     }
 }

@@ -54,7 +54,7 @@ namespace PL.Engineer
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "ERROR");
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -68,7 +68,18 @@ namespace PL.Engineer
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "ERROR");
+                    MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                try
+                {
+
+                    Engineer = s_bl.Engineer.Read(Engineer.Id)!;
+                    //initialize the relevent tasks for the engineer
+                    TaskList = s_bl.Task.ReadAll(task => task.Complexity <= Engineer.Level && task.Engineer == null && task.Dependencies.All(d => s_bl.Task.Read(d.Id)!.CompleteDate != null));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -86,7 +97,18 @@ namespace PL.Engineer
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "ERROR");
+                    MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                try
+                {
+
+                    Engineer = s_bl!.Engineer.Read(Engineer.Id)!;
+                    //initialize the relevent tasks for the engineer
+                    TaskList = s_bl.Task.ReadAll(task => task.Complexity <= Engineer.Level && task.Engineer == null && task.Dependencies.All(d => s_bl.Task.Read(d.Id)!.CompleteDate != null));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }

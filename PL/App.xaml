@@ -18,6 +18,8 @@
         <local:ConverteStatusToColor x:Key="ConverteStatusToColorKey"/>
         <local:ConvertNullToVisibility x:Key="ConvertNullToVisibilityKey"/>
         <local:ConvertNotNullToVisibility x:Key="ConvertNotNullToVisibilityKey"/>
+        <local:ConvertTaskInEngineerToVisibility x:Key="ConvertTaskInEngineerToVisibilityKey"/>
+        <local:ConvertProjectStatusToVisibility x:Key="ConvertProjectStatusToVisibilityKey"/>
 
     </Application.Resources>
 </Application>

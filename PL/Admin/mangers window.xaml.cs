@@ -25,7 +25,7 @@ public partial class managerWindow : Window
     }
     private void btnInit_Click(object sender, RoutedEventArgs e)
     {
-        MessageBoxResult toInit = MessageBox.Show("Are you sure you want to initialize all data?", "Initialization", MessageBoxButton.YesNo);
+        MessageBoxResult toInit = MessageBox.Show("Are you sure you want to initialize all data?", "Initialization", MessageBoxButton.YesNo,MessageBoxImage.Question);
         if (toInit == MessageBoxResult.Yes)
         {
             s_bl.InitializeDB();
@@ -33,7 +33,7 @@ public partial class managerWindow : Window
     }
     private void btnReset_Click(object sender, RoutedEventArgs e)
     {
-        MessageBoxResult toInit = MessageBox.Show("Are you sure you want to Reset all data?", "Reset", MessageBoxButton.YesNo);
+        MessageBoxResult toInit = MessageBox.Show("Are you sure you want to Reset all data?", "Reset", MessageBoxButton.YesNo,MessageBoxImage.Question);
         if (toInit == MessageBoxResult.Yes)
         {
             s_bl.ResetDB();
@@ -49,12 +49,12 @@ public partial class managerWindow : Window
     {
         if (s_bl.Task.GetProjectStatus() == 3)
         {
-            MessageBox.Show("Cannot Schedule tasks", "ERROR");
+            MessageBox.Show("Cannot Schedule tasks", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             return;
         }
         if (s_bl.Task.GetProjectStatus() == 1)
         {
-            MessageBoxResult setStage2 = MessageBox.Show("are you sure that you completes entering all the tasks and that your ready to move on to stage2?", "Schedule", MessageBoxButton.YesNo);
+            MessageBoxResult setStage2 = MessageBox.Show("are you sure that you completes entering all the tasks and that your ready to move on to stage2?", "Schedule", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (setStage2 == MessageBoxResult.Yes)
             {
                 new StartDateInputDialogWindow().Show();

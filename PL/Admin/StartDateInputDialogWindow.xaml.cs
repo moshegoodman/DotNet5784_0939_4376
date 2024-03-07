@@ -21,7 +21,10 @@ public partial class StartDateInputDialogWindow : Window
         {
             s_bl.Task.SetStage2(StartDate);
         }
-        catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR"); }
+        catch (Exception ex) 
+        {
+            MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
         Close();
         new TaskListForSchedule().Show();
     }

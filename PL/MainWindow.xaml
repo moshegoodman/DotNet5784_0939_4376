@@ -12,7 +12,7 @@
         <Style x:Key="CustomButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#3f51b5"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="Padding" Value="10"/>
             <Setter Property="Margin" Value="5,0"/>
             <Setter Property="FontSize" Value="16"/>
@@ -21,7 +21,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}"
-                        BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="8">
+                        BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="12">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>

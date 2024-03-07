@@ -59,7 +59,7 @@ public partial class EngineerWindow : Window
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "ERROR");
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
@@ -72,7 +72,7 @@ public partial class EngineerWindow : Window
             s_bl.Engineer.Create(Engineer);
             Close();
         }
-        catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR"); }
+        catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR",MessageBoxButton.OK,MessageBoxImage.Error); }
     }
     private void Btn_Update_Click(object sender, RoutedEventArgs e)
     {
@@ -81,7 +81,7 @@ public partial class EngineerWindow : Window
             s_bl.Engineer.Update(Engineer);
             Close();
         }
-        catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR"); }
+        catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR",MessageBoxButton.OK,MessageBoxImage.Error); }
     }
     private void BtnTask_choose(object sender, RoutedEventArgs e)
     {

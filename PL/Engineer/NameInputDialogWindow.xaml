@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Engineer"
         mc:Ignorable="d"
-        Title="NameInputDialogWindow" Height="200" Width="400"
+        Title="NameInputDialogWindow" Height="150" Width="250"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
 
     <Grid>
