@@ -15,13 +15,15 @@
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="Padding" Value="10"/>
             <Setter Property="Margin" Value="5,0"/>
-            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontSize" Value="18"/>
             <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="35"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}"
-                        BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="12">
+                        BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="10">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -34,37 +36,145 @@
             </Style.Triggers>
         </Style>
 
+        <!--TabItem Style-->
+        <Style TargetType="TabControl">
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="TabItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="TabItem">
+                                    <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gray" Margin="1,0" CornerRadius="6">
+                                        <ContentPresenter x:Name="ContentSite"
+                                                  VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"
+                                                  ContentSource="Header"
+                                                  Margin="5,0"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="Border" Property="Background" Value="LightGray"/>
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="False">
+                                            <Setter TargetName="Border" Property="Background" Value="Transparent"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="HeaderTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}"
+                                       Height="30"
+                                       Width="90"
+                                       FontStyle="Italic"
+                                       FontWeight="Bold"
+                                       FontSize="16"
+                                       FontFamily="Segoe UI"
+                                       HorizontalAlignment="Center"
+                                       TextAlignment="Center"/>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid>
-        <!-- Background Image -->
-        <Image Source="/images/bridge.jpg" Stretch="UniformToFill" Opacity="0.8"/>
+        <!--Home-->
+        <TabControl>
+            <TabItem Header="Home">
+                <Grid Background="#FFE5E5E5">
+                    <!-- Background Image -->
+                    <Image Source="/images/bridge.jpg" Stretch="UniformToFill" Opacity="0.8"/>
 
-        <!-- Main StackPanel -->
-        
-        <StackPanel Background="LightGray" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,550,300">
-            
-            <!-- Clock Label -->
-            <Label Content="{Binding Clock, Mode=OneWay, Converter={StaticResource ConvertDateTimeToStringKey}}" 
-                   Width="150" Height="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                   Margin="0,0,0,0" FontSize="24" Foreground="Black"/>
+                    <!-- Main StackPanel -->
 
-            <!-- Buttons StackPanel -->
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
-                <!-- One Day Button -->
-                <Button Content="One Day" Width="75" Height="35" Style="{StaticResource CustomButtonStyle}" Click="AddDayClick"/>
-                <!-- One Hour Button -->
-                <Button Content="One Hour" Width="75" Height="35" Style="{StaticResource CustomButtonStyle}" Click="AddHourClick" />
-            </StackPanel>
-        </StackPanel>
+                    <StackPanel Background="LightGray" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,500,240">
 
-        <!-- Footer StackPanel -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20">
-            <!-- Admin Button -->
-            <Button Content="Admin" Width="100" Height="40" Style="{StaticResource CustomButtonStyle}" Click="btnAdmins_Click"/>
-            <!-- Engineer Button -->
-            <Button Content="Engineer" Width="100" Height="40" Style="{StaticResource CustomButtonStyle}" Click="btnEngineer_Click"/>
-            <!-- InitDB Button -->
-            <Button Content="InitDB" Width="100" Height="40" Style="{StaticResource CustomButtonStyle}" Click="btnInit_Click"/>
-        </StackPanel>
+                        <!-- Clock Label -->
+                        <Label Content="{Binding Clock, Mode=OneWay, Converter={StaticResource ConvertDateTimeToStringKey}}" 
+               Width="150" Height="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+               Margin="0,0,0,0" FontSize="24" Foreground="Black"/>
+
+                        <!-- Buttons StackPanel -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
+                            <!-- One Day Button -->
+                            <Button Content="One Day"  FontSize="16" Width="75" Height="35" Style="{StaticResource CustomButtonStyle}" Click="AddDayClick"/>
+                            <!-- One Hour Button -->
+                            <Button Content="One Hour"  FontSize="16" Width="75" Height="35" Style="{StaticResource CustomButtonStyle}" Click="AddHourClick" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- Footer StackPanel -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20">
+                        <!-- Admin Button -->
+                        <Button Content="Admin" Width="100" Height="40" Style="{StaticResource CustomButtonStyle}" Click="btnAdmins_Click"/>
+                        <!-- Engineer Button -->
+                        <Button Content="Engineer" Width="100" Height="40" Style="{StaticResource CustomButtonStyle}" Click="btnEngineer_Click"/>
+                        <!-- InitDB Button -->
+                        <Button Content="InitDB" Width="100" Height="40" Style="{StaticResource CustomButtonStyle}" Click="btnInit_Click"/>
+                    </StackPanel>
+
+                </Grid>
+            </TabItem>
+            <!--Admin-->
+
+            <TabItem Header="Admin">
+                <Grid Background="LightGreen">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Content Grid -->
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- First Line of Buttons -->
+                        <StackPanel Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+                            <!-- Task List Button -->
+                            <Button Content="Task List" Style="{StaticResource CustomButtonStyle}" Click="btn_tasks_Click"/>
+                            <!-- Engineer List Button -->
+                            <Button Content="Engineer List" Style="{StaticResource CustomButtonStyle}" Click="Btn_engineer_Click"/>
+                            <!-- Gantt Diagram Button -->
+                            <Button Content="Gantt Diagram" Style="{StaticResource CustomButtonStyle}" Click="Gantt_Click"/>
+                        </StackPanel>
+
+                        <!-- Second Line of Buttons -->
+                        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+                            <!-- Reset Button -->
+                            <Button Content="Reset" Style="{StaticResource CustomButtonStyle}" Click="btnReset_Click"/>
+                            <!-- Initialize Button -->
+                            <Button Content="Initialize" Style="{StaticResource CustomButtonStyle}" Click="btnInit_Click"/>
+                            <!-- Schedule Button -->
+                            <Button Content="Schedule" Style="{StaticResource CustomButtonStyle}" Click="btnSchedule_Click"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Footer -->
+                    <Border Grid.Row="1" Background="#FF1D1D1D">
+                        <TextBlock Text="© 2024 All rights reserved to Moshe Goodman and David Forst" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    </Border>
+                </Grid>
+
+
+            </TabItem>
+            <!--Engineer-->
+            <TabItem Header="Engineer" PasswordBox.PasswordChanged="btnEngineer_Click">
+                <Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

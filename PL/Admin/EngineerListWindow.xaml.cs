@@ -48,9 +48,9 @@ public partial class EngineerListWindow : Window
     }
 
     //opens update window with the engineers details
-    private void ListView_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    private void Update_Click(object sender, RoutedEventArgs e)
     {
-        BO.Engineer? engineer = (sender as ListView)?.SelectedItem as BO.Engineer;
+        BO.Engineer? engineer = (sender as Button)?.DataContext as BO.Engineer;
         if (engineer != null)
         {
             new EngineerWindow(engineer.Id).ShowDialog();

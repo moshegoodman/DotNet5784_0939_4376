@@ -25,19 +25,71 @@
             <Label Content="Engineer List" HorizontalAlignment="Left" Margin="98,5,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0"/>
             <ComboBox SelectedValue="{Binding Path=ExperirnceFilter, Mode=TwoWay}" ItemsSource="{Binding Source={StaticResource EngineerExperienceKey}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" SelectionChanged="ExperienceFlt"/>
         </Grid>
-        <ListView Margin="5" Grid.Row="1" ItemsSource="{Binding Path=EngineerList}" MouseDoubleClick="ListView_MouseDoubleClick" >
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                    
+        <ListView Margin="5" Grid.Row="1" ItemsSource="{Binding Path=EngineerList}">
+        <ListView.View>
+            <GridView>
+                <GridViewColumn Header="Id">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Id}"/>
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+                <GridViewColumn Header="Name">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+                <GridViewColumn Header="Email">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Email}"/>
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+                <GridViewColumn Header="Level">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Level}"/>
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+                    <GridViewColumn Header="Cost">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Cost, StringFormat={}{0:F2}}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Update" Click="Update_Click"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
-            </ListView.View>
-        </ListView>
-        <Button Content="Add" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="100" Click="btnAdd_Click"/>
-
-
-
+        </ListView.View>
+        <ListView.ItemContainerStyle>
+            <Style TargetType="ListViewItem">
+                <Setter Property="IsHitTestVisible" Value="True"/>
+                <Setter Property="Focusable" Value="False"/>
+                <Setter Property="IsEnabled" Value="True"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="Foreground" Value="#333333"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Margin" Value="5"/>
+                </Style>
+        </ListView.ItemContainerStyle>
+    </ListView>
+    <Button Content="Add" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="100" Click="btnAdd_Click"/>
 
     </Grid>
+
+
+   
+    
 
 </Window>

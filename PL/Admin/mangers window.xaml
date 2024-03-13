@@ -77,7 +77,7 @@
 
         <!-- Footer -->
         <Border Grid.Row="1" Background="#FF1D1D1D">
-            <TextBlock Text="© 2024 PL.Admin. All rights reserved." HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+            <TextBlock Text="© 2024 All rights reserved to Moshe Goodman and David Forst" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
         </Border>
     </Grid>
 
