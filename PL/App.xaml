@@ -20,6 +20,9 @@
         <local:ConvertNotNullToVisibility x:Key="ConvertNotNullToVisibilityKey"/>
         <local:ConvertTaskInEngineerToVisibility x:Key="ConvertTaskInEngineerToVisibilityKey"/>
         <local:ConvertProjectStatusToVisibility x:Key="ConvertProjectStatusToVisibilityKey"/>
-
+        <local:ConvertStatus1ToVisible x:Key="ConvertStatus1ToVisibleKey"/>
+        <local:ConvertStatus1ToHidden x:Key="ConvertStatus1ToHiddenKey"/>
+        <local:ConvertStatus1ToEnabled x:Key="ConvertStatus1ToEnabledKey"/>
+        
     </Application.Resources>
 </Application>

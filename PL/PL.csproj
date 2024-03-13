@@ -13,6 +13,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Admin\ATaskWindow.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="images\bridge.jpg" />
     <None Remove="imgs\bridge.jpg" />
   </ItemGroup>

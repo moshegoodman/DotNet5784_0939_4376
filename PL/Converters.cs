@@ -1,13 +1,10 @@
-﻿using PL.Admin;
+﻿using BlApi;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Numerics;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Media;
 
 namespace PL;
@@ -23,8 +20,49 @@ class ConvertIdToContent : IValueConverter
         throw new NotImplementedException();
     }
 }
+class ConvertStatus1ToVisible : IValueConverter
+{
+    static readonly IBl s_bl = Factory.Get();
 
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return s_bl.Task.GetProjectStatus() == 1 ? Visibility.Visible : Visibility.Hidden;
+    }
 
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+class ConvertStatus1ToEnabled : IValueConverter
+{
+    static readonly IBl s_bl = Factory.Get();
+
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return s_bl.Task.GetProjectStatus() == 1 ? true : false;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+class ConvertStatus1ToHidden : IValueConverter
+{
+    static readonly IBl s_bl = Factory.Get();
+
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return s_bl.Task.GetProjectStatus() == 1 ? Visibility.Hidden : Visibility.Visible;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
 class ConvertIdToBool : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

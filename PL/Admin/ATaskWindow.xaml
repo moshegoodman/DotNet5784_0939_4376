@@ -84,7 +84,8 @@
             <TextBox   Text="{Binding  Description, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="3" IsEnabled="{Binding Id , Mode=OneTime, Converter={StaticResource ConverIdToBoolKey}}"/>
             <TextBox   Text="{Binding  CreatedAtDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="4" IsEnabled="{Binding Id , Mode=OneTime, Converter={StaticResource ConverIdToBoolKey}}"/>
             <Label   Content="{Binding  Status, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="5" HorizontalContentAlignment="Center" />
-            <Button  Grid.Column="2" Grid.Row="6" Width="300" Content="Click to see dependencies" Click="Button_Click"/>
+            <Button Grid.Column="2" Grid.Row="6" Width="300" Content="Click to add dependencies" Click="Button_Add_Dependency_Click" Visibility="{Binding  Mode=OneTime,Converter={StaticResource ConvertStatus1ToVisibleKey}}"/>
+            <Button  Grid.Column="2" Grid.Row="6" Width="300" Content="Click to see dependencies" Click="Button_See_Dependency_Click" Visibility="{Binding  Mode=OneTime,Converter={StaticResource ConvertStatus1ToHiddenKey}}"/>
 
 
             <TextBox   Text="{Binding Milestone, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="7"/>
