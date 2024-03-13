@@ -39,4 +39,7 @@ public interface ITask
 
     public DateTime? GetProjectStartDate();
 
+    public void AutoSchedule(DateTime firstDate);
+
+
 }

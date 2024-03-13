@@ -26,7 +26,6 @@ public partial class StartDateInputDialogWindow : Window
             MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         Close();
-        new TaskListForSchedule().Show();
     }
 
     private void BtnCancel_Click(object sender, RoutedEventArgs e)

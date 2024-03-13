@@ -87,12 +87,16 @@
         <TabControl>
             <TabItem Header="Home">
                 <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
                     <!-- Background Image -->
-                    <Image Source="/images/bridge.jpg" Stretch="UniformToFill" Opacity="0.8"/>
+                    <Image Grid.Row="0" Source="/images/bridge.jpg" Stretch="UniformToFill" Opacity="0.8"/>
 
                     <!-- Main StackPanel -->
 
-                    <StackPanel Background="LightGray" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,500,240">
+                    <StackPanel Grid.Row="0" Background="LightGray" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,500,240">
 
                         <!-- Clock Label -->
                         <Label Content="{Binding Clock, Mode=OneWay, Converter={StaticResource ConvertDateTimeToStringKey}}" 
@@ -106,18 +110,11 @@
                             <!-- One Hour Button -->
                             <Button Content="One Hour"  FontSize="16" Width="75" Height="35" Style="{StaticResource CustomButtonStyle}" Click="AddHourClick" />
                         </StackPanel>
+                        <Button Content="Start Simulation" FontSize="16" Height="25" Style="{StaticResource CustomButtonStyle}" Click="StartSimulationClick"/>
                     </StackPanel>
-
-                    <!-- Footer StackPanel -->
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20">
-                        <!-- Admin Button -->
-                        <Button Content="Admin" Width="100" Height="40" Style="{StaticResource CustomButtonStyle}" Click="btnAdmins_Click"/>
-                        <!-- Engineer Button -->
-                        <Button Content="Engineer" Width="100" Height="40" Style="{StaticResource CustomButtonStyle}" Click="btnEngineer_Click"/>
-                        <!-- InitDB Button -->
-                        <Button Content="InitDB" Width="100" Height="40" Style="{StaticResource CustomButtonStyle}" Click="btnInit_Click"/>
-                    </StackPanel>
-
+                    <Border Grid.Row="1" Background="#FF1D1D1D">
+                        <TextBlock Text="© 2024 All rights reserved to Moshe Goodman and David Forst" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    </Border>
                 </Grid>
             </TabItem>
             <!--Admin-->
@@ -159,6 +156,8 @@
                             <Button Content="Initialize" Style="{StaticResource CustomButtonStyle}" Click="btnInit_Click"/>
                             <!-- Schedule Button -->
                             <Button Content="Schedule" Style="{StaticResource CustomButtonStyle}" Click="btnSchedule_Click"/>
+                            <!-- Auto Schedule -->
+                            <Button Content="AutoSchedule" Style="{StaticResource CustomButtonStyle}" Click="btnAutoSchedule_Click"/>
                         </StackPanel>
                     </Grid>
 
@@ -171,8 +170,14 @@
 
             </TabItem>
             <!--Engineer-->
-            <TabItem Header="Engineer" PasswordBox.PasswordChanged="btnEngineer_Click">
-                <Grid>
+            <TabItem Header="Engineer">
+                <Grid  Height="150" Width="250" Background="LightBlue">
+                    <Label Content="Please enter your ID:"/>
+                    <TextBox    Text="{Binding UserId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center" Height="30" Width="200" KeyDown="TextBox_KeyDown"/>
+                    <StackPanel  Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10">
+                        <Button Content="OK" Click="BtnOk_Click" Width="50" Style="{StaticResource CustomButtonStyle}"/>
+                        <Button Content="Clear" Click="BtnCancel_Click" Width="90" Margin="20,0,0,0" Style="{StaticResource CustomButtonStyle}"/>
+                    </StackPanel>
                 </Grid>
             </TabItem>
         </TabControl>

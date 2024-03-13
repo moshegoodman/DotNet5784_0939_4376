@@ -70,5 +70,8 @@ public partial class managerWindow : Window
         // new startDateDialogInputWindow().Show();
     }
 
-
+    private void btnAutoSchedule_Click(object sender, RoutedEventArgs e)
+    {
+        s_bl.Task.AutoSchedule(s_bl.Clock);
+    }
 }
