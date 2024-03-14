@@ -8,9 +8,7 @@ using DO;
 //creates a bunch of tasks engineers dependencies randomly
 public static class Initialization
 {
-    // Constants for setting range limits and salary boundaries
-    private const int MIN_ID = 200000000;
-    private const int MAX_ID = 900000000;
+    // Constants for setting salary boundaries
     private const int LOW_SAL = 50;
     private const int HIGH_SAL = 300;
 
@@ -28,13 +26,12 @@ public static class Initialization
         {
             "Edward","Boris","Moses","David","Joseph"
         };
+        int i = 1111;
         foreach (var _name in engineerNames)
         {
-            int _id;
-            do
-                _id = s_rand.Next(MIN_ID, MAX_ID);
-            while (s_dal!.Engineer.Read(_id) is not null);
-
+            int _id = i;
+            i += 1111;
+            
             string _email = $"{_name.ToLower()}@eng.com";
 
             double _cost = s_rand.NextDouble() * (HIGH_SAL - LOW_SAL) + LOW_SAL;

@@ -29,13 +29,12 @@ public partial class ATaskListWindow : Window
     private void btnAdd_Click(object sender, RoutedEventArgs e)
     {
         new ATaskWindow().ShowDialog();
-        //TaskList = s_bl?.Task.ReadAll()!;
     }
 
     public ATaskListWindow()
     {
         InitializeComponent();
-        //TaskList = s_bl?.Task.ReadAll()!;
+        TaskList = s_bl?.Task.ReadAll()!;
 
     }
     public ATaskListWindow(IEnumerable<BO.TaskInList> dependents)
