@@ -1,6 +1,5 @@
 ﻿namespace BlImplementation;
 using BlApi;
-using DO;
 using System.Collections.Generic;
 
 internal class TaskImplementation : ITask
@@ -79,6 +78,7 @@ internal class TaskImplementation : ITask
     //returns the latest forcast date of the depencies (from the given list)
     private DateTime? MaxForcastDate(List<BO.TaskInList> tasks)
     {
+        if(tasks.Count == 0) return _bl.Clock;
         return tasks.Max(t => Read(t.Id).ForecastDate);
     }
 
@@ -522,5 +522,23 @@ internal class TaskImplementation : ITask
     public DateTime? GetProjectStartDate()
     {
         return _dal.Task.GetStartDate();
+    }
+
+    public void AutoSchedule(DateTime firstDate)
+    {
+        if (GetProjectStatus() != 2)
+            throw new BO.BlUpdateImpossible("You cannot edit the schedule at this time!");
+        if (GetProjectStartDate() == null)
+            throw new BO.BlUpdateImpossible("You must initialize the project start date!");
+        else if (GetProjectStartDate() > firstDate)
+            throw new BO.BlUpdateImpossible("You must choose a date after the project start date!");
+        else
+        {
+            foreach (var task in ReadAll())
+            {
+                Update(task.Id, (DateTime)MaxForcastDate(Read(task.Id)!.Dependencies)!);
+            }
+            SetStage3();
+        }
     }
 }

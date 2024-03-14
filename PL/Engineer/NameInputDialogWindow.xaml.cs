@@ -14,10 +14,10 @@ public partial class NameInputDialogWindow : Window
     BO.Engineer CurrentEngineer;
     public int? UserId { get; set; }
 
-    public NameInputDialogWindow()
-    {
-        InitializeComponent();
-    }
+    //public NameInputDialogWindow()
+    //{
+    //    InitializeComponent();
+    //}
 
     private void BtnOk_Click(object sender, RoutedEventArgs e)
     {

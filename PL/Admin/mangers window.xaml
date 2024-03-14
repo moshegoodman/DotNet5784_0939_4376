@@ -72,6 +72,8 @@
                 <Button Content="Initialize" Style="{StaticResource ModernButtonStyle}" Click="btnInit_Click"/>
                 <!-- Schedule Button -->
                 <Button Content="Schedule" Style="{StaticResource ModernButtonStyle}" Click="btnSchedule_Click"/>
+                <!-- Auto Schedule -->
+                <Button Content="AutoSchedule" Style="{StaticResource ModernButtonStyle}" Click="btnAutoSchedule_Click"/>
             </StackPanel>
         </Grid>
 
