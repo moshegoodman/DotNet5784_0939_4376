@@ -9,73 +9,13 @@
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
 
     <!--External Grid-->
+    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20*"/>
             <RowDefinition Height="30*"/>
             <RowDefinition Height="500*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="180"/>
-                <ColumnDefinition Width="62"/>
-                <ColumnDefinition Width="1"/>
-                <ColumnDefinition Width="58"/>
-                <ColumnDefinition Width="1"/>
-                <ColumnDefinition Width="62"/>
-                <ColumnDefinition Width="1"/>
-                <ColumnDefinition Width="60"/>
-                <ColumnDefinition Width="1"/>
-                <ColumnDefinition Width="62"/>
-                <ColumnDefinition Width="1"/>
-                <ColumnDefinition Width="60"/>
-                <ColumnDefinition Width="1"/>
-                <ColumnDefinition Width="62"/>
-                <ColumnDefinition Width="1"/>
-                <ColumnDefinition Width="62"/>
-                <ColumnDefinition Width="1"/>
-                <ColumnDefinition Width="60"/>
-                <ColumnDefinition Width="1"/>
-                <ColumnDefinition Width="62"/>
-                <ColumnDefinition Width="1"/>
-                <ColumnDefinition Width="60"/>
-                <ColumnDefinition Width="1"/>
-                <ColumnDefinition Width="62"/>
-                <ColumnDefinition Width="1"/>
-            </Grid.ColumnDefinitions>
-            <!-- Statics Columns -->
-            <Border Grid.Column="0" BorderThickness="0.5" BorderBrush="Black">
-                <TextBlock Text="Task List" TextAlignment="Center" TextDecorations="Underline"/>
-            </Border>
-           
-            <!-- Dynamic Columns -->
-            <TextBlock Grid.Column="1" Text="January" FontSize="10" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Column="3" Text="February" FontSize="10" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Column="5" Text="March" FontSize="10" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Column="7" Text="April" FontSize="10" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Column="9" Text="May" FontSize="10" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Column="11" Text="June" FontSize="10" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Column="13" Text="July" FontSize="10" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Column="15" Text="August" FontSize="10" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Column="17" Text="September" FontSize="10" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Column="19" Text="October" FontSize="10" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Column="21" Text="November" FontSize="10" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Column="23" Text="December" FontSize="10" HorizontalAlignment="Center"/>
-
-
-            <Border Grid.Column="2" BorderThickness="0.5,0,0,0.5" BorderBrush="Black"/>
-            <Border Grid.Column="4" BorderThickness="0.5,0.5,0,0.5" BorderBrush="Black"/>
-            <Border Grid.Column="6" BorderThickness="0.5,0.5,0,0.5" BorderBrush="Black"/>
-            <Border Grid.Column="8" BorderThickness="0.5,0.5,0,0.5" BorderBrush="Black"/>
-            <Border Grid.Column="10" BorderThickness="0.5,0.5,0,0.5" BorderBrush="Black"/>
-            <Border Grid.Column="12" BorderThickness="0.5,0.5,0,0.5" BorderBrush="Black"/>
-            <Border Grid.Column="14" BorderThickness="0.5,0.5,0,0.5" BorderBrush="Black"/>
-            <Border Grid.Column="16" BorderThickness="0.5,0.5,0,0.5" BorderBrush="Black"/>
-            <Border Grid.Column="18" BorderThickness="0.5,0.5,0,0.5" BorderBrush="Black"/>
-            <Border Grid.Column="20" BorderThickness="0.5,0.5,0,0.5" BorderBrush="Black"/>
-            <Border Grid.Column="22" BorderThickness="0.5,0.5,0,0.5" BorderBrush="Black"/>
-            <Border Grid.Column="24" BorderThickness="0.5,0.5,0,0.5" BorderBrush="Black"/>
-        </Grid>
+        
 
 
         <!-- Replaced ListView with ListBox -->
@@ -99,7 +39,14 @@
                                 <TextBlock Text="{Binding Dependencies, Converter={StaticResource ConvertListToStringKey},StringFormat='Dependencies: {0}'}" TextWrapping="Wrap" FontSize="10"/>
                             </StackPanel>
                         </Border>
-                        <ProgressBar Background ="{Binding Converter={StaticResource ConverteStatusToColorKey}}" Grid.Column="1" Minimum="0" Maximum="100" Width="{Binding Converter={StaticResource ConverteTaskToWidthKey}}" Height="35" Margin="{Binding Converter={StaticResource ConverteTaskToMarginKey}}"/>
+                        <ProgressBar Background ="{Binding Converter={StaticResource ConverteStatusToColorKey}}"
+                                     Grid.Column="1" Minimum="0" Maximum="100"
+                                     Width="{Binding Converter={StaticResource ConverteTaskToWidthKey}}" Height="45"
+                                     Margin="{Binding Converter={StaticResource ConverteTaskToMarginKey}}">
+                        </ProgressBar>
+                        <TextBlock  Grid.Column="1" Text="{Binding Converter={StaticResource ConverteTaskToDatesKey}}" FontSize="8"
+           Width="{Binding Converter={StaticResource ConverteTaskToWidthKey}}" Height="45"
+           Margin="{Binding Converter={StaticResource ConverteTaskToMarginKey}}"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

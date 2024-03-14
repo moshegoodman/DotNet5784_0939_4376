@@ -25,5 +25,7 @@
         <local:ConvertStatus1ToEnabled x:Key="ConvertStatus1ToEnabledKey"/>
         <local:GeneralFilter x:Key="GeneralFilterKey"/>
         
+        <local:ConverteTaskToDates x:Key="ConverteTaskToDatesKey"/>
+
     </Application.Resources>
 </Application>
