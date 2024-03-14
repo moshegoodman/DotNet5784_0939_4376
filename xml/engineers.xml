@@ -1,64 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfEngineer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Engineer>
-    <Id>798729881</Id>
     <Id>2222</Id>
     <Email>boris@eng.com</Email>
-    <Cost>283.57331356828286</Cost>
-    <Cost>230.69540045890378</Cost>
+    <Cost>135.7536598243009</Cost>
     <Name>Boris</Name>
-    <Level>Intermediate</Level>
-    <Level>AdvancedBeginner</Level>
-  </Engineer>
-  <Engineer>
-    <Id>2</Id>
-    <Email>@.</Email>
-    <Cost>400</Cost>
-    <Name>d</Name>
-    <Level>Expert</Level>
-  </Engineer>
-  <Engineer>
-    <Id>585032632</Id>
-    <Id>4444</Id>
-    <Email>david@eng.com</Email>
-    <Cost>268.06929601913515</Cost>
-    <Cost>233.7028945358043</Cost>
-    <Name>David</Name>
-    <Level>Intermediate</Level>
-  </Engineer>
-  <Engineer>
-    <Id>279610457</Id>
-    <Id>1111</Id>
-    <Email>edward@eng.com</Email>
-    <Cost>268.4102915716877</Cost>
-    <Cost>293.27340599008505</Cost>
-    <Name>Edward</Name>
-    <Level>Intermediate</Level>
-    <Level>Advanced</Level>
-  </Engineer>
-  <Engineer>
-    <Id>464114885</Id>
-    <Id>5555</Id>
-    <Email>joseph@eng.com</Email>
-    <Cost>279.49032948175045</Cost>
-    <Cost>85.73198439438323</Cost>
-    <Name>Joseph</Name>
     <Level>Beginner</Level>
   </Engineer>
   <Engineer>
-    <Id>1</Id>
-    <Email>@.</Email>
-    <Cost>500</Cost>
-    <Name>m</Name>
-    <Level>Intermediate</Level>
+    <Id>4444</Id>
+    <Email>david@eng.com</Email>
+    <Cost>149.59810456712108</Cost>
+    <Name>David</Name>
     <Level>Advanced</Level>
   </Engineer>
   <Engineer>
-    <Id>532499848</Id>
+    <Id>1111</Id>
+    <Email>edward@eng.com</Email>
+    <Cost>148.0355416054565</Cost>
+    <Name>Edward</Name>
+    <Level>Beginner</Level>
+  </Engineer>
+  <Engineer>
+    <Id>5555</Id>
+    <Email>joseph@eng.com</Email>
+    <Cost>174.4149991365399</Cost>
+    <Name>Joseph</Name>
+    <Level>Intermediate</Level>
+  </Engineer>
+  <Engineer>
     <Id>3333</Id>
     <Email>moses@eng.com</Email>
-    <Cost>162.91421192451105</Cost>
-    <Cost>250.92850272077757</Cost>
+    <Cost>196.9371896479037</Cost>
     <Name>Moses</Name>
     <Level>AdvancedBeginner</Level>
   </Engineer>
