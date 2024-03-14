@@ -156,7 +156,7 @@ public static class Initialization
             DateTime _createdAtDate = DateTime.Now.AddDays(-s_rand.Next(365));
             TimeSpan _requiredEffortTime = TimeSpan.FromDays(s_rand.Next(23, 30));
 
-            DO.EngineerExperience _complexity = (DO.EngineerExperience)s_rand.Next(4);
+            DO.EngineerExperience _complexity = (DO.EngineerExperience)s_rand.Next(5);
 
 
             Task newTask = new(i, _alias, _discription, _createdAtDate, _complexity);

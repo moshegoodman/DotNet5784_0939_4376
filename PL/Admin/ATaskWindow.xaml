@@ -32,22 +32,22 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="100*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="60*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="100*"/>
 
         </Grid.RowDefinitions>
@@ -60,22 +60,22 @@
         <Grid DataContext="{Binding Task}" Grid.Column="2" Grid.Row="0" Grid.RowSpan="18">
             <Grid.RowDefinitions>
                 <RowDefinition Height="100*"/>
-                <RowDefinition Height="60*"/>
-                <RowDefinition Height="60*"/>
-                <RowDefinition Height="60*"/>
-                <RowDefinition Height="60*"/>
-                <RowDefinition Height="60*"/>
-                <RowDefinition Height="60*"/>
-                <RowDefinition Height="60*"/>
-                <RowDefinition Height="60*"/>
-                <RowDefinition Height="60*"/>
-                <RowDefinition Height="60*"/>
-                <RowDefinition Height="60*"/>
-                <RowDefinition Height="60*"/>
-                <RowDefinition Height="60*"/>
-                <RowDefinition Height="60*"/>
-                <RowDefinition Height="60*"/>
-                <RowDefinition Height="60*"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="60"/>
                 <RowDefinition Height="100*"/>
 
             </Grid.RowDefinitions>
@@ -88,21 +88,18 @@
             <Button  Grid.Column="2" Grid.Row="6" Width="300" Content="Click to see dependencies" Click="Button_See_Dependency_Click" Visibility="{Binding  Mode=OneTime,Converter={StaticResource ConvertStatus1ToHiddenKey}}"/>
 
 
-            <TextBox   Text="{Binding Milestone, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="7"/>
 
-            <ComboBox SelectedValue="{Binding Complexity, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" ItemsSource="{Binding Source={StaticResource EngineerExperienceToUpdateKey}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2"  Grid.Row="8" Height="20" Width="300"/>
+            <ComboBox SelectedValue="{Binding Complexity, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" ItemsSource="{Binding Source={StaticResource EngineerExperienceToUpdateKey}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2"  Grid.Row="7" Height="20" Width="300"/>
 
-            <TextBox   Text="{Binding Deliverables, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="9"/>
-            <TextBox   Text="{Binding Remarks, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="10"/>
-            <TextBox   Text="{Binding RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true, Converter={StaticResource ConvertTimeSpanToStringKey}}" Grid.Column="2" Grid.Row="11" IsEnabled="{Binding Id , Mode=OneTime, Converter={StaticResource ConvertStatus1ToEnabledKey}}"/>
-            <Label Background="Beige"  Content="{Binding StartDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="12"/>
-            <Label Background="Beige"  Content="{Binding ScheduledDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="13"/>
-            <Label Background="Beige"  Content="{Binding ForecastDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="14"/>
-            <TextBox   Text="{Binding DeadlineDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="15"/>
-            <Label Background="Beige"  Content="{Binding CompleteDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="16"/>
+            <TextBox   Text="{Binding Deliverables, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="8"/>
+            <TextBox   Text="{Binding Remarks, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="9"/>
+            <TextBox   Text="{Binding RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true, Converter={StaticResource ConvertTimeSpanToStringKey}}" Grid.Column="2" Grid.Row="10" IsEnabled="{Binding Id , Mode=OneTime, Converter={StaticResource ConvertStatus1ToEnabledKey}}"/>
+            <TextBox Background="Beige"  Text="{Binding StartDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="11"/>
+            <TextBox Background="Beige"  Text="{Binding ScheduledDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="12"/>
+            <TextBox Background="Beige"  Text="{Binding ForecastDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="13"/>
+            <TextBox Background="Beige"  Text="{Binding CompleteDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="14"/>
         </Grid>
-        <!--<ComboBox  Visibility="{Binding Task.Engineer, Converter={StaticResource ConvertNotNullToVisibilityKey}, Mode=OneTime}" Grid.Column="2" Grid.Row="17" Height="40" Width="300" ItemsSource="{Binding EngineerList}" SelectedValue="{Binding Task.Engineer, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>-->
-        <Label Background="Beige" Margin="0,0,0,10" Content="{Binding Task.Engineer}" Visibility="{Binding Task.Engineer, Converter={StaticResource ConvertNullToVisibilityKey}}" Grid.Column="2" Grid.Row="17" Height="40" Width="300" />
+        <Label Background="Beige"  Content="{Binding Task.Engineer}" Visibility="{Binding Task.Engineer, Converter={StaticResource ConvertNullToVisibilityKey}}" Grid.Column="2" Grid.Row="16" Height="60" Width="300" />
 
         <Label Grid.Column="1" Grid.Row="1" Content="ID:"/>
         <Label Grid.Column="1" Grid.Row="2" Content="Alias:"/>
@@ -110,17 +107,15 @@
         <Label Grid.Column="1" Grid.Row="4" Content="CreatedAtDate:"/>
         <Label Grid.Column="1" Grid.Row="5" Content="Status:"/>
         <Label Grid.Column="1" Grid.Row="6" Content="Dependencies:"/>
-        <Label Grid.Column="1" Grid.Row="7" Content="MileStone:"/>
-        <Label Grid.Column="1" Grid.Row="8" Content="Complexity:"/>
-        <Label Grid.Column="1" Grid.Row="9" Content="Deliverables:"/>
-        <Label Grid.Column="1" Grid.Row="10" Content="Remarks:"/>
-        <Label Grid.Column="1" Grid.Row="11" Content="Required Effort Time:"/>
-        <Label Grid.Column="1" Grid.Row="12" Content="Start Date:"/>
-        <Label Grid.Column="1" Grid.Row="13" Content="Scheduled Date:"/>
-        <Label Grid.Column="1" Grid.Row="14" Content="Forecast Date:"/>
-        <Label Grid.Column="1" Grid.Row="15" Content="Deadline Date:"/>
-        <Label Grid.Column="1" Grid.Row="16" Content="Complete Date:"/>
-        <Label Grid.Column="1" Grid.Row="17" Content="Engineer:"/>
+        <Label Grid.Column="1" Grid.Row="7" Content="Complexity:"/>
+        <Label Grid.Column="1" Grid.Row="8" Content="Deliverables:"/>
+        <Label Grid.Column="1" Grid.Row="9" Content="Remarks:"/>
+        <Label Grid.Column="1" Grid.Row="10" Content="Required Effort Time:"/>
+        <Label Grid.Column="1" Grid.Row="11" Content="Start Date:"/>
+        <Label Grid.Column="1" Grid.Row="12" Content="Scheduled Date:"/>
+        <Label Grid.Column="1" Grid.Row="13" Content="Forecast Date:"/>
+        <Label Grid.Column="1" Grid.Row="14" Content="Complete Date:"/>
+        <Label Grid.Column="1" Grid.Row="16" Content="Engineer:"/>
         <Button DataContext="{Binding Task}"  Content="Add"  Grid.Column="1" Grid.Row="18" Height="20" Width="50" HorizontalAlignment="Left" Click="Btn_Add_Click" Visibility="{Binding Id, Mode=OneTime,Converter={StaticResource ConvertIdToAddBtnVisibilityKey}}"/>
         <Button DataContext="{Binding Task}" Content="Update"  Grid.Column="1" Grid.Row="18" Height="20" Width="50" HorizontalAlignment="Left" Click="Btn_Update_Click" Visibility="{Binding Id, Mode=OneTime,Converter={StaticResource ConvertIdToUpdateBtnVisibilityKey}}"/>
     </Grid>

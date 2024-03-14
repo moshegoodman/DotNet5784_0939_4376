@@ -10,8 +10,6 @@ public interface ITask
     public BO.Task? Read(int TaskId);//returns a task with a given id
     public IEnumerable<BO.TaskInList> ReadAll(Func<BO.Task, bool>? filter = null);//returns all tasks(in a short format)
     public void Update(BO.Task boTask);
-    //uses update designate an engineer to the task
-    public void UpdateStage3(BO.Task boTask);//updates only what is allowed to on the third stage
     public void DesignateEngineer(int idTask, int engineerId);//designates an engineer to the task
 
     public void Delete(int TaskId);//removes a given task from the database

@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <None Remove="images\bridge.jpg" />
-    <None Remove="imgs\bridge.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,7 +22,6 @@
 
   <ItemGroup>
     <Resource Include="images\bridge.jpg" />
-    <Resource Include="imgs\bridge.jpg" />
   </ItemGroup>
 
 </Project>

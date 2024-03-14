@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -51,31 +50,7 @@ public partial class ATaskListWindow : Window
         if (task_in_list != null)
         {
             new ATaskWindow(task_in_list.Id).ShowDialog();
-            //TaskList = s_bl.Task.ReadAll()!;
         }
-    }
-
-    private void Delete_Click(object sender, RoutedEventArgs e)
-    {
-        BO.TaskInList? task_in_list = (sender as Button)?.DataContext as BO.TaskInList;
-        if (task_in_list != null)
-        {
-            MessageBoxResult toDelete = MessageBox.Show($"Are you sure you want to delete the current task with id: {task_in_list.Id} for all?", "Delete", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
-            if (toDelete == MessageBoxResult.Yes)
-            {
-                try
-                {
-                    s_bl.Task.Delete(task_in_list.Id);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-            //TaskList = s_bl.Task.ReadAll()!;
-
-        }
-
     }
 
     private void RadioButton_Complete_Checked(object sender, RoutedEventArgs e)
@@ -134,6 +109,7 @@ public partial class ATaskListWindow : Window
         }
         UpdateTaskList();
     }
+    //
     private void RadioButton_Designated_Checked(object sender, RoutedEventArgs e)
     {
         RadioButton radioButton = sender as RadioButton;
@@ -158,6 +134,7 @@ public partial class ATaskListWindow : Window
         UpdateTaskList();
     }
 
+    //if the user unchecks a box
     private void CheckBox_Experience_Unchecked(object sender, RoutedEventArgs e)
     {
         CheckBox checkBox = sender as CheckBox;
@@ -190,18 +167,20 @@ public partial class ATaskListWindow : Window
         }
         UpdateTaskList();
     }
+
+    //fiters the tasks
     private void UpdateTaskList()
     {
         TaskList = s_bl.Task.ReadAll();
         if (IsDesignated != BO.General.None)
-            TaskList = TaskList.Where(task => IsDesignated == BO.General.Yes ? s_bl!.Task.Read(task.Id).Engineer != null : s_bl!.Task.Read(task.Id).Engineer == null);
+            TaskList = TaskList.Where(task => IsDesignated == BO.General.Yes ? s_bl!.Task.Read(task.Id).Engineer != null : s_bl!.Task.Read(task.Id).Engineer == null).ToList();
 
         if (IsComplete != BO.General.None)
-            TaskList = TaskList.Where(task => IsComplete == BO.General.Yes ? s_bl!.Task.Read(task.Id).CompleteDate != null : s_bl!.Task.Read(task.Id).CompleteDate == null);
+            TaskList = TaskList.Where(task => IsComplete == BO.General.Yes ? s_bl!.Task.Read(task.Id).CompleteDate != null : s_bl!.Task.Read(task.Id).CompleteDate == null).ToList();
         for (int i = 0; i < 5; ++i)
         {
             if (ExperienceFilter[i] == false)
-                TaskList = TaskList.Where(task => (int)(s_bl!.Task.Read(task.Id).Complexity) != i);
+                TaskList = TaskList.Where(task => (int)(s_bl!.Task.Read(task.Id).Complexity) != i).ToList();
         }
 
 
