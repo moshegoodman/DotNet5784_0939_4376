@@ -317,11 +317,11 @@ internal class TaskImplementation : ITask
     public void AddDependency(int taskId, int boTask)//setter
     {
         DO.Dependency doDependency = new DO.Dependency(0, taskId, boTask);
-        IEnumerable<Dependency> DependencyList = _dal!.Dependency.ReadAll();
+        IEnumerable<DO.Dependency> DependencyList = _dal!.Dependency.ReadAll();
         if (_dal.Task.GetStatus() >= 2)
             throw new BO.BlScheduled("Can't add dependencies once you completed setting the tasks.");
 
-        foreach (Dependency dependency in DependencyList) { if (dependency.DependentTask == doDependency.DependentTask && dependency.DependsOnTask == doDependency.DependsOnTask) throw new BO.BlAlreadyExistsException("Dependency already exists"); }
+        foreach (DO.Dependency dependency in DependencyList) { if (dependency.DependentTask == doDependency.DependentTask && dependency.DependsOnTask == doDependency.DependsOnTask) throw new BO.BlAlreadyExistsException("Dependency already exists"); }
 
         //if (!(boTask.Dependencies.All(d => d.Status != BO.Status.Unscheduled)))
         //    throw new BO.BlUpdateImpossible($"The previous tasks weren't scheduled, you must schduele the task with ID: {LeastDependentTask(boTask.Id)}");

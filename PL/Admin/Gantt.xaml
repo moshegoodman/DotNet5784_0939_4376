@@ -1,0 +1,49 @@
+﻿<Window x:Class="PL.Admin.Gantt"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.Admin"
+        mc:Ignorable="d"
+        Title="Gantt" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Row for dates -->
+            <RowDefinition Height="*"/>
+            <!-- Main row for tasks -->
+            <RowDefinition Height="Auto"/>
+            <!-- Row for year borders -->
+        </Grid.RowDefinitions>
+
+        <!-- Dates -->
+        <ItemsControl Grid.Row="0" ItemsSource="{Binding MonthLabels}" HorizontalAlignment="Center">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" HorizontalAlignment="Center"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <!-- Main Gantt Chart -->
+        <Canvas Grid.Row="1" Margin="20">
+            <!-- Your rectangles, lines, and labels here -->
+        </Canvas>
+
+        <!-- Year Borders -->
+        <ItemsControl Grid.Row="2" ItemsSource="{Binding YearBorders}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Rectangle Fill="Transparent" Stroke="Black" StrokeThickness="1"
+                               Width="{Binding Width}" Height="20"
+                               Canvas.Left="{Binding Left}" Canvas.Top="0"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</Window>

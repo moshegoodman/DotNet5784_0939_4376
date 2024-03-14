@@ -188,7 +188,7 @@ public class ConverteTaskToMargin : IValueConverter
         DateTime? ProjectStartDate = s_bl.Task.GetProjectStartDate();
         int days = 0;
         if (ProjectStartDate != null && task.ScheduledDate != null)
-            days = ((TimeSpan)(task.ScheduledDate - ProjectStartDate)).Days * 2;
+            days = ((TimeSpan)(task.ScheduledDate - ProjectStartDate)).Days * 4;
         if (days <= 0)
             days = 0;
         return new Thickness(days, 0, 0, 0);
@@ -210,8 +210,8 @@ public class ConverteTaskToWidth : IValueConverter
 
         BO.Task task = (BO.Task)value;
         int days = 0;
-        if (task.ScheduledDate != null && task.ForecastDate != null)
-            days = ((TimeSpan)(task.ForecastDate - task.ScheduledDate)).Days * 2;
+        if (task.ScheduledDate != null && task.RequiredEffortTime != null)
+            days = (task.RequiredEffortTime).Value.Days * 4;
         if (days <= 0)
             days = 0;
         return $"{days}";
@@ -301,4 +301,34 @@ class ConvertProjectStatusToVisibility : IValueConverter
         throw new NotImplementedException();
     }
 }
+
+public class ConverteTaskToDates : IValueConverter
+{
+    static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
+
+
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+
+        BO.Task task = (BO.Task)value;
+        string _scheduledDate, _startDate, _forecastDate, _completeDate, _requiredEffortTime = "";
+        _scheduledDate = task.ScheduledDate != null ? task.ScheduledDate.Value.ToString("dd/MM/yyyy") + " -" : "No Scheduled";
+        _startDate = task.StartDate != null ? task.StartDate.Value.ToString("dd/MM/yyyy") + " -" : "";
+        _forecastDate = task.ForecastDate != null ? task.ForecastDate.Value.ToString("dd/MM/yyyy") : "";
+        _completeDate = task.CompleteDate != null ? task.CompleteDate.Value.ToString("dd/MM/yyyy") : "";
+        _requiredEffortTime = task.RequiredEffortTime != null ? task.RequiredEffortTime.Value.Days.ToString() : "";
+        if (task.ScheduledDate != null)
+            return $"Scheduled:   {_requiredEffortTime} days\n{_scheduledDate} {_forecastDate}\nExecuted:\n{_startDate} {_completeDate}";
+        else
+            return "";
+
+
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+
 

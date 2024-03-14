@@ -157,7 +157,7 @@ public static class Initialization
             //string _deliverables = taskDeliverables[i];
             //string _remarks = taskRemarks[i];
             DateTime _createdAtDate = DateTime.Now.AddDays(-s_rand.Next(365));
-            TimeSpan _requiredEffortTime = TimeSpan.FromDays(s_rand.Next(20, 30));
+            TimeSpan _requiredEffortTime = TimeSpan.FromDays(s_rand.Next(23, 30));
 
             DO.EngineerExperience _complexity = (DO.EngineerExperience)s_rand.Next(4);
 
