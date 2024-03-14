@@ -78,7 +78,7 @@ internal class TaskImplementation : ITask
     //returns the latest forcast date of the depencies (from the given list)
     private DateTime? MaxForcastDate(List<BO.TaskInList> tasks)
     {
-        if(tasks.Count == 0) return _bl.Clock;
+        if (tasks.Count == 0) return _bl.Clock;
         return tasks.Max(t => Read(t.Id).ForecastDate);
     }
 
@@ -317,16 +317,11 @@ internal class TaskImplementation : ITask
     public void AddDependency(int taskId, int boTask)//setter
     {
         DO.Dependency doDependency = new DO.Dependency(0, taskId, boTask);
-        IEnumerable<Dependency> DependencyList = _dal!.Dependency.ReadAll();
+        IEnumerable<DO.Dependency> DependencyList = _dal!.Dependency.ReadAll();
         if (_dal.Task.GetStatus() >= 2)
             throw new BO.BlScheduled("Can't add dependencies once you completed setting the tasks.");
 
-        foreach (Dependency dependency in DependencyList) { if (dependency.DependentTask == doDependency.DependentTask && dependency.DependsOnTask == doDependency.DependsOnTask) throw new BO.BlAlreadyExistsException("Dependency already exists"); }
-
-        //if (!(boTask.Dependencies.All(d => d.Status != BO.Status.Unscheduled)))
-        //    throw new BO.BlUpdateImpossible($"The previous tasks weren't scheduled, you must schduele the task with ID: {LeastDependentTask(boTask.Id)}");
-        //if (!(boTask.Dependencies.All(d => Read(d.Id).ForecastDate <= _scheduledDate)))
-        //    throw new BO.BlUpdateImpossible($"The previous tasks must be complete before the current task, the date must be set after {MaxForcastDate(boTask.Dependencies)}");
+        foreach (DO.Dependency dependency in DependencyList) { if (dependency.DependentTask == doDependency.DependentTask && dependency.DependsOnTask == doDependency.DependsOnTask) throw new BO.BlAlreadyExistsException("Dependency already exists"); }
 
 
         try

@@ -200,19 +200,4 @@
     <DependentTask>1019</DependentTask>
     <DependentOnTask>1017</DependentOnTask>
   </Dependency>
-  <Dependency>
-    <Id>10041</Id>
-    <DependentTask>1002</DependentTask>
-    <DependentOnTask />
-  </Dependency>
-  <Dependency>
-    <Id>10043</Id>
-    <DependentTask>1009</DependentTask>
-    <DependentOnTask>1002</DependentOnTask>
-  </Dependency>
-  <Dependency>
-    <Id>10044</Id>
-    <DependentTask>1009</DependentTask>
-    <DependentOnTask>1001</DependentOnTask>
-  </Dependency>
 </ArrayOfDependency>

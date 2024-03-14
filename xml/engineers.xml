@@ -1,52 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfEngineer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Engineer>
-    <Id>684191298</Id>
+    <Id>211071646</Id>
     <Email>boris@eng.com</Email>
-    <Cost>143.64825022258623</Cost>
+    <Cost>170.6298713688258</Cost>
     <Name>Boris</Name>
-    <Level>Beginner</Level>
-  </Engineer>
-  <Engineer>
-    <Id>313344376</Id>
-    <Email>duvidforst@gmail.com</Email>
-    <Cost>220</Cost>
-    <Name>David</Name>
     <Level>Advanced</Level>
   </Engineer>
   <Engineer>
-    <Id>521382599</Id>
+    <Id>441688075</Id>
     <Email>david@eng.com</Email>
-    <Cost>214.04158937388485</Cost>
+    <Cost>232.58913884759218</Cost>
     <Name>David</Name>
-    <Level>Advanced</Level>
-  </Engineer>
-  <Engineer>
-    <Id>304541419</Id>
-    <Email>edward@eng.com</Email>
-    <Cost>174.23006970071089</Cost>
-    <Name>Edward</Name>
-    <Level>Intermediate</Level>
-  </Engineer>
-  <Engineer>
-    <Id>251389781</Id>
-    <Email>joseph@eng.com</Email>
-    <Cost>112.23731195222985</Cost>
-    <Name>Joseph</Name>
     <Level>AdvancedBeginner</Level>
   </Engineer>
   <Engineer>
-    <Id>466198338</Id>
-    <Email>moses@eng.com</Email>
-    <Cost>200.69436178261023</Cost>
-    <Name>Moses</Name>
-    <Level>Intermediate</Level>
+    <Id>591968922</Id>
+    <Email>edward@eng.com</Email>
+    <Cost>228.2886481287729</Cost>
+    <Name>Edward</Name>
+    <Level>Advanced</Level>
   </Engineer>
   <Engineer>
-    <Id>770120939</Id>
-    <Email>moshe@gmail.com</Email>
-    <Cost>250</Cost>
-    <Name>Moshe</Name>
-    <Level>Expert</Level>
+    <Id>363023491</Id>
+    <Email>joseph@eng.com</Email>
+    <Cost>74.57584212808948</Cost>
+    <Name>Joseph</Name>
+    <Level>Beginner</Level>
+  </Engineer>
+  <Engineer>
+    <Id>1</Id>
+    <Email>m@.</Email>
+    <Cost>500</Cost>
+    <Name>m</Name>
+    <Level>AdvancedBeginner</Level>
+  </Engineer>
+  <Engineer>
+    <Id>533544375</Id>
+    <Email>moses@eng.com</Email>
+    <Cost>239.54411125587396</Cost>
+    <Name>Moses</Name>
+    <Level>Advanced</Level>
   </Engineer>
 </ArrayOfEngineer>

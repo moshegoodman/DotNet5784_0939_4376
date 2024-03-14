@@ -23,6 +23,7 @@
         <local:ConvertStatus1ToVisible x:Key="ConvertStatus1ToVisibleKey"/>
         <local:ConvertStatus1ToHidden x:Key="ConvertStatus1ToHiddenKey"/>
         <local:ConvertStatus1ToEnabled x:Key="ConvertStatus1ToEnabledKey"/>
+        <local:GeneralFilter x:Key="GeneralFilterKey"/>
         
     </Application.Resources>
 </Application>
