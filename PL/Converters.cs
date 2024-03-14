@@ -34,6 +34,20 @@ class ConvertStatus1ToVisible : IValueConverter
         throw new NotImplementedException();
     }
 }
+class ConvertStatus1AndNoDependencyToVisible : IValueConverter
+{
+    static readonly IBl s_bl = Factory.Get();
+
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return s_bl.Task.GetProjectStatus() == 1 ? Visibility.Visible : Visibility.Hidden;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
 class ConvertStatus1ToEnabled : IValueConverter
 {
     static readonly IBl s_bl = Factory.Get();

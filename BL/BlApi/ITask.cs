@@ -20,6 +20,7 @@ public interface ITask
     public void SetStartDate(int taskId, DateTime? _startDate = null);//setter
 
     public void SetCompleteDate(int taskId, DateTime? _completeDate = null);//setter
+    public void AddDependency(int taskId, int boTask);//setter
 
 
 

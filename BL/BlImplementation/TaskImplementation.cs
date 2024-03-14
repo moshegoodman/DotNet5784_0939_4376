@@ -1,5 +1,6 @@
 ﻿namespace BlImplementation;
 using BlApi;
+using DO;
 using System.Collections.Generic;
 
 internal class TaskImplementation : ITask
@@ -313,6 +314,32 @@ internal class TaskImplementation : ITask
     }
 
     //only updates what the user is allowed to in stage 3
+    public void AddDependency(int taskId, int boTask)//setter
+    {
+        DO.Dependency doDependency = new DO.Dependency(0, taskId, boTask);
+        IEnumerable<Dependency> DependencyList = _dal!.Dependency.ReadAll();
+        if (_dal.Task.GetStatus() >= 2)
+            throw new BO.BlScheduled("Can't add dependencies once you completed setting the tasks.");
+
+        foreach (Dependency dependency in DependencyList) { if (dependency.DependentTask == doDependency.DependentTask && dependency.DependsOnTask == doDependency.DependsOnTask) throw new BO.BlAlreadyExistsException("Dependency already exists"); }
+
+        //if (!(boTask.Dependencies.All(d => d.Status != BO.Status.Unscheduled)))
+        //    throw new BO.BlUpdateImpossible($"The previous tasks weren't scheduled, you must schduele the task with ID: {LeastDependentTask(boTask.Id)}");
+        //if (!(boTask.Dependencies.All(d => Read(d.Id).ForecastDate <= _scheduledDate)))
+        //    throw new BO.BlUpdateImpossible($"The previous tasks must be complete before the current task, the date must be set after {MaxForcastDate(boTask.Dependencies)}");
+
+
+        try
+        {
+            _dal.Dependency.Create(doDependency);
+        }
+        catch (DO.DalDoesNotExistException ex)
+        {
+            throw new BO.BlDoesNotExistException($"Task with ID: {doDependency.Id} does not exist", ex);
+        }
+    }
+
+
     public void UpdateStage3(BO.Task boTask)
     {
         if (_dal.Task.GetStatus() < 3)

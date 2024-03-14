@@ -97,11 +97,6 @@ public partial class ATaskWindow : Window
     }
     private void Btn_Update_Click(object sender, RoutedEventArgs e)
     {
-        //if (s_bl.Task.GetProjectStatus() == 2)
-        //{
-
-        //    return;
-        //}
         try
         {
             int? engineerId = Task.Engineer != null ? Task.Engineer.Id : null;
@@ -115,14 +110,16 @@ public partial class ATaskWindow : Window
         catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR"); }
     }
 
-    private void Button_Click(object sender, RoutedEventArgs e)
+    private void Button_See_Dependency_Click(object sender, RoutedEventArgs e)
     {
-        List<BO.TaskInList> listDependents = Task.Dependencies;
-        IEnumerable<BO.TaskInList> dependents = new List<BO.TaskInList>();
-        dependents = listDependents;
-        // foreach (TaskInList dependent in listDependents) { dependents.Append(dependent)}
 
-        new ATaskListWindow(dependents).ShowDialog();
+
+        new DependencyListWindow(Task).ShowDialog();
+    }
+    private void Button_Add_Dependency_Click(object sender, RoutedEventArgs e)
+    {
+
+        new DependencyListWindow(Task).ShowDialog();
     }
 
     private void Btn_Engineer_designation(object sender, RoutedEventArgs e)

@@ -57,14 +57,16 @@
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Update" />
+                                <Grid >
+                                    <Button Content="Set as dependency" Background="AliceBlue" Click="Btn_Set_As_Dependency" Visibility="{Binding Mode=OneTime, Converter={StaticResource ConvertStatus1ToVisibleKey}}" IsEnabled="{Binding }"/>
+                                </Grid>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Delete" Visibility="{Binding Converter={StaticResource ConvertProjectStatusToVisibilityKey}}"/>
+                                <Button Content="Delete" Visibility="{Binding  Converter={StaticResource ConvertProjectStatusToVisibilityKey}}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
