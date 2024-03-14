@@ -14,6 +14,21 @@
 
   <ItemGroup>
     <None Remove="images\bridge.jpg" />
+    <None Remove="images\E1.jpeg" />
+    <None Remove="images\E2.jpeg" />
+    <None Remove="images\E3.jpeg" />
+    <None Remove="images\E4.jpeg" />
+    <None Remove="images\E5.jpeg" />
+    <None Remove="images\Gemini_Generated_Image.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\E1.jpeg" />
+    <Resource Include="images\E2.jpeg" />
+    <Resource Include="images\E3.jpeg" />
+    <Resource Include="images\E4.jpeg" />
+    <Resource Include="images\E5.jpeg" />
+    <Resource Include="images\Gemini_Generated_Image.ico" />
   </ItemGroup>
 
   <ItemGroup>

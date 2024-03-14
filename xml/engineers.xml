@@ -33,6 +33,6 @@
     <Email>moses@eng.com</Email>
     <Cost>196.9371896479037</Cost>
     <Name>Moses</Name>
-    <Level>AdvancedBeginner</Level>
+    <Level>Advanced</Level>
   </Engineer>
 </ArrayOfEngineer>
