@@ -12,6 +12,14 @@ internal class EngineerExperience : IEnumerable
     public IEnumerator GetEnumerator() => s_enums.GetEnumerator();
 
 }
+internal class GeneralFilter : IEnumerable
+{
+    static readonly IEnumerable<BO.General> s_enums =
+ (Enum.GetValues(typeof(BO.General)) as IEnumerable<BO.General>)!;
+
+    public IEnumerator GetEnumerator() => s_enums.GetEnumerator();
+
+}
 
 internal class EngineerExperienceToUpdate : IEnumerable
 {

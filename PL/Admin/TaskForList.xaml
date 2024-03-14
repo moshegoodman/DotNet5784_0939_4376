@@ -22,8 +22,57 @@
             </Grid.ColumnDefinitions>
             <!--Engineer filter-->
             <Label Content="Tasks" FontSize="16" Foreground="Blue" FontWeight="Bold" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0"/>
-            <ComboBox SelectedValue="{Binding Path=ExperienceFilter, Mode=TwoWay}" ItemsSource="{Binding Source={StaticResource EngineerExperienceKey}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" SelectionChanged="ExperienceFlt"/>
+
+            <Menu Margin="00,0,0,0" HorizontalAlignment="Center" Grid.Column="1" >
+                <!--<MenuItem Header="experience"  ItemsSource="{Binding Source={StaticResource EngineerExperienceKey}}">
+                    --><!--<ComboBox  SelectedValue="{Binding Path=ExperienceFilter, Mode=TwoWay}" ItemsSource="{Binding Source={StaticResource EngineerExperienceKey}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" SelectionChanged="ExperienceFlt"/>--><!--
+                </MenuItem>-->
+
+                <MenuItem Header="experience" >
+                    <StackPanel>
+                        <ItemsControl ItemsSource="{Binding Source={StaticResource EngineerExperienceToUpdateKey}}" >
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <CheckBox Content="{Binding}" Checked="RadioButton_Experience_Checked" Unchecked="CheckBox_Experience_Unchecked" IsChecked="True"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </MenuItem>
+                
+                <MenuItem Header="designated engineer"  >
+                    <StackPanel>
+                        <ItemsControl ItemsSource="{Binding Source={StaticResource GeneralFilterKey}}" >
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <RadioButton Content="{Binding}" GroupName="YourRadioButtonGroup" Checked="RadioButton_Designated_Checked" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </MenuItem>
+
+                <MenuItem Header="complete" >
+                    <StackPanel>
+                        <ItemsControl ItemsSource="{Binding Source={StaticResource GeneralFilterKey}}" >
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <RadioButton Content="{Binding}" GroupName="YourRadioButtonGroup" Checked="RadioButton_Complete_Checked" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </MenuItem>
+
+               
+            </Menu>
         </Grid>
+        
+        
+        
+        
+        
+        
         <ListView Margin="5" Grid.Row="1" ItemsSource="{Binding Path=TaskList}">
             <ListView.View>
                 <GridView>
