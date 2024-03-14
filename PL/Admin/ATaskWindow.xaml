@@ -94,7 +94,7 @@
 
             <TextBox   Text="{Binding Deliverables, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="9"/>
             <TextBox   Text="{Binding Remarks, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="10"/>
-            <TextBox   Text="{Binding RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true, Converter={StaticResource ConvertTimeSpanToStringKey}}" Grid.Column="2" Grid.Row="11" IsEnabled="False"/>
+            <TextBox   Text="{Binding RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true, Converter={StaticResource ConvertTimeSpanToStringKey}}" Grid.Column="2" Grid.Row="11" IsEnabled="{Binding Id , Mode=OneTime, Converter={StaticResource ConvertStatus1ToEnabledKey}}"/>
             <Label Background="Beige"  Content="{Binding StartDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="12"/>
             <Label Background="Beige"  Content="{Binding ScheduledDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="13"/>
             <Label Background="Beige"  Content="{Binding ForecastDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="14"/>
