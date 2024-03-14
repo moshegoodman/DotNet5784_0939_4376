@@ -30,7 +30,6 @@ public class Task
     public DateTime CreatedAtDate { get; init; }
     public BO.Status Status { get; set; }
     public List<BO.TaskInList> Dependencies { get; set; }
-    public BO.MilestoneInTask? Milestone { get; set; }
     public BO.EngineerExperience Complexity { get; set; }
     public string? Deliverables { get; set; }
     public string? Remarks { get; set; }
