@@ -4,110 +4,110 @@
     <Id>1000</Id>
     <Alias>SiteAssessment</Alias>
     <Description>Evaluate the construction site for the bridge.</Description>
-    <CreatedAtDate>2023-05-28T16:28:30.4743873+03:00</CreatedAtDate>
-    <Complexity>Advanced</Complexity>
+    <CreatedAtDate>2023-06-17T18:39:01.7488525+03:00</CreatedAtDate>
+    <Complexity>Expert</Complexity>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P28D</RequiredEffortTime>
-    <StartDate>2024-03-14T00:00:00+02:00</StartDate>
+    <RequiredEffortTime>P24D</RequiredEffortTime>
+    <StartDate xsi:nil="true" />
     <ScheduledDate>2024-03-14T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
-    <CompleteDate>2024-03-14T00:00:00+02:00</CompleteDate>
-    <EngineerId>2</EngineerId>
+    <CompleteDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
   </Task>
   <Task>
     <Id>1001</Id>
     <Alias>GeotechnicalSurvey</Alias>
     <Description>Conduct a survey to assess soil and subsurface conditions.</Description>
-    <CreatedAtDate>2024-01-26T16:28:30.4802351+02:00</CreatedAtDate>
-    <Complexity>Advanced</Complexity>
+    <CreatedAtDate>2023-03-25T18:39:01.7516594+03:00</CreatedAtDate>
+    <Complexity>Expert</Complexity>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P29D</RequiredEffortTime>
-    <StartDate>2024-03-14T00:00:00+02:00</StartDate>
+    <RequiredEffortTime>P26D</RequiredEffortTime>
+    <StartDate xsi:nil="true" />
     <ScheduledDate>2024-03-14T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
-    <CompleteDate>2024-03-14T00:00:00+02:00</CompleteDate>
-    <EngineerId>2</EngineerId>
+    <CompleteDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
   </Task>
   <Task>
     <Id>1002</Id>
     <Alias>PermittingProcess</Alias>
     <Description>Obtain necessary permits for bridge construction.</Description>
-    <CreatedAtDate>2023-05-21T16:28:30.4889985+03:00</CreatedAtDate>
-    <Complexity>Advanced</Complexity>
+    <CreatedAtDate>2023-07-18T18:39:01.7591442+03:00</CreatedAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P29D</RequiredEffortTime>
-    <StartDate>2024-03-14T00:00:00+02:00</StartDate>
+    <RequiredEffortTime>P28D</RequiredEffortTime>
+    <StartDate xsi:nil="true" />
     <ScheduledDate>2024-03-14T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
-    <CompleteDate>2024-03-14T00:00:00+02:00</CompleteDate>
-    <EngineerId>2</EngineerId>
+    <CompleteDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
   </Task>
   <Task>
     <Id>1003</Id>
     <Alias>BridgeDesign</Alias>
     <Description>Develop detailed engineering plans for the bridge.</Description>
-    <CreatedAtDate>2024-01-21T16:28:30.495142+02:00</CreatedAtDate>
-    <Complexity>AdvancedBeginner</Complexity>
+    <CreatedAtDate>2023-05-16T18:39:01.7657934+03:00</CreatedAtDate>
+    <Complexity>Expert</Complexity>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P28D</RequiredEffortTime>
-    <StartDate>2024-03-14T00:00:00+02:00</StartDate>
-    <ScheduledDate>2024-04-12T00:00:00+03:00</ScheduledDate>
+    <RequiredEffortTime>P24D</RequiredEffortTime>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate>2024-04-11T00:00:00+03:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
-    <CompleteDate>2024-03-14T00:00:00+02:00</CompleteDate>
-    <EngineerId>2</EngineerId>
+    <CompleteDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
   </Task>
   <Task>
     <Id>1004</Id>
     <Alias>EnvImpactAssessment</Alias>
     <Description>Assess and mitigate potential environmental impacts.</Description>
-    <CreatedAtDate>2023-08-15T16:28:30.5017408+03:00</CreatedAtDate>
-    <Complexity>Beginner</Complexity>
+    <CreatedAtDate>2023-11-04T18:39:01.7721019+02:00</CreatedAtDate>
+    <Complexity>AdvancedBeginner</Complexity>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P23D</RequiredEffortTime>
-    <StartDate>2024-03-14T00:00:00+02:00</StartDate>
-    <ScheduledDate>2024-05-10T00:00:00+03:00</ScheduledDate>
+    <RequiredEffortTime>P29D</RequiredEffortTime>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate>2024-05-05T00:00:00+03:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
-    <CompleteDate>2024-03-14T00:00:00+02:00</CompleteDate>
-    <EngineerId>2</EngineerId>
+    <CompleteDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
   </Task>
   <Task>
     <Id>1005</Id>
     <Alias>MaterialProcurement</Alias>
     <Description>Source and procure construction materials.</Description>
-    <CreatedAtDate>2023-10-12T16:28:30.5083522+03:00</CreatedAtDate>
-    <Complexity>Beginner</Complexity>
+    <CreatedAtDate>2023-06-12T18:39:01.7806474+03:00</CreatedAtDate>
+    <Complexity>Expert</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P28D</RequiredEffortTime>
-    <StartDate>2024-03-14T00:00:00+02:00</StartDate>
-    <ScheduledDate>2024-06-02T00:00:00+03:00</ScheduledDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate>2024-06-03T00:00:00+03:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
-    <CompleteDate>2024-03-14T00:00:00+02:00</CompleteDate>
-    <EngineerId>1</EngineerId>
+    <CompleteDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
   </Task>
   <Task>
     <Id>1006</Id>
     <Alias>FoundationExcavation</Alias>
     <Description>Excavate the foundation for bridge supports.</Description>
-    <CreatedAtDate>2023-09-22T16:28:30.514575+03:00</CreatedAtDate>
-    <Complexity>Intermediate</Complexity>
+    <CreatedAtDate>2023-06-04T18:39:01.7868623+03:00</CreatedAtDate>
+    <Complexity>Beginner</Complexity>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P25D</RequiredEffortTime>
-    <StartDate>2024-03-14T00:00:00+02:00</StartDate>
-    <ScheduledDate>2024-06-30T00:00:00+03:00</ScheduledDate>
+    <RequiredEffortTime>P23D</RequiredEffortTime>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate>2024-07-01T00:00:00+03:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
-    <CompleteDate>2024-03-14T00:00:00+02:00</CompleteDate>
-    <EngineerId>2</EngineerId>
+    <CompleteDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
   </Task>
   <Task>
     <Id>1007</Id>
     <Alias>PileDriving</Alias>
     <Description>Install piles for foundation support.</Description>
-    <CreatedAtDate>2023-05-24T16:28:30.5219818+03:00</CreatedAtDate>
-    <Complexity>Beginner</Complexity>
+    <CreatedAtDate>2023-12-10T18:39:01.7931093+02:00</CreatedAtDate>
+    <Complexity>Advanced</Complexity>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P27D</RequiredEffortTime>
+    <RequiredEffortTime>P26D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate>2024-07-25T00:00:00+03:00</ScheduledDate>
+    <ScheduledDate>2024-07-24T00:00:00+03:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -116,12 +116,12 @@
     <Id>1008</Id>
     <Alias>ConcreteFormwork</Alias>
     <Description>Set up formwork for concrete structures.</Description>
-    <CreatedAtDate>2023-06-14T16:28:30.528579+03:00</CreatedAtDate>
-    <Complexity>Advanced</Complexity>
+    <CreatedAtDate>2024-01-10T18:39:01.7998373+02:00</CreatedAtDate>
+    <Complexity>Expert</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P29D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate>2024-08-21T00:00:00+03:00</ScheduledDate>
+    <ScheduledDate>2024-08-19T00:00:00+03:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -130,12 +130,12 @@
     <Id>1009</Id>
     <Alias>ConcretePouring</Alias>
     <Description>Pour concrete for bridge components.</Description>
-    <CreatedAtDate>2023-03-24T16:28:30.5350441+03:00</CreatedAtDate>
-    <Complexity>AdvancedBeginner</Complexity>
+    <CreatedAtDate>2024-02-08T18:39:01.8121174+02:00</CreatedAtDate>
+    <Complexity>Advanced</Complexity>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P26D</RequiredEffortTime>
+    <RequiredEffortTime>P27D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate>2024-09-19T00:00:00+03:00</ScheduledDate>
+    <ScheduledDate>2024-09-17T00:00:00+03:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -144,12 +144,12 @@
     <Id>1010</Id>
     <Alias>SteelStructureFabrication</Alias>
     <Description>Fabricate steel components for the bridge.</Description>
-    <CreatedAtDate>2023-06-01T16:28:30.5417255+03:00</CreatedAtDate>
+    <CreatedAtDate>2023-05-09T18:39:01.8187189+03:00</CreatedAtDate>
     <Complexity>Advanced</Complexity>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P25D</RequiredEffortTime>
+    <RequiredEffortTime>P28D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate>2024-10-15T00:00:00+03:00</ScheduledDate>
+    <ScheduledDate>2024-10-14T00:00:00+03:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -158,12 +158,12 @@
     <Id>1011</Id>
     <Alias>BridgeDeckInstallation</Alias>
     <Description>Install the bridge deck.</Description>
-    <CreatedAtDate>2023-08-22T16:28:30.5476992+03:00</CreatedAtDate>
-    <Complexity>Expert</Complexity>
+    <CreatedAtDate>2023-11-08T18:39:01.8251646+02:00</CreatedAtDate>
+    <Complexity>Beginner</Complexity>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P25D</RequiredEffortTime>
+    <RequiredEffortTime>P28D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate>2024-11-09T00:00:00+02:00</ScheduledDate>
+    <ScheduledDate>2024-11-11T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -172,12 +172,12 @@
     <Id>1012</Id>
     <Alias>AbutmentConstruction</Alias>
     <Description>Construct abutments for bridge support.</Description>
-    <CreatedAtDate>2023-12-12T16:28:30.554145+02:00</CreatedAtDate>
-    <Complexity>Beginner</Complexity>
+    <CreatedAtDate>2024-02-29T18:39:01.8312151+02:00</CreatedAtDate>
+    <Complexity>Advanced</Complexity>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P28D</RequiredEffortTime>
+    <RequiredEffortTime>P26D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate>2024-12-04T00:00:00+02:00</ScheduledDate>
+    <ScheduledDate>2024-12-09T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -186,12 +186,12 @@
     <Id>1013</Id>
     <Alias>ExpansionJointInstallation</Alias>
     <Description>Install expansion joints for temperature variations.</Description>
-    <CreatedAtDate>2023-09-27T16:28:30.5607979+03:00</CreatedAtDate>
-    <Complexity>Expert</Complexity>
+    <CreatedAtDate>2023-05-09T18:39:01.8372624+03:00</CreatedAtDate>
+    <Complexity>Advanced</Complexity>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P27D</RequiredEffortTime>
+    <RequiredEffortTime>P28D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate>2025-01-01T00:00:00+02:00</ScheduledDate>
+    <ScheduledDate>2025-01-04T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -200,12 +200,12 @@
     <Id>1014</Id>
     <Alias>TrafficManagement</Alias>
     <Description>Implement traffic management during construction.</Description>
-    <CreatedAtDate>2024-03-10T16:28:30.5678319+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-02-15T18:39:01.8437554+02:00</CreatedAtDate>
     <Complexity>Intermediate</Complexity>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P23D</RequiredEffortTime>
+    <RequiredEffortTime>P24D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate>2025-01-01T00:00:00+02:00</ScheduledDate>
+    <ScheduledDate>2025-01-04T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -214,12 +214,12 @@
     <Id>1015</Id>
     <Alias>BridgeInspection</Alias>
     <Description>Conduct regular inspections during construction.</Description>
-    <CreatedAtDate>2023-04-11T16:28:30.574714+03:00</CreatedAtDate>
+    <CreatedAtDate>2023-04-02T18:39:01.8503363+03:00</CreatedAtDate>
     <Complexity>Intermediate</Complexity>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P24D</RequiredEffortTime>
+    <RequiredEffortTime>P25D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate>2025-01-28T00:00:00+02:00</ScheduledDate>
+    <ScheduledDate>2025-02-01T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -228,12 +228,12 @@
     <Id>1016</Id>
     <Alias>WaterwayProtection</Alias>
     <Description>Implement measures to protect waterways during construction.</Description>
-    <CreatedAtDate>2023-12-04T16:28:30.580808+02:00</CreatedAtDate>
-    <Complexity>Beginner</Complexity>
+    <CreatedAtDate>2023-05-30T18:39:01.8568509+03:00</CreatedAtDate>
+    <Complexity>Expert</Complexity>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P27D</RequiredEffortTime>
+    <RequiredEffortTime>P25D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate>2025-01-28T00:00:00+02:00</ScheduledDate>
+    <ScheduledDate>2025-02-01T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -242,12 +242,12 @@
     <Id>1017</Id>
     <Alias>QualityControlTesting</Alias>
     <Description>Perform quality control tests on materials and structures.</Description>
-    <CreatedAtDate>2023-07-10T16:28:30.5877341+03:00</CreatedAtDate>
-    <Complexity>AdvancedBeginner</Complexity>
+    <CreatedAtDate>2023-12-10T18:39:01.8636696+02:00</CreatedAtDate>
+    <Complexity>Intermediate</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P29D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate>2025-01-01T00:00:00+02:00</ScheduledDate>
+    <ScheduledDate>2025-01-04T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -256,12 +256,12 @@
     <Id>1018</Id>
     <Alias>LandscapingRestoration</Alias>
     <Description>Restore the construction site and landscape.</Description>
-    <CreatedAtDate>2023-03-20T16:28:30.5945956+02:00</CreatedAtDate>
-    <Complexity>AdvancedBeginner</Complexity>
+    <CreatedAtDate>2023-08-19T18:39:01.8695501+03:00</CreatedAtDate>
+    <Complexity>Expert</Complexity>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P29D</RequiredEffortTime>
+    <RequiredEffortTime>P24D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate>2024-12-04T00:00:00+02:00</ScheduledDate>
+    <ScheduledDate>2024-12-09T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -270,12 +270,12 @@
     <Id>1019</Id>
     <Alias>DocumentationHandover</Alias>
     <Description>Compile project documentation and hand over the bridge.</Description>
-    <CreatedAtDate>2023-12-14T16:28:30.6023464+02:00</CreatedAtDate>
-    <Complexity>AdvancedBeginner</Complexity>
+    <CreatedAtDate>2023-07-16T18:39:01.876501+03:00</CreatedAtDate>
+    <Complexity>Expert</Complexity>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P28D</RequiredEffortTime>
+    <RequiredEffortTime>P25D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate>2025-02-24T00:00:00+02:00</ScheduledDate>
+    <ScheduledDate>2025-02-26T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
