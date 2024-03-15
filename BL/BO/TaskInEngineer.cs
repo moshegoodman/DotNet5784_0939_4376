@@ -13,7 +13,7 @@ public class TaskInEngineer
 
     public override string ToString()
     {
-        string a = $"\tTask asigned to engineer:\n\tID:\t{Id}\n\tAlias:\t{alias}\n\n";
+        string a = $"Task asigned to engineer:\nID:\t{Id}\nAlias:\t{alias}";
 
         return a;
     }

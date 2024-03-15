@@ -17,14 +17,18 @@
             <RowDefinition Height="100*"/>
         </Grid.RowDefinitions>
         <Border Grid.Row="1"  BorderThickness="0.5" BorderBrush="Black" Width="Auto" CornerRadius="8" Background="#F0F0F0" Padding="5" Margin="5,0">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding Engineer.Task, Mode=OneWay}"  Width="auto" Height="auto"/>
-                <Border Visibility="{Binding Engineer.Task, Converter={StaticResource ConvertNullToVisibilityKey}}" CornerRadius="12" Background="LightGray" Width="70" Height="50">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140*"/>
+                    <ColumnDefinition Width="70*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding Engineer.Task, Mode=OneWay}"  Width="auto" Height="auto"/>
+                <Border Grid.Column="1" Visibility="{Binding Engineer.Task, Converter={StaticResource ConvertNullToVisibilityKey}}" CornerRadius="12" Background="LightGray" Width="70" Height="50">
                     <Button Content="Completed" Click="Completed_Button_Click"/>
                 </Border>
-            </StackPanel>
+            </Grid>
         </Border>
-        <ComboBox Grid.ColumnSpan="2" Grid.Row="3" Height="85" Width="auto" Margin="5"
+        <ComboBox Grid.Row="3" Height="85" Width="auto" Margin="5"
        ItemsSource="{Binding TaskList}"
        SelectedValue="{Binding Engineer.Task, Mode=TwoWay}" 
        SelectionChanged ="Select_Task" Visibility="{Binding Engineer.Task, Converter={StaticResource ConvertTaskInEngineerToVisibilityKey}}"/>
