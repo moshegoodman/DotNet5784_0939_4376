@@ -11,10 +11,6 @@ public class TaskInEngineer
     public int Id { get; init; }
     public string alias { get; set; }
 
-    public override string ToString()
-    {
-        string a = $"Task asigned to engineer:\nID:\t{Id}\nAlias:\t{alias}";
+    public override string ToString() => this.ToStringProperty();
 
-        return a;
-    }
 }

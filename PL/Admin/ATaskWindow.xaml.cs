@@ -76,7 +76,7 @@ public partial class ATaskWindow : Window
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "ERROR");
+                MessageBox.Show(ex.Message, "ERROR",MessageBoxButton.OK,MessageBoxImage.Error);
             }
         }
     }
@@ -92,7 +92,7 @@ public partial class ATaskWindow : Window
             s_bl.Task.Create(Task);
             Close();
         }
-        catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR"); }
+        catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
     }
     private void Btn_Update_Click(object sender, RoutedEventArgs e)
     {
@@ -106,7 +106,7 @@ public partial class ATaskWindow : Window
             }
             Close();
         }
-        catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR"); }
+        catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
     }
 
     private void Button_See_Dependency_Click(object sender, RoutedEventArgs e)

@@ -1,7 +1,8 @@
 ﻿using DO;
+using System.Reflection;
 using System.Xml.Serialization;
 namespace BO;
-public class Tools
+public static class Tools
 {
     private static BlApi.IBl _bl = BlApi.Factory.Get();
     const string s_xml_dir = @"..\xml\";
@@ -17,7 +18,7 @@ public class Tools
         };
     }
 
-    
+
 
     public static void SaveListToXMLSerializer<T>(T list, string entity)
     {
@@ -33,6 +34,20 @@ public class Tools
         }
     }
 
-
+    public static string ToStringProperty<T>(this T t, string str = "")
+    {
+        foreach (PropertyInfo item in t.GetType().GetProperties())
+        {
+            if (item.GetValue(t, null) is IEnumerable<object>)
+            {
+                IEnumerable<object> list = (IEnumerable<object>)item.GetValue(obj: t, null);
+                string s = string.Join("  ", list);
+                str += "\n" + item.Name + ": " + s;
+            }
+            else
+                str += "\n" + item.Name + ": " + item.GetValue(t, null);
+        }
+        return str;
+    }
 }
 

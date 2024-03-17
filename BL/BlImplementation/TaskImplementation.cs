@@ -179,9 +179,7 @@ internal class TaskImplementation : ITask
     {
         DO.Task? doTask = _dal.Task.Read(taskId) ?? throw new BO.BlDoesNotExistException($"Task with ID: {taskId} does not exist");
         DateTime? forecastDate = null;
-        if (doTask.ScheduledDate != null && doTask.StartDate != null)
-            forecastDate = doTask.ScheduledDate > doTask.StartDate ? doTask.ScheduledDate + doTask.RequiredEffortTime : doTask.StartDate + doTask.RequiredEffortTime;
-        else if (doTask.ScheduledDate != null)
+        if (doTask.ScheduledDate != null)
             forecastDate = doTask.ScheduledDate + doTask.RequiredEffortTime;
 
         return (new BO.Task
@@ -315,14 +313,21 @@ internal class TaskImplementation : ITask
     //only updates what the user is allowed to in stage 3
     public void AddDependency(int taskId, int boTask)//setter
     {
-        DO.Dependency doDependency = new DO.Dependency(0, taskId, boTask);
-        IEnumerable<DO.Dependency> DependencyList = _dal!.Dependency.ReadAll();
+        if (taskId == boTask)
+            throw new BO.BlUpdateImpossible("Cannot depend on himself");
+        if (_dal.Task.Read(taskId) == null)
+            throw new BO.BlDoesNotExistException($"Task with ID: {taskId} does not exist");
+        if (_dal.Task.Read(boTask) == null)
+            throw new BO.BlDoesNotExistException($"Task with ID: {boTask} does not exist");
         if (_dal.Task.GetStatus() >= 2)
             throw new BO.BlScheduled("Can't add dependencies once you completed setting the tasks.");
-
-        foreach (DO.Dependency dependency in DependencyList) { if (dependency.DependentTask == doDependency.DependentTask && dependency.DependsOnTask == doDependency.DependsOnTask) throw new BO.BlAlreadyExistsException("Dependency already exists"); }
-
-
+        DO.Dependency doDependency = new DO.Dependency(0, taskId, boTask);
+        foreach (DO.Dependency dependency in _dal.Dependency.ReadAll())
+        {
+            if (dependency != null && dependency.DependentTask == doDependency.DependentTask &&
+                dependency.DependsOnTask == doDependency.DependsOnTask)
+                throw new BO.BlAlreadyExistsException("Dependency already exists");
+        }
         try
         {
             _dal.Dependency.Create(doDependency);

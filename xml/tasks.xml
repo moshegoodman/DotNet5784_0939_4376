@@ -7,9 +7,9 @@
     <CreatedAtDate>2023-11-17T15:51:48.0623341+02:00</CreatedAtDate>
     <Complexity>AdvancedBeginner</Complexity>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P29D</RequiredEffortTime>
+    <RequiredEffortTime>P24D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
+    <ScheduledDate>2024-03-17T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -23,7 +23,7 @@
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P23D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
+    <ScheduledDate>2024-03-17T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -37,7 +37,7 @@
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P25D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
+    <ScheduledDate>2024-03-17T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -49,9 +49,9 @@
     <CreatedAtDate>2023-03-20T15:51:48.0902333+02:00</CreatedAtDate>
     <Complexity>AdvancedBeginner</Complexity>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P29D</RequiredEffortTime>
+    <RequiredEffortTime>P23D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
+    <ScheduledDate>2024-04-11T00:00:00+03:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -65,7 +65,7 @@
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P25D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
+    <ScheduledDate>2024-05-04T00:00:00+03:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -79,7 +79,7 @@
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P23D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
+    <ScheduledDate>2024-06-01T00:00:00+03:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -93,7 +93,7 @@
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P25D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
+    <ScheduledDate>2024-06-25T00:00:00+03:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -107,7 +107,7 @@
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P28D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
+    <ScheduledDate>2024-07-22T00:00:00+03:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -121,7 +121,7 @@
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P27D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
+    <ScheduledDate>2024-08-19T00:00:00+03:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -135,7 +135,7 @@
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P25D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
+    <ScheduledDate>2024-09-15T00:00:00+03:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -149,7 +149,7 @@
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P24D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
+    <ScheduledDate>2024-10-14T00:00:00+03:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -163,7 +163,7 @@
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P26D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
+    <ScheduledDate>2024-11-11T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -177,7 +177,7 @@
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P24D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
+    <ScheduledDate>2024-12-10T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -191,7 +191,7 @@
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P23D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
+    <ScheduledDate>2025-01-06T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -205,7 +205,7 @@
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P26D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
+    <ScheduledDate>2025-01-06T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -219,7 +219,7 @@
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P24D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
+    <ScheduledDate>2025-02-04T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -233,7 +233,7 @@
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P23D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
+    <ScheduledDate>2025-02-04T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -247,7 +247,7 @@
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P23D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
+    <ScheduledDate>2025-01-06T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -261,7 +261,7 @@
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P28D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
+    <ScheduledDate>2024-12-10T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
@@ -275,7 +275,7 @@
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P23D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
+    <ScheduledDate>2025-03-03T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <EngineerId xsi:nil="true" />
