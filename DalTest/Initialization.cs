@@ -31,14 +31,14 @@ public static class Initialization
         {
             int _id = i;
             i += 1111;
-            
+
             string _email = $"{_name.ToLower()}@eng.com";
 
             double _cost = s_rand.NextDouble() * (HIGH_SAL - LOW_SAL) + LOW_SAL;
 
             DO.EngineerExperience _level = (DO.EngineerExperience)s_rand.Next(4);
 
-            Engineer newEng = new(_id, _email, _cost, _name, _level);
+            Engineer newEng = new(_id, _email, _cost, _name, $"/images/E{i / 1111}.jpeg", _level);
 
             s_dal!.Engineer.Create(newEng);
 

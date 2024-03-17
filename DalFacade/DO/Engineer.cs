@@ -13,6 +13,7 @@ public record Engineer
     string Email = "",
     double Cost = 0,
     string Name = "",
+    string Picture = "",
     DO.EngineerExperience Level = EngineerExperience.Beginner
 )
 {

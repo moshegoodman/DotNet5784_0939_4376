@@ -21,11 +21,13 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="140*"/>
                     <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="70*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="{Binding Engineer.Task, Mode=OneWay}"  Width="auto" Height="auto"/>
                 <Border Grid.Column="1" Visibility="{Binding Engineer.Task, Converter={StaticResource ConvertNullToVisibilityKey}}" CornerRadius="12" Background="LightGray" Width="70" Height="50">
                     <Button Content="Completed" Click="Completed_Button_Click"/>
                 </Border>
+                <Image Source="{Binding Engineer.Picture}" Grid.Column="2"/>
             </Grid>
         </Border>
         <ComboBox Grid.Row="3" Height="85" Width="auto" Margin="5"

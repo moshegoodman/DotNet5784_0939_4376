@@ -31,7 +31,7 @@ internal class EngineerImplementation : IEngineer
         if (boEngineer.Name == "")
             throw new BO.InCorrectData("Engineer should have a name");
         DO.Engineer doEngineer = new DO.Engineer
-                (boEngineer.Id, boEngineer.Email, boEngineer.Cost, boEngineer.Name, (DO.EngineerExperience)boEngineer.Level);
+                (boEngineer.Id, boEngineer.Email, boEngineer.Cost, boEngineer.Name, boEngineer.Picture, (DO.EngineerExperience)boEngineer.Level);
 
         try
         {
@@ -65,6 +65,7 @@ internal class EngineerImplementation : IEngineer
             Name = doEngineer.Name,
             Cost = doEngineer.Cost,
             Email = doEngineer.Email,
+            Picture = doEngineer.Picture,
             Level = (BO.EngineerExperience)doEngineer.Level,
             Task = GetTaskInEngineer(id)
         });
@@ -80,6 +81,7 @@ internal class EngineerImplementation : IEngineer
                                                     Name = doEngineer.Name,
                                                     Cost = doEngineer.Cost,
                                                     Email = doEngineer.Email,
+                                                    Picture = doEngineer.Picture,
                                                     Level = (BO.EngineerExperience)doEngineer.Level,
                                                     Task = GetTaskInEngineer(doEngineer.Id)
                                                 });
@@ -106,7 +108,7 @@ internal class EngineerImplementation : IEngineer
         if ((int)boEngineer.Level < (int)Read(boEngineer.Id)!.Level)
             throw new BO.BlUpdateImpossible("Engineer level cannot decrease");
         DO.Engineer doEngineer = new DO.Engineer
-                (boEngineer.Id, boEngineer.Email, boEngineer.Cost, boEngineer.Name, (DO.EngineerExperience)boEngineer.Level);
+                (boEngineer.Id, boEngineer.Email, boEngineer.Cost, boEngineer.Name, boEngineer.Picture, (DO.EngineerExperience)boEngineer.Level);
         BO.TaskInEngineer? taskInEngineer = boEngineer.Task;
         if (taskInEngineer != null)
         {
@@ -133,7 +135,7 @@ internal class EngineerImplementation : IEngineer
     {
         DO.Engineer? doEngineer = _dal.Engineer.Read(engineerId);
         if (doEngineer == null) throw new BO.BlDoesNotExistException($"Engineer ID {engineerId} does not exist");
-        doEngineer = new(doEngineer.Id, doEngineer.Email, doEngineer.Cost, doEngineer.Name, (DO.EngineerExperience)level);
+        doEngineer = new(doEngineer.Id, doEngineer.Email, doEngineer.Cost, doEngineer.Name, doEngineer.Picture, (DO.EngineerExperience)level);
         _dal.Engineer.Update(doEngineer);
     }
 
@@ -142,7 +144,7 @@ internal class EngineerImplementation : IEngineer
     {
         DO.Engineer? doEngineer = _dal.Engineer.Read(engineerId);
         if (doEngineer == null) throw new BO.BlDoesNotExistException($"Engineer ID {engineerId} does not exist");
-        doEngineer = new(doEngineer.Id, email, doEngineer.Cost, doEngineer.Name, doEngineer.Level);
+        doEngineer = new(doEngineer.Id, email, doEngineer.Cost, doEngineer.Name, doEngineer.Picture, doEngineer.Level);
         _dal.Engineer.Update(doEngineer);
     }
 
@@ -151,7 +153,7 @@ internal class EngineerImplementation : IEngineer
     {
         DO.Engineer? doEngineer = _dal.Engineer.Read(engineerId);
         if (doEngineer == null) throw new BO.BlDoesNotExistException($"Engineer ID {engineerId} does not exist");
-        doEngineer = new(doEngineer.Id, doEngineer.Email, doEngineer.Cost, name, doEngineer.Level);
+        doEngineer = new(doEngineer.Id, doEngineer.Email, doEngineer.Cost, name, doEngineer.Picture, doEngineer.Level);
         _dal.Engineer.Update(doEngineer);
     }
 
@@ -160,7 +162,7 @@ internal class EngineerImplementation : IEngineer
     {
         DO.Engineer? doEngineer = _dal.Engineer.Read(engineerId);
         if (doEngineer == null) throw new BO.BlDoesNotExistException($"Engineer ID {engineerId} does not exist");
-        doEngineer = new(doEngineer.Id, doEngineer.Email, cost, doEngineer.Name, doEngineer.Level);
+        doEngineer = new(doEngineer.Id, doEngineer.Email, cost, doEngineer.Name, doEngineer.Picture, doEngineer.Level);
         _dal.Engineer.Update(doEngineer);
     }
 }

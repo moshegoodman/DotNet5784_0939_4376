@@ -17,8 +17,9 @@
         <!--Internal, Upper Grid-->
         <Grid HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <!--Engineer filter-->
             <Label Content="Tasks" FontSize="16" Foreground="Blue" FontWeight="Bold" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0"/>
@@ -63,9 +64,9 @@
                         </ItemsControl>
                     </StackPanel>
                 </MenuItem>
-
-               
             </Menu>
+            <TextBox Text="{Binding SearchFilter ,Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" PreviewKeyDown="TextBox_KeyDown"   Grid.Column="2"/>
+
         </Grid>
         
         

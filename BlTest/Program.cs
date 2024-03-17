@@ -195,7 +195,6 @@ internal class Program
             CreatedAtDate = DateTime.Now,
             Status = BO.Status.Unscheduled,
             Dependencies = tasks,
-            Milestone = null,
             Complexity = _complexity,
             Deliverables = null,
             Remarks = _remarks,
@@ -288,7 +287,6 @@ internal class Program
             CreatedAtDate = (System.DateTime)_createdAtDate,
             Status = BO.Status.Unscheduled,
             Dependencies = dependencies,
-            Milestone = null,
             Complexity = _taskComplexity,
             Deliverables = _deliverables,
             Remarks = _remark,
@@ -417,12 +415,15 @@ internal class Program
         Console.WriteLine("Enter engineers level:");
         BO.EngineerExperience level = (BO.EngineerExperience)Convert.ToInt32(Console.ReadLine());
 
+
+        string picture = "";
         BO.Engineer newEngineer = new BO.Engineer()
         {
             Id = _engineer_id,
             Name = name,
             Cost = cost,
             Email = email,
+            Picture = picture,
             Level = level,
             Task = null
         };
@@ -466,6 +467,8 @@ internal class Program
         Console.WriteLine("Enter engineers name:");
         string name = Console.ReadLine()!;
 
+        string picture = "";
+
         Console.WriteLine("Enter engineers level:");
         BO.EngineerExperience level = (BO.EngineerExperience)Convert.ToInt32(Console.ReadLine());
 
@@ -478,6 +481,7 @@ internal class Program
             Name = name,
             Cost = cost,
             Email = email,
+            Picture = picture,
             Level = level,
             Task = null
         };

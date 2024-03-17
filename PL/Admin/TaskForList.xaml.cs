@@ -21,6 +21,14 @@ public partial class ATaskListWindow : Window
     public bool[] ExperienceFilter { get; set; } = new bool[] { true, true, true, true, true };
     public BO.General IsComplete { get; set; } = BO.General.None;
     public BO.General IsDesignated { get; set; } = BO.General.None;
+    public string SearchFilter
+    {
+        get { return (string)GetValue(SearchFilterProperty); }
+        set { SetValue(SearchFilterProperty, value); }
+    }
+
+    public static readonly DependencyProperty SearchFilterProperty =
+        DependencyProperty.Register("SearchFilter", typeof(string), typeof(ATaskListWindow), new PropertyMetadata(""));
 
     //for the data binding a filtered list
 
@@ -184,8 +192,16 @@ public partial class ATaskListWindow : Window
         }
 
 
-
+        TaskList = TaskList.Where(task => s_bl!.Task.Read(task.Id)!.Alias.ToLower().Contains(SearchFilter.ToLower())).ToList();
 
     }
+
+    private void TextBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+    {
+        SearchFilter = ((TextBox)sender).Text;
+        UpdateTaskList();
+
+    }
+
 
 }
