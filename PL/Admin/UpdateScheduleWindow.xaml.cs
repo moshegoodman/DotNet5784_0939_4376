@@ -50,7 +50,7 @@ namespace PL.Admin
                 Close();
 
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR"); }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
         private void Btn_Cancel_Click(object sender, RoutedEventArgs e)
@@ -73,7 +73,7 @@ namespace PL.Admin
                 Close();
 
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR"); }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
     }
 }
