@@ -20,14 +20,14 @@ public class Engineer
     public BO.EngineerExperience Level { get; set; }
     public BO.TaskInEngineer? Task { get; set; }
 
-    public override string ToString()
-    {
-        string a = $"Name:\t{Name}\nID:\t{Id}\nemail:\t{Email}\nCost:\t{Cost}\nLevel:\t{Level}\n";
-        if (Task != null)
-        {
-            a = a + $"{Task}\n";
-        }
-        return a;
-    }
-
+    //public override string ToString()
+    //{
+    //    string a = $"Name:\t{Name}\nID:\t{Id}\nemail:\t{Email}\nCost:\t{Cost}\nLevel:\t{Level}\n";
+    //    if (Task != null)
+    //    {
+    //        a = a + $"{Task}\n";
+    //    }
+    //    return a;
+    //}
+    public override string ToString() => this.ToStringProperty();
 }

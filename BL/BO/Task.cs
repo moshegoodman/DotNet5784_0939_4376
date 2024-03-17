@@ -42,14 +42,6 @@ public class Task
     public BO.EngineerInTask? Engineer { get; set; }
 
 
-    public override string ToString()
-    {
-        string a = $"ID:\t{Id}\nAlias:\t{Alias}\nDescription:\t{Description}\nCreatedAtDate:\t{CreatedAtDate}\nScheduledDate:\t{ScheduledDate}\n";
-        a = a + $"Status\t{Status}\n";
-        //foreach (var item in Dependencies)
-        //{
-        //    a = a + item;
-        //}
-        return a;
-    }
+    public override string ToString() => this.ToStringProperty();
+
 }

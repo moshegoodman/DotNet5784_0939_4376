@@ -9,10 +9,6 @@ public class EngineerInTask
 
     public int Id { get; init; }
     public string Name { get; set; }
-    public override string ToString()
-    {
-        string a = $"Name:\t{Name}\nID:\t{Id}\n";
+    public override string ToString() => this.ToStringProperty();
 
-        return a;
-    }
 }

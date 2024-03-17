@@ -17,11 +17,6 @@ public class TaskInList
     public BO.Status Status { get; set; }
 
 
-    public override string ToString()
+    public override string ToString() => this.ToStringProperty();
 
-    {
-        string a = $"ID:\t{Id}\nAlias:\t{Alias}\nDescription:\t{Description}\nStatus:\t{Status}\n";
-
-        return a;
-    }
 }
