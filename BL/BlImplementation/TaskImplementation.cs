@@ -23,7 +23,7 @@ internal class TaskImplementation : ITask
             return BO.Status.Scheduled;
         else if (task.CompleteDate != null)
             return BO.Status.Done;
-        else if (task.DeadlineDate > _bl.Clock)
+        else if (task.ScheduledDate + task.RequiredEffortTime > _bl.Clock)
             return BO.Status.OnTrack;
         else
             return BO.Status.InJeopardy;
@@ -108,10 +108,6 @@ internal class TaskImplementation : ITask
             null,
             null
         );
-
-        //IEnumerable<int> tempDependencies = from taskInList in boTask.Dependencies
-        //                                  let dependency = new DO.Dependency(0, boTask.Id, taskInList.Id)
-        //                                select _dal.Dependency.Create(dependency);
         int TaskId = _dal.Task.Create(doTask);
         boTask.Dependencies.ForEach(dependency =>
             {

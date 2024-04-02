@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfEngineer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Engineer>
-    <Id>2222</Id>
-    <Email>boris@eng.com</Email>
-    <Cost>91.85152626279348</Cost>
-    <Name>Boris</Name>
-    <Level>Intermediate</Level>
-  </Engineer>
-  <Engineer>
     <Id>4444</Id>
     <Email>david@eng.com</Email>
     <Cost>177.12303017464689</Cost>
@@ -34,5 +27,12 @@
     <Cost>298.0769128304485</Cost>
     <Name>Moses</Name>
     <Level>Advanced</Level>
+  </Engineer>
+  <Engineer>
+    <Id>2222</Id>
+    <Email>boris@eng.com</Email>
+    <Cost>91.85152626279348</Cost>
+    <Name>דוד</Name>
+    <Level>Intermediate</Level>
   </Engineer>
 </ArrayOfEngineer>

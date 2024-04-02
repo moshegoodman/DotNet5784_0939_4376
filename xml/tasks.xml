@@ -22,11 +22,11 @@
     <Complexity>AdvancedBeginner</Complexity>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P23D</RequiredEffortTime>
-    <StartDate xsi:nil="true" />
+    <StartDate>2024-03-17T00:00:00+02:00</StartDate>
     <ScheduledDate>2024-03-17T00:00:00+02:00</ScheduledDate>
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
-    <EngineerId xsi:nil="true" />
+    <EngineerId>1111</EngineerId>
   </Task>
   <Task>
     <Id>1002</Id>
