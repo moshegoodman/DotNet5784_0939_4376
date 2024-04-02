@@ -3,15 +3,15 @@
   <Engineer>
     <Id>2222</Id>
     <Email>boris@eng.com</Email>
-    <Cost>204.06769867359253</Cost>
+    <Cost>272.6397275660957</Cost>
     <Name>Boris</Name>
     <Picture>/images/E3.jpeg</Picture>
-    <Level>Intermediate</Level>
+    <Level>Advanced</Level>
   </Engineer>
   <Engineer>
     <Id>4444</Id>
     <Email>david@eng.com</Email>
-    <Cost>221.70321597126494</Cost>
+    <Cost>213.0631369602876</Cost>
     <Name>David</Name>
     <Picture>/images/E5.jpeg</Picture>
     <Level>Advanced</Level>
@@ -19,25 +19,25 @@
   <Engineer>
     <Id>1111</Id>
     <Email>edward@eng.com</Email>
-    <Cost>68.50224362400097</Cost>
+    <Cost>65.08583888881549</Cost>
     <Name>Edward</Name>
     <Picture>/images/E2.jpeg</Picture>
-    <Level>Beginner</Level>
+    <Level>Intermediate</Level>
   </Engineer>
   <Engineer>
     <Id>5555</Id>
     <Email>joseph@eng.com</Email>
-    <Cost>78.31781131760508</Cost>
+    <Cost>128.01963672088857</Cost>
     <Name>Joseph</Name>
     <Picture>/images/E6.jpeg</Picture>
-    <Level>Beginner</Level>
+    <Level>Intermediate</Level>
   </Engineer>
   <Engineer>
     <Id>3333</Id>
     <Email>moses@eng.com</Email>
-    <Cost>134.16163808245238</Cost>
+    <Cost>133.0051919908625</Cost>
     <Name>Moses</Name>
     <Picture>/images/E4.jpeg</Picture>
-    <Level>Advanced</Level>
+    <Level>Intermediate</Level>
   </Engineer>
 </ArrayOfEngineer>
