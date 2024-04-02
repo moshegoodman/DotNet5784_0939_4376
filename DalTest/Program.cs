@@ -437,10 +437,12 @@ internal class Program
         Console.WriteLine("Enter engineers name:");
         string Name = Console.ReadLine()!;
 
+        string picture = "";
+
         Console.WriteLine("Enter engineers level:");
         DO.EngineerExperience Level = (DO.EngineerExperience)Convert.ToInt32(Console.ReadLine());
 
-        DO.Engineer newEngineer = new(_engineer_id, Email, Cost, Name, Level);
+        DO.Engineer newEngineer = new(_engineer_id, Email, Cost, Name, picture, Level);
         Console.WriteLine("new enginerr id:");
         Console.WriteLine(s_dal!.Engineer.Create(newEngineer));
     }
@@ -479,13 +481,15 @@ internal class Program
         Console.WriteLine("Enter engineers name:");
         string Name = Console.ReadLine()!;
 
+        string picture = "";
+
         Console.WriteLine("Enter engineers level:");
         DO.EngineerExperience? Level = (DO.EngineerExperience)Convert.ToInt32(Console.ReadLine());
 
 
         if (Email is null || Cost is null || Name is null || Level is null)
             return;
-        DO.Engineer newEngineer = new(_engineerId, Email, Cost!.Value, Name, Level!.Value);
+        DO.Engineer newEngineer = new(_engineerId, Email, Cost!.Value, Name, picture, Level!.Value);
 
         s_dal!.Engineer.Update(newEngineer);
     }

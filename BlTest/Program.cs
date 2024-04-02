@@ -415,12 +415,15 @@ internal class Program
         Console.WriteLine("Enter engineers level:");
         BO.EngineerExperience level = (BO.EngineerExperience)Convert.ToInt32(Console.ReadLine());
 
+
+        string picture = "";
         BO.Engineer newEngineer = new BO.Engineer()
         {
             Id = _engineer_id,
             Name = name,
             Cost = cost,
             Email = email,
+            Picture = picture,
             Level = level,
             Task = null
         };
@@ -464,6 +467,8 @@ internal class Program
         Console.WriteLine("Enter engineers name:");
         string name = Console.ReadLine()!;
 
+        string picture = "";
+
         Console.WriteLine("Enter engineers level:");
         BO.EngineerExperience level = (BO.EngineerExperience)Convert.ToInt32(Console.ReadLine());
 
@@ -476,6 +481,7 @@ internal class Program
             Name = name,
             Cost = cost,
             Email = email,
+            Picture = picture,
             Level = level,
             Task = null
         };
