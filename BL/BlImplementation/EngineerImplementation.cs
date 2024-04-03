@@ -11,7 +11,7 @@ internal class EngineerImplementation : IEngineer
         DO.Task? doTask = _dal.Task.ReadAll().Where(task => task != null).Where(task => task!.EngineerId == EngineerId).Where(task => task!.CompleteDate == null).FirstOrDefault();
         if (doTask == null)
             return null;
-        BO.TaskInEngineer? taskInEngineer = new BO.TaskInEngineer()
+        BO.TaskInEngineer? taskInEngineer = new()
         {
             Id = doTask.Id,
             alias = doTask.Alias
@@ -30,8 +30,7 @@ internal class EngineerImplementation : IEngineer
             throw new BO.InCorrectData("Engineer cost cant be negative");
         if (boEngineer.Name == "")
             throw new BO.InCorrectData("Engineer should have a name");
-        DO.Engineer doEngineer = new DO.Engineer
-                (boEngineer.Id, boEngineer.Email, boEngineer.Cost, boEngineer.Name, boEngineer.Picture, (DO.EngineerExperience)boEngineer.Level);
+        DO.Engineer doEngineer = new(boEngineer.Id, boEngineer.Email, boEngineer.Cost, boEngineer.Name, boEngineer.Picture, (DO.EngineerExperience)boEngineer.Level);
 
         try
         {
@@ -47,7 +46,7 @@ internal class EngineerImplementation : IEngineer
     //removes object from the database
     public void Delete(int id)
     {
-        DO.Engineer? doEngineer = _dal.Engineer.Read(id) ?? throw new BO.BlDoesNotExistException($"Engineer with ID={id} does Not exist");
+        DO.Engineer doEngineer = _dal.Engineer.Read(id) ?? throw new BO.BlDoesNotExistException($"Engineer with ID={id} does Not exist");
         if (Read(id)!.Task != null)
             throw new BO.BlDeletionImpossible("The engineer is in the middle of performing the task or has already finished the task");
         _dal.Engineer.Delete(id);
@@ -99,7 +98,7 @@ internal class EngineerImplementation : IEngineer
     {
         if (boEngineer.Id < 0)
             throw new BO.InCorrectData("Engineer ID cant be negative");
-        if (!(boEngineer.Email.Contains("@") && boEngineer.Email.Contains(".") && boEngineer.Email.IndexOf("@") < boEngineer.Email.IndexOf(".")))
+        if (!(boEngineer.Email.Contains('@') && boEngineer.Email.Contains('.') && boEngineer.Email.IndexOf("@") < boEngineer.Email.IndexOf(".")))
             throw new BO.InCorrectData($"Email: {boEngineer.Email} is invalid");
         if (boEngineer.Cost < 0)
             throw new BO.InCorrectData("Engineer cost cant be negative");
@@ -107,8 +106,7 @@ internal class EngineerImplementation : IEngineer
             throw new BO.InCorrectData("Engineer should have a name");
         if ((int)boEngineer.Level < (int)Read(boEngineer.Id)!.Level)
             throw new BO.BlUpdateImpossible("Engineer level cannot decrease");
-        DO.Engineer doEngineer = new DO.Engineer
-                (boEngineer.Id, boEngineer.Email, boEngineer.Cost, boEngineer.Name, boEngineer.Picture, (DO.EngineerExperience)boEngineer.Level);
+        DO.Engineer doEngineer = new(boEngineer.Id, boEngineer.Email, boEngineer.Cost, boEngineer.Name, boEngineer.Picture, (DO.EngineerExperience)boEngineer.Level);
         BO.TaskInEngineer? taskInEngineer = boEngineer.Task;
         if (taskInEngineer != null)
         {
@@ -133,8 +131,7 @@ internal class EngineerImplementation : IEngineer
     //setter for level
     public void UpdateLevel(int engineerId, BO.EngineerExperience level)
     {
-        DO.Engineer? doEngineer = _dal.Engineer.Read(engineerId);
-        if (doEngineer == null) throw new BO.BlDoesNotExistException($"Engineer ID {engineerId} does not exist");
+        DO.Engineer doEngineer = _dal.Engineer.Read(engineerId) ?? throw new BO.BlDoesNotExistException($"Engineer ID {engineerId} does not exist");
         doEngineer = new(doEngineer.Id, doEngineer.Email, doEngineer.Cost, doEngineer.Name, doEngineer.Picture, (DO.EngineerExperience)level);
         _dal.Engineer.Update(doEngineer);
     }
@@ -142,8 +139,7 @@ internal class EngineerImplementation : IEngineer
     //setter for email
     public void SetEmail(int engineerId, string email)
     {
-        DO.Engineer? doEngineer = _dal.Engineer.Read(engineerId);
-        if (doEngineer == null) throw new BO.BlDoesNotExistException($"Engineer ID {engineerId} does not exist");
+        DO.Engineer? doEngineer = _dal.Engineer.Read(engineerId) ?? throw new BO.BlDoesNotExistException($"Engineer ID {engineerId} does not exist");
         doEngineer = new(doEngineer.Id, email, doEngineer.Cost, doEngineer.Name, doEngineer.Picture, doEngineer.Level);
         _dal.Engineer.Update(doEngineer);
     }
@@ -151,8 +147,7 @@ internal class EngineerImplementation : IEngineer
     //setter for name
     public void SetName(int engineerId, string name)
     {
-        DO.Engineer? doEngineer = _dal.Engineer.Read(engineerId);
-        if (doEngineer == null) throw new BO.BlDoesNotExistException($"Engineer ID {engineerId} does not exist");
+        DO.Engineer? doEngineer = _dal.Engineer.Read(engineerId) ?? throw new BO.BlDoesNotExistException($"Engineer ID {engineerId} does not exist");
         doEngineer = new(doEngineer.Id, doEngineer.Email, doEngineer.Cost, name, doEngineer.Picture, doEngineer.Level);
         _dal.Engineer.Update(doEngineer);
     }
@@ -160,8 +155,7 @@ internal class EngineerImplementation : IEngineer
     //setter for cost
     public void SetCost(int engineerId, double cost)
     {
-        DO.Engineer? doEngineer = _dal.Engineer.Read(engineerId);
-        if (doEngineer == null) throw new BO.BlDoesNotExistException($"Engineer ID {engineerId} does not exist");
+        DO.Engineer? doEngineer = _dal.Engineer.Read(engineerId) ?? throw new BO.BlDoesNotExistException($"Engineer ID {engineerId} does not exist");
         doEngineer = new(doEngineer.Id, doEngineer.Email, cost, doEngineer.Name, doEngineer.Picture, doEngineer.Level);
         _dal.Engineer.Update(doEngineer);
     }

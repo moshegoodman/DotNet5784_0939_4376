@@ -56,7 +56,6 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     private void StartSimulationClick(object sender, RoutedEventArgs e)
     {
         Thread thread = new Thread(UpdateClock);
-        thread.IsBackground = true; // Set the thread as a background thread
         thread.Start();
     }
 
@@ -75,8 +74,6 @@ public partial class MainWindow : Window, INotifyPropertyChanged
             Thread.Sleep(1000); // Sleep for 1 second
         }
     }
-
-
 
 
 

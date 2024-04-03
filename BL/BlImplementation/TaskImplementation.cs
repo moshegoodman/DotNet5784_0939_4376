@@ -13,10 +13,7 @@ internal class TaskImplementation : ITask
     //Method to calculate the status of a given DO.Task 
     private BO.Status GetStatus(int id)
     {
-        DO.Task? task = _dal.Task.Read(id);
-
-        if (task == null)
-            throw new BO.BlDoesNotExistException("The task doesn't exist");
+        DO.Task task = _dal.Task.Read(id) ?? throw new BO.BlDoesNotExistException("The task doesn't exist");
         if (task.ScheduledDate == null)
             return BO.Status.Unscheduled;
         else if (task.StartDate == null)
@@ -91,7 +88,7 @@ internal class TaskImplementation : ITask
             throw new BO.InCorrectData("Task ID must be a positive integer");
         if (boTask.Alias == "")
             throw new BO.InCorrectData("Task should have an alias");
-        DO.Task doTask = new DO.Task
+        DO.Task doTask = new
         (
             boTask.Id,
             boTask.Alias,
@@ -143,7 +140,7 @@ internal class TaskImplementation : ITask
         if ((int)boTask.Complexity > (int)engineer.Level) throw new BO.BlEngineerLevelIsTooLow($"Engineer with ID: {engineerId} doesn't have the expertise required for the task.");
 
 
-        DO.Task doTask = new DO.Task
+        DO.Task doTask = new
      (
          boTask.Id,
          boTask.Alias,
@@ -278,7 +275,7 @@ internal class TaskImplementation : ITask
             throw new BO.BlUpdateImpossible($"The previous tasks must be complete before the current task, the date must be set after {MaxForcastDate(boTask.Dependencies)}");
         boTask.ScheduledDate = _scheduledDate;
 
-        DO.Task doTask = new DO.Task
+        DO.Task doTask = new
      (
          boTask.Id,
          boTask.Alias,
@@ -317,7 +314,7 @@ internal class TaskImplementation : ITask
             throw new BO.BlDoesNotExistException($"Task with ID: {boTask} does not exist");
         if (_dal.Task.GetStatus() >= 2)
             throw new BO.BlScheduled("Can't add dependencies once you completed setting the tasks.");
-        DO.Dependency doDependency = new DO.Dependency(0, taskId, boTask);
+        DO.Dependency doDependency = new(0, taskId, boTask);
         foreach (DO.Dependency dependency in _dal.Dependency.ReadAll())
         {
             if (dependency != null && dependency.DependentTask == doDependency.DependentTask &&
@@ -432,7 +429,7 @@ internal class TaskImplementation : ITask
         {
             _startDate = _bl.Clock;
         }
-        DO.Task doTask = new DO.Task
+        DO.Task doTask = new
         (
             boTask.Id,
             boTask.Alias,
