@@ -30,7 +30,6 @@ public static class Initialization
         foreach (var _name in engineerNames)
         {
             int _id = i;
-            i += 1111;
 
             string _email = $"{_name.ToLower()}@eng.com";
 
@@ -42,6 +41,7 @@ public static class Initialization
 
             s_dal!.Engineer.Create(newEng);
 
+            i += 1111;
         }
 
     }

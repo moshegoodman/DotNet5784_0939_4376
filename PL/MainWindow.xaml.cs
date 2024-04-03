@@ -72,7 +72,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
                 Clock = s_bl.Clock;
             });
 
-            Thread.Sleep(100); // Sleep for 1 second
+            Thread.Sleep(1000); // Sleep for 1 second
         }
     }
 
