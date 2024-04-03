@@ -13,14 +13,6 @@ public partial class ATaskWindow : Window
 {
 
 
-    //public IEnumerable<BO.EngineerInTask> EngineerList
-    //{
-    //    get { return (IEnumerable<BO.EngineerInTask>)GetValue(EngineerListProperty); }
-    //    set { SetValue(EngineerListProperty, value); }
-    //}
-
-    //public static readonly DependencyProperty EngineerListProperty =
-    //    DependencyProperty.Register("EngineerList", typeof(IEnumerable<BO.EngineerInTask>), typeof(ATaskWindow), new PropertyMetadata(null));
 
     static readonly IBl s_bl = Factory.Get();
 
@@ -39,12 +31,6 @@ public partial class ATaskWindow : Window
     public ATaskWindow(int id = 0)
     {
         InitializeComponent();
-        //EngineerList = from engineer in s_bl.Engineer.ReadAll()
-        //               select new BO.EngineerInTask()
-        //               {
-        //                   Id = engineer.Id,
-        //                   Name = engineer.Name,
-        //               };
 
         if (id == 0)
         {
@@ -76,7 +62,7 @@ public partial class ATaskWindow : Window
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "ERROR",MessageBoxButton.OK,MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

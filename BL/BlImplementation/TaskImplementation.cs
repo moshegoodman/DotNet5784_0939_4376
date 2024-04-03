@@ -222,8 +222,8 @@ internal class TaskImplementation : ITask
     {
         if (_dal.Task.GetStartDate() == null)
             throw new BO.BlScheduled("These details cannot be updated at this time for tasks");
-        if (_dal.Task.GetStatus() <= 2)
-            throw new BO.BlScheduled("These details cannot be updated at this time for tasks");
+        // if (_dal.Task.GetStatus() <= 2)
+        //    throw new BO.BlScheduled("These details cannot be updated at this time for tasks");
 
         if (boTask.Id < 0)
             throw new BO.InCorrectData("Task ID can't be negative");

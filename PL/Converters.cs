@@ -62,7 +62,20 @@ class ConvertStatus1ToEnabled : IValueConverter
         throw new NotImplementedException();
     }
 }
+class ConvertStatus2ToEnabled : IValueConverter
+{
+    static readonly IBl s_bl = Factory.Get();
 
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return s_bl.Task.GetProjectStatus() == 2 ? true : false;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
 class ConvertStatus1ToHidden : IValueConverter
 {
     static readonly IBl s_bl = Factory.Get();
