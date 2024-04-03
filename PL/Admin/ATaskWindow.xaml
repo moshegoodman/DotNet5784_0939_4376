@@ -93,11 +93,11 @@
 
             <TextBox   Text="{Binding Deliverables, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="8"/>
             <TextBox   Text="{Binding Remarks, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="9"/>
-            <TextBox   Text="{Binding RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true, Converter={StaticResource ConvertTimeSpanToStringKey}}" Grid.Column="2" Grid.Row="10" IsEnabled="{Binding Id , Mode=OneTime, Converter={StaticResource ConvertStatus1ToEnabledKey}}"/>
-            <TextBox Background="Beige"  Text="{Binding StartDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="11"/>
-            <TextBox Background="Beige"  Text="{Binding ScheduledDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="12"/>
-            <TextBox Background="Beige"  Text="{Binding ForecastDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="13"/>
-            <TextBox Background="Beige"  Text="{Binding CompleteDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="14"/>
+            <TextBox   Text="{Binding RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true, Converter={StaticResource ConvertTimeSpanToStringKey}}" Grid.Column="2" Grid.Row="10" IsEnabled="{Binding Id , Mode=OneTime, Converter={StaticResource ConvertStatus1ToEnabledKey}}" />
+            <TextBox Background="Beige"  Text="{Binding StartDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="11" IsEnabled="False"/>
+            <TextBox Background="Beige"  Text="{Binding ScheduledDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="12" IsEnabled="False"/>
+            <TextBox Background="Beige"  Text="{Binding ForecastDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="13" IsEnabled="False"/>
+            <TextBox Background="Beige"  Text="{Binding CompleteDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="2" Grid.Row="14" IsEnabled="False"/>
         </Grid>
         <Label Background="Beige"  Content="{Binding Task.Engineer}" Visibility="{Binding Task.Engineer, Converter={StaticResource ConvertNullToVisibilityKey}}" Grid.Column="2" Grid.Row="16" Height="60" Width="300" />
 

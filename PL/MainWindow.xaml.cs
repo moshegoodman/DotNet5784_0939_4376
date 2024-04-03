@@ -3,10 +3,8 @@ using PL.Admin;
 using PL.Engineer;
 using System;
 using System.ComponentModel;
-using System.DirectoryServices;
 using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace PL;
@@ -56,7 +54,6 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     private void StartSimulationClick(object sender, RoutedEventArgs e)
     {
         Thread thread = new Thread(UpdateClock);
-        thread.IsBackground = true; // Set the thread as a background thread
         thread.Start();
     }
 

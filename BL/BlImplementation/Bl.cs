@@ -20,7 +20,8 @@ internal class Bl : IBl
 
     }
 
-    #region clock
+    #region 
+
 
 
     private static DateTime s_Clock = DateTime.Now.Date;
