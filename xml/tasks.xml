@@ -119,7 +119,7 @@
     <CreatedAtDate>2023-05-02T11:36:18.9791117+03:00</CreatedAtDate>
     <Complexity>Advanced</Complexity>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P29D</RequiredEffortTime>
+    <RequiredEffortTime>P27D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
     <DeadlineDate xsi:nil="true" />
@@ -161,7 +161,7 @@
     <CreatedAtDate>2023-08-18T11:36:19.0057306+03:00</CreatedAtDate>
     <Complexity>Advanced</Complexity>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P29D</RequiredEffortTime>
+    <RequiredEffortTime>P27D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
     <DeadlineDate xsi:nil="true" />
@@ -203,7 +203,7 @@
     <CreatedAtDate>2023-05-06T11:36:19.0352568+03:00</CreatedAtDate>
     <Complexity>AdvancedBeginner</Complexity>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P23D</RequiredEffortTime>
+    <RequiredEffortTime>P28D</RequiredEffortTime>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
     <DeadlineDate xsi:nil="true" />
